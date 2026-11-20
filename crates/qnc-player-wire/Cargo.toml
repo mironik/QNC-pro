@@ -1,0 +1,9 @@
+[package]
+name = "qnc-player-wire"
+version.workspace = true
+edition.workspace = true
+description = "The wire of the Broadcast Player program, as it speaks it: the framed TCP control request, the session envelopes, the commands and the events."
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }

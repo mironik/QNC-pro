@@ -1,0 +1,17 @@
+[package]
+name = "qnc-frame-map"
+version.workspace = true
+edition.workspace = true
+description = "The shared-memory mailbox the Broadcast Player posts its pictures into, in the program's own format: the client makes it, the monitor reads the newest picture."
+
+[dependencies]
+memmap2 = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+qnc-player-wire = { path = "../qnc-player-wire" }
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { workspace = true }
+
+[target.'cfg(unix)'.dependencies]
+libc = { workspace = true }

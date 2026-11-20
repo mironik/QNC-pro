@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Makes and reads the shared-memory frame mailbox of a player session in the program's own format, giving the monitor the newest posted picture and nothing older.",
+  "database": "none"
+}

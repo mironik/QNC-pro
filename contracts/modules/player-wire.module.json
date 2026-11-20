@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Speaks the wire of the Broadcast Player program exactly: the framed control request over TCP, the session envelopes with their checks, the commands and the events.",
+  "database": "none"
+}
