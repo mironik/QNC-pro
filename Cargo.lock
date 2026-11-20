@@ -693,6 +693,48 @@ dependencies = [
 ]
 
 [[package]]
+name = "qnc-tray"
+version = "0.1.0"
+dependencies = [
+ "qnc-tray-form",
+]
+
+[[package]]
+name = "qnc-tray-form"
+version = "0.1.0"
+dependencies = [
+ "qnc-diagnostics",
+ "qnc-settings",
+ "qnc-text",
+ "qnc-tray-icon",
+ "qnc-tray-run",
+]
+
+[[package]]
+name = "qnc-tray-icon"
+version = "0.1.0"
+dependencies = [
+ "windows-sys",
+]
+
+[[package]]
+name = "qnc-tray-run"
+version = "0.1.0"
+dependencies = [
+ "qnc-camera-profile",
+ "qnc-card-ingest",
+ "qnc-card-watch",
+ "qnc-db",
+ "qnc-diagnostics",
+ "qnc-disks",
+ "qnc-ids",
+ "qnc-mode",
+ "qnc-settings",
+ "qnc-text",
+ "serde_json",
+]
+
+[[package]]
 name = "qnc-ui-kit"
 version = "0.1.0"
 dependencies = [

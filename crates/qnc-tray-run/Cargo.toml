@@ -1,0 +1,18 @@
+[package]
+name = "qnc-tray-run"
+version.workspace = true
+edition.workspace = true
+description = "The tray's run: every half second looks at the disks, hands a ready card to the ingest, passes progress and ends on; it routes, it does not decide."
+
+[dependencies]
+serde_json = { workspace = true }
+qnc-settings = { path = "../qnc-settings" }
+qnc-diagnostics = { path = "../qnc-diagnostics" }
+qnc-text = { path = "../qnc-text" }
+qnc-ids = { path = "../qnc-ids" }
+qnc-disks = { path = "../qnc-disks" }
+qnc-card-watch = { path = "../qnc-card-watch" }
+qnc-card-ingest = { path = "../qnc-card-ingest" }
+qnc-camera-profile = { path = "../qnc-camera-profile" }
+qnc-mode = { path = "../qnc-mode" }
+qnc-db = { path = "../qnc-db" }

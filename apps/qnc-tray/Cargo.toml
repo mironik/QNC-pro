@@ -1,0 +1,8 @@
+[package]
+name = "qnc-tray"
+version.workspace = true
+edition.workspace = true
+description = "The QNC tray: starts the tray form."
+
+[dependencies]
+qnc-tray-form = { path = "../../crates/qnc-tray-form" }

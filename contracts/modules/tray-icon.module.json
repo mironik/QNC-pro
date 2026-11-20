@@ -1,0 +1,5 @@
+{
+  "kind": "kit",
+  "responsibility": "Draws the icon in the system tray with its tip, popup menu and balloon notice, and returns the menu item the user chose.",
+  "database": "none"
+}

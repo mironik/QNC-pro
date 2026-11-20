@@ -1,0 +1,5 @@
+{
+  "kind": "form",
+  "responsibility": "Shows the tray icon with its status and the quit item, fed by the tray run, and hands the user's choices to the run.",
+  "database": "none"
+}

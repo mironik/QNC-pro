@@ -1,0 +1,12 @@
+[package]
+name = "qnc-tray-form"
+version.workspace = true
+edition.workspace = true
+description = "The tray form: the icon with its menu (status, quit), fed by the tray run; the user's choices go to the run."
+
+[dependencies]
+qnc-settings = { path = "../qnc-settings" }
+qnc-diagnostics = { path = "../qnc-diagnostics" }
+qnc-text = { path = "../qnc-text" }
+qnc-tray-icon = { path = "../qnc-tray-icon" }
+qnc-tray-run = { path = "../qnc-tray-run" }

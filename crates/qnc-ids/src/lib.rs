@@ -54,5 +54,23 @@ mod tests {
         assert_eq!(slug("Breaking news 2026-11-20 13:28"), "breaking_news_2026-11-20_13_28");
         assert_eq!(slug("   "), "projekt");
         assert_eq!(folder_name("a/b:c"), "a_b_c");
+        assert_eq!(time_stamp(1_795_177_687), "2026-11-20 13:48");
     }
+}
+
+/// `YYYY-MM-DD HH:MM` (UTC) of a unix time in seconds, for a name made at that moment.
+pub fn time_stamp(unix_secs: u64) -> String {
+    let days = (unix_secs / 86_400) as i64;
+    let rest = unix_secs % 86_400;
+    // Civil date from days since 1970 (H. Hinnant's algorithm).
+    let z = days + 719_468;
+    let era = z.div_euclid(146_097);
+    let doe = z - era * 146_097;
+    let yoe = (doe - doe / 1460 + doe / 36_524 - doe / 146_096) / 365;
+    let doy = doe - (365 * yoe + yoe / 4 - yoe / 100);
+    let mp = (5 * doy + 2) / 153;
+    let day = doy - (153 * mp + 2) / 5 + 1;
+    let month = if mp < 10 { mp + 3 } else { mp - 9 };
+    let year = yoe + era * 400 + i64::from(month <= 2);
+    format!("{year:04}-{month:02}-{day:02} {:02}:{:02}", rest / 3600, (rest % 3600) / 60)
 }
