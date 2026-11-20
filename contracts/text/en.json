@@ -48,5 +48,10 @@
   "action.rule.shift": "Shift+ adds something new.",
   "action.rule.alt": "Alt+ jumps between objects.",
   "action.rule.enter_esc_delete": "Enter confirms, Esc lets go, Delete removes only what was taken.",
-  "action.rule.mouse": "Right click is Ctrl+; left click sets the playhead; the wheel is the arrows."
+  "action.rule.mouse": "Right click is Ctrl+; left click sets the playhead; the wheel is the arrows.",
+  "action.timeline_cue_frame": "Playhead to the click",
+  "action.timeline_take_nearer": "Take the nearer mark",
+  "action.timeline_drag_mark": "Drag the taken mark",
+  "action.source_cut": "Cut (first IN, then the range)",
+  "mouse.unknown_action": "The mouse map binds {gesture} on {panel} to {action}, which the catalog does not know."
 }

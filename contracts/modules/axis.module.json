@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Maps the frames a timeline window shows to pixels and back, and cuts the enlarged and zoom windows out of a clip; the one geometry of every timeline and its zoom.",
+  "database": "none"
+}

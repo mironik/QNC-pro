@@ -48,5 +48,10 @@
   "action.rule.shift": "Shift+ dodaje nešto novo.",
   "action.rule.alt": "Alt+ skače po objektima.",
   "action.rule.enter_esc_delete": "Enter potvrđuje, Esc pušta, Delete briše samo uzeto.",
-  "action.rule.mouse": "Desni klik je Ctrl+; lijevi klik postavlja playhead; kotačić su strelice."
+  "action.rule.mouse": "Desni klik je Ctrl+; lijevi klik postavlja playhead; kotačić su strelice.",
+  "action.timeline_cue_frame": "Playhead na klik",
+  "action.timeline_take_nearer": "Uzmi bližu oznaku",
+  "action.timeline_drag_mark": "Povuci uzetu oznaku",
+  "action.source_cut": "Rez (prvi IN, pa raspon)",
+  "mouse.unknown_action": "Mapa miša veže {gesture} na {panel} za {action}, koju katalog ne zna."
 }

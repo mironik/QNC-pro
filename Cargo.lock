@@ -252,6 +252,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "qnc-axis"
+version = "0.1.0"
+
+[[package]]
 name = "qnc-conformance"
 version = "0.1.0"
 dependencies = [
@@ -291,6 +295,15 @@ name = "qnc-marks"
 version = "0.1.0"
 dependencies = [
  "qnc-actions",
+]
+
+[[package]]
+name = "qnc-mouse-map"
+version = "0.1.0"
+dependencies = [
+ "qnc-actions",
+ "qnc-text",
+ "serde_json",
 ]
 
 [[package]]

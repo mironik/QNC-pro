@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Turns a mouse gesture on a named panel into the catalog actions the built-in mouse map binds to it, in order; a gesture the map does not bind means nothing.",
+  "database": "none"
+}

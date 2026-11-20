@@ -1,0 +1,10 @@
+[package]
+name = "qnc-mouse-map"
+version.workspace = true
+edition.workspace = true
+description = "The one map from a mouse gesture on a panel to the actions of the catalog; the mouse never means anything the map does not say."
+
+[dependencies]
+serde_json = { workspace = true }
+qnc-actions = { path = "../qnc-actions" }
+qnc-text = { path = "../qnc-text" }

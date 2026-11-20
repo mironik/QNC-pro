@@ -4,7 +4,7 @@
 
 use qnc_marks::{Done, Marks, Taken};
 
-const ACTIONS: [&str; 12] = [
+const ACTIONS: [&str; 16] = [
     "mark_in",
     "mark_out",
     "select_mark_in",
@@ -17,6 +17,10 @@ const ACTIONS: [&str; 12] = [
     "go_to_mark_in",
     "navigate_prev_object",
     "navigate_next_object",
+    "timeline_cue_frame",
+    "timeline_take_nearer",
+    "timeline_drag_mark",
+    "source_cut",
 ];
 
 fn states() -> Vec<(&'static str, Marks)> {

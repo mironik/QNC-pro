@@ -17,7 +17,11 @@
     "mark_out": { "label": "@action.mark_out", "group": "marks" },
     "select_mark_in": { "label": "@action.select_mark_in", "group": "marks" },
     "select_mark_out": { "label": "@action.select_mark_out", "group": "marks" },
-    "toggle_snapping": { "label": "@action.toggle_snapping", "group": "general" }
+    "toggle_snapping": { "label": "@action.toggle_snapping", "group": "general" },
+    "timeline_cue_frame": { "label": "@action.timeline_cue_frame", "group": "playback" },
+    "timeline_take_nearer": { "label": "@action.timeline_take_nearer", "group": "marks" },
+    "timeline_drag_mark": { "label": "@action.timeline_drag_mark", "group": "marks" },
+    "source_cut": { "label": "@action.source_cut", "group": "marks" }
   },
   "groups": {
     "general": "@action.group.general",

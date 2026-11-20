@@ -10,6 +10,10 @@ fresh clip, nothing set | playhead 20 | undo_object -> NotMine | in=None out=Non
 fresh clip, nothing set | playhead 20 | go_to_mark_in -> Cue(0) | in=None out=None taken=-
 fresh clip, nothing set | playhead 20 | navigate_prev_object -> Cue(0) | in=None out=None taken=-
 fresh clip, nothing set | playhead 20 | navigate_next_object -> Cue(99) | in=None out=None taken=-
+fresh clip, nothing set | playhead 20 | timeline_cue_frame -> NotMine | in=None out=None taken=-
+fresh clip, nothing set | playhead 20 | timeline_take_nearer -> Cue(0) | in=None out=None taken=IN
+fresh clip, nothing set | playhead 20 | timeline_drag_mark -> Refused | in=None out=None taken=-
+fresh clip, nothing set | playhead 20 | source_cut -> Changed | in=Some(20) out=None taken=-
 fresh clip, nothing set | click -> NotMine | in=None out=None taken=-
 fresh clip, nothing set | drag IN to 25 -> Cue(25) | in=Some(25) out=None taken=IN
 IN 10 OUT 40, nothing taken | playhead 20 | mark_in -> Changed | in=Some(20) out=Some(40) taken=-
@@ -24,6 +28,10 @@ IN 10 OUT 40, nothing taken | playhead 20 | undo_object -> NotMine | in=Some(10)
 IN 10 OUT 40, nothing taken | playhead 20 | go_to_mark_in -> Cue(10) | in=Some(10) out=Some(40) taken=-
 IN 10 OUT 40, nothing taken | playhead 20 | navigate_prev_object -> Cue(10) | in=Some(10) out=Some(40) taken=-
 IN 10 OUT 40, nothing taken | playhead 20 | navigate_next_object -> Cue(39) | in=Some(10) out=Some(40) taken=-
+IN 10 OUT 40, nothing taken | playhead 20 | timeline_cue_frame -> NotMine | in=Some(10) out=Some(40) taken=-
+IN 10 OUT 40, nothing taken | playhead 20 | timeline_take_nearer -> Cue(10) | in=Some(10) out=Some(40) taken=IN
+IN 10 OUT 40, nothing taken | playhead 20 | timeline_drag_mark -> Refused | in=Some(10) out=Some(40) taken=-
+IN 10 OUT 40, nothing taken | playhead 20 | source_cut -> Changed | in=Some(20) out=None taken=-
 IN 10 OUT 40, nothing taken | click -> NotMine | in=Some(10) out=Some(40) taken=-
 IN 10 OUT 40, nothing taken | drag IN to 25 -> Cue(25) | in=Some(25) out=Some(40) taken=IN
 IN taken and moved to 9 | playhead 20 | mark_in -> Changed | in=Some(20) out=Some(40) taken=-
@@ -38,6 +46,10 @@ IN taken and moved to 9 | playhead 20 | undo_object -> Cue(10) | in=Some(10) out
 IN taken and moved to 9 | playhead 20 | go_to_mark_in -> Cue(9) | in=Some(9) out=Some(40) taken=IN
 IN taken and moved to 9 | playhead 20 | navigate_prev_object -> Refused | in=Some(9) out=Some(40) taken=IN
 IN taken and moved to 9 | playhead 20 | navigate_next_object -> Refused | in=Some(9) out=Some(40) taken=IN
+IN taken and moved to 9 | playhead 20 | timeline_cue_frame -> Changed | in=Some(9) out=Some(40) taken=-
+IN taken and moved to 9 | playhead 20 | timeline_take_nearer -> Cue(9) | in=Some(9) out=Some(40) taken=IN
+IN taken and moved to 9 | playhead 20 | timeline_drag_mark -> Cue(20) | in=Some(20) out=Some(40) taken=IN
+IN taken and moved to 9 | playhead 20 | source_cut -> Changed | in=Some(20) out=None taken=-
 IN taken and moved to 9 | click -> Changed | in=Some(9) out=Some(40) taken=-
 IN taken and moved to 9 | drag IN to 25 -> Cue(25) | in=Some(25) out=Some(40) taken=IN
 OUT taken and moved to 41 | playhead 20 | mark_in -> Changed | in=Some(20) out=Some(41) taken=-
@@ -52,6 +64,10 @@ OUT taken and moved to 41 | playhead 20 | undo_object -> Cue(39) | in=Some(10) o
 OUT taken and moved to 41 | playhead 20 | go_to_mark_in -> Cue(10) | in=Some(10) out=Some(41) taken=OUT
 OUT taken and moved to 41 | playhead 20 | navigate_prev_object -> Refused | in=Some(10) out=Some(41) taken=OUT
 OUT taken and moved to 41 | playhead 20 | navigate_next_object -> Refused | in=Some(10) out=Some(41) taken=OUT
+OUT taken and moved to 41 | playhead 20 | timeline_cue_frame -> Changed | in=Some(10) out=Some(41) taken=-
+OUT taken and moved to 41 | playhead 20 | timeline_take_nearer -> Cue(10) | in=Some(10) out=Some(41) taken=IN
+OUT taken and moved to 41 | playhead 20 | timeline_drag_mark -> Cue(20) | in=Some(10) out=Some(21) taken=OUT
+OUT taken and moved to 41 | playhead 20 | source_cut -> Changed | in=Some(20) out=None taken=-
 OUT taken and moved to 41 | click -> Changed | in=Some(10) out=Some(41) taken=-
 OUT taken and moved to 41 | drag IN to 25 -> Cue(25) | in=Some(25) out=Some(41) taken=IN
 IN 39 taken against OUT 40 | playhead 20 | mark_in -> Changed | in=Some(20) out=Some(40) taken=-
@@ -66,5 +82,9 @@ IN 39 taken against OUT 40 | playhead 20 | undo_object -> Cue(39) | in=Some(39) 
 IN 39 taken against OUT 40 | playhead 20 | go_to_mark_in -> Cue(39) | in=Some(39) out=Some(40) taken=IN
 IN 39 taken against OUT 40 | playhead 20 | navigate_prev_object -> Refused | in=Some(39) out=Some(40) taken=IN
 IN 39 taken against OUT 40 | playhead 20 | navigate_next_object -> Refused | in=Some(39) out=Some(40) taken=IN
+IN 39 taken against OUT 40 | playhead 20 | timeline_cue_frame -> Changed | in=Some(39) out=Some(40) taken=-
+IN 39 taken against OUT 40 | playhead 20 | timeline_take_nearer -> Cue(39) | in=Some(39) out=Some(40) taken=IN
+IN 39 taken against OUT 40 | playhead 20 | timeline_drag_mark -> Cue(20) | in=Some(20) out=Some(40) taken=IN
+IN 39 taken against OUT 40 | playhead 20 | source_cut -> Changed | in=Some(20) out=None taken=-
 IN 39 taken against OUT 40 | click -> Changed | in=Some(39) out=Some(40) taken=-
 IN 39 taken against OUT 40 | drag IN to 25 -> Cue(25) | in=Some(25) out=Some(40) taken=IN

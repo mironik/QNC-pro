@@ -36,12 +36,14 @@ pub struct Marks {
     taken: Taken,
     /// The marks when the taken one was taken: what Esc and Undo go back to.
     origin: Option<(Option<u64>, Option<u64>)>,
+    /// The first cut of the scissors, waiting for the second.
+    pending_cut: Option<u64>,
 }
 
 impl Marks {
     /// The marks of a clip of `frames` frames, none set.
     pub fn of_clip(frames: u64) -> Marks {
-        Marks { frames: frames.max(1), in_mark: None, out_mark: None, taken: Taken::None, origin: None }
+        Marks { frames: frames.max(1), in_mark: None, out_mark: None, taken: Taken::None, origin: None, pending_cut: None }
     }
 
     /// The marks of a clip with the marks it was saved with.
@@ -104,7 +106,40 @@ impl Marks {
             "go_to_mark_in" => Done::Cue(self.in_()),
             "navigate_prev_object" => self.stop(playhead, false),
             "navigate_next_object" => self.stop(playhead, true),
+            "timeline_take_nearer" => self.take_nearer(playhead),
+            "timeline_drag_mark" => self.drag(self.taken, playhead),
+            "timeline_cue_frame" => self.click(),
+            "source_cut" => self.cut(playhead),
             _ => Done::NotMine,
+        }
+    }
+
+    /// Right click (Ctrl+) at `frame`: takes IN or OUT, whichever is nearer.
+    fn take_nearer(&mut self, frame: u64) -> Done {
+        let to_in = self.in_().abs_diff(frame);
+        let to_out = (self.out() - 1).abs_diff(frame);
+        self.take(if to_in <= to_out { Taken::In } else { Taken::Out })
+    }
+
+    /// The scissors (middle click, double click): the first cut is IN without OUT; the second
+    /// marks the range (the earlier frame IN, the later OUT); the third starts a new pair.
+    fn cut(&mut self, frame: u64) -> Done {
+        self.taken = Taken::None;
+        self.origin = None;
+        match self.pending_cut.take() {
+            None => {
+                let frame = frame.min(self.frames - 1);
+                self.in_mark = Some(frame);
+                self.out_mark = None;
+                self.pending_cut = Some(frame);
+                Done::Changed
+            }
+            Some(first) => {
+                let (low, high) = (first.min(frame), first.max(frame));
+                self.in_mark = Some(low.min(self.frames - 1));
+                self.out_mark = Some((high + 1).clamp(low + 1, self.frames));
+                Done::Changed
+            }
         }
     }
 

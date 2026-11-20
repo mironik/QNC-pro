@@ -1,0 +1,7 @@
+[package]
+name = "qnc-axis"
+version.workspace = true
+edition.workspace = true
+description = "The one geometry of a timeline window: which frames it shows, frame to pixel and back, the enlarged 15/70/15 window and the zoom window around a cut."
+
+[dependencies]

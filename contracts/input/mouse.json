@@ -1,0 +1,13 @@
+{
+  "source_timeline": {
+    "left_click": ["timeline_cue_frame"],
+    "right_click": ["timeline_take_nearer"],
+    "double_click": ["source_cut"],
+    "middle_click": ["source_cut"],
+    "drag": ["timeline_drag_mark"],
+    "wheel_back": ["step_back_frame"],
+    "wheel_forward": ["step_forward_frame"],
+    "ctrl_wheel_back": ["timeline_take_nearer", "step_back_frame"],
+    "ctrl_wheel_forward": ["timeline_take_nearer", "step_forward_frame"]
+  }
+}
