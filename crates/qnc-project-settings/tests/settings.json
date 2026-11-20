@@ -1,0 +1,137 @@
+{
+  "ai": {
+    "features": [
+      "transcription",
+      "letter_times",
+      "read_check",
+      "shot_analysis",
+      "shot_content",
+      "shot_caption",
+      "broll_suggest",
+      "translate",
+      "smooth_cut"
+    ],
+    "language": "hr",
+    "template": "own_all_ai"
+  },
+  "artifacts": {
+    "filmstrip": "auto",
+    "order": [
+      [
+        "records"
+      ],
+      [
+        "posters",
+        "poster_look"
+      ],
+      [
+        "waves",
+        "filmstrips",
+        "import",
+        "transcripts"
+      ],
+      [
+        "shots",
+        "content",
+        "captions"
+      ]
+    ],
+    "wave": "auto"
+  },
+  "audio": {
+    "atmosphere_channel": "CH2",
+    "channels": 2,
+    "crossfade_frames": 4,
+    "loudness": {
+      "a1_lufs": -23,
+      "a2_lufs": -23,
+      "tolerance_lu": 0.5,
+      "true_peak_dbtp": -1
+    },
+    "reading_words_per_second": 2.5,
+    "sample_rate": 48000,
+    "transcribe_channel": "CH1"
+  },
+  "export": {
+    "audio_channels": 2,
+    "audio_sample_rate": 48000,
+    "color_space": "rec709",
+    "container": "mp4",
+    "custom_presets": [],
+    "default_mode": "original",
+    "directory": "exports/projekti",
+    "field_order": "progressive",
+    "format": "HD 1080p50",
+    "fps": 50,
+    "height": 1080,
+    "lead_in_seconds": 2,
+    "preset": "h264_1080p50",
+    "start_timecode": "10:00:00:00",
+    "tail_seconds": 2,
+    "video_bitrate_mbps": 35,
+    "video_codec": "h264",
+    "width": 1920,
+    "xml_enabled": true
+  },
+  "input": {
+    "mode": "auto"
+  },
+  "keyboard_shortcuts": {
+    "active_preset": "default"
+  },
+  "playback": {
+    "cache": {
+      "mode": "off"
+    },
+    "input": "original"
+  },
+  "products": {
+    "ai_shots": "products/ai_shots",
+    "b_roll_virtual_clips": "products/b_roll_virtual_clips",
+    "filmstrip": "products/filmstrip",
+    "prerender": "products/prerender",
+    "root": "products",
+    "thumbnails": "products/thumbnails",
+    "virtual_segments": "products/virtual_segments",
+    "virtual_shorts": "products/virtual_shorts",
+    "voice": "products/voice"
+  },
+  "storage": {
+    "ingest_media": "original",
+    "ingest_profile": "field",
+    "original_policy": "ignore_for_fast_news",
+    "projects_root": "\\\\?\\C:\\Users\\Public\\QNC-IngestBase",
+    "proxy_policy": "link_when_available"
+  },
+  "video": {
+    "color_space": "rec709",
+    "field_order": "progressive",
+    "format": "HD 1080p50",
+    "fps": 50,
+    "height": 1080,
+    "timeline_codec": "proxy_h264",
+    "width": 1920
+  },
+  "workflow": "news_fast",
+  "workspace": {
+    "application_selection": {
+      "applications": [
+        {
+          "application_id": "qnc.project",
+          "label": "project",
+          "priority_group": "a",
+          "tab_id": "project"
+        }
+      ],
+      "catalog_uri": "qnc://local/catalog/applications",
+      "observed_at_unix_ms": 1795177687390,
+      "schema_version": 1
+    },
+    "tab_labels": {
+      "project": "project"
+    },
+    "tabs": [
+      "project"
+    ]
+  }
+}

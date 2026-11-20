@@ -8,7 +8,7 @@
 use std::time::{Duration, SystemTime};
 
 use qnc_db::Reader;
-use qnc_player_input::{PlaybackInput, PlaybackSettings, ProjectAudio};
+
 use qnc_player_session::Player;
 use qnc_player_wire::{Command, Event};
 
@@ -19,18 +19,9 @@ fn main() -> Result<(), String> {
     let played_file = args.next().ok_or("played.json with the bindings")?;
     let reader = Reader::open(std::path::Path::new(&db))?;
 
-    let (project_id, settings_json): (String, String) = reader
-        .connection()
-        .query_row("SELECT project_id, settings_json FROM public_project_settings LIMIT 1", [], |r| Ok((r.get(0)?, r.get(1)?)))
-        .map_err(|e| e.to_string())?;
-    let settings: serde_json::Value = serde_json::from_str(&settings_json).map_err(|e| e.to_string())?;
-    let playback_input: PlaybackInput = serde_json::from_value(settings["playback"]["input"].clone()).map_err(|e| e.to_string())?;
-    let audio = ProjectAudio {
-        channels: settings["audio"]["channels"].as_u64().ok_or("audio.channels")? as u16,
-        sample_rate_hz: settings["audio"]["sample_rate"].as_u64().ok_or("audio.sample_rate")? as u32,
-    };
-    let playback = PlaybackSettings { workspace_db_uri: format!("qnc://local/db/project_workspace/{project_id}"), playback_input, audio };
-    println!("project {project_id}: plays {playback_input:?}, {} outputs at {} Hz", playback.audio.channels, playback.audio.sample_rate_hz);
+    let settings = qnc_project_settings::read(&reader)?;
+    let playback = settings.playback()?;
+    println!("project {}: plays {:?}, {} outputs at {} Hz", settings.project_id, playback.playback_input, playback.audio.channels, playback.audio.sample_rate_hz);
 
     let stored = qnc_catalog::read_clip(&reader, &clip_id)?.ok_or("no such clip in the catalog")?;
     println!("clip {} {:?} imported at {:?}", stored.clip.name, stored.import_status, stored.imported_media_uri);

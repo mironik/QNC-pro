@@ -284,6 +284,7 @@ dependencies = [
  "qnc-player-input",
  "qnc-player-session",
  "qnc-player-wire",
+ "qnc-project-settings",
  "qnc-uri",
  "rusqlite",
  "serde",
@@ -450,6 +451,18 @@ dependencies = [
 [[package]]
 name = "qnc-progress"
 version = "0.1.0"
+
+[[package]]
+name = "qnc-project-settings"
+version = "0.1.0"
+dependencies = [
+ "qnc-db",
+ "qnc-player-input",
+ "qnc-uri",
+ "rusqlite",
+ "serde",
+ "serde_json",
+]
 
 [[package]]
 name = "qnc-settings"

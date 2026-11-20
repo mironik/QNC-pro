@@ -1,0 +1,13 @@
+[package]
+name = "qnc-project-settings"
+version.workspace = true
+edition.workspace = true
+description = "The settings of a project in its own database (project_settings, public_project_settings) in the old QNC shape: the one owner of the table and the one strict reader of settings_json."
+
+[dependencies]
+rusqlite = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+qnc-db = { path = "../qnc-db" }
+qnc-player-input = { path = "../qnc-player-input" }
+qnc-uri = { path = "../qnc-uri" }

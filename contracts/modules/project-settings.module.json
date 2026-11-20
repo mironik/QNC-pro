@@ -1,0 +1,7 @@
+{
+  "kind": "block",
+  "responsibility": "Owns the project_settings table of a project database in the old QNC shape and reads settings_json strictly into what the work needs, never a guess.",
+  "database": "owner",
+  "owns": ["project_settings"],
+  "writes": ["project_settings"]
+}

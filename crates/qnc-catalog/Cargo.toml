@@ -18,3 +18,4 @@ qnc-uri = { path = "../qnc-uri" }
 qnc-frame-map = { path = "../qnc-frame-map" }
 qnc-player-session = { path = "../qnc-player-session" }
 qnc-player-wire = { path = "../qnc-player-wire" }
+qnc-project-settings = { path = "../qnc-project-settings" }
