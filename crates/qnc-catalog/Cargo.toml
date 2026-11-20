@@ -1,0 +1,20 @@
+[package]
+name = "qnc-catalog"
+version.workspace = true
+edition.workspace = true
+description = "The clip catalog of a project (clips, sources, proxy, probe records) in the shape the old QNC saved it; the one owner of those tables."
+
+[dependencies]
+rusqlite = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+qnc-db = { path = "../qnc-db" }
+qnc-media-model = { path = "../qnc-media-model" }
+qnc-media-record = { path = "../qnc-media-record" }
+qnc-player-input = { path = "../qnc-player-input" }
+qnc-uri = { path = "../qnc-uri" }
+
+[dev-dependencies]
+qnc-frame-map = { path = "../qnc-frame-map" }
+qnc-player-session = { path = "../qnc-player-session" }
+qnc-player-wire = { path = "../qnc-player-wire" }

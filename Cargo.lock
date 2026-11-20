@@ -274,6 +274,23 @@ dependencies = [
 ]
 
 [[package]]
+name = "qnc-catalog"
+version = "0.1.0"
+dependencies = [
+ "qnc-db",
+ "qnc-frame-map",
+ "qnc-media-model",
+ "qnc-media-record",
+ "qnc-player-input",
+ "qnc-player-session",
+ "qnc-player-wire",
+ "qnc-uri",
+ "rusqlite",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "qnc-conformance"
 version = "0.1.0"
 dependencies = [

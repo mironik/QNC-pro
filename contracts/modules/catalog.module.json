@@ -1,0 +1,7 @@
+{
+  "kind": "block",
+  "responsibility": "Owns the clip catalog tables of a project (clips, sources, proxy, probe records) in the old QNC shape and reads a clip as the player input takes it.",
+  "database": "owner",
+  "owns": ["clips", "clip_sources", "clip_proxy", "probe_records"],
+  "writes": ["clips", "clip_sources", "clip_proxy", "probe_records"]
+}
