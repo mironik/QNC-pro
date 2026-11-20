@@ -1,0 +1,11 @@
+[package]
+name = "qnc-camera-profile"
+version.workspace = true
+edition.workspace = true
+description = "Camera profiles as data (one JSON file per model): which camera a card's records come from, the stamp written into its clip records, and whether its record needs the one probe."
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }
+xml-rs = { workspace = true }
+qnc-media-model = { path = "../qnc-media-model" }

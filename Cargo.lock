@@ -265,6 +265,16 @@ name = "qnc-axis"
 version = "0.1.0"
 
 [[package]]
+name = "qnc-camera-profile"
+version = "0.1.0"
+dependencies = [
+ "qnc-media-model",
+ "serde",
+ "serde_json",
+ "xml-rs",
+]
+
+[[package]]
 name = "qnc-card"
 version = "0.1.0"
 dependencies = [
@@ -489,6 +499,7 @@ dependencies = [
 name = "qnc-record-compose"
 version = "0.1.0"
 dependencies = [
+ "qnc-camera-profile",
  "qnc-ffprobe-read",
  "qnc-media-model",
  "qnc-media-record",

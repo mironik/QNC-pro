@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Reads the camera profiles (one JSON file per model), recognises the camera of a card's records, stamps the profile into a clip record and says whether the record still needs the one probe.",
+  "database": "none"
+}

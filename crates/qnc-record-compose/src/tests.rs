@@ -1,5 +1,4 @@
 use qnc_media_record::{Binding, Completeness, Phase, Snapshot};
-use qnc_media_model::Fact;
 
 use crate::*;
 
@@ -26,9 +25,11 @@ fn camera_record(saved: &Snapshot) -> Snapshot {
 fn the_camera_record_probed_once_is_the_final_record_the_old_qnc_saved() {
     let saved: Snapshot = serde_json::from_str(SAVED).unwrap();
     let mut camera = camera_record(&saved);
-    // The camera profile block (not here) names the profile the clip was read with; the
-    // saved record carries it as a tag of the original.
-    camera.metadata.original.tags.insert("qnc.camera:profile".into(), Fact { value: "sony-ilme-fx6v@1".into(), evidence_id: "sidecar-original".into(), locator: "camera-profile:recognised".into() });
+    // The camera profile block names the profile the clip was read with; the saved record
+    // carries it as a tag of the original.
+    let (profiles, _) = qnc_camera_profile::read_profiles(&std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../contracts/cameras/profiles"));
+    let (profile, recognised) = qnc_camera_profile::recognise(&profiles, qnc_camera_profile::SONY_READER, &[SIDECAR]).unwrap();
+    qnc_camera_profile::stamp(&mut camera.metadata, profile, recognised);
     camera.report = inspect_phase(&camera.metadata, Phase::Camera).unwrap();
     camera.validate().unwrap();
     // Both media lack something; this project plays the original, so only it is probed.
