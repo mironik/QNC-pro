@@ -5,4 +5,5 @@ edition.workspace = true
 description = "Every label has a code; the dictionaries of the languages QNC speaks."
 
 [dependencies]
+serde = { workspace = true }
 serde_json = { workspace = true }

@@ -1,7 +1,11 @@
-//! Every label has a code. The dictionaries live in `contracts/text/<language>.json` and are
-//! built into the program; the language is chosen once per process (the computer's setting,
-//! read by whoever starts the program). A code no dictionary knows is shown as the code itself,
-//! so a missing text is visible, never invented.
+//! The words of the QNC user interface (copied from `qnc-ui-text` of QNC-shared; user decision
+//! 2026-10-14: everything in English, every text with a code, so the language can be chosen).
+//! The layout contracts write a text as `@code`; this block replaces it with the text of the
+//! chosen language from the dictionaries in `contracts/text`, built into the program. A
+//! dictionary may be in parts; a code in two parts of one language is an error. The language
+//! is chosen once per process (the computer's setting, read by whoever starts the program). A
+//! code no dictionary knows is shown as the code itself, so a missing text is visible, never
+//! invented.
 
 use std::collections::BTreeMap;
 use std::sync::OnceLock;
@@ -10,11 +14,28 @@ use serde_json::Value;
 
 pub const BASE_LANGUAGE: &str = "en";
 
-/// (language code, native name, dictionary text)
-pub const DICTIONARIES: &[(&str, &str, &str)] = &[
-    ("en", "English", include_str!("../../../contracts/text/en.json")),
-    ("hr", "Hrvatski", include_str!("../../../contracts/text/hr.json")),
+/// The dictionaries QNC is built with: language code and its parts.
+pub const DICTIONARIES: &[(&str, &[&str])] = &[
+    ("en", &[include_str!("../../../contracts/text/en.json"), include_str!("../../../contracts/text/en-pro.json")]),
+    (
+        "hr",
+        &[
+            include_str!("../../../contracts/text/hr/1.json"),
+            include_str!("../../../contracts/text/hr/2.json"),
+            include_str!("../../../contracts/text/hr/3.json"),
+            include_str!("../../../contracts/text/hr/4.json"),
+            include_str!("../../../contracts/text/hr-pro.json"),
+        ],
+    ),
 ];
+
+#[derive(serde::Deserialize)]
+struct Dictionary {
+    language: String,
+    #[serde(default)]
+    name: String,
+    texts: BTreeMap<String, String>,
+}
 
 pub struct Texts {
     language: String,
@@ -22,14 +43,27 @@ pub struct Texts {
 }
 
 impl Texts {
+    /// The dictionary of `language` from all its parts.
     pub fn of(language: &str) -> Result<Texts, String> {
-        let (_, _, json) = DICTIONARIES
-            .iter()
-            .find(|(code, _, _)| *code == language)
-            .ok_or_else(|| format!("no dictionary for the language {language}"))?;
-        let texts: BTreeMap<String, String> =
-            serde_json::from_str(json).map_err(|e| format!("dictionary {language}: {e}"))?;
+        let (_, parts) = DICTIONARIES.iter().find(|(code, _)| *code == language).ok_or_else(|| format!("no dictionary for the language {language}"))?;
+        let mut texts = BTreeMap::new();
+        for json in parts.iter() {
+            let file: Dictionary = serde_json::from_str(json).map_err(|e| format!("dictionary {language}: {e}"))?;
+            if file.language != language {
+                return Err(format!("dictionary {language} is marked as {}", file.language));
+            }
+            for (code, text) in file.texts {
+                if texts.insert(code.clone(), text).is_some() {
+                    return Err(format!("dictionary {language} has {code} twice"));
+                }
+            }
+        }
         Ok(Texts { language: language.to_string(), texts })
+    }
+
+    /// As [`Texts::of`] (the name the copied code uses).
+    pub fn for_language(language: &str) -> Result<Texts, String> {
+        Texts::of(language)
     }
 
     pub fn language(&self) -> &str {
@@ -74,8 +108,8 @@ pub fn fill(code: &'static str, values: &[(&str, &str)]) -> String {
 }
 
 /// Languages QNC speaks: (code, native name).
-pub fn languages() -> Vec<(&'static str, &'static str)> {
-    DICTIONARIES.iter().map(|(code, name, _)| (*code, *name)).collect()
+pub fn languages() -> Vec<(&'static str, String)> {
+    DICTIONARIES.iter().filter_map(|(code, parts)| serde_json::from_str::<Dictionary>(parts.first()?).ok().map(|d| (*code, if d.name.is_empty() { code.to_string() } else { d.name }))).collect()
 }
 
 /// A contract whose string values are `@code` gets the texts of those codes.
@@ -129,7 +163,7 @@ mod tests {
     #[test]
     fn every_dictionary_has_exactly_the_codes_of_the_base_and_no_empty_text() {
         let base = Texts::of(BASE_LANGUAGE).unwrap();
-        for (language, _, _) in DICTIONARIES {
+        for (language, _) in DICTIONARIES {
             let texts = Texts::of(language).unwrap();
             let codes: Vec<&str> = texts.codes().collect();
             assert_eq!(codes, base.codes().collect::<Vec<_>>(), "codes of {language}");

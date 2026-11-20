@@ -111,3 +111,12 @@ Kocka koja ne prolazi rastavlja se prije prijenosa; rastavljanje se radi ovdje, 
 - 2026-11-20: QNC-pro je čisti početak po auditu (ne kopija QNC-AI-a); kocke ulaze jedna po
   jedna kad prođu pravilo. Prva radi grana Breaking news od traya; Story grana ide od traya kroz
   Ingest.
+- 2026-11-20 (korisnik, dva puta): **QNC-pro ne piše novu aplikaciju.** Zadatak je srediti
+  postojeće kocke KOPIRANJEM iz QNC-AI / QNC-shared u novi projekt i rastaviti ih po prijemnom
+  popisu. Forme slijede dizajn postojećih formi (isti board, isti layout ugovori i look datoteke,
+  isti rječnik) i kopiraju njihovu funkcionalnost; procedura (tko što radi i kojim redom) ostaje
+  QNC-AI-jeva. Vlastiti pojednostavljeni moduli ili paneli umjesto kopije su greška.
+- 2026-11-20 (korisnik): **Undo / redo kroz bazu za svaku radnju, u svakoj formi i modulu.**
+  Jedna kocka undoa čuva korake u bazi (kao `story_undo` u QNC-AI-ju) za svaki upis svakog
+  modula tablica; svaka forma nudi Undo/Redo za sve svoje radnje. Radnje koje se ne mogu vratiti
+  (brisanje mape projekta, kopiranje s kartice) traže potvrdu i zapisane su kao nepovratne.

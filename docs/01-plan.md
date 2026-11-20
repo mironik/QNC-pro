@@ -42,7 +42,7 @@ docs/        plan, audit, razvoj/<dan>.md
 | 4 | `qnc-source-timeline` modul + `qnc-zoom` modul (os od vlasnika; slike, zvuk, riječi, player kao kocke) | qnc-timeline, qnc-program-view zoom_axis, qnc-trim-overlay | zoom izvan priče |
 | 5 | Player preview rastavljen: sesija, program, Sync, normalizacija, čekanje zapisa | qnc-source-preview | |
 | 6 | Tray grana: `qnc-disks`, `qnc-card`, `qnc-progress`, `qnc-eject`, `qnc-mode` (u bazi), `qnc-story-step` (u bazi); tray i uvoz bez pravila | qnc-attached-cards, qnc-work-progress, qnc-ingest-base, qnc-tray | obje grane rade do AI MA |
-| 7 | Project: zaštita, defaulti, templatei, mape kao kocke; jedna tema; jedan boilerplate forme | qnc-project-store, qnc-project-blocks | |
+| 7 | Project KOPIRAN iz QNC-AI i rastavljen: store (registar, templatei, kreiranje, brisanje, zatvaranje), jobs, application, session, blocks kao paneli, desktop kao forma; obrazac priloga, settings-form, lokacije, AI postavke, dir-browser; isti layout i look | qnc-project-store, qnc-project-blocks, qnc-project-session, qnc-project-jobs, qnc-newsroom-sheet*, qnc-settings-*, qnc-dir-browser, qnc-ai-features* | kits: board, confirm, tema (gotovo) |
 | 8 | Script i priča: jedan undo, jedan automat slip/trim/level/assist; Send to S-Story u kocki priče | qnc-script, qnc-program-segments, qnc-subsegment-edit | |
 | 9 | Forme: AI Media Assist, Ingest, MA Script, S-Story, Story, Export; svaka kad je prethodna čista | layout ugovori | |
 
