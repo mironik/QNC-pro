@@ -28,10 +28,10 @@ pub fn main() -> Result<(), String> {
     let title = qnc_text::text("tray.title").to_string();
     let tray = Tray::start(&format!("{title}: {waiting}"), menu(&waiting))?;
     qnc_diagnostics::log("tray started");
-    let mut shown = false;
+    let mut shown = true;
     let mut quit = false;
     let mut cards: Vec<CardLine> = Vec::new();
-    qnc_window_host::run(&qnc_text::text("ingest.window_title"), [520.0, 360.0], false, move |_ctx, ui| {
+    let outcome = qnc_window_host::run(&qnc_text::text("ingest.window_title"), [520.0, 360.0], true, move |_ctx, ui| {
         for told in run.poll() {
             match told {
                 Told::Status(status) => {
@@ -64,5 +64,9 @@ pub fn main() -> Result<(), String> {
             (false, true) => Next::Show,
             (false, false) => Next::Hide,
         }
-    })
+    });
+    if let Err(error) = &outcome {
+        qnc_diagnostics::log(format!("window host ended with an error: {error}"));
+    }
+    outcome
 }
