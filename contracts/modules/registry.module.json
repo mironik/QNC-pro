@@ -1,0 +1,7 @@
+{
+  "kind": "block",
+  "responsibility": "Owns the projects, app_settings and project_storage_locations tables of the computer's project registry in the old QNC shape: which projects exist, where each is, which is active.",
+  "database": "owner",
+  "owns": ["projects", "app_settings", "project_storage_locations"],
+  "writes": ["projects", "app_settings", "project_storage_locations"]
+}

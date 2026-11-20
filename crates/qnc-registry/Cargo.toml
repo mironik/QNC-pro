@@ -1,0 +1,13 @@
+[package]
+name = "qnc-registry"
+version.workspace = true
+edition.workspace = true
+description = "The registry of the projects of this computer (data/qnc-projects.db) in the old QNC shape: which projects exist, where each one is, which is active; the one owner of those tables."
+
+[dependencies]
+rusqlite = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+qnc-db = { path = "../qnc-db" }
+qnc-settings = { path = "../qnc-settings" }
+qnc-uri = { path = "../qnc-uri" }

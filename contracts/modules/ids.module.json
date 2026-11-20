@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Makes fresh ids that never repeat in this process, the slug of a name and the folder name of an id; the one naming rule.",
+  "database": "none"
+}

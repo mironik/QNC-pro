@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Makes a new project from a settings template: its folders, its project.db with the settings and catalog tables, its row in the registry, and makes it active.",
+  "database": "none"
+}

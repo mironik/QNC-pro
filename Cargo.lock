@@ -360,6 +360,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "qnc-ids"
+version = "0.1.0"
+
+[[package]]
 name = "qnc-launch"
 version = "0.1.0"
 dependencies = [
@@ -434,6 +438,7 @@ version = "0.1.0"
 dependencies = [
  "qnc-diagnostics",
  "qnc-frame-map",
+ "qnc-ids",
  "qnc-launch",
  "qnc-player-wire",
  "qnc-text",
@@ -484,6 +489,19 @@ name = "qnc-progress"
 version = "0.1.0"
 
 [[package]]
+name = "qnc-project-make"
+version = "0.1.0"
+dependencies = [
+ "qnc-catalog",
+ "qnc-db",
+ "qnc-ids",
+ "qnc-project-settings",
+ "qnc-registry",
+ "qnc-uri",
+ "serde_json",
+]
+
+[[package]]
 name = "qnc-project-settings"
 version = "0.1.0"
 dependencies = [
@@ -505,6 +523,18 @@ dependencies = [
  "qnc-media-record",
  "qnc-sony-clip",
  "qnc-sony-index",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
+name = "qnc-registry"
+version = "0.1.0"
+dependencies = [
+ "qnc-db",
+ "qnc-settings",
+ "qnc-uri",
+ "rusqlite",
  "serde",
  "serde_json",
 ]

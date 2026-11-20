@@ -11,3 +11,4 @@ qnc-frame-map = { path = "../qnc-frame-map" }
 qnc-launch = { path = "../qnc-launch" }
 qnc-player-wire = { path = "../qnc-player-wire" }
 qnc-text = { path = "../qnc-text" }
+qnc-ids = { path = "../qnc-ids" }

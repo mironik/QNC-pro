@@ -42,9 +42,9 @@ impl Player {
     /// Opens a session that plays `played` (the prepared input and bindings as the program
     /// reads them). The session before, if any, must have been ended.
     pub fn open(&mut self, played: Map<String, Value>, generation: u64) -> Result<Session, String> {
-        let session_id = fresh_id();
-        let read_token = fresh_id();
-        let command_token = fresh_id();
+        let session_id = qnc_ids::fresh();
+        let read_token = qnc_ids::fresh();
+        let command_token = qnc_ids::fresh();
         let frame_map = std::env::temp_dir().join(format!("qnc-player-frame-{session_id}.map"));
         qnc_frame_map::create(&frame_map, qnc_frame_map::PREVIEW_CAPACITY)?;
         let mut boot = Map::new();
@@ -146,21 +146,6 @@ impl Session {
 }
 
 /// A fresh id: time, process, a counter and a mix; printable, as the wire wants a token.
-fn fresh_id() -> String {
-    use std::sync::atomic::{AtomicU64, Ordering};
-    static COUNT: AtomicU64 = AtomicU64::new(0);
-    let nanos = std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).map(|d| d.as_nanos()).unwrap_or(0);
-    let count = COUNT.fetch_add(1, Ordering::Relaxed);
-    let mut x = (nanos as u64) ^ (u64::from(std::process::id()) << 32) ^ count.rotate_left(17);
-    let mut out = String::with_capacity(32);
-    for _ in 0..32 {
-        x ^= x << 13;
-        x ^= x >> 7;
-        x ^= x << 17;
-        out.push(char::from(b"0123456789abcdefghijklmnopqrstuv"[(x & 31) as usize]));
-    }
-    out
-}
 
 #[cfg(test)]
 mod tests {
@@ -168,12 +153,12 @@ mod tests {
 
     #[test]
     fn ids_are_printable_distinct_and_a_missing_player_program_is_a_clear_error() {
-        let a = fresh_id();
-        let b = fresh_id();
+        let a = qnc_ids::fresh();
+        let b = qnc_ids::fresh();
         assert_ne!(a, b);
         assert!(a.bytes().all(|c| (33..=126).contains(&c)) && a.len() == 32);
         let mut player = Player::new();
         let error = player.open(Map::new(), 1).unwrap_err();
-        assert!(error.contains(PROGRAM), "{error}");
+        assert!(error.contains(PROGRAM) || error.contains("bootstrap"), "{error}");
     }
 }

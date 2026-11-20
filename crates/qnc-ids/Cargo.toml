@@ -1,0 +1,7 @@
+[package]
+name = "qnc-ids"
+version.workspace = true
+edition.workspace = true
+description = "Fresh ids and safe names: a new id that never repeats in this process, a slug of a name, a folder name of an id; the one rule."
+
+[dependencies]

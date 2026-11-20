@@ -1,0 +1,14 @@
+[package]
+name = "qnc-project-make"
+version.workspace = true
+edition.workspace = true
+description = "Makes a new project: its folders, its project.db with settings and catalog tables, its row in the registry, and makes it active; the settings come from a template given as data."
+
+[dependencies]
+serde_json = { workspace = true }
+qnc-db = { path = "../qnc-db" }
+qnc-ids = { path = "../qnc-ids" }
+qnc-uri = { path = "../qnc-uri" }
+qnc-registry = { path = "../qnc-registry" }
+qnc-project-settings = { path = "../qnc-project-settings" }
+qnc-catalog = { path = "../qnc-catalog" }
