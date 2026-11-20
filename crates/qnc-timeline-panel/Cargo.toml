@@ -1,0 +1,13 @@
+[package]
+name = "qnc-timeline-panel"
+version.workspace = true
+edition.workspace = true
+description = "Draws a timeline window (wave lanes, marks, playhead, the part outside the marks dimmed) and gives back the mouse gestures on it; the one painter of the source timeline and its zoom."
+
+[dependencies]
+egui = { workspace = true }
+qnc-axis = { path = "../qnc-axis" }
+qnc-mouse-map = { path = "../qnc-mouse-map" }
+qnc-theme = { path = "../qnc-theme" }
+qnc-ui-kit = { path = "../qnc-ui-kit" }
+qnc-wave-read = { path = "../qnc-wave-read" }

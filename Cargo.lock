@@ -341,6 +341,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "qnc-timeline-panel"
+version = "0.1.0"
+dependencies = [
+ "egui",
+ "qnc-axis",
+ "qnc-mouse-map",
+ "qnc-theme",
+ "qnc-ui-kit",
+ "qnc-wave-read",
+]
+
+[[package]]
 name = "qnc-ui-kit"
 version = "0.1.0"
 dependencies = [

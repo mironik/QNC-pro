@@ -1,0 +1,5 @@
+{
+  "kind": "panel",
+  "responsibility": "Draws one timeline window with its wave lanes, IN/OUT, playhead and dimmed outside, and gives back the mouse gestures on it as pixels; the one painter of the source timeline and its zoom.",
+  "database": "none"
+}
