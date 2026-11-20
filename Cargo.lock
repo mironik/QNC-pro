@@ -280,6 +280,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "qnc-marks"
+version = "0.1.0"
+dependencies = [
+ "qnc-actions",
+]
+
+[[package]]
 name = "qnc-settings"
 version = "0.1.0"
 dependencies = [

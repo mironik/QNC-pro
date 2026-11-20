@@ -1,0 +1,70 @@
+fresh clip, nothing set | playhead 20 | mark_in -> Changed | in=Some(20) out=None taken=-
+fresh clip, nothing set | playhead 20 | mark_out -> Changed | in=None out=Some(21) taken=-
+fresh clip, nothing set | playhead 20 | select_mark_in -> Cue(0) | in=None out=None taken=IN
+fresh clip, nothing set | playhead 20 | select_mark_out -> Cue(99) | in=None out=None taken=OUT
+fresh clip, nothing set | playhead 20 | step_back_frame -> NotMine | in=None out=None taken=-
+fresh clip, nothing set | playhead 20 | step_forward_frame -> NotMine | in=None out=None taken=-
+fresh clip, nothing set | playhead 20 | activate_focused_item -> NotMine | in=None out=None taken=-
+fresh clip, nothing set | playhead 20 | clear_focus -> NotMine | in=None out=None taken=-
+fresh clip, nothing set | playhead 20 | undo_object -> NotMine | in=None out=None taken=-
+fresh clip, nothing set | playhead 20 | go_to_mark_in -> Cue(0) | in=None out=None taken=-
+fresh clip, nothing set | playhead 20 | navigate_prev_object -> Cue(0) | in=None out=None taken=-
+fresh clip, nothing set | playhead 20 | navigate_next_object -> Cue(99) | in=None out=None taken=-
+fresh clip, nothing set | click -> NotMine | in=None out=None taken=-
+fresh clip, nothing set | drag IN to 25 -> Cue(25) | in=Some(25) out=None taken=IN
+IN 10 OUT 40, nothing taken | playhead 20 | mark_in -> Changed | in=Some(20) out=Some(40) taken=-
+IN 10 OUT 40, nothing taken | playhead 20 | mark_out -> Changed | in=Some(10) out=Some(21) taken=-
+IN 10 OUT 40, nothing taken | playhead 20 | select_mark_in -> Cue(10) | in=Some(10) out=Some(40) taken=IN
+IN 10 OUT 40, nothing taken | playhead 20 | select_mark_out -> Cue(39) | in=Some(10) out=Some(40) taken=OUT
+IN 10 OUT 40, nothing taken | playhead 20 | step_back_frame -> NotMine | in=Some(10) out=Some(40) taken=-
+IN 10 OUT 40, nothing taken | playhead 20 | step_forward_frame -> NotMine | in=Some(10) out=Some(40) taken=-
+IN 10 OUT 40, nothing taken | playhead 20 | activate_focused_item -> NotMine | in=Some(10) out=Some(40) taken=-
+IN 10 OUT 40, nothing taken | playhead 20 | clear_focus -> NotMine | in=Some(10) out=Some(40) taken=-
+IN 10 OUT 40, nothing taken | playhead 20 | undo_object -> NotMine | in=Some(10) out=Some(40) taken=-
+IN 10 OUT 40, nothing taken | playhead 20 | go_to_mark_in -> Cue(10) | in=Some(10) out=Some(40) taken=-
+IN 10 OUT 40, nothing taken | playhead 20 | navigate_prev_object -> Cue(10) | in=Some(10) out=Some(40) taken=-
+IN 10 OUT 40, nothing taken | playhead 20 | navigate_next_object -> Cue(39) | in=Some(10) out=Some(40) taken=-
+IN 10 OUT 40, nothing taken | click -> NotMine | in=Some(10) out=Some(40) taken=-
+IN 10 OUT 40, nothing taken | drag IN to 25 -> Cue(25) | in=Some(25) out=Some(40) taken=IN
+IN taken and moved to 9 | playhead 20 | mark_in -> Changed | in=Some(20) out=Some(40) taken=-
+IN taken and moved to 9 | playhead 20 | mark_out -> Changed | in=Some(9) out=Some(21) taken=-
+IN taken and moved to 9 | playhead 20 | select_mark_in -> Cue(9) | in=Some(9) out=Some(40) taken=IN
+IN taken and moved to 9 | playhead 20 | select_mark_out -> Cue(39) | in=Some(9) out=Some(40) taken=OUT
+IN taken and moved to 9 | playhead 20 | step_back_frame -> Cue(8) | in=Some(8) out=Some(40) taken=IN
+IN taken and moved to 9 | playhead 20 | step_forward_frame -> Cue(10) | in=Some(10) out=Some(40) taken=IN
+IN taken and moved to 9 | playhead 20 | activate_focused_item -> Changed | in=Some(9) out=Some(40) taken=-
+IN taken and moved to 9 | playhead 20 | clear_focus -> Cue(10) | in=Some(10) out=Some(40) taken=-
+IN taken and moved to 9 | playhead 20 | undo_object -> Cue(10) | in=Some(10) out=Some(40) taken=IN
+IN taken and moved to 9 | playhead 20 | go_to_mark_in -> Cue(9) | in=Some(9) out=Some(40) taken=IN
+IN taken and moved to 9 | playhead 20 | navigate_prev_object -> Refused | in=Some(9) out=Some(40) taken=IN
+IN taken and moved to 9 | playhead 20 | navigate_next_object -> Refused | in=Some(9) out=Some(40) taken=IN
+IN taken and moved to 9 | click -> Changed | in=Some(9) out=Some(40) taken=-
+IN taken and moved to 9 | drag IN to 25 -> Cue(25) | in=Some(25) out=Some(40) taken=IN
+OUT taken and moved to 41 | playhead 20 | mark_in -> Changed | in=Some(20) out=Some(41) taken=-
+OUT taken and moved to 41 | playhead 20 | mark_out -> Changed | in=Some(10) out=Some(21) taken=-
+OUT taken and moved to 41 | playhead 20 | select_mark_in -> Cue(10) | in=Some(10) out=Some(41) taken=IN
+OUT taken and moved to 41 | playhead 20 | select_mark_out -> Cue(40) | in=Some(10) out=Some(41) taken=OUT
+OUT taken and moved to 41 | playhead 20 | step_back_frame -> Cue(39) | in=Some(10) out=Some(40) taken=OUT
+OUT taken and moved to 41 | playhead 20 | step_forward_frame -> Cue(41) | in=Some(10) out=Some(42) taken=OUT
+OUT taken and moved to 41 | playhead 20 | activate_focused_item -> Changed | in=Some(10) out=Some(41) taken=-
+OUT taken and moved to 41 | playhead 20 | clear_focus -> Cue(39) | in=Some(10) out=Some(40) taken=-
+OUT taken and moved to 41 | playhead 20 | undo_object -> Cue(39) | in=Some(10) out=Some(40) taken=OUT
+OUT taken and moved to 41 | playhead 20 | go_to_mark_in -> Cue(10) | in=Some(10) out=Some(41) taken=OUT
+OUT taken and moved to 41 | playhead 20 | navigate_prev_object -> Refused | in=Some(10) out=Some(41) taken=OUT
+OUT taken and moved to 41 | playhead 20 | navigate_next_object -> Refused | in=Some(10) out=Some(41) taken=OUT
+OUT taken and moved to 41 | click -> Changed | in=Some(10) out=Some(41) taken=-
+OUT taken and moved to 41 | drag IN to 25 -> Cue(25) | in=Some(25) out=Some(41) taken=IN
+IN 39 taken against OUT 40 | playhead 20 | mark_in -> Changed | in=Some(20) out=Some(40) taken=-
+IN 39 taken against OUT 40 | playhead 20 | mark_out -> Changed | in=Some(39) out=Some(40) taken=-
+IN 39 taken against OUT 40 | playhead 20 | select_mark_in -> Cue(39) | in=Some(39) out=Some(40) taken=IN
+IN 39 taken against OUT 40 | playhead 20 | select_mark_out -> Cue(39) | in=Some(39) out=Some(40) taken=OUT
+IN 39 taken against OUT 40 | playhead 20 | step_back_frame -> Cue(38) | in=Some(38) out=Some(40) taken=IN
+IN 39 taken against OUT 40 | playhead 20 | step_forward_frame -> Refused | in=Some(39) out=Some(40) taken=IN
+IN 39 taken against OUT 40 | playhead 20 | activate_focused_item -> Changed | in=Some(39) out=Some(40) taken=-
+IN 39 taken against OUT 40 | playhead 20 | clear_focus -> Cue(39) | in=Some(39) out=Some(40) taken=-
+IN 39 taken against OUT 40 | playhead 20 | undo_object -> Cue(39) | in=Some(39) out=Some(40) taken=IN
+IN 39 taken against OUT 40 | playhead 20 | go_to_mark_in -> Cue(39) | in=Some(39) out=Some(40) taken=IN
+IN 39 taken against OUT 40 | playhead 20 | navigate_prev_object -> Refused | in=Some(39) out=Some(40) taken=IN
+IN 39 taken against OUT 40 | playhead 20 | navigate_next_object -> Refused | in=Some(39) out=Some(40) taken=IN
+IN 39 taken against OUT 40 | click -> Changed | in=Some(39) out=Some(40) taken=-
+IN 39 taken against OUT 40 | drag IN to 25 -> Cue(25) | in=Some(25) out=Some(40) taken=IN

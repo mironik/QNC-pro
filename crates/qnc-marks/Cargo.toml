@@ -1,0 +1,8 @@
+[package]
+name = "qnc-marks"
+version.workspace = true
+edition.workspace = true
+description = "The IN and OUT of the shown clip and which of them is taken: the one owner of the marks."
+
+[dependencies]
+qnc-actions = { path = "../qnc-actions" }

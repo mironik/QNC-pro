@@ -1,0 +1,6 @@
+{
+  "kind": "block",
+  "responsibility": "Owns the IN and OUT of the shown clip and which of them is taken, and answers every action of the catalog that touches them: set, take, move, drag, keep, let go.",
+  "database": "none",
+  "owns": ["IN and OUT of the shown clip", "which mark is taken", "where the taken mark was when it was taken"]
+}
