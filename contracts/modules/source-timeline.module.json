@@ -1,0 +1,6 @@
+{
+  "kind": "module",
+  "responsibility": "Composes the shown clip's marks, window and reported playhead into the source timeline and answers every key and mouse gesture on it.",
+  "database": "none",
+  "owns": ["the shown clip of the source timeline", "the window the source timeline shows"]
+}

@@ -315,6 +315,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "qnc-source-timeline"
+version = "0.1.0"
+dependencies = [
+ "qnc-actions",
+ "qnc-axis",
+ "qnc-marks",
+ "qnc-mouse-map",
+]
+
+[[package]]
 name = "qnc-text"
 version = "0.1.0"
 dependencies = [
@@ -346,6 +356,15 @@ version = "0.1.0"
 [[package]]
 name = "qnc-wave-read"
 version = "0.1.0"
+
+[[package]]
+name = "qnc-zoom"
+version = "0.1.0"
+dependencies = [
+ "qnc-axis",
+ "qnc-mouse-map",
+ "qnc-source-timeline",
+]
 
 [[package]]
 name = "quote"

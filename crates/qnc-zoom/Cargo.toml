@@ -1,0 +1,10 @@
+[package]
+name = "qnc-zoom"
+version.workspace = true
+edition.workspace = true
+description = "The zoom: an enlarged part of the same source timeline around the cut being made; it gives only the window, every action goes through the timeline."
+
+[dependencies]
+qnc-axis = { path = "../qnc-axis" }
+qnc-mouse-map = { path = "../qnc-mouse-map" }
+qnc-source-timeline = { path = "../qnc-source-timeline" }

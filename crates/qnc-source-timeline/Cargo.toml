@@ -1,0 +1,11 @@
+[package]
+name = "qnc-source-timeline"
+version.workspace = true
+edition.workspace = true
+description = "The source timeline module: the shown clip, its marks, its window and the playhead the player reports; every key and mouse gesture of the timeline ends here."
+
+[dependencies]
+qnc-actions = { path = "../qnc-actions" }
+qnc-axis = { path = "../qnc-axis" }
+qnc-marks = { path = "../qnc-marks" }
+qnc-mouse-map = { path = "../qnc-mouse-map" }

@@ -1,0 +1,6 @@
+{
+  "kind": "module",
+  "responsibility": "Cuts the zoom window of the source timeline around the taken mark and passes every key and gesture in it to the timeline unchanged.",
+  "database": "none",
+  "owns": ["whether the zoom follows the playhead or the cut"]
+}
