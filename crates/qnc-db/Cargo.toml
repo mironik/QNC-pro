@@ -1,0 +1,10 @@
+[package]
+name = "qnc-db"
+version.workspace = true
+edition.workspace = true
+description = "The database intermediary: one writer thread per database, each table module writes only its own tables."
+
+[dependencies]
+rusqlite = { workspace = true }
+serde_json = { workspace = true }
+qnc-text = { path = "../qnc-text" }

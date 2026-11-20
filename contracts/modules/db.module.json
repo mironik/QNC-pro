@@ -1,0 +1,7 @@
+{
+  "kind": "block",
+  "responsibility": "Opens a SQLite database for the table modules it is given and runs every write through one thread, one transaction at a time, letting a module write only its own tables.",
+  "database": "owner",
+  "owns": ["the connection of each database it opens"],
+  "writes": []
+}
