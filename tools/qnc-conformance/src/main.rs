@@ -61,6 +61,7 @@ struct Crate {
     name: String,
     files: Vec<(PathBuf, String)>,
     deps: Vec<String>,
+    gui_dependency: bool,
 }
 
 fn main() {
@@ -73,6 +74,7 @@ fn main() {
     check_hierarchy(&crates, &contracts, &mut failures);
     check_database(&crates, &contracts, &mut failures);
     check_one_of_each(&crates, &contracts, &mut failures);
+    check_gui_apart(&crates, &contracts, &mut failures);
     check_duplicates(&crates, &mut failures);
     check_exception_comments(&crates, &mut failures);
     if failures.is_empty() {
@@ -96,7 +98,8 @@ fn read_crates(dir: &Path) -> Vec<Crate> {
         let deps = manifest.lines().filter_map(|line| line.trim().strip_prefix("qnc-")).map(|rest| format!("qnc-{}", rest.split(|c: char| c == ' ' || c == '=').next().unwrap_or(""))).collect();
         let mut files = Vec::new();
         collect_rs(&dir.join("src"), &mut files);
-        crates.push(Crate { name, files, deps });
+        let gui_dependency = manifest.lines().any(|line| { let t = line.trim(); t.starts_with("egui") || t.starts_with("eframe") || t.starts_with("epaint") });
+        crates.push(Crate { name, files, deps, gui_dependency });
     }
     crates.sort_by(|a, b| a.name.cmp(&b.name));
     crates
@@ -361,5 +364,32 @@ mod tests {
     #[test]
     fn runtime_part_stops_at_the_tests() {
         assert_eq!(runtime_lines(&runtime_part("fn a() {}\n\n// c\n#[cfg(test)]\nmod t { fn b() {} }")), 1);
+    }
+}
+
+/// C11: the GUI is apart from the code. A block, module or orchestrator has no GUI library at all
+/// (not even as a dependency); a panel or form has no database, no files, no threads, no
+/// processes, no clock and owns no state: it draws what a module gives it and returns actions.
+fn check_gui_apart(crates: &[Crate], contracts: &BTreeMap<String, Contract>, failures: &mut Vec<String>) {
+    const LOGIC_MARKS: [&str; 7] = ["rusqlite", "std::fs", "std::thread", "std::process", "Instant::now", "TcpStream", "std::net"];
+    for krate in crates {
+        let Some(contract) = contracts.get(&krate.name) else { continue };
+        let draws = contract.kind == Kind::Panel || contract.kind == Kind::Form;
+        if !draws && krate.gui_dependency {
+            failures.push(format!("C11 {}: a {:?} depends on a GUI library; only a panel or form may", krate.name, contract.kind));
+        }
+        if !draws {
+            continue;
+        }
+        if contract.database != Database::None || contract.polls > 0.0 || contract.launches || contract.paths || !contract.owns.is_empty() {
+            failures.push(format!("C11 {}: a {:?} may not own state, read a database, poll, launch or build paths", krate.name, contract.kind));
+        }
+        for (path, text) in &krate.files {
+            for mark in LOGIC_MARKS {
+                if text.contains(mark) {
+                    failures.push(format!("C11 {}: a {:?} has logic ({mark}); logic is a block's or module's", path.display(), contract.kind));
+                }
+            }
+        }
     }
 }

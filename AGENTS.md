@@ -67,6 +67,10 @@ prije svakog commita.
 10. **Testovi nikad ne pišu u stvarni projekt; kartica je samo za čitanje.**
 11. **Commit po koraku, push po bloku rada, oznaka `v-GGGG-MM-DD` na kraju dana,
     `docs/razvoj/<dan>.md`.** Force push samo uz izričitu dozvolu.
+13. **GUI je odvojen od koda (ZAKLJUČANO).** Kocka, modul i orkestrator nemaju nijednu GUI
+    biblioteku (ni kao ovisnost). Panel i forma crtaju ono što im modul da i vraćaju šifre
+    radnji: bez baze, datoteka, niti, procesa, sata i vlastitog stanja. Pravilo koje treba
+    stanje ide u modul; prikaz koji treba podatak pita modul. Conformance C11.
 12. **Zlatne tablice.** Prije promjene ponašanja postoji test koji zaključava postojeće
     ponašanje (tipke, miš, slike zooma); promjena retka traži korisnikovu odluku.
 
