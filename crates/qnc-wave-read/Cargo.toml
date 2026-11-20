@@ -1,0 +1,7 @@
+[package]
+name = "qnc-wave-read"
+version.workspace = true
+edition.workspace = true
+description = "The one reader of clip waves of a form: asks the wave source in the background once per clip and hands the wave to whoever draws it."
+
+[dependencies]

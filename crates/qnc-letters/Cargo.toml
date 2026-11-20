@@ -1,0 +1,8 @@
+[package]
+name = "qnc-letters"
+version.workspace = true
+edition.workspace = true
+description = "The letters of a spoken word and when each is said: how long a letter lasts, whether letters belong to their word, which words keep them."
+
+[dependencies]
+serde = { workspace = true }

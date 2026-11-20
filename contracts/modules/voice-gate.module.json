@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Decides, from the sound levels of a window and nothing else, which frames are voice, where voice starts, where it ends and how quiet a clip's noise is; the one threshold of voice in QNC.",
+  "database": "none"
+}

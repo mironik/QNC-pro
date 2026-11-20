@@ -1,0 +1,6 @@
+{
+  "kind": "block",
+  "responsibility": "Reads the wave of each clip a form shows from the wave source it was given, once and in the background, and keeps it until the form forgets the clip; the one wave reader of a form.",
+  "database": "none",
+  "owns": ["the waves read for the clips a form shows"]
+}

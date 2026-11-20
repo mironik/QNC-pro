@@ -280,6 +280,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "qnc-letters"
+version = "0.1.0"
+dependencies = [
+ "serde",
+]
+
+[[package]]
 name = "qnc-marks"
 version = "0.1.0"
 dependencies = [
@@ -318,6 +325,14 @@ dependencies = [
  "qnc-actions",
  "qnc-theme",
 ]
+
+[[package]]
+name = "qnc-voice-gate"
+version = "0.1.0"
+
+[[package]]
+name = "qnc-wave-read"
+version = "0.1.0"
 
 [[package]]
 name = "quote"

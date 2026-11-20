@@ -1,0 +1,7 @@
+[package]
+name = "qnc-voice-gate"
+version.workspace = true
+edition.workspace = true
+description = "The one rule of what is voice in a run of sound levels: the gate, its onsets, its runs and where a voice ends."
+
+[dependencies]

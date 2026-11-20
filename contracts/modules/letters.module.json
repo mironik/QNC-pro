@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Holds the one rule of letters laid on a spoken word: how long each letter lasts, whether letters fit their word, and which words keep theirs; the owner of a transcript stores what this block admits.",
+  "database": "none"
+}
