@@ -1,0 +1,6 @@
+{
+  "kind": "module",
+  "responsibility": "Runs the ingest of one card into one project: select, publish, verified copies of originals and posters, the one probe of each copy and the final record, with progress as it goes.",
+  "database": "none",
+  "owns": ["the progress of the ingest it runs"]
+}

@@ -103,6 +103,37 @@ pub fn file_uri(source_uri: &str, relative_path: &str) -> Result<String, String>
     Ok(format!("{}/file/{}", source_uri.trim_end_matches('/'), encoded.join("/")))
 }
 
+/// A file URI taken apart: the source URI and the decoded relative path after `/file/`.
+pub fn split_file_uri(uri: &str) -> Result<(String, String), String> {
+    let (source, encoded) = uri.split_once("/file/").ok_or_else(|| format!("not a file URI: {uri}"))?;
+    let parsed = parse(source)?;
+    if parsed.resource_kind != "source" {
+        return Err(format!("not a file of a source: {uri}"));
+    }
+    let mut segments = Vec::new();
+    for part in encoded.split('/') {
+        let bytes = part.as_bytes();
+        let mut out = Vec::with_capacity(bytes.len());
+        let mut i = 0;
+        while i < bytes.len() {
+            if bytes[i] == b'%' {
+                let hex = bytes.get(i + 1..i + 3).and_then(|h| std::str::from_utf8(h).ok()).and_then(|h| u8::from_str_radix(h, 16).ok());
+                out.push(hex.ok_or_else(|| format!("bad escape in {uri}"))?);
+                i += 3;
+            } else {
+                out.push(bytes[i]);
+                i += 1;
+            }
+        }
+        let segment = String::from_utf8(out).map_err(|_| format!("not UTF-8: {uri}"))?;
+        if matches!(segment.as_str(), "" | "." | "..") || segment.contains(['/', '\\', ':']) {
+            return Err(format!("not a path inside the source: {uri}"));
+        }
+        segments.push(segment);
+    }
+    Ok((source.to_string(), segments.join("/")))
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -123,5 +154,6 @@ mod tests {
         assert!(validate_resource_uri("qnc://local/source/x/a:b").is_err());
         assert_eq!(file_uri("qnc://local/source/volume-67870d0c", "PRIVATE/XDROOT/Sub/Mironik 1483S03.MP4").unwrap(), "qnc://local/source/volume-67870d0c/file/PRIVATE/XDROOT/Sub/Mironik%201483S03%2EMP4");
         assert!(file_uri("qnc://local/db/x", "a").is_err() && file_uri("qnc://local/source/x", "../a").is_err());
+        assert_eq!(split_file_uri("qnc://local/source/volume-67870d0c/file/PRIVATE/XDROOT/Sub/Mironik%201483S03%2EMP4").unwrap(), ("qnc://local/source/volume-67870d0c".to_string(), "PRIVATE/XDROOT/Sub/Mironik 1483S03.MP4".to_string()));
     }
 }

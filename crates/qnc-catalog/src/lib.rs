@@ -112,7 +112,7 @@ impl TableModule for CatalogTables {
         conn.execute_batch(SCHEMA).map_err(|e| e.to_string())
     }
 
-    /// `{"publish": [CatalogClip, ...]}` or `{"set_import": {"clip_id", "status", "error"?, "media_uri"?, "copy_of"?}}`.
+    /// `{"publish": [CatalogClip, ...]}` or `{"set_import": {"clip_id", "status", "error"?, "media_uri"?, "copy_of"?, "thumbnail_uri"?}}` (a poster given replaces the card's).
     fn execute(&mut self, conn: &Connection, request: Value) -> Result<Value, String> {
         if let Some(clips) = request.get("publish") {
             let clips: Vec<CatalogClip> = serde_json::from_value(clips.clone()).map_err(|e| e.to_string())?;
@@ -126,8 +126,8 @@ impl TableModule for CatalogTables {
             let status = set["status"].as_str().and_then(ImportStatus::of).ok_or("set_import needs a status")?;
             let text = serde_json::to_value(status).map_err(|e| e.to_string())?;
             conn.execute(
-                "UPDATE clips SET import_status=?2, import_error=?3, imported_media_uri=?4, imported_copy_of=?5 WHERE clip_id=?1",
-                params![clip_id, text.as_str(), set["error"].as_str(), set["media_uri"].as_str(), set["copy_of"].as_str()],
+                "UPDATE clips SET import_status=?2, import_error=?3, imported_media_uri=?4, imported_copy_of=?5, thumbnail_uri=COALESCE(?6, thumbnail_uri) WHERE clip_id=?1",
+                params![clip_id, text.as_str(), set["error"].as_str(), set["media_uri"].as_str(), set["copy_of"].as_str(), set["thumbnail_uri"].as_str()],
             )
             .map_err(|e| e.to_string())?;
             return Ok(json!({ "clip_id": clip_id }));

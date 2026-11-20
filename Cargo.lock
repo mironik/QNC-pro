@@ -399,6 +399,32 @@ name = "qnc-ids"
 version = "0.1.0"
 
 [[package]]
+name = "qnc-ingest-run"
+version = "0.1.0"
+dependencies = [
+ "qnc-camera-profile",
+ "qnc-card-select",
+ "qnc-catalog",
+ "qnc-copy",
+ "qnc-db",
+ "qnc-diagnostics",
+ "qnc-ffprobe-read",
+ "qnc-ids",
+ "qnc-media-model",
+ "qnc-media-record",
+ "qnc-player-input",
+ "qnc-probe",
+ "qnc-project-make",
+ "qnc-project-settings",
+ "qnc-record-compose",
+ "qnc-registry",
+ "qnc-text",
+ "qnc-uri",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "qnc-launch"
 version = "0.1.0"
 dependencies = [

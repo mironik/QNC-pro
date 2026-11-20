@@ -1,0 +1,30 @@
+[package]
+name = "qnc-ingest-run"
+version.workspace = true
+edition.workspace = true
+description = "The ingest of one card into one project: select, publish, verified copy of every original and its poster into the project, the one probe of each copy, the final record; progress as it goes."
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }
+qnc-db = { path = "../qnc-db" }
+qnc-uri = { path = "../qnc-uri" }
+qnc-text = { path = "../qnc-text" }
+qnc-diagnostics = { path = "../qnc-diagnostics" }
+qnc-card-select = { path = "../qnc-card-select" }
+qnc-camera-profile = { path = "../qnc-camera-profile" }
+qnc-catalog = { path = "../qnc-catalog" }
+qnc-copy = { path = "../qnc-copy" }
+qnc-probe = { path = "../qnc-probe" }
+qnc-ffprobe-read = { path = "../qnc-ffprobe-read" }
+qnc-record-compose = { path = "../qnc-record-compose" }
+qnc-media-record = { path = "../qnc-media-record" }
+qnc-project-settings = { path = "../qnc-project-settings" }
+qnc-ids = { path = "../qnc-ids" }
+
+
+[dev-dependencies]
+qnc-registry = { path = "../qnc-registry" }
+qnc-project-make = { path = "../qnc-project-make" }
+qnc-player-input = { path = "../qnc-player-input" }
+qnc-media-model = { path = "../qnc-media-model" }
