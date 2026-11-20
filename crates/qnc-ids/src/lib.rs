@@ -55,7 +55,14 @@ mod tests {
         assert_eq!(slug("   "), "projekt");
         assert_eq!(folder_name("a/b:c"), "a_b_c");
         assert_eq!(time_stamp(1_795_177_687), "2026-11-20 12:28", "UTC, as the doc says");
+        assert_eq!(date_stamp(1_795_177_687), "20.11.2026.");
     }
+}
+
+/// `DD.MM.YYYY.` (UTC) of a unix time in seconds, as the old project list showed the date.
+pub fn date_stamp(unix_secs: u64) -> String {
+    let stamp = time_stamp(unix_secs);
+    format!("{}.{}.{}.", &stamp[8..10], &stamp[5..7], &stamp[0..4])
 }
 
 /// `YYYY-MM-DD HH:MM` (UTC) of a unix time in seconds, for a name made at that moment.

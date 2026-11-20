@@ -118,5 +118,16 @@
   "action.project_delete_confirm": "Delete it",
   "action.project_delete_cancel": "Keep it",
   "action.project_choose_template": "Choose the template",
-  "action.group.project": "Projects"
+  "action.group.project": "Projects",
+  "action.project_toggle_picker": "Open / close the template picker",
+  "project.ready": "Ready.",
+  "project.settings": "Settings",
+  "project.choose_workflow_and_review": "Choose the workflow and review the project settings.",
+  "project.workflow_title": "WORKFLOW",
+  "project.search_hint": "Search: name, date...",
+  "project.remove_project": "Remove the project",
+  "project.remove_project_question": "Remove the project?",
+  "project.no_templates": "No templates.",
+  "common.yes": "YES",
+  "common.no": "NO"
 }

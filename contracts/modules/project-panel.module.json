@@ -1,5 +1,0 @@
-{
-  "kind": "panel",
-  "responsibility": "Draws the projects of this computer with the active one, the draft of a new project with its template, Open and Delete with its question, and returns the catalog's actions the user asked.",
-  "database": "none"
-}

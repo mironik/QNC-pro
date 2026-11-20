@@ -1,0 +1,5 @@
+{
+  "kind": "panel",
+  "responsibility": "Draws the project list of the Project board (title with search, one row per project with its date and x, the delete question, the status line) and returns the catalog's actions the user asked.",
+  "database": "none"
+}

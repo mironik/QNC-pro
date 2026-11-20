@@ -39,6 +39,8 @@ pub enum Act {
     ConfirmDelete,
     CancelDelete,
     ChooseTemplate(String),
+    /// Opens or closes the template picker.
+    TogglePicker,
 }
 
 enum Ended {
@@ -53,6 +55,9 @@ pub struct Projects {
     templates: Vec<Template>,
     lines: Vec<Line>,
     pub draft: Draft,
+    /// What the list is searched for (name or date); edited by the form.
+    pub search: String,
+    picker_open: bool,
     asking_delete: Option<String>,
     status: Option<String>,
     job: Option<Receiver<Ended>>,
@@ -73,7 +78,7 @@ impl Projects {
             qnc_diagnostics::log(format!("project template refused: {why}"));
         }
         let draft = Draft { name: String::new(), template_id: templates.first().map(|t| t.template_id.clone()).unwrap_or_default() };
-        let mut projects = Projects { root: root.to_path_buf(), projects_root, templates, lines: Vec::new(), draft, asking_delete: None, status: None, job: None, last_read: Instant::now(), rev: 0 };
+        let mut projects = Projects { root: root.to_path_buf(), projects_root, templates, lines: Vec::new(), draft, search: String::new(), picker_open: false, asking_delete: None, status: Some(qnc_text::text("project.ready").to_string()), job: None, last_read: Instant::now(), rev: 0 };
         projects.read()?;
         Ok(projects)
     }
@@ -122,6 +127,21 @@ impl Projects {
         self.rev != before
     }
 
+    /// The lines the search leaves (name or date, case apart); all when it is empty.
+    pub fn shown(&self) -> Vec<&Line> {
+        let wanted = self.search.trim().to_lowercase();
+        self.lines.iter().filter(|l| wanted.is_empty() || l.name.to_lowercase().contains(&wanted) || l.created.contains(&wanted)).collect()
+    }
+
+    pub fn picker_open(&self) -> bool {
+        self.picker_open
+    }
+
+    /// The template the draft names.
+    pub fn chosen_template(&self) -> Option<&Template> {
+        self.templates.iter().find(|t| t.template_id == self.draft.template_id)
+    }
+
     pub fn lines(&self) -> &[Line] {
         &self.lines
     }
@@ -160,7 +180,11 @@ impl Projects {
             return;
         }
         match act {
-            Act::ChooseTemplate(id) => self.draft.template_id = id,
+            Act::ChooseTemplate(id) => {
+                self.draft.template_id = id;
+                self.picker_open = false;
+            }
+            Act::TogglePicker => self.picker_open = !self.picker_open,
             Act::Delete(id) => self.asking_delete = Some(id),
             Act::CancelDelete => self.asking_delete = None,
             Act::ConfirmDelete => {
@@ -215,7 +239,7 @@ impl Projects {
 
 /// `epoch_<secs>` as the time stamp shown; another text as it is.
 fn epoch_text(at: &str) -> Option<String> {
-    Some(at.strip_prefix("epoch_").and_then(|s| s.parse::<u64>().ok()).map(qnc_ids::time_stamp).unwrap_or_else(|| at.to_string()))
+    Some(at.strip_prefix("epoch_").and_then(|s| s.parse::<u64>().ok()).map(qnc_ids::date_stamp).unwrap_or_else(|| at.to_string()))
 }
 
 #[cfg(test)]

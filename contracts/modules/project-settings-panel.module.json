@@ -1,0 +1,5 @@
+{
+  "kind": "panel",
+  "responsibility": "Draws the settings panel of the Project board (title, subtitle, WORKFLOW with the template picker, New project) from what the projects module holds and returns the actions the user asked.",
+  "database": "none"
+}

@@ -1,4 +1,5 @@
-//! The theme is data: colours and measures read from `contracts/ui/theme.json`, built into the
+//! The theme is data: colours and measures read from `contracts/ui/theme.json` (the graphite
+//! palette and chrome measures of the old QNC shell contract, mirrored literally), built into the
 //! program. No block below a panel knows a colour type of a drawing library; the drawing kit
 //! turns `Rgb` into its own colour. There is one theme per process.
 
@@ -34,9 +35,13 @@ impl<'de> Deserialize<'de> for Rgb {
 pub struct Colours {
     pub background: Rgb,
     pub panel: Rgb,
+    /// A raised control on a panel (a button, a picker head).
+    pub raised: Rgb,
     pub border: Rgb,
     pub text: Rgb,
     pub muted: Rgb,
+    /// The fill of the one strong button and the pressed state.
+    pub accent: Rgb,
     pub focus: Rgb,
     pub danger: Rgb,
     pub done: Rgb,
@@ -49,8 +54,13 @@ pub struct Colours {
 #[derive(Debug, Clone, Deserialize)]
 pub struct Metrics {
     pub font_size: f32,
+    pub font_timecode: f32,
+    /// A chrome row (title, tabs, dock header).
     pub row_height: f32,
+    /// A control in a chrome row.
+    pub control_height: f32,
     pub gap: f32,
+    pub pad_y: f32,
     pub margin: f32,
     pub focus_width: f32,
 }
@@ -81,7 +91,7 @@ mod tests {
     #[test]
     fn the_built_in_theme_parses_and_a_colour_is_rrggbb() {
         let theme = Theme::parse(CONTRACT).unwrap();
-        assert_eq!(theme.colours.playhead, Rgb([255, 255, 255]));
+        assert_eq!(theme.colours.playhead, Rgb([0xed, 0xed, 0xed]));
         assert!(theme.metrics.row_height > theme.metrics.font_size);
         assert!(Rgb::parse("e6c84a").is_err());
         assert!(Rgb::parse("#e6c8").is_err());

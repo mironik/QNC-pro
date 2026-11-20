@@ -1,0 +1,9 @@
+[package]
+name = "qnc-project-layout"
+version.workspace = true
+edition.workspace = true
+description = "The layout of the Project form as data: the window, the board measures, the project list and the settings panel measures from contracts/ui/project.layout.json, built in."
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }

@@ -2,13 +2,17 @@
 name = "qnc-project-form"
 version.workspace = true
 edition.workspace = true
-description = "The Project form: the one window with the Project panel, fed by the projects module; the user's actions go to the module."
+description = "The Project form: the one board with the project list and the settings panel, fed by the projects module; the user's actions go to the module."
 
 [dependencies]
 qnc-settings = { path = "../qnc-settings" }
 qnc-diagnostics = { path = "../qnc-diagnostics" }
 qnc-text = { path = "../qnc-text" }
 qnc-theme = { path = "../qnc-theme" }
+qnc-ui-kit = { path = "../qnc-ui-kit" }
+qnc-board = { path = "../qnc-board" }
+qnc-project-layout = { path = "../qnc-project-layout" }
 qnc-projects = { path = "../qnc-projects" }
-qnc-project-panel = { path = "../qnc-project-panel" }
+qnc-project-list-panel = { path = "../qnc-project-list-panel" }
+qnc-project-settings-panel = { path = "../qnc-project-settings-panel" }
 qnc-window-host = { path = "../qnc-window-host" }

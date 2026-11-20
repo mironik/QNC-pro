@@ -12,6 +12,9 @@ use serde_json::Value;
 const MARKER: &str = "contracts/modules";
 
 /// Is `path` a QNC root: a folder with `contracts/modules`.
+/// The computer setting that names the interface language.
+pub const LANGUAGE_SETTING: &str = "ui-language";
+
 pub fn is_root(path: &Path) -> bool {
     path.join(MARKER).is_dir()
 }
@@ -74,6 +77,15 @@ pub fn set_setting(root: &Path, name: &str, value: &Value) -> Result<(), String>
         let _ = fs::remove_file(&fresh);
         unwritable(name, &e.to_string())
     })
+}
+
+/// The interface language of this computer (`data/ui-language.json`, `{"language": ...}`) chosen
+/// for this process; without the setting the base language stays.
+pub fn choose_language(root: &Path) -> Result<(), String> {
+    match setting(root, LANGUAGE_SETTING)?.and_then(|v| v.get("language").and_then(|l| l.as_str()).map(str::to_string)) {
+        Some(language) => qnc_text::choose(&language),
+        None => Ok(()),
+    }
 }
 
 /// A catalog's content.

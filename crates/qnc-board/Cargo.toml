@@ -1,0 +1,10 @@
+[package]
+name = "qnc-board"
+version.workspace = true
+edition.workspace = true
+description = "The one board every form draws on: a layout tree of splits (data) places named blocks; the form only draws blocks by name. Passive paint, no state."
+
+[dependencies]
+egui = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }

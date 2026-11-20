@@ -23,6 +23,7 @@ pub fn main() -> Result<(), String> {
     let root = qnc_settings::root()?;
     qnc_diagnostics::init(&qnc_settings::diagnostics_dir(&root), "qnc-tray");
     qnc_diagnostics::log_panics();
+    qnc_settings::choose_language(&root)?;
     let mut run = Run::start(&root)?;
     let waiting = qnc_text::text("tray.waiting").to_string();
     let title = qnc_text::text("tray.title").to_string();

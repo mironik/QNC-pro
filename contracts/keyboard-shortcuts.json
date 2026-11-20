@@ -28,7 +28,8 @@
     "project_delete": { "label": "@action.project_delete", "group": "project" },
     "project_delete_confirm": { "label": "@action.project_delete_confirm", "group": "project" },
     "project_delete_cancel": { "label": "@action.project_delete_cancel", "group": "project" },
-    "project_choose_template": { "label": "@action.project_choose_template", "group": "project" }
+    "project_choose_template": { "label": "@action.project_choose_template", "group": "project" },
+    "project_toggle_picker": { "label": "@action.project_toggle_picker", "group": "project" }
   },
   "groups": {
     "general": "@action.group.general",

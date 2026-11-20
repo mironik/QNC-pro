@@ -1,0 +1,34 @@
+{
+  "layout_id": "qnc.ui.project",
+  "mirror_of": "QNC-AI contracts/ui/project.layout.json and contracts/ui/forms/projects.look.json (qnc_v4 project/empty_story_layout.rs)",
+  "window": { "width": 640.0, "height": 720.0 },
+  "board": {
+    "left_ratio": 0.31,
+    "divider_width": 5.0,
+    "left_min_width": 280.0,
+    "right_min_width": 200.0,
+    "monitor_height": 1.0,
+    "head_height": 1.0,
+    "dock_height": 1.0
+  },
+  "list": {
+    "panel_pad": 20.0,
+    "title_row_height": 28.0,
+    "below_title_pad": 40.0,
+    "row_height": 60.0,
+    "row_gap": 10.0,
+    "row_text_inset": 20.0,
+    "delete_column_width": 28.0,
+    "column_gap": 8.0
+  },
+  "settings": {
+    "panel_pad": 20.0,
+    "inner_pad_x": 8.0,
+    "inner_pad_y": 8.0,
+    "section_gap": 8.0,
+    "label_font_size": 12.0,
+    "row_height": 24.0,
+    "picker_pad_x": 8.0,
+    "picker_pad_y": 6.0
+  }
+}

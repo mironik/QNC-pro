@@ -1,0 +1,5 @@
+{
+  "kind": "kit",
+  "responsibility": "Draws the one modal yes/no question over the window (backdrop, box, title, subject, NE / DA) in the theme and answers yes, no or still open; no state.",
+  "database": "none"
+}

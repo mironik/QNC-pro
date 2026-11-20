@@ -1,0 +1,5 @@
+{
+  "kind": "kit",
+  "responsibility": "Draws the one board every form uses: a layout tree of splits (data) places named blocks, paints their faces and calls the form for each block by name; no state.",
+  "database": "none"
+}

@@ -1,0 +1,15 @@
+[package]
+name = "qnc-project-list-panel"
+version.workspace = true
+edition.workspace = true
+description = "The project list panel as the old Project board drew it: title with search, one row per project (name, date, x), the delete question, the status line; it draws and returns actions."
+
+[dependencies]
+egui = { workspace = true }
+qnc-theme = { path = "../qnc-theme" }
+qnc-text = { path = "../qnc-text" }
+qnc-ui-kit = { path = "../qnc-ui-kit" }
+qnc-confirm = { path = "../qnc-confirm" }
+qnc-actions = { path = "../qnc-actions" }
+qnc-project-layout = { path = "../qnc-project-layout" }
+qnc-projects = { path = "../qnc-projects" }

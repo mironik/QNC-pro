@@ -1,0 +1,13 @@
+[package]
+name = "qnc-project-settings-panel"
+version.workspace = true
+edition.workspace = true
+description = "The settings panel of the Project board as the old form drew it: title and subtitle, WORKFLOW with the template picker, New project; it draws what the projects module holds and returns actions."
+
+[dependencies]
+egui = { workspace = true }
+qnc-theme = { path = "../qnc-theme" }
+qnc-text = { path = "../qnc-text" }
+qnc-ui-kit = { path = "../qnc-ui-kit" }
+qnc-project-layout = { path = "../qnc-project-layout" }
+qnc-projects = { path = "../qnc-projects" }

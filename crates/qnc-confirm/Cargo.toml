@@ -1,0 +1,10 @@
+[package]
+name = "qnc-confirm"
+version.workspace = true
+edition.workspace = true
+description = "The modal yes/no question over the whole window (backdrop, box, title, subject, NE / DA) as the old Project dialogs drew it; it draws and answers, the caller decides."
+
+[dependencies]
+egui = { workspace = true }
+qnc-theme = { path = "../qnc-theme" }
+qnc-ui-kit = { path = "../qnc-ui-kit" }
