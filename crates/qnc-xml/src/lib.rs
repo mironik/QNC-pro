@@ -145,7 +145,7 @@ mod tests {
         assert!(root.children[0].required("z").is_err());
         let mut all = BTreeMap::new();
         root.all_attributes(&mut all);
-        assert_eq!(all.get("/A[2]/@k").map(String::as_str), Some("2"));
+        assert_eq!(all.get("/Root[1]/A[2]/@k").map(String::as_str), Some("2"));
         assert!(parse(text, "Other", "urn:x").is_err());
         assert!(parse("<!DOCTYPE x><Root xmlns=\"urn:x\"/>", "Root", "urn:x").is_err());
     }
