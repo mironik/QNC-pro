@@ -88,6 +88,17 @@ pub fn choose_language(root: &Path) -> Result<(), String> {
     }
 }
 
+/// The interface language this computer chose, else the base one.
+pub fn chosen_language(root: &Path) -> String {
+    setting(root, LANGUAGE_SETTING).ok().flatten().and_then(|v| v.get("language").and_then(|l| l.as_str()).map(str::to_string)).unwrap_or_else(|| qnc_text::BASE_LANGUAGE.to_string())
+}
+
+/// Keeps `language` as this computer's interface language; only a language QNC has a dictionary for.
+pub fn set_language(root: &Path, language: &str) -> Result<(), String> {
+    qnc_text::Texts::of(language)?;
+    set_setting(root, LANGUAGE_SETTING, &serde_json::json!({ "language": language }))
+}
+
 /// A catalog's content.
 pub fn catalog(root: &Path, name: &str) -> Result<Value, String> {
     let path = catalog_path(root, name);

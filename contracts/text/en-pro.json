@@ -123,6 +123,9 @@
     "project.search_hint": "Search: name, date...",
     "project.remove_project_question": "Remove the project?",
     "common.yes": "YES",
-    "common.no": "NO"
+    "common.no": "NO",
+    "action.form_next_field": "Next field",
+    "action.project_story_confirm": "Create / Save the story sheet",
+    "action.project_story_cancel": "Close the story sheet"
   }
 }

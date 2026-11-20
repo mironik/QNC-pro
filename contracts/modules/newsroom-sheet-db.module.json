@@ -1,0 +1,7 @@
+{
+  "kind": "block",
+  "responsibility": "Owns the story sheet tables of a project database (the sheet as filled and the value of each field by code), written only through the project writer.",
+  "database": "owner",
+  "owns": ["project_story_sheet", "project_story_values"],
+  "writes": ["project_story_sheet", "project_story_values"]
+}

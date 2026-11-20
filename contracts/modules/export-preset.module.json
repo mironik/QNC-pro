@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "QNC public module: export profile presets (built-in catalog plus custom presets stored in settings)",
+  "database": "none"
+}

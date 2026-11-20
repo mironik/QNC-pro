@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "QNC public module: dotted-path read/write helpers over a JSON settings value",
+  "database": "none"
+}

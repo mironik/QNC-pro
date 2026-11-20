@@ -74,7 +74,7 @@ pub fn show(ui: &mut Ui, theme: &Theme, list: &List, rect: egui::Rect, projects:
         ui.scope_builder(egui::UiBuilder::new().max_rect(title_rect).layout(Layout::left_to_right(egui::Align::Center)), |ui| {
             ui.label(RichText::new(qnc_text::text("project.window_title")).size(font).strong().color(qnc_ui_kit::colour(c.text)));
             ui.with_layout(Layout::right_to_left(egui::Align::Center), |ui| {
-                ui.add(qnc_ui_kit::text_field(&mut projects.search, (content_w * 0.55).max(120.0)).hint_text(qnc_text::text("project.search_hint")));
+                ui.add(qnc_ui_kit::text_field(&mut projects.search).desired_width((content_w * 0.55).max(120.0)).hint_text(qnc_text::text("project.search_hint")));
             });
         });
         ui.painter().hline(title_rect.x_range(), title_rect.bottom() - 0.5, egui::Stroke::new(1.0, qnc_ui_kit::colour(c.border)));

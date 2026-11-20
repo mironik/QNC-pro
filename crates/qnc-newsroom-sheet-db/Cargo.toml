@@ -1,0 +1,15 @@
+[package]
+name = "qnc-newsroom-sheet-db"
+version.workspace = true
+edition.workspace = true
+description = "The story sheet of a project in its database (the sheet as filled and the value of each field by code), a table module of the project database writer that owns only its tables."
+
+[dependencies]
+rusqlite = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+qnc-db = { path = "../qnc-db" }
+qnc-text = { path = "../qnc-text" }
+
+[dev-dependencies]
+tempfile = "3"

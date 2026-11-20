@@ -2,12 +2,23 @@
 //! QNC looks the same and the theme lives in one place. It holds no state and knows no block
 //! above the theme and the action catalog.
 
+mod chrome_button;
 mod keys;
+mod text_field;
 
-use egui::{Color32, CornerRadius, Response, Stroke, StrokeKind, TextEdit, Ui, Vec2};
+use egui::{Color32, CornerRadius, Response, Stroke, StrokeKind, Ui, Vec2};
 use qnc_theme::{Rgb, Theme};
 
 pub use keys::chords;
+pub use chrome_button::{chrome_button, fill_block, on_dark, check_box, framed_button, look_button, press_feedback, sized_button, small_button, strong_button, ButtonLook, ChromeButtonStyle, PRESS_FEEDBACK_KEY};
+pub use text_field::{row_field, search_field, text_area, text_field};
+
+/// The thin frame of what the keyboard is on (a panel, a button, a tab), the same in every form.
+pub fn paint_focus(ui: &Ui, rect: egui::Rect, focused: bool, color: Color32) {
+    if focused {
+        ui.painter().rect_stroke(rect, 0.0, Stroke::new(1.0, color.gamma_multiply(0.7)), StrokeKind::Inside);
+    }
+}
 
 /// A theme colour as the drawing library's colour.
 pub fn colour(rgb: Rgb) -> Color32 {
@@ -77,28 +88,6 @@ pub fn button(ui: &mut Ui, theme: &Theme, text: &str, enabled: bool, on: bool) -
     }
     let widget = egui::Button::new(rich).fill(fill).stroke(Stroke::new(1.0, border)).corner_radius(CornerRadius::same(2)).min_size(Vec2::new(0.0, theme.metrics.control_height));
     ui.add_enabled(enabled, widget)
-}
-
-/// The one check box.
-pub fn check_box(ui: &mut Ui, checked: &mut bool, text: &str, enabled: bool) -> Response {
-    ui.add_enabled(enabled, egui::Checkbox::new(checked, text))
-}
-
-/// A one-line text field of the given width.
-pub fn text_field(text: &mut String, width: f32) -> TextEdit<'_> {
-    TextEdit::singleline(text).desired_width(width)
-}
-
-/// A text area of the given width that grows with its rows.
-pub fn text_area(text: &mut String, width: f32, rows: usize) -> TextEdit<'_> {
-    TextEdit::multiline(text).desired_width(width).desired_rows(rows)
-}
-
-/// The focus frame around the panel or item that has the keyboard.
-pub fn paint_focus(ui: &Ui, rect: egui::Rect, theme: &Theme, focused: bool) {
-    if focused {
-        ui.painter().rect_stroke(rect, 0.0, Stroke::new(theme.metrics.focus_width, colour(theme.colours.focus)), StrokeKind::Inside);
-    }
 }
 
 #[cfg(test)]

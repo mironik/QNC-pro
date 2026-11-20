@@ -123,6 +123,9 @@
     "project.search_hint": "Traži: naziv, datum...",
     "project.remove_project_question": "Ukloniti projekt?",
     "common.yes": "DA",
-    "common.no": "NE"
+    "common.no": "NE",
+    "action.form_next_field": "Sljedeće polje",
+    "action.project_story_confirm": "Kreiraj / Spremi obrazac priloga",
+    "action.project_story_cancel": "Zatvori obrazac priloga"
   }
 }

@@ -179,7 +179,7 @@ dependencies = [
  "objc2-foundation 0.3.2",
  "parking_lot",
  "percent-encoding",
- "windows-sys 0.59.0",
+ "windows-sys 0.61.2",
  "x11rb",
 ]
 
@@ -604,6 +604,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "chrono"
+version = "0.4.45"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1aa79e62e7697b8e29b513a68abacf485adcd1fe8284a4316c5ae868e6633327"
+dependencies = [
+ "iana-time-zone",
+ "num-traits",
+ "windows-link",
+]
+
+[[package]]
 name = "clipboard-win"
 version = "5.4.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -619,7 +630,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3538270d33cc669650c4b093848450d380def10c331d38c768e34cac80576e6e"
 dependencies = [
  "termcolor",
- "unicode-width",
+ "unicode-width 0.1.14",
 ]
 
 [[package]]
@@ -652,6 +663,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "core-foundation"
+version = "0.10.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b2a6cd9ae233e7f62ba4e9353e81a88df7fc8a5987b8d445b4d90c879bd156f6"
+dependencies = [
+ "core-foundation-sys",
+ "libc",
+]
+
+[[package]]
 name = "core-foundation-sys"
 version = "0.8.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -664,7 +685,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c07782be35f9e1140080c6b96f0d44b739e2278479f64e02fdab4e32dfd8b081"
 dependencies = [
  "bitflags 1.3.2",
- "core-foundation",
+ "core-foundation 0.9.4",
  "core-graphics-types",
  "foreign-types",
  "libc",
@@ -677,7 +698,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "45390e6114f68f718cc7a830514a96f903cccd70d02a8f6d9f643ac4ba45afaf"
 dependencies = [
  "bitflags 1.3.2",
- "core-foundation",
+ "core-foundation 0.9.4",
  "libc",
 ]
 
@@ -987,7 +1008,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e35d6e78f4cebb90e51d543db8fe41528851d6deeef6ef21ebd4bfdc1e784776"
 dependencies = [
  "libc",
- "windows-sys 0.59.0",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]
@@ -1190,6 +1211,15 @@ checksum = "1bd49230192a3797a9a4d6abe9b3eed6f7fa4c8a8a4947977c6f80025f92cbd8"
 dependencies = [
  "rustix 1.1.6",
  "windows-link",
+]
+
+[[package]]
+name = "getopts"
+version = "0.2.24"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "cfe4fbac503b8d1f88e6676011885f34b7174f46e59956bba534ba83abded4df"
+dependencies = [
+ "unicode-width 0.2.3",
 ]
 
 [[package]]
@@ -1423,6 +1453,41 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "dfa686283ad6dd069f105e5ab091b04c62850d3e4cf5d67debad1933f55023df"
 
 [[package]]
+name = "hostname"
+version = "0.4.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "617aaa3557aef3810a6369d0a99fac8a080891b68bd9f9812a1eeda0c0730cbd"
+dependencies = [
+ "cfg-if",
+ "libc",
+ "windows-link",
+]
+
+[[package]]
+name = "iana-time-zone"
+version = "0.1.65"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e31bc9ad994ba00e440a8aa5c9ef0ec67d5cb5e5cb0cc7f8b744a35b389cc470"
+dependencies = [
+ "android_system_properties",
+ "core-foundation-sys",
+ "iana-time-zone-haiku",
+ "js-sys",
+ "log",
+ "wasm-bindgen",
+ "windows-core",
+]
+
+[[package]]
+name = "iana-time-zone-haiku"
+version = "0.1.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f31827a206f56af32e590ba56d5d2d085f558508192593743f16b2306495269f"
+dependencies = [
+ "cc",
+]
+
+[[package]]
 name = "icu_collections"
 version = "2.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1557,6 +1622,26 @@ checksum = "cc4e190f5d26ca7051642629da2c52fc03bde85a03197c99408dcd291734c855"
 dependencies = [
  "equivalent",
  "hashbrown 0.17.1",
+]
+
+[[package]]
+name = "io-kit-sys"
+version = "0.4.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "617ee6cf8e3f66f3b4ea67a4058564628cde41901316e19f559e14c7c72c5e7b"
+dependencies = [
+ "core-foundation-sys",
+ "mach2 0.4.3",
+]
+
+[[package]]
+name = "io-kit-sys"
+version = "0.5.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "06d3a048d09fbb6597dbf7c69f40d14df4a49487db1487191618c893fc3b1c26"
+dependencies = [
+ "core-foundation-sys",
+ "mach2 0.5.0",
 ]
 
 [[package]]
@@ -1738,6 +1823,30 @@ name = "log"
 version = "0.4.35"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5d15f86d12da44cd8d4ec3c73984537eb7f4cadcb9776a575a0a8a05ca11005c"
+
+[[package]]
+name = "mach2"
+version = "0.4.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d640282b302c0bb0a2a8e0233ead9035e3bed871f0b7e81fe4a1ec829765db44"
+dependencies = [
+ "libc",
+]
+
+[[package]]
+name = "mach2"
+version = "0.5.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6a1b95cd5421ec55b445b5ae102f5ea0e768de1f82bd3001e11f426c269c3aea"
+dependencies = [
+ "libc",
+]
+
+[[package]]
+name = "mach2"
+version = "0.6.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "dae608c151f68243f2b000364e1f7b186d9c29845f7d2d85bd31b9ad77ad552b"
 
 [[package]]
 name = "malloc_buf"
@@ -2555,6 +2664,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "qnc-desktop-theme"
+version = "0.1.0"
+dependencies = [
+ "eframe",
+ "qnc-board",
+ "qnc-theme",
+ "serde",
+]
+
+[[package]]
 name = "qnc-diagnostics"
 version = "0.1.0"
 
@@ -2574,6 +2693,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "qnc-export-preset"
+version = "0.1.0"
+dependencies = [
+ "qnc-settings-path",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "qnc-ffprobe-read"
 version = "0.1.0"
 dependencies = [
@@ -2581,6 +2709,13 @@ dependencies = [
  "qnc-media-record",
  "qnc-uri",
  "serde_json",
+]
+
+[[package]]
+name = "qnc-field-spec"
+version = "0.1.0"
+dependencies = [
+ "serde",
 ]
 
 [[package]]
@@ -2644,6 +2779,21 @@ dependencies = [
 ]
 
 [[package]]
+name = "qnc-key-row"
+version = "0.1.0"
+
+[[package]]
+name = "qnc-language-choice"
+version = "0.1.0"
+dependencies = [
+ "eframe",
+ "qnc-diagnostics",
+ "qnc-settings",
+ "qnc-settings-form",
+ "qnc-text",
+]
+
+[[package]]
 name = "qnc-launch"
 version = "0.1.0"
 dependencies = [
@@ -2699,6 +2849,49 @@ dependencies = [
  "qnc-actions",
  "qnc-text",
  "serde_json",
+]
+
+[[package]]
+name = "qnc-newsroom-sheet"
+version = "0.1.0"
+dependencies = [
+ "eframe",
+ "qnc-actions",
+ "qnc-desktop-theme",
+ "qnc-field-spec",
+ "qnc-key-row",
+ "qnc-newsroom-sheet-model",
+ "qnc-settings-form",
+ "qnc-text",
+ "qnc-ui-kit",
+ "serde",
+ "serde_json",
+ "tempfile",
+]
+
+[[package]]
+name = "qnc-newsroom-sheet-db"
+version = "0.1.0"
+dependencies = [
+ "qnc-db",
+ "qnc-text",
+ "rusqlite",
+ "serde",
+ "serde_json",
+ "tempfile",
+]
+
+[[package]]
+name = "qnc-newsroom-sheet-model"
+version = "0.1.0"
+dependencies = [
+ "chrono",
+ "qnc-field-spec",
+ "qnc-settings",
+ "qnc-text",
+ "serde",
+ "serde_json",
+ "tempfile",
 ]
 
 [[package]]
@@ -2934,6 +3127,48 @@ dependencies = [
 ]
 
 [[package]]
+name = "qnc-settings-form"
+version = "0.1.0"
+dependencies = [
+ "eframe",
+ "qnc-field-spec",
+ "qnc-key-row",
+ "qnc-settings-path",
+ "qnc-ui-kit",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
+name = "qnc-settings-path"
+version = "0.1.0"
+dependencies = [
+ "serde_json",
+]
+
+[[package]]
+name = "qnc-settings-rows"
+version = "0.1.0"
+dependencies = [
+ "eframe",
+ "qnc-desktop-theme",
+ "qnc-text",
+ "qnc-ui-kit",
+ "serde",
+]
+
+[[package]]
+name = "qnc-settings-switches"
+version = "0.1.0"
+dependencies = [
+ "eframe",
+ "qnc-settings-path",
+ "qnc-ui-kit",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "qnc-sony-clip"
 version = "0.1.0"
 dependencies = [
@@ -2964,6 +3199,10 @@ dependencies = [
  "qnc-marks",
  "qnc-mouse-map",
 ]
+
+[[package]]
+name = "qnc-store-jobs"
+version = "0.1.0"
 
 [[package]]
 name = "qnc-text"
@@ -3070,6 +3309,21 @@ dependencies = [
  "egui",
  "qnc-theme",
  "qnc-ui-kit",
+]
+
+[[package]]
+name = "qnc-workstation-identity"
+version = "0.1.0"
+dependencies = [
+ "core-foundation 0.9.4",
+ "hostname",
+ "io-kit-sys 0.4.1",
+ "libc",
+ "serde",
+ "serde_json",
+ "smbios-lib",
+ "whoami",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
@@ -3261,7 +3515,7 @@ dependencies = [
  "errno",
  "libc",
  "linux-raw-sys 0.12.1",
- "windows-sys 0.59.0",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]
@@ -3435,6 +3689,22 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3244542535d5de959d90ec55d1b5ff0fd2bb7b1310223907d5f11932847f7b59"
 
 [[package]]
+name = "smbios-lib"
+version = "0.9.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e739c9b449374b4e9435857e0084895a59ef79b46d1c2b0f976c1c564ae7e4bc"
+dependencies = [
+ "core-foundation 0.10.1",
+ "core-foundation-sys",
+ "getopts",
+ "io-kit-sys 0.5.0",
+ "libc",
+ "mach2 0.6.0",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "smithay-client-toolkit"
 version = "0.19.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3598,7 +3868,7 @@ dependencies = [
  "getrandom 0.4.3",
  "once_cell",
  "rustix 1.1.6",
- "windows-sys 0.59.0",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]
@@ -3821,6 +4091,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7dd6e30e90baa6f72411720665d41d89b9a3d039dc45b8faea1ddd07f617f6af"
 
 [[package]]
+name = "unicode-width"
+version = "0.2.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ca718471876992059f251e33aafc334346ada08042b7661dd1fe313a9bced557"
+
+[[package]]
 name = "unicode-xid"
 version = "0.2.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3889,6 +4165,12 @@ checksum = "b67efb37e106e55ce722a510d6b5f9c17f083e5fc79afc2badeb12cc313d9487"
 dependencies = [
  "wit-bindgen",
 ]
+
+[[package]]
+name = "wasite"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b8dad83b4f25e74f184f64c43b150b91efe7647395b42289f38e50566d82855b"
 
 [[package]]
 name = "wasm-bindgen"
@@ -4226,6 +4508,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "whoami"
+version = "1.6.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5d4a4db5077702ca3015d3d02d74974948aba2ad9e12ab7df718ee64ccd7e97d"
+dependencies = [
+ "libredox",
+ "wasite",
+ "web-sys",
+]
+
+[[package]]
 name = "winapi"
 version = "0.3.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -4247,7 +4540,7 @@ version = "0.1.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c2a7b1c03c876122aa43f3020e6c3c3ee5c05081c9a00739faf7503aeba10d22"
 dependencies = [
- "windows-sys 0.59.0",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]
@@ -4432,7 +4725,7 @@ dependencies = [
  "calloop 0.13.0",
  "cfg_aliases",
  "concurrent-queue",
- "core-foundation",
+ "core-foundation 0.9.4",
  "core-graphics",
  "cursor-icon",
  "dpi",

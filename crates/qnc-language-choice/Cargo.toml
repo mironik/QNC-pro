@@ -1,0 +1,12 @@
+[package]
+name = "qnc-language-choice"
+version.workspace = true
+edition.workspace = true
+description = "The choice of the interface language as a section of a settings panel: the languages QNC speaks, the one this computer chose (its setting), and a note until QNC starts again."
+
+[dependencies]
+eframe = { workspace = true }
+qnc-settings = { path = "../qnc-settings" }
+qnc-diagnostics = { path = "../qnc-diagnostics" }
+qnc-settings-form = { path = "../qnc-settings-form" }
+qnc-text = { path = "../qnc-text" }

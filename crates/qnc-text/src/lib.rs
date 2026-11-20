@@ -98,6 +98,16 @@ pub fn text(code: &'static str) -> &'static str {
     chosen().get(code).unwrap_or(code)
 }
 
+/// The language this process speaks.
+pub fn current_language() -> &'static str {
+    &chosen().language
+}
+
+/// The text of a code known only at run time (a code of a contract), if the dictionary has it.
+pub fn text_of(code: &str) -> Option<&'static str> {
+    chosen().get(code)
+}
+
 /// The text of a code with `{name}` places filled.
 pub fn fill(code: &'static str, values: &[(&str, &str)]) -> String {
     let mut out = text(code).to_string();

@@ -1,0 +1,16 @@
+[package]
+name = "qnc-newsroom-sheet-model"
+version.workspace = true
+edition.workspace = true
+description = "QNC public piece (core): the story sheets of this computer and the overlay of one story as data; qnc-newsroom-sheet draws it"
+
+[dependencies]
+chrono = { version = "0.4", default-features = false, features = ["clock"] }
+qnc-settings = { path = "../qnc-settings" }
+qnc-field-spec = { path = "../qnc-field-spec" }
+qnc-text = { path = "../qnc-text" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+
+[dev-dependencies]
+tempfile = "3"

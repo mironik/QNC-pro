@@ -29,7 +29,10 @@
     "project_delete_confirm": { "label": "@action.project_delete_confirm", "group": "project" },
     "project_delete_cancel": { "label": "@action.project_delete_cancel", "group": "project" },
     "project_choose_template": { "label": "@action.project_choose_template", "group": "project" },
-    "project_toggle_picker": { "label": "@action.project_toggle_picker", "group": "project" }
+    "project_toggle_picker": { "label": "@action.project_toggle_picker", "group": "project" },
+    "form_next_field": { "label": "@action.form_next_field", "group": "project" },
+    "project_story_confirm": { "label": "@action.project_story_confirm", "group": "project" },
+    "project_story_cancel": { "label": "@action.project_story_cancel", "group": "project" }
   },
   "groups": {
     "general": "@action.group.general",
@@ -58,6 +61,11 @@
         "F1": "toggle_cheatsheet",
         "Shift+/": "toggle_cheatsheet",
         "S": "toggle_snapping"
+      },
+      "project": {
+        "Enter": "form_next_field",
+        "Left": "step_back_frame",
+        "Right": "step_forward_frame"
       },
       "source_timeline": {
         "Space": "play_pause",

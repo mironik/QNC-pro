@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Stateless local workstation provenance reader with a JSON process interface",
+  "database": "none"
+}

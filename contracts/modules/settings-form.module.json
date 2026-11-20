@@ -1,0 +1,5 @@
+{
+  "kind": "kit",
+  "responsibility": "Draws a settings form from its contract: sections of fields (text, choice, duration, number, switch) read from and written to a draft of the settings, with the keyboard walking the rows.",
+  "database": "none"
+}
