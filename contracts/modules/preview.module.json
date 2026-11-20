@@ -1,0 +1,6 @@
+{
+  "kind": "module",
+  "responsibility": "Keeps one player session for the shown clip off the interface thread, turns the source timeline's asks into player commands and hands the player's state and pictures back.",
+  "database": "none",
+  "owns": ["the open player session of the preview and its worker thread", "the last picture the player posted"]
+}

@@ -355,6 +355,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "qnc-preview"
+version = "0.1.0"
+dependencies = [
+ "qnc-diagnostics",
+ "qnc-frame-map",
+ "qnc-player-session",
+ "qnc-player-state",
+ "qnc-player-wire",
+ "qnc-source-timeline",
+ "serde_json",
+]
+
+[[package]]
 name = "qnc-settings"
 version = "0.1.0"
 dependencies = [

@@ -1,0 +1,14 @@
+[package]
+name = "qnc-preview"
+version.workspace = true
+edition.workspace = true
+description = "The preview module: one player session for the shown clip, driven by the source timeline's asks, its state and pictures handed back; nothing of it on the interface thread."
+
+[dependencies]
+serde_json = { workspace = true }
+qnc-diagnostics = { path = "../qnc-diagnostics" }
+qnc-frame-map = { path = "../qnc-frame-map" }
+qnc-player-session = { path = "../qnc-player-session" }
+qnc-player-state = { path = "../qnc-player-state" }
+qnc-player-wire = { path = "../qnc-player-wire" }
+qnc-source-timeline = { path = "../qnc-source-timeline" }
