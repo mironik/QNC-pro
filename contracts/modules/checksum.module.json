@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Computes SHA-256 (the identity of a document) and xxHash64 (the proof of a copy) in pure Rust, fed in pieces of any size.",
+  "database": "none"
+}

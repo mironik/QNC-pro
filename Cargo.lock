@@ -284,6 +284,21 @@ dependencies = [
 ]
 
 [[package]]
+name = "qnc-card-select"
+version = "0.1.0"
+dependencies = [
+ "qnc-camera-profile",
+ "qnc-catalog",
+ "qnc-checksum",
+ "qnc-ids",
+ "qnc-media-model",
+ "qnc-media-record",
+ "qnc-sony-clip",
+ "qnc-sony-index",
+ "qnc-uri",
+]
+
+[[package]]
 name = "qnc-catalog"
 version = "0.1.0"
 dependencies = [
@@ -302,11 +317,23 @@ dependencies = [
 ]
 
 [[package]]
+name = "qnc-checksum"
+version = "0.1.0"
+
+[[package]]
 name = "qnc-conformance"
 version = "0.1.0"
 dependencies = [
  "serde",
  "serde_json",
+]
+
+[[package]]
+name = "qnc-copy"
+version = "0.1.0"
+dependencies = [
+ "qnc-checksum",
+ "qnc-text",
 ]
 
 [[package]]
@@ -345,6 +372,14 @@ dependencies = [
  "qnc-media-record",
  "qnc-uri",
  "serde_json",
+]
+
+[[package]]
+name = "qnc-folder-lock"
+version = "0.1.0"
+dependencies = [
+ "qnc-launch",
+ "qnc-text",
 ]
 
 [[package]]

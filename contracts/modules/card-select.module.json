@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Reads a card read-only (index, sidecars, camera profile) and gives the camera-phase catalog clips bound to the card's file URIs; nothing is probed or written.",
+  "database": "none"
+}

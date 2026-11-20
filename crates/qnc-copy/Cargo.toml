@@ -1,0 +1,9 @@
+[package]
+name = "qnc-copy"
+version.workspace = true
+edition.workspace = true
+description = "A verified copy of one local file into a folder of the project: large pieces read ahead, a stalled source is an error, and the copy is the source's only when it reads back with the same checksum."
+
+[dependencies]
+qnc-checksum = { path = "../qnc-checksum" }
+qnc-text = { path = "../qnc-text" }

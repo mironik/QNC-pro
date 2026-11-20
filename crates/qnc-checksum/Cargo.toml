@@ -1,0 +1,7 @@
+[package]
+name = "qnc-checksum"
+version.workspace = true
+edition.workspace = true
+description = "Checksums in pure Rust: SHA-256 for the identity of a document, xxHash64 for proving a copy; fed in pieces of any size."
+
+[dependencies]

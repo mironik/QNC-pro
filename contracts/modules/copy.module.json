@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Copies one local file into the project in large pieces read ahead and proves the copy by its checksum read back; a stalled source is an error.",
+  "database": "none"
+}

@@ -1,0 +1,18 @@
+[package]
+name = "qnc-card-select"
+version.workspace = true
+edition.workspace = true
+description = "Reads a card (read-only): its index, every material's sidecar, the camera profile, and gives the camera-phase catalog clips bound to the card's file URIs; nothing is probed or written."
+
+[dependencies]
+qnc-checksum = { path = "../qnc-checksum" }
+qnc-ids = { path = "../qnc-ids" }
+qnc-uri = { path = "../qnc-uri" }
+qnc-sony-index = { path = "../qnc-sony-index" }
+qnc-sony-clip = { path = "../qnc-sony-clip" }
+qnc-camera-profile = { path = "../qnc-camera-profile" }
+qnc-media-record = { path = "../qnc-media-record" }
+qnc-catalog = { path = "../qnc-catalog" }
+
+[dev-dependencies]
+qnc-media-model = { path = "../qnc-media-model" }

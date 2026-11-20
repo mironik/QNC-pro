@@ -1,0 +1,9 @@
+[package]
+name = "qnc-folder-lock"
+version.workspace = true
+edition.workspace = true
+description = "Protects a project folder from accidental deletion by the user (Windows: an ACL that denies delete to the current user, passed down; cache folders may still lose their files) and lifts it again."
+
+[dependencies]
+qnc-launch = { path = "../qnc-launch" }
+qnc-text = { path = "../qnc-text" }

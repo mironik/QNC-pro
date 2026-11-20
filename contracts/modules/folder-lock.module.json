@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Protects a project folder from accidental deletion by its user and lifts the protection again; cache folders inside it may still lose their files.",
+  "database": "none"
+}
