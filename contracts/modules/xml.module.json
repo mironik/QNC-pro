@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Reads a camera's XML document into a tree of elements with attributes and locators, bounded and without DTD or entities; the one XML rule.",
+  "database": "none"
+}

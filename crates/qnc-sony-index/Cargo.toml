@@ -1,0 +1,10 @@
+[package]
+name = "qnc-sony-index"
+version.workspace = true
+edition.workspace = true
+description = "The Sony MediaProfile card index (MEDIAPRO.XML): its materials with original, proxies and related files, bound to file URIs of the card; no I/O."
+
+[dependencies]
+serde = { workspace = true }
+qnc-xml = { path = "../qnc-xml" }
+qnc-uri = { path = "../qnc-uri" }

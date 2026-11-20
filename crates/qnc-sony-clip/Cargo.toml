@@ -1,0 +1,16 @@
+[package]
+name = "qnc-sony-clip"
+version.workspace = true
+edition.workspace = true
+description = "The camera's facts of one clip from the Sony index material and its M01 sidecar, as the saved record carries them (evidence, locators); a conflict is an error, nothing is guessed."
+
+[dependencies]
+serde = { workspace = true }
+qnc-xml = { path = "../qnc-xml" }
+qnc-uri = { path = "../qnc-uri" }
+qnc-sony-index = { path = "../qnc-sony-index" }
+qnc-media-model = { path = "../qnc-media-model" }
+
+[dev-dependencies]
+serde_json = { workspace = true }
+qnc-media-record = { path = "../qnc-media-record" }

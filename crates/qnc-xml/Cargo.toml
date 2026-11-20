@@ -1,0 +1,8 @@
+[package]
+name = "qnc-xml"
+version.workspace = true
+edition.workspace = true
+description = "Safe reading of a camera's XML document into a tree of elements with locators: bounded, UTF-8 only, no DTD or entities; the one XML rule."
+
+[dependencies]
+xml-rs = { workspace = true }

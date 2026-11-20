@@ -74,6 +74,35 @@ pub fn validate_resource_uri(uri: &str) -> Result<(), String> {
     }
 }
 
+/// A segment of a path as a file URI carries it: every byte that is not a letter or digit
+/// percent-encoded (the old QNC's rule, so `Mironik 1483.MXF` is `Mironik%201483%2EMXF`).
+pub fn encode_segment(segment: &str) -> String {
+    let mut out = String::with_capacity(segment.len());
+    for byte in segment.bytes() {
+        if byte.is_ascii_alphanumeric() {
+            out.push(byte as char);
+        } else {
+            out.push_str(&format!("%{byte:02X}"));
+        }
+    }
+    out
+}
+
+/// The URI of a file inside a source: `<source_uri>/file/<encoded path>`; the path is
+/// relative, `/`-separated, without `.` or `..`.
+pub fn file_uri(source_uri: &str, relative_path: &str) -> Result<String, String> {
+    let source = parse(source_uri)?;
+    if source.resource_kind != "source" || source.resource_id.contains('/') {
+        return Err(format!("not a source URI: {source_uri}"));
+    }
+    let segments: Vec<&str> = relative_path.split('/').collect();
+    if segments.iter().any(|s| matches!(*s, "" | "." | "..") || s.contains(['\\', ':']) || s.chars().any(char::is_control)) {
+        return Err(format!("not a relative path inside the source: {relative_path}"));
+    }
+    let encoded: Vec<String> = segments.iter().map(|s| encode_segment(s)).collect();
+    Ok(format!("{}/file/{}", source_uri.trim_end_matches('/'), encoded.join("/")))
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -92,5 +121,7 @@ mod tests {
         assert!(validate_resource_uri("qnc://local/source/x/file/a%2Eb").is_ok());
         assert!(validate_resource_uri("qnc://local/source/x/../y").is_err());
         assert!(validate_resource_uri("qnc://local/source/x/a:b").is_err());
+        assert_eq!(file_uri("qnc://local/source/volume-67870d0c", "PRIVATE/XDROOT/Sub/Mironik 1483S03.MP4").unwrap(), "qnc://local/source/volume-67870d0c/file/PRIVATE/XDROOT/Sub/Mironik%201483S03%2EMP4");
+        assert!(file_uri("qnc://local/db/x", "a").is_err() && file_uri("qnc://local/source/x", "../a").is_err());
     }
 }

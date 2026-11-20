@@ -473,6 +473,28 @@ dependencies = [
 ]
 
 [[package]]
+name = "qnc-sony-clip"
+version = "0.1.0"
+dependencies = [
+ "qnc-media-model",
+ "qnc-media-record",
+ "qnc-sony-index",
+ "qnc-uri",
+ "qnc-xml",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
+name = "qnc-sony-index"
+version = "0.1.0"
+dependencies = [
+ "qnc-uri",
+ "qnc-xml",
+ "serde",
+]
+
+[[package]]
 name = "qnc-source-timeline"
 version = "0.1.0"
 dependencies = [
@@ -530,6 +552,13 @@ version = "0.1.0"
 [[package]]
 name = "qnc-wave-read"
 version = "0.1.0"
+
+[[package]]
+name = "qnc-xml"
+version = "0.1.0"
+dependencies = [
+ "xml-rs",
+]
 
 [[package]]
 name = "qnc-zoom"
@@ -757,6 +786,12 @@ name = "windows_x86_64_msvc"
 version = "0.52.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "589f6da84c646204747d1270a2a5661ea66ed1cced2631d546fdfb155959f9ec"
+
+[[package]]
+name = "xml-rs"
+version = "0.8.29"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e450f9b2ed1dff33c94c12589a87338689467b9c4f5d8a5710bd09a847d2c8a7"
 
 [[package]]
 name = "zerocopy"

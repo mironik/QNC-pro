@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Reads the Sony MediaProfile card index (MEDIAPRO.XML) into materials with original, proxies and related files, and binds them to file URIs of the card; no I/O.",
+  "database": "none"
+}

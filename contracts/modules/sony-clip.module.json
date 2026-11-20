@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Maps one Sony index material and its M01 sidecar to the camera's facts of a clip with their evidence and locators, exactly as the old QNC saved them; a conflict is an error.",
+  "database": "none"
+}

@@ -1,0 +1,1072 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MediaProfile xmlns="http://xmlns.sony.net/pro/metadata/mediaprofile" createdAt="2026-11-20T13:13:22+01:00" version="2.30">
+	<Properties>
+		<System systemId="5026EFFFFEB8895C" systemKind="ILME-FX6V ver.6.000" masterVersion="XAVC-XD@2.00.00"/>
+		<Attached mediaId="E9933E4F201206DE895C5026EFFFFEB8" mediaKind="ProfessionalDisc"
+			mediaName=""/>
+	</Properties>
+	<Contents>
+		<Material uri="./Clip/Mironik 2676.MXF" type="MXF" offset="0" dur="9260" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000B964BEB0631206C25026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 2676S03.MP4" type="MP4" dur="9260" fps="50p" aspectRatio="16:9" ch="2" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000B964BEB0631206C25026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 2676M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 2676T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 2677.MXF" type="MXF" offset="0" dur="338" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000255057B1631206D25026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 2677S03.MP4" type="MP4" dur="338" fps="50p" aspectRatio="16:9" ch="2" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000255057B1631206D25026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 2677M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 2677T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 2678.MXF" type="MXF" offset="0" dur="302" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000CD1461B1631206CF5026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 2678S03.MP4" type="MP4" dur="302" fps="50p" aspectRatio="16:9" ch="2" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000CD1461B1631206CF5026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 2678M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 2678T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 2679.MXF" type="MXF" offset="0" dur="11178" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000362C0CB2631206D95026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 2679S03.MP4" type="MP4" dur="11178" fps="50p" aspectRatio="16:9" ch="2" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000362C0CB2631206D95026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 2679M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 2679T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 2680.MXF" type="MXF" offset="0" dur="2018" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000132CE7B2631206D15026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 2680S03.MP4" type="MP4" dur="2018" fps="50p" aspectRatio="16:9" ch="2" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000132CE7B2631206D15026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 2680M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 2680T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 2681.MXF" type="MXF" offset="0" dur="314" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000657248B3631206D75026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 2681S03.MP4" type="MP4" dur="314" fps="50p" aspectRatio="16:9" ch="2" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000657248B3631206D75026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 2681M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 2681T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 2682.MXF" type="MXF" offset="0" dur="320" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D43130000000FA451B3631206CD5026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 2682S03.MP4" type="MP4" dur="320" fps="50p" aspectRatio="16:9" ch="2" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF00000FA451B3631206CD5026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 2682M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 2682T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 2683.MXF" type="MXF" offset="0" dur="308" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D43130000005B2162B3631206CD5026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 2683S03.MP4" type="MP4" dur="308" fps="50p" aspectRatio="16:9" ch="2" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF00005B2162B3631206CD5026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 2683M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 2683T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 2684.MXF" type="MXF" offset="0" dur="272" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000D5896DB3631206CC5026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 2684S03.MP4" type="MP4" dur="272" fps="50p" aspectRatio="16:9" ch="2" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000D5896DB3631206CC5026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 2684M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 2684T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 2685.MXF" type="MXF" offset="0" dur="340" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000A26D76B3631206C65026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 2685S03.MP4" type="MP4" dur="340" fps="50p" aspectRatio="16:9" ch="2" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000A26D76B3631206C65026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 2685M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 2685T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 2686.MXF" type="MXF" offset="0" dur="224" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000A79780B3631206CB5026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 2686S03.MP4" type="MP4" dur="224" fps="50p" aspectRatio="16:9" ch="2" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000A79780B3631206CB5026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 2686M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 2686T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 2687.MXF" type="MXF" offset="0" dur="238" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D43130000006D8E87B3631206C65026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 2687S03.MP4" type="MP4" dur="238" fps="50p" aspectRatio="16:9" ch="2" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF00006D8E87B3631206C65026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 2687M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 2687T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 2688.MXF" type="MXF" offset="0" dur="344" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000617097B3631206DC5026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 2688S03.MP4" type="MP4" dur="344" fps="50p" aspectRatio="16:9" ch="2" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000617097B3631206DC5026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 2688M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 2688T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 2689.MXF" type="MXF" offset="0" dur="190" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D431300000014F9BEB3631206DF5026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 2689S03.MP4" type="MP4" dur="190" fps="50p" aspectRatio="16:9" ch="2" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF000014F9BEB3631206DF5026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 2689M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 2689T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 2690.MXF" type="MXF" offset="0" dur="174" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000CA59CAB3631206C75026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 2690S03.MP4" type="MP4" dur="174" fps="50p" aspectRatio="16:9" ch="2" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000CA59CAB3631206C75026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 2690M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 2690T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 2691.MXF" type="MXF" offset="0" dur="304" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D43130000007DA5D0B3631206C15026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 2691S03.MP4" type="MP4" dur="304" fps="50p" aspectRatio="16:9" ch="2" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF00007DA5D0B3631206C15026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 2691M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 2691T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 2692.MXF" type="MXF" offset="0" dur="656" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D43130000005EBDDEB3631206C95026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 2692S03.MP4" type="MP4" dur="656" fps="50p" aspectRatio="16:9" ch="2" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF00005EBDDEB3631206C95026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 2692M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 2692T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1494.MXF" type="MXF" offset="0" dur="106" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D431300000066C1274B181206C05026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1494S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF000066C1274B181206C05026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1494M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1494T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1495.MXF" type="MXF" offset="0" dur="192" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000451D304B181206DB5026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1495S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000451D304B181206DB5026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1495M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1495T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1496.MXF" type="MXF" offset="0" dur="148" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D431300000032AF374B181206C85026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1496S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF000032AF374B181206C85026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1496M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1496T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1497.MXF" type="MXF" offset="0" dur="260" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000B9EBF54B181206C15026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1497S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000B9EBF54B181206C15026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1497M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1497T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1498.MXF" type="MXF" offset="0" dur="184" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D43130000003E150A4C181206DE5026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1498S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF00003E150A4C181206DE5026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1498M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1498T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1499.MXF" type="MXF" offset="0" dur="714" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D43130000002F781C4C181206DD5026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1499S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF00002F781C4C181206DD5026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1499M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1499T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1500.MXF" type="MXF" offset="0" dur="890" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000CD0A284C181206C65026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1500S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000CD0A284C181206C65026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1500M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1500T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1501.MXF" type="MXF" offset="0" dur="224" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D431300000029C53F4C181206CB5026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1501S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF000029C53F4C181206CB5026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1501M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1501T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1502.MXF" type="MXF" offset="0" dur="1772" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D43130000003103954C181206DD5026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1502S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF00003103954C181206DD5026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1502M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1502T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1503.MXF" type="MXF" offset="0" dur="300" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D43130000007E49C74C181206DE5026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1503S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF00007E49C74C181206DE5026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1503M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1503T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1504.MXF" type="MXF" offset="0" dur="302" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D43130000006829D04C181206D05026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1504S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF00006829D04C181206D05026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1504M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1504T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1505.MXF" type="MXF" offset="0" dur="1550" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000C688D84C181206DE5026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1505S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000C688D84C181206DE5026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1505M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1505T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1506.MXF" type="MXF" offset="0" dur="7872" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000E6A9F54C181206D65026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1506S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000E6A9F54C181206D65026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1506M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1506T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1507.MXF" type="MXF" offset="0" dur="252" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D43130000008919794D181206DE5026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1507S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF00008919794D181206DE5026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1507M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1507T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1508.MXF" type="MXF" offset="0" dur="262" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D43130000003448864D181206C45026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1508S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF00003448864D181206C45026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1508M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1508T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1509.MXF" type="MXF" offset="0" dur="588" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D43130000005411904D181206D45026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1509S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF00005411904D181206D45026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1509M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1509T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1510.MXF" type="MXF" offset="0" dur="296" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D43130000003AFDD64D181206CF5026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1510S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF00003AFDD64D181206CF5026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1510M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1510T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1511.MXF" type="MXF" offset="0" dur="270" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D43130000003213DF4D181206C55026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1511S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF00003213DF4D181206C55026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1511M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1511T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1512.MXF" type="MXF" offset="0" dur="434" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D431300000084D9EC4D181206DF5026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1512S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF000084D9EC4D181206DF5026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1512M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1512T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1513.MXF" type="MXF" offset="0" dur="426" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000C73C004E181206D45026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1513S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000C73C004E181206D45026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1513M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1513T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1514.MXF" type="MXF" offset="0" dur="460" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D43130000009B1B134E181206C05026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1514S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF00009B1B134E181206C05026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1514M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1514T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1515.MXF" type="MXF" offset="0" dur="462" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D43130000002FFD1F4E181206DC5026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1515S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF00002FFD1F4E181206DC5026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1515M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1515T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1516.MXF" type="MXF" offset="0" dur="614" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D43130000002A06304E181206DF5026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1516S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF00002A06304E181206DF5026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1516M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1516T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1517.MXF" type="MXF" offset="0" dur="334" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000F6083A4E181206D35026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1517S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000F6083A4E181206D35026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1517M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1517T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1518.MXF" type="MXF" offset="0" dur="558" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000C99B424E181206D85026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1518S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000C99B424E181206D85026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1518M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1518T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1519.MXF" type="MXF" offset="0" dur="424" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D431300000052AA884E181206C85026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1519S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF000052AA884E181206C85026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1519M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1519T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1520.MXF" type="MXF" offset="0" dur="420" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000A78FBB4E181206D55026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1520S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000A78FBB4E181206D55026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1520M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1520T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1521.MXF" type="MXF" offset="0" dur="370" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000C933CC4E181206C45026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1521S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000C933CC4E181206C45026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1521M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1521T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1522.MXF" type="MXF" offset="0" dur="482" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D431300000067A3E04E181206D65026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1522S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF000067A3E04E181206D65026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1522M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1522T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1523.MXF" type="MXF" offset="0" dur="272" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000CF261F59181206D25026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1523S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000CF261F59181206D25026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1523M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1523T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1524.MXF" type="MXF" offset="0" dur="358" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D431300000016843759181206C95026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1524S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF000016843759181206C95026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1524M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1524T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1525.MXF" type="MXF" offset="0" dur="1712" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000B2905359181206C45026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1525S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000B2905359181206C45026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1525M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1525T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1526.MXF" type="MXF" offset="0" dur="550" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000FD1A8059181206D25026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1526S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000FD1A8059181206D25026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1526M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1526T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1527.MXF" type="MXF" offset="0" dur="1762" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D431300000044378F59181206C05026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1527S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF000044378F59181206C05026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1527M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1527T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1528.MXF" type="MXF" offset="0" dur="850" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D43130000009FE7AD59181206CF5026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1528S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF00009FE7AD59181206CF5026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1528M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1528T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1529.MXF" type="MXF" offset="0" dur="524" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D43130000002ACEBE59181206CC5026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1529S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF00002ACEBE59181206CC5026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1529M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1529T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1530.MXF" type="MXF" offset="0" dur="110" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D431300000054BFCD59181206C95026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1530S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF000054BFCD59181206C95026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1530M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1530T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1531.MXF" type="MXF" offset="0" dur="526" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D431300000064C2D659181206CB5026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1531S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF000064C2D659181206CB5026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1531M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1531T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1532.MXF" type="MXF" offset="0" dur="306" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D43130000000B3BE459181206CD5026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1532S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF00000B3BE459181206CD5026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1532M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1532T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1533.MXF" type="MXF" offset="0" dur="234" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D431300000046E8EC59181206C95026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1533S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF000046E8EC59181206C95026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1533M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1533T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1534.MXF" type="MXF" offset="0" dur="334" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D43130000005AD4F659181206DF5026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1534S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF00005AD4F659181206DF5026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1534M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1534T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1535.MXF" type="MXF" offset="0" dur="256" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D43130000004F2A115A181206CD5026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1535S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF00004F2A115A181206CD5026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1535M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1535T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1536.MXF" type="MXF" offset="0" dur="632" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D43130000007C63265A181206C95026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1536S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF00007C63265A181206C95026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1536M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1536T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1537.MXF" type="MXF" offset="0" dur="566" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D43130000009B88395A181206CD5026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1537S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF00009B88395A181206CD5026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1537M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1537T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1538.MXF" type="MXF" offset="0" dur="268" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000B388A75A181206D45026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1538S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000B388A75A181206D45026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1538M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1538T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1539.MXF" type="MXF" offset="0" dur="508" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000445CBA5A181206C95026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1539S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000445CBA5A181206C95026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1539M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1539T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1540.MXF" type="MXF" offset="0" dur="490" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D43130000002B6FB95C181206D85026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1540S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF00002B6FB95C181206D85026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1540M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1540T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1541.MXF" type="MXF" offset="0" dur="516" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D43130000009DD5D65C181206D75026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1541S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF00009DD5D65C181206D75026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1541M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1541T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1542.MXF" type="MXF" offset="0" dur="412" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000E62F0C5D181206C15026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1542S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000E62F0C5D181206C15026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1542M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1542T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1543.MXF" type="MXF" offset="0" dur="610" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D431300000095B0185D181206D95026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1543S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF000095B0185D181206D95026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1543M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1543T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1544.MXF" type="MXF" offset="0" dur="370" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000D9392A5D181206C85026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1544S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000D9392A5D181206C85026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1544M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1544T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1545.MXF" type="MXF" offset="0" dur="412" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000CE7B365D181206CF5026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1545S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000CE7B365D181206CF5026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1545M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1545T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1546.MXF" type="MXF" offset="0" dur="386" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000AB7CB25D181206C65026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1546S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000AB7CB25D181206C65026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1546M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1546T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1547.MXF" type="MXF" offset="0" dur="216" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000D97BBB5D181206D35026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1547S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000D97BBB5D181206D35026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1547M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1547T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1548.MXF" type="MXF" offset="0" dur="218" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000732FD861181206D15026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1548S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000732FD861181206D15026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1548M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1548T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1549.MXF" type="MXF" offset="0" dur="272" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D43130000001793E061181206C65026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1549S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF00001793E061181206C65026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1549M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1549T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1550.MXF" type="MXF" offset="0" dur="226" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D431300000026110D62181206CB5026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1550S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF000026110D62181206CB5026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1550M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1550T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1551.MXF" type="MXF" offset="0" dur="158" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D43130000001D744E62181206D55026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1551S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF00001D744E62181206D55026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1551M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1551T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1552.MXF" type="MXF" offset="0" dur="246" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D43130000008DB15862181206CF5026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1552S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF00008DB15862181206CF5026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1552M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1552T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1553.MXF" type="MXF" offset="0" dur="176" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D43130000005A1D9362181206CF5026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1553S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF00005A1D9362181206CF5026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1553M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1553T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1554.MXF" type="MXF" offset="0" dur="1426" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D431300000063749862181206D35026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1554S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF000063749862181206D35026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1554M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1554T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1555.MXF" type="MXF" offset="0" dur="1118" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000DDACB762181206C85026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1555S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000DDACB762181206C85026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1555M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1555T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1556.MXF" type="MXF" offset="0" dur="478" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D43130000002882DB62181206CB5026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1556S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF00002882DB62181206CB5026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1556M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1556T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1557.MXF" type="MXF" offset="0" dur="178" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D431300000007B5E962181206D75026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1557S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF000007B5E962181206D75026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1557M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1557T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1558.MXF" type="MXF" offset="0" dur="368" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D43130000003232F962181206C55026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1558S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF00003232F962181206C55026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1558M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1558T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1559.MXF" type="MXF" offset="0" dur="380" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D431300000068F2FF62181206D75026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1559S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF000068F2FF62181206D75026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1559M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1559T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1560.MXF" type="MXF" offset="0" dur="106" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000BDE50863181206D45026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1560S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000BDE50863181206D45026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1560M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1560T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1561.MXF" type="MXF" offset="0" dur="1454" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D43130000007B97AF78181206C15026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1561S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF00007B97AF78181206C15026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1561M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1561T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1566.MXF" type="MXF" offset="0" dur="1952" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000CBD3FE7C181206C15026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1566S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000CBD3FE7C181206C15026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1566M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1566T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 2002.MXF" type="MXF" offset="0" dur="10194" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D431300000029A3D0C2351206D65026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 2002S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF000029A3D0C2351206D65026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 2002M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 2002T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1483.MXF" type="MXF" offset="0" dur="362" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000D9F3A248181206DE5026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1483S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000D9F3A248181206DE5026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1483M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1483T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1484.MXF" type="MXF" offset="0" dur="454" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D43130000004DA2AD48181206D45026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1484S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF00004DA2AD48181206D45026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1484M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1484T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1485.MXF" type="MXF" offset="0" dur="360" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000DAC6E448181206D25026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1485S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000DAC6E448181206D25026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1485M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1485T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1486.MXF" type="MXF" offset="0" dur="234" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000AFE2F148181206D75026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1486S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000AFE2F148181206D75026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1486M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1486T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1487.MXF" type="MXF" offset="0" dur="234" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000F4C71749181206D35026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1487S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000F4C71749181206D35026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1487M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1487T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1488.MXF" type="MXF" offset="0" dur="196" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D43130000004DA42149181206C55026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1488S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF00004DA42149181206C55026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1488M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1488T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1489.MXF" type="MXF" offset="0" dur="6538" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D43130000000CBAC849181206CC5026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1489S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF00000CBAC849181206CC5026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1489M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1489T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1490.MXF" type="MXF" offset="0" dur="256" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D431300000098C7914A181206D15026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1490S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF000098C7914A181206D15026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1490M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1490T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1491.MXF" type="MXF" offset="0" dur="294" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000F4BB9C4A181206CF5026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1491S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000F4BB9C4A181206CF5026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1491M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1491T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1492.MXF" type="MXF" offset="0" dur="1702" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000BC0BBC4A181206C35026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1492S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000BC0BBC4A181206C35026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1492M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1492T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 1493.MXF" type="MXF" offset="0" dur="630" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D431300000089E1074B181206CE5026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 1493S03.MP4" type="MP4" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF000089E1074B181206CE5026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 1493M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 1493T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 3789.MXF" type="MXF" offset="0" dur="324" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D43130000000FC1F771641306C95026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 3789S03.MP4" type="MP4" dur="324" fps="50p" aspectRatio="16:9" ch="2" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF00000FC1F771641306C95026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 3789M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 3789T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 3790.MXF" type="MXF" offset="0" dur="306" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000D6CF0D72641306C15026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 3790S03.MP4" type="MP4" dur="306" fps="50p" aspectRatio="16:9" ch="2" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000D6CF0D72641306C15026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 3790M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 3790T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 3791.MXF" type="MXF" offset="0" dur="1196" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000C9239B7F641306C45026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 3791S03.MP4" type="MP4" dur="1196" fps="50p" aspectRatio="16:9" ch="2" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000C9239B7F641306C45026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 3791M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 3791T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 3792.MXF" type="MXF" offset="0" dur="274" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D43130000009B80B47F641306C75026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 3792S03.MP4" type="MP4" dur="274" fps="50p" aspectRatio="16:9" ch="2" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF00009B80B47F641306C75026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 3792M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 3792T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 3793.MXF" type="MXF" offset="0" dur="372" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D431300000083AAC87F641306C25026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 3793S03.MP4" type="MP4" dur="372" fps="50p" aspectRatio="16:9" ch="2" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF000083AAC87F641306C25026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 3793M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 3793T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 3794.MXF" type="MXF" offset="0" dur="306" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D43130000006E27E47F641306C65026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 3794S03.MP4" type="MP4" dur="306" fps="50p" aspectRatio="16:9" ch="2" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF00006E27E47F641306C65026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 3794M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 3794T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 3795.MXF" type="MXF" offset="0" dur="546" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000D3FFEE7F641306C35026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 3795S03.MP4" type="MP4" dur="546" fps="50p" aspectRatio="16:9" ch="2" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000D3FFEE7F641306C35026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 3795M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 3795T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 3796.MXF" type="MXF" offset="0" dur="444" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000D80D1B80641306C55026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 3796S03.MP4" type="MP4" dur="444" fps="50p" aspectRatio="16:9" ch="2" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000D80D1B80641306C55026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 3796M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 3796T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 3797.MXF" type="MXF" offset="0" dur="282" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000EF6A2580641306CB5026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 3797S03.MP4" type="MP4" dur="282" fps="50p" aspectRatio="16:9" ch="2" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000EF6A2580641306CB5026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 3797M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 3797T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 3798.MXF" type="MXF" offset="0" dur="4884" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D43130000004D4C1C81641306DE5026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 3798S03.MP4" type="MP4" dur="4884" fps="50p" aspectRatio="16:9" ch="2" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF00004D4C1C81641306DE5026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 3798M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 3798T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 3799.MXF" type="MXF" offset="0" dur="1108" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D431300000068E36F81641306DD5026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 3799S03.MP4" type="MP4" dur="1108" fps="50p" aspectRatio="16:9" ch="2" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF000068E36F81641306DD5026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 3799M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 3799T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 3800.MXF" type="MXF" offset="0" dur="2046" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D431300000097CE8381641306C35026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 3800S03.MP4" type="MP4" dur="2046" fps="50p" aspectRatio="16:9" ch="2" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF000097CE8381641306C35026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 3800M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 3800T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 3801.MXF" type="MXF" offset="0" dur="6232" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D43130000003582AB81641306CB5026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 3801S03.MP4" type="MP4" dur="6232" fps="50p" aspectRatio="16:9" ch="2" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF00003582AB81641306CB5026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 3801M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 3801T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 3802.MXF" type="MXF" offset="0" dur="446" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D431300000068C21382641306D15026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 3802S03.MP4" type="MP4" dur="446" fps="50p" aspectRatio="16:9" ch="2" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF000068C21382641306D15026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 3802M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 3802T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 3803.MXF" type="MXF" offset="0" dur="542" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000793D1D82641306DB5026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 3803S03.MP4" type="MP4" dur="542" fps="50p" aspectRatio="16:9" ch="2" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000793D1D82641306DB5026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 3803M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 3803T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 3804.MXF" type="MXF" offset="0" dur="268" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000F7053E82641306C05026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 3804S03.MP4" type="MP4" dur="268" fps="50p" aspectRatio="16:9" ch="2" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000F7053E82641306C05026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 3804M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 3804T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 3805.MXF" type="MXF" offset="0" dur="442" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000D3D14482641306D45026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 3805S03.MP4" type="MP4" dur="442" fps="50p" aspectRatio="16:9" ch="2" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000D3D14482641306D45026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 3805M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 3805T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 3806.MXF" type="MXF" offset="0" dur="220" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D43130000001AE44C82641306CE5026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 3806S03.MP4" type="MP4" dur="220" fps="50p" aspectRatio="16:9" ch="2" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF00001AE44C82641306CE5026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 3806M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 3806T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 3807.MXF" type="MXF" offset="0" dur="424" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D4313000000EA175382641306D65026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 3807S03.MP4" type="MP4" dur="424" fps="50p" aspectRatio="16:9" ch="2" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF0000EA175382641306D65026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 3807M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 3807T01.JPG" type="JPG"/>
+		</Material>
+		<Material uri="./Clip/Mironik 3808.MXF" type="MXF" offset="0" dur="280" fps="50p" aspectRatio="16:9" ch="4"
+			videoType="AVC50_1920_1080_H422P@L42" audioType="LPCM24"
+			umid="060A2B340101010501010D431300000064A25B82641306DC5026EFFFFEB8895C"
+			status="none" flip="none">
+			<Proxy uri="./Sub/Mironik 3808S03.MP4" type="MP4" dur="280" fps="50p" aspectRatio="16:9" ch="2" videoType="AVC_Proxy_1920_1080_HP@L42" audioType="AAC-LC"
+				umid="060A2B340101010501010D4313FF000064A25B82641306DC5026EFFFFEB8895C" flip="none"/>
+			<RelevantInfo uri="./Clip/Mironik 3808M01.XML" type="XML"/>
+			<RelevantInfo uri="./Thmbnl/Mironik 3808T01.JPG" type="JPG"/>
+		</Material>
+	</Contents>
+</MediaProfile>
