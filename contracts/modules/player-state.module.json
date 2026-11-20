@@ -1,0 +1,6 @@
+{
+  "kind": "block",
+  "responsibility": "Folds the player's events into the one shown state: the frame the player confirmed, its status, readiness, the last error and the output levels.",
+  "database": "none",
+  "owns": ["the shown state of the player session"]
+}

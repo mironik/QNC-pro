@@ -340,6 +340,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "qnc-player-state"
+version = "0.1.0"
+dependencies = [
+ "qnc-player-wire",
+]
+
+[[package]]
 name = "qnc-player-wire"
 version = "0.1.0"
 dependencies = [

@@ -1,0 +1,8 @@
+[package]
+name = "qnc-player-state"
+version.workspace = true
+edition.workspace = true
+description = "What the player last said, folded from its events: the confirmed frame, the status, readiness, the error, the levels; the one shown state of the player."
+
+[dependencies]
+qnc-player-wire = { path = "../qnc-player-wire" }
