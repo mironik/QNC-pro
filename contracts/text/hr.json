@@ -53,5 +53,10 @@
   "action.timeline_take_nearer": "Uzmi bližu oznaku",
   "action.timeline_drag_mark": "Povuci uzetu oznaku",
   "action.source_cut": "Rez (prvi IN, pa raspon)",
-  "mouse.unknown_action": "Mapa miša veže {gesture} na {panel} za {action}, koju katalog ne zna."
+  "mouse.unknown_action": "Mapa miša veže {gesture} na {panel} za {action}, koju katalog ne zna.",
+  "player.startup_failed": "Player nije otvorio sesiju: {error}",
+  "player.startup_timed_out": "Player se nije javio unutar {seconds} s.",
+  "player.identity_mismatch": "Player je odgovorio za drugu sesiju.",
+  "player.no_wire": "Player nije dao upravljačku adresu.",
+  "player.closed": "Sesija playera je zatvorena."
 }

@@ -53,5 +53,10 @@
   "action.timeline_take_nearer": "Take the nearer mark",
   "action.timeline_drag_mark": "Drag the taken mark",
   "action.source_cut": "Cut (first IN, then the range)",
-  "mouse.unknown_action": "The mouse map binds {gesture} on {panel} to {action}, which the catalog does not know."
+  "mouse.unknown_action": "The mouse map binds {gesture} on {panel} to {action}, which the catalog does not know.",
+  "player.startup_failed": "The player did not open the session: {error}",
+  "player.startup_timed_out": "The player did not answer within {seconds} s.",
+  "player.identity_mismatch": "The player answered for another session.",
+  "player.no_wire": "The player gave no control address.",
+  "player.closed": "The player session is closed."
 }

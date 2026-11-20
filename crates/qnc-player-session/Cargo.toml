@@ -1,0 +1,13 @@
+[package]
+name = "qnc-player-session"
+version.workspace = true
+edition.workspace = true
+description = "One session of the Broadcast Player program: the process beside the application, the bootstrap, the hello, the commands and the state over the wire, the end."
+
+[dependencies]
+serde_json = { workspace = true }
+qnc-diagnostics = { path = "../qnc-diagnostics" }
+qnc-frame-map = { path = "../qnc-frame-map" }
+qnc-launch = { path = "../qnc-launch" }
+qnc-player-wire = { path = "../qnc-player-wire" }
+qnc-text = { path = "../qnc-text" }

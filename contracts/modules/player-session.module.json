@@ -1,0 +1,6 @@
+{
+  "kind": "block",
+  "responsibility": "Runs one session of the Broadcast Player program: the process, the bootstrap, the hello, commands and state over the wire, and the end of the session.",
+  "database": "none",
+  "owns": ["the player process of this application", "the session id, tokens and sequence of the open session"]
+}
