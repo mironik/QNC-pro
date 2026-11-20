@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Reads the JSON report of ffprobe into the saved description of a medium with evidence and locators, as the old QNC did; a pure reader, nothing runs.",
+  "database": "none"
+}

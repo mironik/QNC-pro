@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Composes the camera's record with the one probe of each medium into the final saved record, says which media still need a probe, and makes a conflict an error.",
+  "database": "none"
+}

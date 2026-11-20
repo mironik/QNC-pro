@@ -1,0 +1,11 @@
+[package]
+name = "qnc-ffprobe-read"
+version.workspace = true
+edition.workspace = true
+description = "The JSON report of ffprobe read into the saved description of a medium with its evidence and locators, exactly as the old QNC did; a pure reader, nothing runs."
+
+[dependencies]
+serde_json = { workspace = true }
+qnc-uri = { path = "../qnc-uri" }
+qnc-media-model = { path = "../qnc-media-model" }
+qnc-media-record = { path = "../qnc-media-record" }

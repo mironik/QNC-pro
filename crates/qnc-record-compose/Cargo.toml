@@ -1,0 +1,16 @@
+[package]
+name = "qnc-record-compose"
+version.workspace = true
+edition.workspace = true
+description = "Composes the camera's record with the one probe of each medium into the final saved record; which media still need a probe; conflicts are errors."
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }
+qnc-media-model = { path = "../qnc-media-model" }
+qnc-media-record = { path = "../qnc-media-record" }
+qnc-ffprobe-read = { path = "../qnc-ffprobe-read" }
+
+[dev-dependencies]
+qnc-sony-index = { path = "../qnc-sony-index" }
+qnc-sony-clip = { path = "../qnc-sony-clip" }

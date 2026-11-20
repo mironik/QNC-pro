@@ -328,6 +328,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "qnc-ffprobe-read"
+version = "0.1.0"
+dependencies = [
+ "qnc-media-model",
+ "qnc-media-record",
+ "qnc-uri",
+ "serde_json",
+]
+
+[[package]]
 name = "qnc-frame-map"
 version = "0.1.0"
 dependencies = [
@@ -460,6 +470,19 @@ dependencies = [
  "qnc-player-input",
  "qnc-uri",
  "rusqlite",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
+name = "qnc-record-compose"
+version = "0.1.0"
+dependencies = [
+ "qnc-ffprobe-read",
+ "qnc-media-model",
+ "qnc-media-record",
+ "qnc-sony-clip",
+ "qnc-sony-index",
  "serde",
  "serde_json",
 ]
