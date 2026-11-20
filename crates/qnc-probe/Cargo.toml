@@ -1,0 +1,14 @@
+[package]
+name = "qnc-probe"
+version.workspace = true
+edition.workspace = true
+description = "The one probe of a medium: runs the ffprobe beside the application on a local file, bounded in time and size, and gives its report bound to the media URI; it never runs twice on its own."
+
+[dependencies]
+serde_json = { workspace = true }
+qnc-launch = { path = "../qnc-launch" }
+qnc-text = { path = "../qnc-text" }
+qnc-ffprobe-read = { path = "../qnc-ffprobe-read" }
+
+[dev-dependencies]
+qnc-media-model = { path = "../qnc-media-model" }

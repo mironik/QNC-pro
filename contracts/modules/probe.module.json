@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Runs the ffprobe beside the application once on a local media file, bounded in time and output, and gives its JSON report bound to the media URI.",
+  "database": "none"
+}

@@ -459,6 +459,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "qnc-probe"
+version = "0.1.0"
+dependencies = [
+ "qnc-ffprobe-read",
+ "qnc-launch",
+ "qnc-media-model",
+ "qnc-text",
+ "serde_json",
+]
+
+[[package]]
 name = "qnc-progress"
 version = "0.1.0"
 
