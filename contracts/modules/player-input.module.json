@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Turns a saved clip record and the project's playback settings into the input the Broadcast Player program reads, choosing the representation and the stream layout by the saved facts alone.",
+  "database": "none"
+}

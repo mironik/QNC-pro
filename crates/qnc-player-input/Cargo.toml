@@ -1,0 +1,12 @@
+[package]
+name = "qnc-player-input"
+version.workspace = true
+edition.workspace = true
+description = "A saved clip record and the project's playback settings turned into the input the Broadcast Player program reads; no decoder, no probe, no database."
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }
+qnc-media-model = { path = "../qnc-media-model" }
+qnc-media-record = { path = "../qnc-media-record" }
+qnc-uri = { path = "../qnc-uri" }

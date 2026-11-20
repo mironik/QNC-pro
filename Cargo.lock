@@ -380,6 +380,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "qnc-player-input"
+version = "0.1.0"
+dependencies = [
+ "qnc-media-model",
+ "qnc-media-record",
+ "qnc-uri",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "qnc-player-session"
 version = "0.1.0"
 dependencies = [
