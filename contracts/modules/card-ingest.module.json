@@ -1,0 +1,6 @@
+{
+  "kind": "module",
+  "responsibility": "Takes a ready card into a new project in a background thread (project from the template, protected folder, the ingest) and reports its progress and end.",
+  "database": "none",
+  "owns": ["the running ingests, one per card"]
+}

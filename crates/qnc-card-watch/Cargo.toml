@@ -1,0 +1,10 @@
+[package]
+name = "qnc-card-watch"
+version.workspace = true
+edition.workspace = true
+description = "Watches the disks of this computer for cards: a card put in is read once it has settled, a disk that cannot be read is tried again a few times, a card taken out is told; one place that decides when a card is ready."
+
+[dependencies]
+qnc-disks = { path = "../qnc-disks" }
+qnc-card = { path = "../qnc-card" }
+qnc-card-select = { path = "../qnc-card-select" }

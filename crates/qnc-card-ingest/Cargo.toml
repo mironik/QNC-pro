@@ -1,0 +1,16 @@
+[package]
+name = "qnc-card-ingest"
+version.workspace = true
+edition.workspace = true
+description = "A card into a new project in the background: makes the project from the template, runs the ingest and reports its progress; one running ingest per card."
+
+[dependencies]
+serde_json = { workspace = true }
+qnc-settings = { path = "../qnc-settings" }
+qnc-diagnostics = { path = "../qnc-diagnostics" }
+qnc-camera-profile = { path = "../qnc-camera-profile" }
+qnc-card-select = { path = "../qnc-card-select" }
+qnc-project-make = { path = "../qnc-project-make" }
+qnc-folder-lock = { path = "../qnc-folder-lock" }
+qnc-ingest-run = { path = "../qnc-ingest-run" }
+qnc-text = { path = "../qnc-text" }

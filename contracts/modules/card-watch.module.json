@@ -1,0 +1,6 @@
+{
+  "kind": "module",
+  "responsibility": "Watches the attached disks for cards and says when a card put in is ready to read, when a disk cannot be read after its tries, and when a card went out.",
+  "database": "none",
+  "owns": ["which disks were seen at the last look", "since when each card has settled"]
+}

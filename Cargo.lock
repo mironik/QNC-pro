@@ -284,6 +284,21 @@ dependencies = [
 ]
 
 [[package]]
+name = "qnc-card-ingest"
+version = "0.1.0"
+dependencies = [
+ "qnc-camera-profile",
+ "qnc-card-select",
+ "qnc-diagnostics",
+ "qnc-folder-lock",
+ "qnc-ingest-run",
+ "qnc-project-make",
+ "qnc-settings",
+ "qnc-text",
+ "serde_json",
+]
+
+[[package]]
 name = "qnc-card-select"
 version = "0.1.0"
 dependencies = [
@@ -296,6 +311,15 @@ dependencies = [
  "qnc-sony-clip",
  "qnc-sony-index",
  "qnc-uri",
+]
+
+[[package]]
+name = "qnc-card-watch"
+version = "0.1.0"
+dependencies = [
+ "qnc-card",
+ "qnc-card-select",
+ "qnc-disks",
 ]
 
 [[package]]
