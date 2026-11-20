@@ -1,0 +1,6 @@
+{
+  "kind": "block",
+  "responsibility": "Finds a helper program beside the application and starts it, in the background and without a window, the only block that spawns a process.",
+  "database": "none",
+  "launches": true
+}

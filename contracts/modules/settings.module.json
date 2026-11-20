@@ -1,0 +1,6 @@
+{
+  "kind": "block",
+  "responsibility": "Finds the QNC root of this computer and reads and writes the computer settings and catalog files under it, the only block that knows where they are.",
+  "database": "none",
+  "paths": true
+}

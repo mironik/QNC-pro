@@ -1,0 +1,9 @@
+[package]
+name = "qnc-settings"
+version.workspace = true
+edition.workspace = true
+description = "The QNC root of this computer and the settings and catalogs under it; the only block that builds those paths."
+
+[dependencies]
+serde_json = { workspace = true }
+qnc-text = { path = "../qnc-text" }

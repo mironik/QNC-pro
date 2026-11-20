@@ -1,0 +1,8 @@
+[package]
+name = "qnc-launch"
+version.workspace = true
+edition.workspace = true
+description = "Starts the helper programs that come beside the application; the only block that spawns a process."
+
+[dependencies]
+qnc-text = { path = "../qnc-text" }
