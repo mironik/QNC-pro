@@ -1,0 +1,11 @@
+[package]
+name = "qnc-eject"
+version.workspace = true
+edition.workspace = true
+description = "A card taken out safely: whether it may go, and the system's own eject when it may; never by force."
+
+[dependencies]
+qnc-progress = { path = "../qnc-progress" }
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { workspace = true }

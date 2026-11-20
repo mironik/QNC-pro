@@ -1,0 +1,6 @@
+{
+  "kind": "block",
+  "responsibility": "Lists the disks attached to this computer by their volume serial, label and kind, and tells which came and which went since the last look; the one scanner of disks.",
+  "database": "none",
+  "owns": ["the disks of the last look"]
+}

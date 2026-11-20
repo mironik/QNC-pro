@@ -1,0 +1,6 @@
+{
+  "kind": "block",
+  "responsibility": "Says what a disk is by the card layouts QNC knows (read-only), and when a card put in has settled long enough to be read; the one card rule.",
+  "database": "none",
+  "owns": ["since when each card put in has been seen"]
+}

@@ -1,0 +1,9 @@
+{
+  "layouts": [
+    { "id": "sony-xdroot-sd", "manufacturer": "Sony", "family": "XAVC (SD card)", "root": "PRIVATE/XDROOT", "index": "MEDIAPRO.XML" },
+    { "id": "sony-xdroot-cfexpress", "manufacturer": "Sony", "family": "XAVC (CFexpress)", "root": "XDROOT", "index": "MEDIAPRO.XML" },
+    { "id": "sony-m4root-sd", "manufacturer": "Sony", "family": "XAVC S (M4ROOT)", "root": "PRIVATE/M4ROOT", "index": "MEDIAPRO.XML" },
+    { "id": "sony-xdcam-ex", "manufacturer": "Sony", "family": "XDCAM EX (BPAV)", "root": "PRIVATE/SONY/BPAV", "index": "MEDIAPRO.XML" },
+    { "id": "sony-xdcam-mxf", "manufacturer": "Sony", "family": "XDCAM (MXF)", "root": "Clip", "index": "MEDIAPRO.XML" }
+  ]
+}

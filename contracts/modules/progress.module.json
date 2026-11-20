@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Turns the counts of a base (clips, and how many each function has made) into bars, whether the base is done and whether QNC may start; the one progress formula.",
+  "database": "none"
+}

@@ -265,6 +265,15 @@ name = "qnc-axis"
 version = "0.1.0"
 
 [[package]]
+name = "qnc-card"
+version = "0.1.0"
+dependencies = [
+ "qnc-disks",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "qnc-conformance"
 version = "0.1.0"
 dependencies = [
@@ -284,6 +293,21 @@ dependencies = [
 [[package]]
 name = "qnc-diagnostics"
 version = "0.1.0"
+
+[[package]]
+name = "qnc-disks"
+version = "0.1.0"
+dependencies = [
+ "windows-sys",
+]
+
+[[package]]
+name = "qnc-eject"
+version = "0.1.0"
+dependencies = [
+ "qnc-progress",
+ "windows-sys",
+]
 
 [[package]]
 name = "qnc-frame-map"
@@ -316,6 +340,16 @@ name = "qnc-marks"
 version = "0.1.0"
 dependencies = [
  "qnc-actions",
+]
+
+[[package]]
+name = "qnc-mode"
+version = "0.1.0"
+dependencies = [
+ "qnc-db",
+ "qnc-settings",
+ "rusqlite",
+ "serde_json",
 ]
 
 [[package]]
@@ -366,6 +400,10 @@ dependencies = [
  "qnc-source-timeline",
  "serde_json",
 ]
+
+[[package]]
+name = "qnc-progress"
+version = "0.1.0"
 
 [[package]]
 name = "qnc-settings"

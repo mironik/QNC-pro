@@ -1,0 +1,7 @@
+{
+  "kind": "block",
+  "responsibility": "Owns the computer_mode and story_step tables of the computer database: the way this computer works and the story step of each project, read and written only through the database writer.",
+  "database": "owner",
+  "owns": ["computer_mode", "story_step"],
+  "writes": ["computer_mode", "story_step"]
+}

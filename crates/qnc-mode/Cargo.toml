@@ -1,0 +1,11 @@
+[package]
+name = "qnc-mode"
+version.workspace = true
+edition.workspace = true
+description = "The computer's way of working (breaking news, story, net) and each project's story step, as rows of the computer database; the one owner of those tables."
+
+[dependencies]
+rusqlite = { workspace = true }
+serde_json = { workspace = true }
+qnc-db = { path = "../qnc-db" }
+qnc-settings = { path = "../qnc-settings" }

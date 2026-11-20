@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Decides whether a card may be taken out (copied, nothing of it open) and ejects it as the system's own Eject does, never by force; the one eject rule.",
+  "database": "none"
+}

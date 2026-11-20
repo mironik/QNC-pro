@@ -1,0 +1,10 @@
+[package]
+name = "qnc-card"
+version.workspace = true
+edition.workspace = true
+description = "What a disk is by the card layouts QNC knows, and when a card put in has settled enough to be read; the one card rule."
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }
+qnc-disks = { path = "../qnc-disks" }

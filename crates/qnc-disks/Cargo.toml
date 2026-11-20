@@ -1,0 +1,10 @@
+[package]
+name = "qnc-disks"
+version.workspace = true
+edition.workspace = true
+description = "The disks attached to this computer by their volume serial, and which came and went since the last look; the one scanner of disks."
+
+[dependencies]
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { workspace = true }
