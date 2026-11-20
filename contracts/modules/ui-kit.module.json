@@ -1,0 +1,5 @@
+{
+  "kind": "kit",
+  "responsibility": "Draws the one button, check box, text field and focus frame of QNC in the theme's colours, and turns the window's key presses into catalog chords.",
+  "database": "none"
+}

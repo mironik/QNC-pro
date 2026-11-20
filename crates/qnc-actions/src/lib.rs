@@ -119,6 +119,11 @@ impl Catalog {
         self.raw.presets.keys().map(String::as_str)
     }
 
+    /// The scopes of a preset.
+    pub fn scopes(&self, preset: &str) -> Vec<&str> {
+        self.keys.get(preset).map(|scopes| scopes.keys().map(String::as_str).collect()).unwrap_or_default()
+    }
+
     /// The action a chord gives in one scope of a preset.
     pub fn action_for(&self, preset: &str, scope: &str, chord: &Chord) -> Option<&str> {
         self.keys.get(preset)?.get(scope)?.get(chord).map(String::as_str)

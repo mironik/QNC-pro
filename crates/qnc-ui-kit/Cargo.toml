@@ -1,0 +1,10 @@
+[package]
+name = "qnc-ui-kit"
+version.workspace = true
+edition.workspace = true
+description = "The drawing kit: theme colours as egui colours, the one button, check box, field and focus frame, and the window's keys as catalog chords."
+
+[dependencies]
+egui = { workspace = true }
+qnc-theme = { path = "../qnc-theme" }
+qnc-actions = { path = "../qnc-actions" }
