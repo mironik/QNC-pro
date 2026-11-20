@@ -343,6 +343,24 @@ dependencies = [
 ]
 
 [[package]]
+name = "qnc-media-model"
+version = "0.1.0"
+dependencies = [
+ "serde",
+ "serde_json",
+]
+
+[[package]]
+name = "qnc-media-record"
+version = "0.1.0"
+dependencies = [
+ "qnc-media-model",
+ "qnc-uri",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "qnc-mode"
 version = "0.1.0"
 dependencies = [
@@ -459,6 +477,10 @@ dependencies = [
  "qnc-actions",
  "qnc-theme",
 ]
+
+[[package]]
+name = "qnc-uri"
+version = "0.1.0"
 
 [[package]]
 name = "qnc-voice-gate"

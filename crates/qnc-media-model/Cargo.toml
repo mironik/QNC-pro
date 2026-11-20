@@ -1,0 +1,11 @@
+[package]
+name = "qnc-media-model"
+version.workspace = true
+edition.workspace = true
+description = "The saved description of a medium (streams, timing, colour, channels) with the evidence of every fact, in the exact shape QNC records store."
+
+[dependencies]
+serde = { workspace = true }
+
+[dev-dependencies]
+serde_json = { workspace = true }

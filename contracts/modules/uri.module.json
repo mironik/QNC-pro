@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Parses and checks QNC resource URIs (qnc://local|lan|intranet/.../kind/id) and the ids inside them, and refuses a raw OS path as a public identity; the one URI rule.",
+  "database": "none"
+}

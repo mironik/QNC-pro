@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Holds the saved media record of a clip (binding, phase, completeness, report) in the old shape and decides, from the facts alone, what is missing or invalid in it; the one record rule.",
+  "database": "none"
+}

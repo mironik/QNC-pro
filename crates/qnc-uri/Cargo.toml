@@ -1,0 +1,7 @@
+[package]
+name = "qnc-uri"
+version.workspace = true
+edition.workspace = true
+description = "The QNC resource URI and the ids inside it: parsed, checked, never a raw OS path; the one URI rule."
+
+[dependencies]

@@ -1,0 +1,11 @@
+[package]
+name = "qnc-media-record"
+version.workspace = true
+edition.workspace = true
+description = "The saved record of a clip's media (binding, phase, completeness, the checked facts) and the one rule of what is missing or invalid in it."
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }
+qnc-media-model = { path = "../qnc-media-model" }
+qnc-uri = { path = "../qnc-uri" }

@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Holds the shape of a saved medium description, every fact with its evidence, exactly as QNC records store it (contract qnc.media.metadata 0.2.0); data only.",
+  "database": "none"
+}
