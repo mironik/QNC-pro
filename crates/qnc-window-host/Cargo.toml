@@ -1,0 +1,11 @@
+[package]
+name = "qnc-window-host"
+version.workspace = true
+edition.workspace = true
+description = "The one window host: opens a native window with the theme applied and calls the form every frame (and every half second); the form says when to show, hide or close it."
+
+[dependencies]
+eframe = { workspace = true }
+egui = { workspace = true }
+qnc-theme = { path = "../qnc-theme" }
+qnc-ui-kit = { path = "../qnc-ui-kit" }

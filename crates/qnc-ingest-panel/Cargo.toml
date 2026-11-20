@@ -1,0 +1,11 @@
+[package]
+name = "qnc-ingest-panel"
+version.workspace = true
+edition.workspace = true
+description = "The ingest panel: one line per card being ingested with its project, progress bar and Stop; it draws what it is given and returns what the user asked."
+
+[dependencies]
+egui = { workspace = true }
+qnc-theme = { path = "../qnc-theme" }
+qnc-text = { path = "../qnc-text" }
+qnc-ui-kit = { path = "../qnc-ui-kit" }

@@ -1,0 +1,5 @@
+{
+  "kind": "panel",
+  "responsibility": "Draws one line per card being ingested (project, progress bar, failures, Stop) from what it is given and returns what the user asked.",
+  "database": "none"
+}

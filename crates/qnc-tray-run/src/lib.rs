@@ -18,6 +18,7 @@ pub const PROJECTS_ROOT_SETTING: &str = "projects-root";
 pub enum Told {
     Status(String),
     Notice { title: String, text: String },
+    Cards(Vec<CardLine>),
 }
 
 pub struct Run {
@@ -51,11 +52,37 @@ impl Run {
     pub fn stop_all(&self) {
         self.ingests.stop_all();
     }
+}
 
-    /// Waits the rest of the tick, then looks and listens; what the icon should show.
-    pub fn tick(&mut self) -> Vec<Told> {
-        let left = TICK.saturating_sub(self.last_tick.elapsed());
-        std::thread::sleep(left);
+/// One card as the window shows it.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct CardLine {
+    pub serial: String,
+    pub name: String,
+    pub project: Option<String>,
+    pub clips: usize,
+    pub finished: usize,
+    pub failed: usize,
+    pub bytes_copied: u64,
+}
+
+impl Run {
+    /// Stops the ingest of one card.
+    pub fn stop(&mut self, serial: &str) {
+        for running in self.ingests.running_mut().filter(|r| r.card.serial.eq_ignore_ascii_case(serial)) {
+            running.stop();
+        }
+    }
+
+    /// Looks and listens when the half second is up; nothing otherwise. Never waits.
+    pub fn poll(&mut self) -> Vec<Told> {
+        match self.last_tick.elapsed() >= TICK {
+            true => self.look(),
+            false => Vec::new(),
+        }
+    }
+
+    fn look(&mut self) -> Vec<Told> {
         self.last_tick = Instant::now();
         let mut told = Vec::new();
         let now = self.started.elapsed();
@@ -69,22 +96,24 @@ impl Run {
                         Err(error) => qnc_diagnostics::log(format!("card not taken: {error}")),
                     }
                 }
-                Seen::Unreadable { volume, error } => told.push(Told::Notice { title: qnc_text::text("tray.title").into(), text: qnc_text::fill("tray.card_unreadable", &[("error", &format!("{} {error}", volume.root.display()))]) }),
+                Seen::Unreadable { volume, error } => told.push(notice(qnc_text::fill("tray.card_unreadable", &[("error", &format!("{} {error}", volume.root.display()))]))),
                 Seen::NotACard(_) | Seen::Gone(_) => {}
             }
         }
         let mut lines = Vec::new();
+        let mut cards = Vec::new();
         for running in self.ingests.running_mut() {
             for said in running.poll() {
                 match said {
-                    Said::ProjectMade { project_id, .. } => told.push(Told::Notice { title: qnc_text::text("tray.title").into(), text: qnc_text::fill("tray.project_made", &[("name", &project_id)]) }),
-                    Said::Done(_) => told.push(Told::Notice { title: qnc_text::text("tray.title").into(), text: qnc_text::fill("tray.card_done", &[("name", &running.card.volume_name)]) }),
-                    Said::Failed(error) => told.push(Told::Notice { title: qnc_text::text("tray.title").into(), text: error }),
+                    Said::ProjectMade { project_id, .. } => told.push(notice(qnc_text::fill("tray.project_made", &[("name", &project_id)]))),
+                    Said::Done(_) => told.push(notice(qnc_text::fill("tray.card_done", &[("name", &running.card.volume_name)]))),
+                    Said::Failed(error) => told.push(notice(error)),
                     Said::Progress(_) => {}
                 }
             }
             let progress = running.last.unwrap_or_default();
             lines.push(qnc_text::fill("tray.progress", &[("name", &running.card.volume_name), ("finished", &progress.finished.to_string()), ("clips", &progress.clips.to_string())]));
+            cards.push(CardLine { serial: running.card.serial.clone(), name: running.card.volume_name.clone(), project: running.project.as_ref().map(|(id, _)| id.clone()), clips: progress.clips, finished: progress.finished, failed: progress.failed, bytes_copied: progress.bytes_copied });
         }
         for ended in self.ingests.take_ended() {
             qnc_diagnostics::log(format!("card ingest ended: {:?}", ended.last));
@@ -93,9 +122,14 @@ impl Run {
             0 => qnc_text::text("tray.waiting").to_string(),
             count => format!("{} | {}", qnc_text::fill("tray.ingesting", &[("count", &count.to_string())]), lines.join(" | ")),
         };
+        told.push(Told::Cards(cards));
         told.push(Told::Status(status));
         told
     }
+}
+
+fn notice(text: String) -> Told {
+    Told::Notice { title: qnc_text::text("tray.title").into(), text }
 }
 
 fn unix_secs() -> u64 {
@@ -117,7 +151,8 @@ mod tests {
         std::fs::create_dir_all(root.join("contracts").join("project")).unwrap();
         std::fs::copy(qnc.join("contracts/project/news.json"), root.join("contracts/project/news.json")).unwrap();
         let mut run = Run::start(&root).unwrap();
-        let told = run.tick();
+        std::thread::sleep(TICK);
+        let told = run.poll();
         assert!(matches!(told.last(), Some(Told::Status(s)) if !s.is_empty()));
         let _ = std::fs::remove_dir_all(&root);
     }

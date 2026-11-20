@@ -10,3 +10,6 @@ qnc-diagnostics = { path = "../qnc-diagnostics" }
 qnc-text = { path = "../qnc-text" }
 qnc-tray-icon = { path = "../qnc-tray-icon" }
 qnc-tray-run = { path = "../qnc-tray-run" }
+qnc-theme = { path = "../qnc-theme" }
+qnc-ingest-panel = { path = "../qnc-ingest-panel" }
+qnc-window-host = { path = "../qnc-window-host" }
