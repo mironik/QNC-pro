@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Turns a key chord in a scope of a preset into the action ids of the built-in catalog, and names the actions and the input rules for help.",
+  "database": "none"
+}

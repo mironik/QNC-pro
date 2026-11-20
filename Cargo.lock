@@ -24,6 +24,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "qnc-actions"
+version = "0.1.0"
+dependencies = [
+ "qnc-text",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "qnc-conformance"
 version = "0.1.0"
 dependencies = [
@@ -54,6 +63,15 @@ dependencies = [
 name = "qnc-text"
 version = "0.1.0"
 dependencies = [
+ "serde_json",
+]
+
+[[package]]
+name = "qnc-theme"
+version = "0.1.0"
+dependencies = [
+ "qnc-text",
+ "serde",
  "serde_json",
 ]
 

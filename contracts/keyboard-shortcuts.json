@@ -1,0 +1,64 @@
+{
+  "actions": {
+    "activate_focused_item": { "label": "@action.activate_focused_item", "group": "general" },
+    "clear_focus": { "label": "@action.clear_focus", "group": "general" },
+    "delete_taken": { "label": "@action.delete_taken", "group": "general" },
+    "undo_object": { "label": "@action.undo_object", "group": "general" },
+    "redo_object": { "label": "@action.redo_object", "group": "general" },
+    "toggle_cheatsheet": { "label": "@action.toggle_cheatsheet", "group": "general" },
+    "play_pause": { "label": "@action.play_pause", "group": "playback" },
+    "step_back_frame": { "label": "@action.step_back_frame", "group": "playback" },
+    "step_forward_frame": { "label": "@action.step_forward_frame", "group": "playback" },
+    "playlist_input_start": { "label": "@action.playlist_input_start", "group": "playback" },
+    "go_to_mark_in": { "label": "@action.go_to_mark_in", "group": "playback" },
+    "navigate_prev_object": { "label": "@action.navigate_prev_object", "group": "playback" },
+    "navigate_next_object": { "label": "@action.navigate_next_object", "group": "playback" },
+    "mark_in": { "label": "@action.mark_in", "group": "marks" },
+    "mark_out": { "label": "@action.mark_out", "group": "marks" },
+    "select_mark_in": { "label": "@action.select_mark_in", "group": "marks" },
+    "select_mark_out": { "label": "@action.select_mark_out", "group": "marks" },
+    "toggle_snapping": { "label": "@action.toggle_snapping", "group": "general" }
+  },
+  "groups": {
+    "general": "@action.group.general",
+    "playback": "@action.group.playback",
+    "marks": "@action.group.marks"
+  },
+  "rules": [
+    "@action.rule.plain",
+    "@action.rule.ctrl",
+    "@action.rule.shift",
+    "@action.rule.alt",
+    "@action.rule.enter_esc_delete",
+    "@action.rule.mouse"
+  ],
+  "presets": {
+    "qnc": {
+      "common": {
+        "Enter": "activate_focused_item",
+        "Escape": "clear_focus",
+        "Delete": "delete_taken",
+        "Backspace": "undo_object",
+        "Shift+Backspace": "redo_object",
+        "Ctrl+Z": "undo_object",
+        "Ctrl+Y": "redo_object",
+        "F1": "toggle_cheatsheet",
+        "Shift+/": "toggle_cheatsheet",
+        "S": "toggle_snapping"
+      },
+      "source_timeline": {
+        "Space": "play_pause",
+        "Left": "step_back_frame",
+        "Right": "step_forward_frame",
+        "Home": "playlist_input_start",
+        "Alt+I": "go_to_mark_in",
+        "Alt+Left": "navigate_prev_object",
+        "Alt+Right": "navigate_next_object",
+        "I": "mark_in",
+        "O": "mark_out",
+        "Ctrl+I": "select_mark_in",
+        "Ctrl+O": "select_mark_out"
+      }
+    }
+  }
+}

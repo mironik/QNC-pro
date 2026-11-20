@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Gives the colours and measures of the interface from the built-in theme contract as plain data for the drawing kit.",
+  "database": "none"
+}

@@ -1,0 +1,10 @@
+[package]
+name = "qnc-theme"
+version.workspace = true
+edition.workspace = true
+description = "The colours and measures of the interface as data from the theme contract; no drawing library."
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }
+qnc-text = { path = "../qnc-text" }

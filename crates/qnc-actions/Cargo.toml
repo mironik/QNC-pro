@@ -1,0 +1,10 @@
+[package]
+name = "qnc-actions"
+version.workspace = true
+edition.workspace = true
+description = "The catalog of actions and the keys of each preset; every input of QNC ends as an action id from here."
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }
+qnc-text = { path = "../qnc-text" }
