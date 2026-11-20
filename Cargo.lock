@@ -2459,6 +2459,7 @@ dependencies = [
  "qnc-folder-lock",
  "qnc-ingest-run",
  "qnc-project-make",
+ "qnc-project-templates",
  "qnc-settings",
  "qnc-text",
  "serde_json",
@@ -2750,16 +2751,70 @@ name = "qnc-progress"
 version = "0.1.0"
 
 [[package]]
+name = "qnc-project"
+version = "0.1.0"
+dependencies = [
+ "qnc-project-form",
+]
+
+[[package]]
+name = "qnc-project-defaults"
+version = "0.1.0"
+dependencies = [
+ "qnc-text",
+ "serde_json",
+]
+
+[[package]]
+name = "qnc-project-delete"
+version = "0.1.0"
+dependencies = [
+ "qnc-folder-lock",
+ "qnc-project-make",
+ "qnc-registry",
+ "qnc-text",
+ "serde_json",
+]
+
+[[package]]
+name = "qnc-project-form"
+version = "0.1.0"
+dependencies = [
+ "qnc-diagnostics",
+ "qnc-project-panel",
+ "qnc-projects",
+ "qnc-settings",
+ "qnc-text",
+ "qnc-theme",
+ "qnc-window-host",
+]
+
+[[package]]
 name = "qnc-project-make"
 version = "0.1.0"
 dependencies = [
  "qnc-catalog",
  "qnc-db",
  "qnc-ids",
+ "qnc-project-defaults",
  "qnc-project-settings",
  "qnc-registry",
+ "qnc-settings",
+ "qnc-text",
  "qnc-uri",
  "serde_json",
+]
+
+[[package]]
+name = "qnc-project-panel"
+version = "0.1.0"
+dependencies = [
+ "egui",
+ "qnc-actions",
+ "qnc-projects",
+ "qnc-text",
+ "qnc-theme",
+ "qnc-ui-kit",
 ]
 
 [[package]]
@@ -2771,6 +2826,32 @@ dependencies = [
  "qnc-uri",
  "rusqlite",
  "serde",
+ "serde_json",
+]
+
+[[package]]
+name = "qnc-project-templates"
+version = "0.1.0"
+dependencies = [
+ "qnc-text",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
+name = "qnc-projects"
+version = "0.1.0"
+dependencies = [
+ "qnc-db",
+ "qnc-diagnostics",
+ "qnc-folder-lock",
+ "qnc-ids",
+ "qnc-project-delete",
+ "qnc-project-make",
+ "qnc-project-templates",
+ "qnc-registry",
+ "qnc-settings",
+ "qnc-text",
  "serde_json",
 ]
 
@@ -2908,6 +2989,8 @@ dependencies = [
  "qnc-disks",
  "qnc-ids",
  "qnc-mode",
+ "qnc-project-make",
+ "qnc-project-templates",
  "qnc-settings",
  "qnc-text",
  "serde_json",

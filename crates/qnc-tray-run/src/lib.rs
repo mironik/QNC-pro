@@ -4,14 +4,13 @@
 //! here: the watch says when a card is ready, the ingest says what happened, the mode says the
 //! name. The projects' folder is the computer setting `projects-root`.
 
-use std::path::{Path, PathBuf};
+use std::path::Path;
 use std::time::{Duration, Instant};
 
 use qnc_card_ingest::{Ingests, Said};
 use qnc_card_watch::{Seen, Watch};
 
 pub const TICK: Duration = Duration::from_millis(500);
-pub const PROJECTS_ROOT_SETTING: &str = "projects-root";
 
 /// What a tick tells the icon.
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -29,22 +28,21 @@ pub struct Run {
     last_tick: Instant,
 }
 
-/// The projects' folder of this computer, from its setting.
-pub fn projects_root(root: &Path) -> Result<PathBuf, String> {
-    qnc_settings::setting(root, PROJECTS_ROOT_SETTING)?
-        .and_then(|v| v.get("folder").and_then(|f| f.as_str()).filter(|f| !f.trim().is_empty()).map(PathBuf::from))
-        .ok_or_else(|| format!("the computer setting {PROJECTS_ROOT_SETTING} names no folder"))
-}
 
 impl Run {
     pub fn start(root: &Path) -> Result<Run, String> {
-        let projects = projects_root(root)?;
+        let projects = qnc_project_make::projects_root(root)?;
         let (profiles, refused) = qnc_camera_profile::read_profiles(&root.join("contracts").join("cameras").join("profiles"));
         for why in refused {
             qnc_diagnostics::log(format!("camera profile refused: {why}"));
         }
-        let template = qnc_card_ingest::template(root)?;
-        let mode = qnc_db::Reader::open(&qnc_mode::computer_db(root)).ok().and_then(|r| qnc_mode::read_mode(&r).ok().flatten()).map(|m| qnc_text::text(m.label()).to_string()).unwrap_or_else(|| qnc_text::text("mode.story").to_string());
+        let mode = qnc_db::Reader::open(&qnc_mode::computer_db(root)).ok().and_then(|r| qnc_mode::read_mode(&r).ok().flatten()).unwrap_or(qnc_mode::Mode::Story);
+        let (templates, refused) = qnc_project_templates::read_templates(&qnc_project_templates::folder(root));
+        for why in refused {
+            qnc_diagnostics::log(format!("project template refused: {why}"));
+        }
+        let template = qnc_project_templates::for_mode(&templates, mode.code())?.settings.clone();
+        let mode = qnc_text::text(mode.label()).to_string();
         qnc_diagnostics::log(format!("tray run: projects in {}, mode {mode}", projects.display()));
         Ok(Run { watch: Watch::new(), ingests: Ingests::new(root, &projects, template, profiles), mode, started: Instant::now(), last_tick: Instant::now() })
     }
@@ -146,10 +144,10 @@ mod tests {
         let _ = std::fs::remove_dir_all(&root);
         std::fs::create_dir_all(root.join("contracts").join("modules")).unwrap();
         assert!(Run::start(&root).is_err());
-        qnc_settings::set_setting(&root, PROJECTS_ROOT_SETTING, &serde_json::json!({ "folder": root.join("projects") })).unwrap();
+        qnc_settings::set_setting(&root, qnc_project_make::PROJECTS_ROOT_SETTING, &serde_json::json!({ "folder": root.join("projects") })).unwrap();
         let qnc = Path::new(env!("CARGO_MANIFEST_DIR")).join("../..");
-        std::fs::create_dir_all(root.join("contracts").join("project")).unwrap();
-        std::fs::copy(qnc.join("contracts/project/news.json"), root.join("contracts/project/news.json")).unwrap();
+        std::fs::create_dir_all(root.join("contracts/project/templates")).unwrap();
+        std::fs::copy(qnc.join("contracts/project/templates/news_package.json"), root.join("contracts/project/templates/news_package.json")).unwrap();
         let mut run = Run::start(&root).unwrap();
         std::thread::sleep(TICK);
         let told = run.poll();

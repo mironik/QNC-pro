@@ -1,0 +1,20 @@
+[package]
+name = "qnc-projects"
+version.workspace = true
+edition.workspace = true
+description = "The projects of this computer for the Project form: the list from the registry read every second, the draft of a new project, making, opening and deleting in the background, and what to show."
+
+[dependencies]
+serde_json = { workspace = true }
+qnc-text = { path = "../qnc-text" }
+qnc-diagnostics = { path = "../qnc-diagnostics" }
+qnc-ids = { path = "../qnc-ids" }
+qnc-db = { path = "../qnc-db" }
+qnc-registry = { path = "../qnc-registry" }
+qnc-project-templates = { path = "../qnc-project-templates" }
+qnc-project-make = { path = "../qnc-project-make" }
+qnc-project-delete = { path = "../qnc-project-delete" }
+qnc-folder-lock = { path = "../qnc-folder-lock" }
+
+[dev-dependencies]
+qnc-settings = { path = "../qnc-settings" }

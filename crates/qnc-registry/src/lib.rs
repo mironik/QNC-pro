@@ -76,7 +76,8 @@ impl TableModule for RegistryTables {
     }
 
     /// `{"register": {project_id, name, project_uri, local_path, at}}` (and makes it active),
-    /// `{"activate": project_id}`, `{"deactivate": true}`.
+    /// `{"activate": project_id}`, `{"deactivate": true}`, `{"delete": project_id}` (the
+    /// newest remaining project becomes active when the deleted one was).
     fn execute(&mut self, conn: &Connection, request: Value) -> Result<Value, String> {
         let fail = |e: rusqlite::Error| e.to_string();
         if let Some(r) = request.get("register") {
@@ -99,6 +100,23 @@ impl TableModule for RegistryTables {
             }
             conn.execute("UPDATE projects SET last_opened_at=updated_at WHERE project_id=?1", [id]).map_err(fail)?;
             conn.execute("INSERT OR REPLACE INTO app_settings(key,value) VALUES(?1,?2)", params![ACTIVE_KEY, id]).map_err(fail)?;
+            return Ok(json!({ "project_id": id }));
+        }
+        if let Some(id) = request.get("delete").and_then(Value::as_str) {
+            let known: bool = conn.query_row("SELECT COUNT(*) FROM projects WHERE project_id=?1", [id], |r| r.get::<_, i64>(0)).map_err(fail)? > 0;
+            if !known {
+                return Err(format!("no project {id} in the registry"));
+            }
+            conn.execute("DELETE FROM project_storage_locations WHERE project_id=?1", [id]).map_err(fail)?;
+            conn.execute("DELETE FROM projects WHERE project_id=?1", [id]).map_err(fail)?;
+            let active: Option<String> = conn.query_row("SELECT value FROM app_settings WHERE key=?1", [ACTIVE_KEY], |r| r.get(0)).optional().map_err(fail)?;
+            if active.as_deref() == Some(id) {
+                let next: Option<String> = conn.query_row("SELECT project_id FROM projects ORDER BY created_at DESC, project_id LIMIT 1", [], |r| r.get(0)).optional().map_err(fail)?;
+                conn.execute("DELETE FROM app_settings WHERE key=?1", [ACTIVE_KEY]).map_err(fail)?;
+                if let Some(next) = next {
+                    conn.execute("INSERT OR REPLACE INTO app_settings(key,value) VALUES(?1,?2)", params![ACTIVE_KEY, next]).map_err(fail)?;
+                }
+            }
             return Ok(json!({ "project_id": id }));
         }
         if request.get("deactivate").is_some() {
@@ -159,6 +177,10 @@ mod tests {
         writer.execute(MODULE, json!({ "activate": "p-1" })).unwrap();
         assert_eq!(active(&reader).unwrap().unwrap().project_db(), root.join("p-1").join("project.db"));
         assert!(writer.execute(MODULE, json!({ "activate": "p-9" })).is_err());
+        writer.execute(MODULE, json!({ "delete": "p-1" })).unwrap();
+        assert_eq!(active(&reader).unwrap().unwrap().project_id, "p-2", "the newest remaining project is active");
+        assert!(project(&reader, "p-1").unwrap().is_none());
+        assert!(writer.execute(MODULE, json!({ "delete": "p-1" })).is_err());
         writer.execute(MODULE, json!({ "deactivate": true })).unwrap();
         assert!(active(&reader).unwrap().is_none());
         assert!(writer.execute(MODULE, json!({ "register": { "project_id": "bad id", "name": "x", "project_uri": "qnc://local/project/x", "local_path": "x" } })).is_err());

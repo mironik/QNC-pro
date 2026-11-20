@@ -54,7 +54,7 @@ mod tests {
         assert_eq!(slug("Breaking news 2026-11-20 13:28"), "breaking_news_2026-11-20_13_28");
         assert_eq!(slug("   "), "projekt");
         assert_eq!(folder_name("a/b:c"), "a_b_c");
-        assert_eq!(time_stamp(1_795_177_687), "2026-11-20 13:48");
+        assert_eq!(time_stamp(1_795_177_687), "2026-11-20 12:28", "UTC, as the doc says");
     }
 }
 

@@ -15,4 +15,6 @@ qnc-card-watch = { path = "../qnc-card-watch" }
 qnc-card-ingest = { path = "../qnc-card-ingest" }
 qnc-camera-profile = { path = "../qnc-camera-profile" }
 qnc-mode = { path = "../qnc-mode" }
+qnc-project-make = { path = "../qnc-project-make" }
+qnc-project-templates = { path = "../qnc-project-templates" }
 qnc-db = { path = "../qnc-db" }

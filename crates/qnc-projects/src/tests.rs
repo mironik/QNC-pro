@@ -1,0 +1,57 @@
+use super::*;
+
+fn wait(projects: &mut Projects) {
+    for _ in 0..600 {
+        projects.poll();
+        if !projects.busy() {
+            return;
+        }
+        std::thread::sleep(Duration::from_millis(50));
+    }
+    panic!("the job did not end");
+}
+
+#[test]
+fn a_project_is_made_from_the_draft_opened_and_deleted_after_the_question() {
+    let root = std::env::temp_dir().join(format!("qnc-projects-{}", std::process::id()));
+    let _ = std::fs::remove_dir_all(&root);
+    let qnc = Path::new(env!("CARGO_MANIFEST_DIR")).join("../..");
+    std::fs::create_dir_all(root.join("contracts/project/templates")).unwrap();
+    for file in ["breaking_news.json", "field_sony.json"] {
+        std::fs::copy(qnc.join("contracts/project/templates").join(file), root.join("contracts/project/templates").join(file)).unwrap();
+    }
+    assert!(Projects::open(&root).is_err(), "without the projects folder setting nothing opens");
+    qnc_settings::set_setting(&root, qnc_project_make::PROJECTS_ROOT_SETTING, &serde_json::json!({ "folder": root.join("projects") })).unwrap();
+    let mut projects = Projects::open(&root).unwrap();
+    assert_eq!(projects.templates().len(), 2);
+    assert!(projects.lines().is_empty());
+    projects.act(Act::ChooseTemplate("field_sony".into()));
+    projects.act(Act::New);
+    assert!(projects.busy());
+    projects.act(Act::New);
+    wait(&mut projects);
+    assert_eq!(projects.lines().len(), 1, "a second New while busy is refused");
+    assert!(projects.lines()[0].name.starts_with("Teren"), "{:?}", projects.lines()[0]);
+    assert!(projects.lines()[0].active);
+    assert!(projects.status().unwrap().contains(&projects.lines()[0].name), "{:?}", projects.status());
+    projects.draft.name = "Named".into();
+    projects.act(Act::New);
+    wait(&mut projects);
+    let named = projects.lines().iter().find(|l| l.name == "Named").unwrap().clone();
+    assert!(named.active);
+    let first = projects.lines().iter().find(|l| l.name != "Named").unwrap().clone();
+    projects.act(Act::Open(first.project_id.clone()));
+    assert!(projects.lines().iter().find(|l| l.project_id == first.project_id).unwrap().active);
+    projects.act(Act::Delete(named.project_id.clone()));
+    assert_eq!(projects.asking_delete().map(|l| l.name.as_str()), Some("Named"));
+    projects.act(Act::CancelDelete);
+    assert!(projects.asking_delete().is_none());
+    projects.act(Act::Delete(named.project_id.clone()));
+    projects.act(Act::ConfirmDelete);
+    wait(&mut projects);
+    assert_eq!(projects.lines().len(), 1);
+    assert_eq!(projects.lines()[0].project_id, first.project_id);
+    let folder = qnc_registry::project(&qnc_registry::reader(&root).unwrap(), &first.project_id).unwrap().unwrap().local_path;
+    let _ = qnc_folder_lock::unlock(&folder, &qnc_project_make::CACHE_FOLDERS);
+    let _ = std::fs::remove_dir_all(&root);
+}

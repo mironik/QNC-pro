@@ -1,0 +1,40 @@
+{
+  "template_id": "breaking_news",
+  "name": "Breaking news",
+  "description": "Najbrži start: kartica se kopira u projekt, AI Media Assist se otvara čim je kopija gotova; sve AI mogućnosti.",
+  "modes": ["breaking_news", "net"],
+  "settings": {
+    "workflow": "news_fast",
+    "input": { "mode": "auto" },
+    "playback": { "input": "original", "cache": { "mode": "off" } },
+    "video": {
+      "format": "HD 1080p50", "width": 1920, "height": 1080, "fps": 50,
+      "field_order": "progressive", "color_space": "rec709", "timeline_codec": "proxy_h264"
+    },
+    "storage": {
+      "projects_root": "", "ingest_profile": "field", "ingest_media": "original",
+      "proxy_policy": "link_when_available", "original_policy": "ignore_for_fast_news"
+    },
+    "export": {
+      "lead_in_seconds": 2, "start_timecode": "10:00:00:00", "video_bitrate_mbps": 35, "tail_seconds": 2,
+      "directory": "exports/projekti", "default_mode": "original", "preset": "h264_1080p50",
+      "format": "HD 1080p50", "fps": 50, "width": 1920, "height": 1080, "field_order": "progressive",
+      "color_space": "rec709", "container": "mp4", "video_codec": "h264",
+      "audio_sample_rate": 48000, "audio_channels": 2, "custom_presets": [], "xml_enabled": true
+    },
+    "audio": {
+      "sample_rate": 48000, "channels": 2, "crossfade_frames": 4, "reading_words_per_second": 2.5,
+      "loudness": { "a1_lufs": -23, "a2_lufs": -23, "true_peak_dbtp": -1, "tolerance_lu": 0.5 },
+      "transcribe_channel": "CH1", "atmosphere_channel": "CH2"
+    },
+    "ai": {
+      "template": "own_all_ai", "language": "hr",
+      "features": ["transcription", "letter_times", "read_check", "shot_analysis", "shot_content", "shot_caption", "broll_suggest", "translate", "smooth_cut"]
+    },
+    "artifacts": {
+      "filmstrip": "auto", "wave": "auto",
+      "order": [["records"], ["posters", "poster_look"], ["waves", "filmstrips", "import", "transcripts"], ["shots", "content", "captions"]]
+    },
+    "keyboard_shortcuts": { "active_preset": "default" }
+  }
+}

@@ -139,7 +139,7 @@ mod tests {
         let text = r#"<?xml version="1.0" encoding="UTF-8"?><Root xmlns="urn:x"><A k="1"/><A k="2"><B/></A></Root>"#;
         let root = parse(text, "Root", "urn:x").unwrap();
         assert_eq!(root.children_named("A").count(), 2);
-        assert_eq!(root.children[1].locator, "/A[2]");
+        assert_eq!(root.children[1].locator, "/Root[1]/A[2]");
         assert_eq!(root.at(&["A"]).unwrap_err(), "duplicate A in /Root[1]");
         assert_eq!(root.children[0].required("k").unwrap(), "1");
         assert!(root.children[0].required("z").is_err());

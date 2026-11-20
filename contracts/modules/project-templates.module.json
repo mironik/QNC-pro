@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Reads the project templates (one JSON file each), finds one by id and names the one a tray mode makes its projects from; a file with an error is refused by name.",
+  "database": "none"
+}

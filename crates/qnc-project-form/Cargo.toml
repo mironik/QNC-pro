@@ -1,0 +1,14 @@
+[package]
+name = "qnc-project-form"
+version.workspace = true
+edition.workspace = true
+description = "The Project form: the one window with the Project panel, fed by the projects module; the user's actions go to the module."
+
+[dependencies]
+qnc-settings = { path = "../qnc-settings" }
+qnc-diagnostics = { path = "../qnc-diagnostics" }
+qnc-text = { path = "../qnc-text" }
+qnc-theme = { path = "../qnc-theme" }
+qnc-projects = { path = "../qnc-projects" }
+qnc-project-panel = { path = "../qnc-project-panel" }
+qnc-window-host = { path = "../qnc-window-host" }

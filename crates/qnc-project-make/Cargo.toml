@@ -12,3 +12,6 @@ qnc-uri = { path = "../qnc-uri" }
 qnc-registry = { path = "../qnc-registry" }
 qnc-project-settings = { path = "../qnc-project-settings" }
 qnc-catalog = { path = "../qnc-catalog" }
+qnc-project-defaults = { path = "../qnc-project-defaults" }
+qnc-settings = { path = "../qnc-settings" }
+qnc-text = { path = "../qnc-text" }

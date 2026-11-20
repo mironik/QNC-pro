@@ -1,0 +1,9 @@
+[package]
+name = "qnc-project-defaults"
+version.workspace = true
+edition.workspace = true
+description = "The one rule of what a project's settings must have: completes a settings object with the product folders, artifact modes, audio, export and AI defaults a template left out."
+
+[dependencies]
+serde_json = { workspace = true }
+qnc-text = { path = "../qnc-text" }

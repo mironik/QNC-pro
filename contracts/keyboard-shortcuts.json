@@ -21,12 +21,20 @@
     "timeline_cue_frame": { "label": "@action.timeline_cue_frame", "group": "playback" },
     "timeline_take_nearer": { "label": "@action.timeline_take_nearer", "group": "marks" },
     "timeline_drag_mark": { "label": "@action.timeline_drag_mark", "group": "marks" },
-    "source_cut": { "label": "@action.source_cut", "group": "marks" }
+    "source_cut": { "label": "@action.source_cut", "group": "marks" },
+    "close_window": { "label": "@action.close_window", "group": "general" },
+    "project_new": { "label": "@action.project_new", "group": "project" },
+    "project_open": { "label": "@action.project_open", "group": "project" },
+    "project_delete": { "label": "@action.project_delete", "group": "project" },
+    "project_delete_confirm": { "label": "@action.project_delete_confirm", "group": "project" },
+    "project_delete_cancel": { "label": "@action.project_delete_cancel", "group": "project" },
+    "project_choose_template": { "label": "@action.project_choose_template", "group": "project" }
   },
   "groups": {
     "general": "@action.group.general",
     "playback": "@action.group.playback",
-    "marks": "@action.group.marks"
+    "marks": "@action.group.marks",
+    "project": "@action.group.project"
   },
   "rules": [
     "@action.rule.plain",

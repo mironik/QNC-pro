@@ -1,0 +1,34 @@
+{
+  "template_id": "field_sony",
+  "name": "Teren — Sony XAVC",
+  "description": "Terenski rad s originalom i proxyjem s kartice; proxy se ne generira; 1080p50 H.264 predaja.",
+  "modes": [],
+  "settings": {
+    "workflow": "field_ingest",
+    "input": { "mode": "auto" },
+    "playback": { "input": "original", "cache": { "mode": "off" } },
+    "video": {
+      "format": "HD 1080p50", "width": 1920, "height": 1080, "fps": 50,
+      "field_order": "progressive", "color_space": "rec709", "timeline_codec": "proxy_h264"
+    },
+    "storage": {
+      "projects_root": "", "ingest_profile": "field", "ingest_media": "link",
+      "proxy_policy": "link_when_available", "original_policy": "link_when_available"
+    },
+    "export": {
+      "lead_in_seconds": 2, "start_timecode": "10:00:00:00", "video_bitrate_mbps": 35, "tail_seconds": 2,
+      "directory": "exports/projekti", "default_mode": "original", "preset": "h264_1080p50",
+      "format": "HD 1080p50", "fps": 50, "width": 1920, "height": 1080, "field_order": "progressive",
+      "color_space": "rec709", "container": "mp4", "video_codec": "h264",
+      "audio_sample_rate": 48000, "audio_channels": 2, "custom_presets": [], "xml_enabled": true
+    },
+    "audio": {
+      "sample_rate": 48000, "channels": 2, "crossfade_frames": 4, "reading_words_per_second": 2.5,
+      "loudness": { "a1_lufs": -23, "a2_lufs": -23, "true_peak_dbtp": -1, "tolerance_lu": 0.5 },
+      "transcribe_channel": "CH1", "atmosphere_channel": "CH2"
+    },
+    "ai": { "template": "none", "features": [], "language": "hr" },
+    "artifacts": { "filmstrip": "auto", "wave": "auto" },
+    "keyboard_shortcuts": { "active_preset": "default" }
+  }
+}

@@ -3,7 +3,8 @@
 //! `incoming/card`, `incoming/ftp`), the product folders the settings name, the export folder,
 //! a `project.db` with the settings and the catalog tables, and the row in the registry that
 //! makes it the active project. The settings come from a template given as data (the
-//! caller chose it); `storage.projects_root` is set to the folder the project is in. Nothing
+//! caller chose it), completed by the defaults block; `storage.projects_root` is set to the
+//! folder the project is in. Nothing
 //! here decides what the project is for.
 
 use std::path::{Path, PathBuf};
@@ -11,9 +12,13 @@ use std::path::{Path, PathBuf};
 use qnc_db::Writer;
 use serde_json::Value;
 
+/// The computer setting that names the folder projects are made in: `{"folder": ...}`.
+pub const PROJECTS_ROOT_SETTING: &str = "projects-root";
 pub const PROJECT_DB: &str = "project.db";
 pub const MEDIA_FOLDERS: [&str; 5] = ["original", "proxy", "audio", "incoming/card", "incoming/ftp"];
 pub const DEFAULT_EXPORT_DIRECTORY: &str = "exports/projekti";
+/// The cache folders of a project whose files may go (prerender, exports).
+pub const CACHE_FOLDERS: [&str; 2] = ["products/prerender", "exports"];
 
 /// What was made.
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -27,6 +32,13 @@ impl Made {
     pub fn project_db(&self) -> PathBuf {
         self.folder.join(PROJECT_DB)
     }
+}
+
+/// The projects folder of this computer, from its setting; unset is an error, never a guess.
+pub fn projects_root(root: &Path) -> Result<PathBuf, String> {
+    qnc_settings::setting(root, PROJECTS_ROOT_SETTING)?
+        .and_then(|v| v.get("folder").and_then(|f| f.as_str()).filter(|f| !f.trim().is_empty()).map(PathBuf::from))
+        .ok_or_else(|| qnc_text::fill("project.no_projects_root", &[("setting", PROJECTS_ROOT_SETTING)]))
 }
 
 /// The folders a project with these settings has, relative to its folder.
@@ -62,6 +74,7 @@ pub fn make(root: &Path, projects_root: &Path, name: &str, template: &Value, at:
     std::fs::create_dir(&folder).map_err(|e| format!("{}: {e}", folder.display()))?;
     let made = (|| {
         let mut settings = template.clone();
+        qnc_project_defaults::complete(&mut settings)?;
         if let Some(storage) = settings["storage"].as_object_mut() {
             storage.insert("projects_root".into(), Value::String(projects_root.to_string_lossy().into_owned()));
         }
@@ -90,13 +103,13 @@ pub fn make(root: &Path, projects_root: &Path, name: &str, template: &Value, at:
 mod tests {
     use super::*;
 
-    const TEMPLATE: &str = include_str!("../../../contracts/project/news.json");
+    const TEMPLATE: &str = include_str!("../../../contracts/project/templates/breaking_news.json");
 
     #[test]
     fn a_project_is_made_with_its_folders_its_settings_its_empty_catalog_and_is_the_active_one() {
         let root = std::env::temp_dir().join(format!("qnc-project-make-{}", std::process::id()));
         let _ = std::fs::remove_dir_all(&root);
-        let template: Value = serde_json::from_str(TEMPLATE).unwrap();
+        let template: Value = serde_json::from_str::<Value>(TEMPLATE).unwrap()["settings"].clone();
         let made = make(&root, &root.join("projects"), "Breaking news 2026-11-20 13:28", &template, "epoch_1").unwrap();
         assert!(made.project_id.starts_with("breaking_news_2026-11-20_13_28_"));
         assert_eq!(made.project_uri, format!("qnc://local/project/{}", made.project_id));

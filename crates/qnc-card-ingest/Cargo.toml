@@ -14,3 +14,6 @@ qnc-project-make = { path = "../qnc-project-make" }
 qnc-folder-lock = { path = "../qnc-folder-lock" }
 qnc-ingest-run = { path = "../qnc-ingest-run" }
 qnc-text = { path = "../qnc-text" }
+
+[dev-dependencies]
+qnc-project-templates = { path = "../qnc-project-templates" }

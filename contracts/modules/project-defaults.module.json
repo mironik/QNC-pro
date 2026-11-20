@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Completes a project's settings with the defaults a template left out (product folders, artifact modes, audio, export, AI), never changing a value the template gave.",
+  "database": "none"
+}

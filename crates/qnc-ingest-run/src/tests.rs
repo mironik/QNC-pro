@@ -5,7 +5,7 @@ use qnc_card_select::Card;
 
 use crate::*;
 
-const TEMPLATE: &str = include_str!("../../../contracts/project/news.json");
+const TEMPLATE: &str = include_str!("../../../contracts/project/templates/breaking_news.json");
 
 fn profiles() -> Vec<qnc_camera_profile::Profile> {
     qnc_camera_profile::read_profiles(&Path::new(env!("CARGO_MANIFEST_DIR")).join("../../contracts/cameras/profiles")).0
@@ -25,7 +25,7 @@ fn a_card_without_its_media_publishes_its_clips_and_marks_the_copies_failed_with
     std::fs::create_dir_all(card_root.join("Clip")).unwrap();
     std::fs::write(card_root.join("MEDIAPRO.XML"), include_str!("../../qnc-sony-index/tests/MEDIAPRO.XML")).unwrap();
     std::fs::write(card_root.join("Clip").join("Mironik 1483M01.XML"), include_str!("../../qnc-sony-index/tests/Mironik_1483M01.XML")).unwrap();
-    let template: serde_json::Value = serde_json::from_str(TEMPLATE).unwrap();
+    let template: serde_json::Value = serde_json::from_str::<serde_json::Value>(TEMPLATE).unwrap()["settings"].clone();
     let made = qnc_project_make::make(&root, &root.join("projects"), "Fixture", &template, "epoch_1").unwrap();
     let project = Project::open(&made.folder).unwrap();
     let card = Card { disk: disk.clone(), serial: "67870D0C".into(), volume_name: "T".into(), root_path: "PRIVATE/XDROOT".into() };
@@ -55,7 +55,7 @@ fn two_clips_of_the_real_card_become_final_imported_clips_the_player_input_takes
         return;
     }
     let root = fresh_root("card");
-    let template: serde_json::Value = serde_json::from_str(TEMPLATE).unwrap();
+    let template: serde_json::Value = serde_json::from_str::<serde_json::Value>(TEMPLATE).unwrap()["settings"].clone();
     let made = qnc_project_make::make(&root, &root.join("projects"), "Card test", &template, "epoch_1").unwrap();
     let project = Project::open(&made.folder).unwrap();
     let card = Card { disk: disk.into(), serial: "67870D0C".into(), volume_name: "UNTITLED".into(), root_path: "PRIVATE/XDROOT".into() };

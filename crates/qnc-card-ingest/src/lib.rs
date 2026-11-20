@@ -65,8 +65,6 @@ pub struct Ingests {
     running: BTreeMap<String, Running>,
 }
 
-/// The cache folders of a project whose files may go.
-pub const CACHE_FOLDERS: [&str; 2] = ["products/prerender", "exports"];
 
 impl Ingests {
     /// `root` is the QNC root (registry, diagnostics), `projects_root` where projects are made,
@@ -137,7 +135,7 @@ impl Job {
     fn run(&self, tell: &Sender<Said>) -> Result<Progress, String> {
         let at = format!("epoch_{}", now_ms() / 1000);
         let made = qnc_project_make::make(&self.root, &self.projects_root, &self.name, &self.template, &at)?;
-        if let Err(error) = qnc_folder_lock::lock(&made.folder, &CACHE_FOLDERS) {
+        if let Err(error) = qnc_folder_lock::lock(&made.folder, &qnc_project_make::CACHE_FOLDERS) {
             qnc_diagnostics::log(format!("project folder not protected: {error}"));
         }
         let project = qnc_ingest_run::Project::open(&made.folder)?;
@@ -151,12 +149,6 @@ impl Job {
     }
 }
 
-/// The settings template of a new project of the tray, as data under the QNC root.
-pub fn template(root: &Path) -> Result<serde_json::Value, String> {
-    let path = root.join("contracts").join("project").join("news.json");
-    let text = std::fs::read_to_string(&path).map_err(|e| format!("{}: {e}", path.display()))?;
-    serde_json::from_str(&text).map_err(|e| format!("{}: {e}", path.display()))
-}
 
 #[cfg(test)]
 mod tests {
@@ -173,7 +165,9 @@ mod tests {
         std::fs::write(card_root.join("Clip").join("Mironik 1483M01.XML"), include_str!("../../qnc-sony-index/tests/Mironik_1483M01.XML")).unwrap();
         let qnc = Path::new(env!("CARGO_MANIFEST_DIR")).join("../..");
         let (profiles, _) = qnc_camera_profile::read_profiles(&qnc.join("contracts/cameras/profiles"));
-        let mut ingests = Ingests::new(&root, &root.join("projects"), template(&qnc).unwrap(), profiles);
+        let (templates, _) = qnc_project_templates::read_templates(&qnc_project_templates::folder(&qnc));
+        let template = qnc_project_templates::for_mode(&templates, "story").unwrap().settings.clone();
+        let mut ingests = Ingests::new(&root, &root.join("projects"), template, profiles);
         let card = Card { disk, serial: "67870D0C".into(), volume_name: "T".into(), root_path: "PRIVATE/XDROOT".into() };
         ingests.start(card.clone(), "Fixture card").unwrap();
         assert!(ingests.start(card, "Again").is_err(), "one per card");
@@ -192,7 +186,7 @@ mod tests {
         assert!(matches!(said.first(), Some(Said::ProjectMade { clips: 1, .. })), "{said:?}");
         assert!(matches!(said.last(), Some(Said::Done(p)) if p.failed == 1 && p.clips == 1), "{said:?}");
         let (_, folder) = ended[0].project.clone().unwrap();
-        let _ = qnc_folder_lock::unlock(&folder, &CACHE_FOLDERS);
+        let _ = qnc_folder_lock::unlock(&folder, &qnc_project_make::CACHE_FOLDERS);
         let _ = std::fs::remove_dir_all(&root);
     }
 }

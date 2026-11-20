@@ -1,0 +1,12 @@
+[package]
+name = "qnc-project-delete"
+version.workspace = true
+edition.workspace = true
+description = "Deletes one project for good: checks the folder is a project folder, lifts its protection, removes it and takes it out of the registry; the next newest project becomes active."
+
+[dependencies]
+serde_json = { workspace = true }
+qnc-text = { path = "../qnc-text" }
+qnc-registry = { path = "../qnc-registry" }
+qnc-folder-lock = { path = "../qnc-folder-lock" }
+qnc-project-make = { path = "../qnc-project-make" }

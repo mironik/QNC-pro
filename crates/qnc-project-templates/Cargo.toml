@@ -1,0 +1,10 @@
+[package]
+name = "qnc-project-templates"
+version.workspace = true
+edition.workspace = true
+description = "Project templates as data (one JSON file each under contracts/project/templates): reads them, names the one a tray mode uses, and refuses a file with an error by name."
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }
+qnc-text = { path = "../qnc-text" }

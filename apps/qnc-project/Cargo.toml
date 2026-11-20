@@ -1,0 +1,8 @@
+[package]
+name = "qnc-project"
+version.workspace = true
+edition.workspace = true
+description = "QNC Project: starts the Project form."
+
+[dependencies]
+qnc-project-form = { path = "../../crates/qnc-project-form" }
