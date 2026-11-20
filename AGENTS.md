@@ -28,8 +28,11 @@ zapisano je u bazi (korak priče), ne u memoriji traya.
   kockama. Bez sučelja. Nema sat osim ako ugovor kaže `polls`.
 - **Modul** (`kind: module`): slaže kocke u jednu cjelinu rada (npr. source timeline), drži
   njihovo stanje kad ga mora biti. Ovisi o kockama i modulima.
+- **Pribor** (`kind: kit`): crtaći pribor bez stanja (gumb, polje, boja teme, tipka iz
+  prozora) koji paneli i forme koriste; smije imati GUI biblioteku, nema logike ni stanja kao
+  panel. Ovisi o kockama i priboru.
 - **Panel** (`kind: panel`): crta jedan modul na jednom mjestu ploče i vraća radnje kataloga.
-  Ovisi o kockama, modulima i panelima.
+  Ovisi o kockama, modulima, panelima i priboru.
 - **Forma** (`kind: form`): samo raspored: koji panel na koje mjesto, s kojim mjerama i
   tekstovima. Nema `if` nad podacima. Aplikacija (`apps/*`) je samo pokretanje forme.
 - **Orkestrator** (`kind: orchestrator`): prima radnju i predaje je modulu koji je vlasnik.

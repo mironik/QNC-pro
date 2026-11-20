@@ -16,7 +16,7 @@ prema kodu i ovisnostima (AGENTS §2, §3).
 }
 ```
 
-- `kind`: `block` (ovisi samo o kockama, ne crta, bez GUI biblioteke), `module` (slaže kocke), `panel` (crta jedan
+- `kind`: `block` (ovisi samo o kockama, ne crta, bez GUI biblioteke), `module` (slaže kocke), `kit` (crtaći pribor bez stanja), `panel` (crta jedan
   modul, vraća radnje), `form` (samo raspored), `orchestrator` (usmjerava, ne odlučuje).
 - `polls`: sekunde između dva čitanja kad kocka čita bazu u ritmu; 0 znači da nema sat.
 - `launches`: smije pokretati programe (`Command::new`); samo jedna kocka u repou.

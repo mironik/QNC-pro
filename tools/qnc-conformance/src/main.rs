@@ -38,6 +38,7 @@ enum Kind {
     Module,
     Panel,
     Form,
+    Kit,
     Orchestrator,
 }
 
@@ -195,8 +196,9 @@ fn check_hierarchy(crates: &[Crate], contracts: &BTreeMap<String, Contract>, fai
             let Some(&dep_kind) = kinds.get(dep.as_str()) else { continue };
             let allowed = match kind {
                 Kind::Block => dep_kind == Kind::Block,
+                Kind::Kit => matches!(dep_kind, Kind::Block | Kind::Kit),
                 Kind::Module | Kind::Orchestrator => matches!(dep_kind, Kind::Block | Kind::Module),
-                Kind::Panel => matches!(dep_kind, Kind::Block | Kind::Module | Kind::Panel),
+                Kind::Panel => matches!(dep_kind, Kind::Block | Kind::Module | Kind::Panel | Kind::Kit),
                 Kind::Form => true,
             };
             if !allowed {
@@ -294,7 +296,7 @@ fn check_one_of_each(crates: &[Crate], contracts: &BTreeMap<String, Contract>, f
             if (text.contains("Instant::now") || text.contains(".elapsed()")) && contract.polls <= 0.0 {
                 failures.push(format!("C7 {}: has a clock but its contract has no `polls`", path.display()));
             }
-            if contract.kind != Kind::Panel && contract.kind != Kind::Form && (text.contains("egui::") || text.contains("eframe::")) {
+            if !matches!(contract.kind, Kind::Panel | Kind::Form | Kind::Kit) && (text.contains("egui::") || text.contains("eframe::")) {
                 failures.push(format!("C8 {}: a {:?} draws (egui); drawing is a panel's", path.display(), contract.kind));
             }
         }
@@ -374,7 +376,7 @@ fn check_gui_apart(crates: &[Crate], contracts: &BTreeMap<String, Contract>, fai
     const LOGIC_MARKS: [&str; 7] = ["rusqlite", "std::fs", "std::thread", "std::process", "Instant::now", "TcpStream", "std::net"];
     for krate in crates {
         let Some(contract) = contracts.get(&krate.name) else { continue };
-        let draws = contract.kind == Kind::Panel || contract.kind == Kind::Form;
+        let draws = matches!(contract.kind, Kind::Panel | Kind::Form | Kind::Kit);
         if !draws && krate.gui_dependency {
             failures.push(format!("C11 {}: a {:?} depends on a GUI library; only a panel or form may", krate.name, contract.kind));
         }

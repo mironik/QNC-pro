@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Writes the diagnostic lines and panics of this process to the one log folder it was given, one write per line.",
+  "database": "none"
+}

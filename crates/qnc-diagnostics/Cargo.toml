@@ -1,0 +1,7 @@
+[package]
+name = "qnc-diagnostics"
+version.workspace = true
+edition.workspace = true
+description = "The one log of a QNC process: one line, one write; panics go there too."
+
+[dependencies]
