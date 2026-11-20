@@ -1,0 +1,13 @@
+[workspace]
+resolver = "2"
+members = ["apps/*", "crates/*", "tools/*"]
+
+[workspace.package]
+edition = "2021"
+version = "0.1.0"
+
+# QNC-pro stands on its own: no path dependency on QNC-shared or QNC-AI. A block comes in only
+# once it passes the admission list of AGENTS.md section 4, and from then on it is this repo's.
+[workspace.dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"

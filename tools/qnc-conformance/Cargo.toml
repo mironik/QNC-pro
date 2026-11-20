@@ -1,0 +1,9 @@
+[package]
+name = "qnc-conformance"
+version.workspace = true
+edition.workspace = true
+description = "Checks the repo against AGENTS.md: one block, one responsibility, one owner, one rule."
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }
