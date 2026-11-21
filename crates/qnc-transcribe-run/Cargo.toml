@@ -17,4 +17,4 @@ qnc-ai-catalog = { path = "../qnc-ai-catalog" }
 qnc-transcribe-jobs = { path = "../qnc-transcribe-jobs" }
 qnc-transcript-store = { path = "../qnc-transcript-store" }
 qnc-stopped-work = { path = "../qnc-stopped-work" }
-qnc-uri = { path = "../qnc-uri" }
+qnc-step-thread = { path = "../qnc-step-thread" }

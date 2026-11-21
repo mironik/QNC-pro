@@ -1,6 +1,6 @@
 {
   "kind": "module",
-  "responsibility": "Runs the transcripts step of one project in the background: queues every imported clip, hears each piece from the clip's copy through the fast engine's program, keeps it in the transcript store, until stopped.",
+  "responsibility": "Runs the transcripts step of one project in the background: every imported clip is heard from its copy through the fast engine and kept in the transcript store, until stopped.",
   "database": "reader",
   "polls": 1,
   "owns": ["the thread hearing the clips of this project, the queue it filled and the clips it gave up on"]

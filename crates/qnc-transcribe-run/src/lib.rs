@@ -8,9 +8,8 @@
 mod pieces;
 
 use std::collections::BTreeSet;
-use std::path::{Path, PathBuf};
+use std::path::Path;
 use std::sync::atomic::{AtomicBool, Ordering};
-use std::sync::Arc;
 use std::time::{Duration, Instant};
 
 use qnc_db::{Reader, Writer};
@@ -25,33 +24,22 @@ pub const FEATURE: &str = "transcription";
 const QUEUED_SECONDS: f64 = 60.0;
 const ROUND: Duration = Duration::from_secs(1);
 
-pub struct TranscriptRun {
-    stop: Arc<AtomicBool>,
-    thread: Option<std::thread::JoinHandle<()>>,
-}
+pub struct TranscriptRun(qnc_step_thread::StepThread);
 
 impl TranscriptRun {
     /// Starts the step for the project at `folder` (its `project.db`), with the engines of the QNC `root`.
     pub fn start(root: &Path, folder: &Path, db: &Path) -> TranscriptRun {
-        let stop = Arc::new(AtomicBool::new(false));
-        let (root, folder, db, flag) = (root.to_path_buf(), folder.to_path_buf(), db.to_path_buf(), stop.clone());
-        let thread = std::thread::Builder::new()
-            .name("qnc-transcribe-run".into())
-            .spawn(move || {
-                if let Err(error) = run(&root, &folder, &db, &flag) {
-                    qnc_diagnostics::log(format!("transcripts: {error}"));
-                }
-            })
-            .expect("a thread for the transcripts");
-        TranscriptRun { stop, thread: Some(thread) }
+        let (root, folder, db) = (root.to_path_buf(), folder.to_path_buf(), db.to_path_buf());
+        TranscriptRun(qnc_step_thread::StepThread::start(FUNCTION, move |stop| run(&root, &folder, &db, stop)))
     }
 
+    /// Tells the step to stop after the piece it is on.
     pub fn stop(&self) {
-        self.stop.store(true, Ordering::Relaxed);
+        self.0.stop();
     }
 
     pub fn ended(&self) -> bool {
-        self.thread.as_ref().is_none_or(|t| t.is_finished())
+        self.0.ended()
     }
 }
 
@@ -136,22 +124,12 @@ fn queue_imported(reader: &Reader, writer: &Writer, failed: &BTreeSet<String>) -
     Ok(())
 }
 
-fn under(folder: &Path, relative: &str) -> PathBuf {
-    relative.split('/').filter(|p| !p.is_empty()).fold(folder.to_path_buf(), |path, part| path.join(part))
-}
-
 /// The speech channel of a queued range, from the clip's copy, heard; the lines kept.
 #[allow(clippy::too_many_arguments)]
 fn hear_one(reader: &Reader, writer: &Writer, folder: &Path, entry: &Queued, speech: &Speech, engine: &qnc_ai_catalog::Transcriber, program: &Transcriber, cancel: &AtomicBool) -> Result<usize, String> {
     let stored = qnc_catalog::read_clip(reader, &entry.clip_id)?.ok_or("the clip is not in the catalog")?;
-    let media_uri = stored.imported_media_uri.ok_or("the clip has no copy in the project")?;
-    let (_, relative) = qnc_uri::split_file_uri(&media_uri)?;
-    let path = under(folder, &relative);
-    if !path.starts_with(folder) || !path.is_file() {
-        return Err(format!("the copy {} is not in the project", path.display()));
-    }
+    let (path, timebase) = stored.copy_in(folder)?;
     let original = &stored.clip.snapshot.metadata.original;
-    let timebase = single_video(original).and_then(|video| video.frame_rate.as_ref()).map(|rate| rate.value).ok_or("the record has no frame rate")?;
     let fps = timebase.fps();
     let mut audio: Vec<(u32, u32)> = original
         .streams

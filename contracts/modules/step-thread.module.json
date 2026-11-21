@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "One background step of an ingest as its own thread: started with a name and the work, told to stop through a flag, asked whether it ended; the work's error goes to the log.",
+  "owns": ["the thread of one step and its stop flag"]
+}

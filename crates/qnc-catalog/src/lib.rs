@@ -71,6 +71,20 @@ pub struct StoredClip {
 }
 
 impl StoredClip {
+    /// Where the clip's copy lies in the project `folder` (never the card), with the frame rate of its original;
+    /// a clip without a copy, a copy outside the folder or not a file, or a record without a frame rate is an error.
+    pub fn copy_in(&self, folder: &std::path::Path) -> Result<(std::path::PathBuf, qnc_media_model::FrameTimebase), String> {
+        let media_uri = self.imported_media_uri.as_deref().ok_or("the clip has no copy in the project")?;
+        let (_, relative) = qnc_uri::split_file_uri(media_uri)?;
+        let path = relative.split('/').filter(|p| !p.is_empty()).fold(folder.to_path_buf(), |path, part| path.join(part));
+        if !path.starts_with(folder) || !path.is_file() {
+            return Err(format!("the copy {} is not in the project", path.display()));
+        }
+        let original = &self.clip.snapshot.metadata.original;
+        let timebase = qnc_media_model::single_video(original).and_then(|video| video.frame_rate.as_ref()).map(|rate| rate.value).ok_or("the record has no frame rate")?;
+        Ok((path, timebase))
+    }
+
     /// The clip as the player input takes it.
     pub fn for_player(&self) -> PlayerClipRecord {
         PlayerClipRecord {

@@ -6,45 +6,32 @@
 //! left alone for this run.
 
 use std::collections::BTreeSet;
-use std::path::{Path, PathBuf};
+use std::path::Path;
 use std::sync::atomic::{AtomicBool, Ordering};
-use std::sync::Arc;
 use std::time::Duration;
 
 use qnc_db::{Reader, Writer};
-use qnc_media_model::{single_video, StreamDetails};
+use qnc_media_model::StreamDetails;
 
 pub const FUNCTION: &str = "waves";
 const ROUND: Duration = Duration::from_secs(1);
 
-pub struct WaveRun {
-    stop: Arc<AtomicBool>,
-    thread: Option<std::thread::JoinHandle<()>>,
-}
+pub struct WaveRun(qnc_step_thread::StepThread);
 
 impl WaveRun {
     /// Starts the step for the project at `folder` (its `project.db` inside).
     pub fn start(folder: &Path, db: &Path) -> WaveRun {
-        let stop = Arc::new(AtomicBool::new(false));
-        let (folder, db, flag) = (folder.to_path_buf(), db.to_path_buf(), stop.clone());
-        let thread = std::thread::Builder::new()
-            .name("qnc-wave-run".into())
-            .spawn(move || {
-                if let Err(error) = run(&folder, &db, &flag) {
-                    qnc_diagnostics::log(format!("waves: {error}"));
-                }
-            })
-            .expect("a thread for the waves");
-        WaveRun { stop, thread: Some(thread) }
+        let (folder, db) = (folder.to_path_buf(), db.to_path_buf());
+        WaveRun(qnc_step_thread::StepThread::start(FUNCTION, move |stop| run(&folder, &db, stop)))
     }
 
     /// Tells the step to stop after the clip it is on.
     pub fn stop(&self) {
-        self.stop.store(true, Ordering::Relaxed);
+        self.0.stop();
     }
 
     pub fn ended(&self) -> bool {
-        self.thread.as_ref().is_none_or(|t| t.is_finished())
+        self.0.ended()
     }
 }
 
@@ -81,21 +68,11 @@ fn run(folder: &Path, db: &Path, stop: &AtomicBool) -> Result<(), String> {
     Ok(())
 }
 
-fn under(folder: &Path, relative: &str) -> PathBuf {
-    relative.split('/').filter(|p| !p.is_empty()).fold(folder.to_path_buf(), |path, part| path.join(part))
-}
-
 /// The wave of one clip from its copy in the project.
 fn make_one(reader: &Reader, writer: &Writer, folder: &Path, clip_id: &str, cancel: &AtomicBool) -> Result<(), String> {
     let stored = qnc_catalog::read_clip(reader, clip_id)?.ok_or("the clip is not in the catalog")?;
-    let media_uri = stored.imported_media_uri.ok_or("the clip has no copy in the project")?;
-    let (_, relative) = qnc_uri::split_file_uri(&media_uri)?;
-    let path = under(folder, &relative);
-    if !path.starts_with(folder) || !path.is_file() {
-        return Err(format!("the copy {} is not in the project", path.display()));
-    }
+    let (path, timebase) = stored.copy_in(folder)?;
     let original = &stored.clip.snapshot.metadata.original;
-    let timebase = single_video(original).and_then(|video| video.frame_rate.as_ref()).map(|rate| rate.value).ok_or("the record has no frame rate")?;
     let mut audio: Vec<(u32, u32)> = original
         .streams
         .iter()

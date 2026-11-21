@@ -13,4 +13,4 @@ qnc-mxf-sound = { path = "../qnc-mxf-sound" }
 qnc-wave-make = { path = "../qnc-wave-make" }
 qnc-wave-store = { path = "../qnc-wave-store" }
 qnc-stopped-work = { path = "../qnc-stopped-work" }
-qnc-uri = { path = "../qnc-uri" }
+qnc-step-thread = { path = "../qnc-step-thread" }

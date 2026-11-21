@@ -3550,6 +3550,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "qnc-step-thread"
+version = "0.1.0"
+dependencies = [
+ "qnc-diagnostics",
+]
+
+[[package]]
 name = "qnc-stopped-work"
 version = "0.1.0"
 dependencies = [
@@ -3634,11 +3641,11 @@ dependencies = [
  "qnc-media-model",
  "qnc-mxf-sound",
  "qnc-project-settings",
+ "qnc-step-thread",
  "qnc-stopped-work",
  "qnc-text",
  "qnc-transcribe-jobs",
  "qnc-transcript-store",
- "qnc-uri",
  "serde_json",
 ]
 
@@ -3759,8 +3766,8 @@ dependencies = [
  "qnc-diagnostics",
  "qnc-media-model",
  "qnc-mxf-sound",
+ "qnc-step-thread",
  "qnc-stopped-work",
- "qnc-uri",
  "qnc-wave-make",
  "qnc-wave-store",
 ]

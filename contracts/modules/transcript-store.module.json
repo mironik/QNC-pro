@@ -1,6 +1,6 @@
 {
   "kind": "block",
-  "responsibility": "Owns the transcript tables of a project (lines and words per range of a clip, the queue of ranges asked): writes with the newest-says-over-older rule, reads transcripts, the queue and which clips are heard.",
+  "responsibility": "Owns the transcript tables of a project (lines and words per clip range, the queue of ranges asked): writes with the newest-says-over-older rule, reads transcripts and the queue.",
   "database": "owner",
   "owns": ["clip_transcripts", "transcript_queue"],
   "writes": ["clip_transcripts", "transcript_queue"]

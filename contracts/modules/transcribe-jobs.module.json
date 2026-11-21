@@ -1,5 +1,5 @@
 {
   "kind": "block",
-  "responsibility": "Speaks the transcription contract on both sides (the request with the sound as a 16 kHz WAV and the engine's name; the program's service answering segments with words and times) and holds the sound rules of pieces, floor and speech level.",
+  "responsibility": "Speaks the transcription contract on both sides (sound as a 16 kHz WAV to the program, segments with timed words back) and holds the sound rules of pieces, floor and speech level.",
   "database": "none"
 }

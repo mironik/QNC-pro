@@ -139,10 +139,8 @@ fn save(conn: &Connection, transcript: &ClipTranscript) -> Result<(), String> {
     let lines = serde_json::to_string(&new_lines).map_err(err)?;
     let text = new_lines.iter().map(|line| line.text.as_str()).collect::<Vec<_>>().join(" ");
     conn.execute(
-        "INSERT INTO clip_transcripts (clip_id, from_frame, to_frame, language, engine, text, lines_json, made_at_utc, fine)
-         VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, strftime('%Y-%m-%dT%H:%M:%fZ','now'), ?8)
-         ON CONFLICT(clip_id, from_frame, to_frame) DO UPDATE SET language=excluded.language, engine=excluded.engine,
-           text=excluded.text, lines_json=excluded.lines_json, made_at_utc=excluded.made_at_utc, fine=excluded.fine",
+        "INSERT OR REPLACE INTO clip_transcripts (clip_id, from_frame, to_frame, language, engine, text, lines_json, made_at_utc, fine)
+         VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, strftime('%Y-%m-%dT%H:%M:%fZ','now'), ?8)",
         params![transcript.clip_id, transcript.from_frame as i64, transcript.to_frame as i64, transcript.language, transcript.engine, text, lines, i64::from(transcript.fine)],
     )
     .map_err(err)?;

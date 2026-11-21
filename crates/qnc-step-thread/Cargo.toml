@@ -1,0 +1,8 @@
+[package]
+name = "qnc-step-thread"
+version.workspace = true
+edition.workspace = true
+description = "One background step of an ingest as its own thread: started with a name, told to stop, asked whether it ended."
+
+[dependencies]
+qnc-diagnostics = { path = "../qnc-diagnostics" }

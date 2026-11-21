@@ -119,6 +119,8 @@ pub struct Session {
     plan: qnc_ingest_plan::Plan,
     /// The waves step, while the plan has it.
     waves: Option<qnc_wave_run::WaveRun>,
+    /// The transcripts step, while the plan has it and the project transcribes.
+    transcripts: Option<qnc_transcribe_run::TranscriptRun>,
 }
 
 /// The value after `--name` in the arguments.
@@ -150,12 +152,13 @@ impl Session {
         ingests.start_into(card.clone(), &project_id, &folder)?;
         qnc_diagnostics::log(format!("ingest window: card {} into project {project_id}, plan {}", card.serial, plan.line()));
         let waves = plan.has(qnc_ingest_plan::Step::Waves).then(|| qnc_wave_run::WaveRun::start(&folder, &db));
-        Ok(Session { root: root.to_path_buf(), project_id, name, camera, card, ingests, last: Progress::default(), started: Instant::now(), took: None, ask: None, phase: Phase::Running, close: false, opened_form: false, stopped: false, delete_pending: false, info: Info::default(), reader, stops, counts: Counts::default(), read_at: None, full_at: BTreeMap::new(), plan, waves })
+        let transcripts = (plan.has(qnc_ingest_plan::Step::Transcripts) && settings.ai_feature(qnc_transcribe_run::FEATURE)).then(|| qnc_transcribe_run::TranscriptRun::start(root, &folder, &db));
+        Ok(Session { root: root.to_path_buf(), project_id, name, camera, card, ingests, last: Progress::default(), started: Instant::now(), took: None, ask: None, phase: Phase::Running, close: false, opened_form: false, stopped: false, delete_pending: false, info: Info::default(), reader, stops, counts: Counts::default(), read_at: None, full_at: BTreeMap::new(), plan, waves, transcripts })
     }
 
     /// Nothing of the background work runs any more.
     fn work_ended(&self) -> bool {
-        self.ingests.running() == 0 && self.waves.as_ref().is_none_or(qnc_wave_run::WaveRun::ended)
+        self.ingests.running() == 0 && self.waves.as_ref().is_none_or(qnc_wave_run::WaveRun::ended) && self.transcripts.as_ref().is_none_or(qnc_transcribe_run::TranscriptRun::ended)
     }
 
     /// The counts of every function from the project's database, once a second; when a bar
@@ -169,6 +172,9 @@ impl Session {
             counts.stopped = qnc_stopped_work::bits(&qnc_stopped_work::read(&self.reader)?);
             if self.plan.has(qnc_ingest_plan::Step::Waves) {
                 counts.waves = Some(qnc_wave_store::made(&self.reader)?.len());
+            }
+            if self.transcripts.is_some() {
+                counts.transcripts = Some(qnc_transcript_store::heard(&self.reader)?.len());
             }
             Ok(counts)
         });
@@ -219,6 +225,9 @@ impl Session {
             self.phase = Phase::Done;
             if let Some(waves) = &self.waves {
                 waves.stop();
+            }
+            if let Some(transcripts) = &self.transcripts {
+                transcripts.stop();
             }
             qnc_diagnostics::log(format!("ingest window: done after {} ms", self.started.elapsed().as_millis()));
         }
@@ -284,6 +293,11 @@ impl Session {
                 waves.stop();
             }
         }
+        if function == qnc_transcribe_run::FUNCTION {
+            if let Some(transcripts) = &self.transcripts {
+                transcripts.stop();
+            }
+        }
     }
 
     pub fn ask_cancel(&mut self) {
@@ -300,6 +314,9 @@ impl Session {
             self.ingests.stop_all();
             if let Some(waves) = &self.waves {
                 waves.stop();
+            }
+            if let Some(transcripts) = &self.transcripts {
+                transcripts.stop();
             }
             self.stopped = true;
         }
