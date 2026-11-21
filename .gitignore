@@ -1,2 +1,5 @@
 /target
 /data
+
+# projects made by the tray and the apps (media copies, databases)
+/projects/

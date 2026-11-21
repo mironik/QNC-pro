@@ -127,7 +127,7 @@
         "artifacts": {
           "filmstrip": "auto",
           "wave": "auto",
-          "order": [["records"], ["posters", "poster_look"], ["waves", "filmstrips", "import", "transcripts"], ["shots", "content", "captions"]]
+          "order": [["import", "posters"], ["poster_look", "waves", "filmstrips", "transcripts"], ["shots", "content", "captions"]]
         },
         "keyboard_shortcuts": {
           "active_preset": "default"
@@ -217,7 +217,7 @@
         "artifacts": {
           "filmstrip": "auto",
           "wave": "auto",
-          "order": [["records"], ["posters", "poster_look"], ["waves", "filmstrips", "import", "transcripts"], ["shots", "content", "captions"]]
+          "order": [["import", "posters"], ["poster_look", "waves", "filmstrips", "transcripts"], ["shots", "content", "captions"]]
         },
         "keyboard_shortcuts": {
           "active_preset": "default"
@@ -307,7 +307,7 @@
         "artifacts": {
           "filmstrip": "auto",
           "wave": "auto",
-          "order": [["records"], ["posters", "poster_look"], ["waves", "filmstrips", "import", "transcripts"], ["shots", "content", "captions"]]
+          "order": [["import", "posters"], ["poster_look", "waves", "filmstrips", "transcripts"], ["shots", "content", "captions"]]
         },
         "keyboard_shortcuts": {
           "active_preset": "default"
@@ -397,7 +397,7 @@
         "artifacts": {
           "filmstrip": "auto",
           "wave": "auto",
-          "order": [["records"], ["posters", "poster_look"], ["waves", "filmstrips", "import", "transcripts"], ["shots", "content", "captions"]]
+          "order": [["import", "posters"], ["poster_look", "waves", "filmstrips", "transcripts"], ["shots", "content", "captions"]]
         },
         "keyboard_shortcuts": {
           "active_preset": "default"
