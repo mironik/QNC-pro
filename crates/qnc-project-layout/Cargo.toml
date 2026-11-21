@@ -2,8 +2,12 @@
 name = "qnc-project-layout"
 version.workspace = true
 edition.workspace = true
-description = "The layout of the Project form as data: the window, the board measures, the project list and the settings panel measures from contracts/ui/project.layout.json, built in."
+description = "The layout of the Project form as data: the window, the board, the list, the settings panel, the AI switches, the slots, the Advanced settings schema and every text from contracts/ui/project.layout.json, resolved in the language of this computer."
 
 [dependencies]
 serde = { workspace = true }
 serde_json = { workspace = true }
+qnc-text = { path = "../qnc-text" }
+qnc-actions = { path = "../qnc-actions" }
+qnc-field-spec = { path = "../qnc-field-spec" }
+qnc-settings-path = { path = "../qnc-settings-path" }

@@ -2774,6 +2774,25 @@ dependencies = [
 ]
 
 [[package]]
+name = "qnc-form-look"
+version = "0.1.0"
+dependencies = [
+ "eframe",
+ "qnc-form-look-model",
+ "qnc-text",
+]
+
+[[package]]
+name = "qnc-form-look-model"
+version = "0.1.0"
+dependencies = [
+ "qnc-diagnostics",
+ "qnc-settings",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "qnc-frame-map"
 version = "0.1.0"
 dependencies = [
@@ -3074,12 +3093,19 @@ dependencies = [
 name = "qnc-project-form"
 version = "0.1.0"
 dependencies = [
+ "eframe",
+ "qnc-actions",
  "qnc-board",
+ "qnc-confirm",
+ "qnc-desktop-theme",
  "qnc-diagnostics",
+ "qnc-form-look",
+ "qnc-newsroom-sheet",
+ "qnc-project-application",
  "qnc-project-layout",
  "qnc-project-list-panel",
+ "qnc-project-session",
  "qnc-project-settings-panel",
- "qnc-projects",
  "qnc-settings",
  "qnc-text",
  "qnc-theme",
@@ -3108,6 +3134,10 @@ dependencies = [
 name = "qnc-project-layout"
 version = "0.1.0"
 dependencies = [
+ "qnc-actions",
+ "qnc-field-spec",
+ "qnc-settings-path",
+ "qnc-text",
  "serde",
  "serde_json",
 ]
@@ -3116,14 +3146,13 @@ dependencies = [
 name = "qnc-project-list-panel"
 version = "0.1.0"
 dependencies = [
- "egui",
- "qnc-actions",
- "qnc-confirm",
+ "eframe",
+ "qnc-desktop-theme",
+ "qnc-project-application",
  "qnc-project-layout",
- "qnc-projects",
+ "qnc-project-session",
+ "qnc-settings-rows",
  "qnc-text",
- "qnc-theme",
- "qnc-ui-kit",
 ]
 
 [[package]]
@@ -3198,11 +3227,20 @@ dependencies = [
 name = "qnc-project-settings-panel"
 version = "0.1.0"
 dependencies = [
- "egui",
+ "eframe",
+ "qnc-actions",
+ "qnc-application-selection",
+ "qnc-desktop-theme",
+ "qnc-export-preset",
+ "qnc-language-choice",
+ "qnc-location-field-view",
  "qnc-project-layout",
- "qnc-projects",
+ "qnc-project-session",
+ "qnc-settings-form",
+ "qnc-settings-path",
+ "qnc-settings-rows",
+ "qnc-settings-switches",
  "qnc-text",
- "qnc-theme",
  "qnc-ui-kit",
 ]
 
@@ -3228,23 +3266,6 @@ dependencies = [
  "qnc-project-origin",
  "qnc-text",
  "rusqlite",
- "serde_json",
-]
-
-[[package]]
-name = "qnc-projects"
-version = "0.1.0"
-dependencies = [
- "qnc-db",
- "qnc-diagnostics",
- "qnc-folder-lock",
- "qnc-ids",
- "qnc-project-delete",
- "qnc-project-make",
- "qnc-project-templates",
- "qnc-registry",
- "qnc-settings",
- "qnc-text",
  "serde_json",
 ]
 
@@ -3310,6 +3331,7 @@ version = "0.1.0"
 dependencies = [
  "eframe",
  "qnc-desktop-theme",
+ "qnc-field-spec",
  "qnc-text",
  "qnc-ui-kit",
  "serde",

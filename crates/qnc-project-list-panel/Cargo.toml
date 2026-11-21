@@ -2,14 +2,13 @@
 name = "qnc-project-list-panel"
 version.workspace = true
 edition.workspace = true
-description = "The project list panel as the old Project board drew it: title with search, one row per project (name, date, x), the delete question, the status line; it draws and returns actions."
+description = "Draws the project list of the Project board (title with search, one row per project with its date and x, the status line) from the session and returns the intents the user asked."
 
 [dependencies]
-egui = { workspace = true }
-qnc-theme = { path = "../qnc-theme" }
+eframe = { workspace = true }
+qnc-desktop-theme = { path = "../qnc-desktop-theme" }
 qnc-text = { path = "../qnc-text" }
-qnc-ui-kit = { path = "../qnc-ui-kit" }
-qnc-confirm = { path = "../qnc-confirm" }
-qnc-actions = { path = "../qnc-actions" }
+qnc-settings-rows = { path = "../qnc-settings-rows" }
 qnc-project-layout = { path = "../qnc-project-layout" }
-qnc-projects = { path = "../qnc-projects" }
+qnc-project-application = { path = "../qnc-project-application" }
+qnc-project-session = { path = "../qnc-project-session" }

@@ -1,0 +1,5 @@
+{
+  "kind": "kit",
+  "responsibility": "Draws the editor of a form look beside the form: marks the parts of the form, takes and moves them by drag or arrows, shows every value and saves the look file through its model.",
+  "database": "none"
+}

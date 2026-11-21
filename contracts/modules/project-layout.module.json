@@ -1,5 +1,5 @@
 {
   "kind": "block",
-  "responsibility": "Gives the layout of the Project form (window, board, list and settings measures) from the built-in contract as plain data; no measure lives in code.",
+  "responsibility": "Gives the layout of the Project form (window, board, panels, slots, Advanced schema, texts) from the built-in contract in the language of this computer; nothing lives in code.",
   "database": "none"
 }

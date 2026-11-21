@@ -1,5 +1,5 @@
 {
   "kind": "panel",
-  "responsibility": "Draws the project list of the Project board (title with search, one row per project with its date and x, the delete question, the status line) and returns the catalog's actions the user asked.",
+  "responsibility": "Draws the project list of the Project board (title with search, one row per project with its date and x, the status line) from the session and returns the intents the user asked.",
   "database": "none"
 }

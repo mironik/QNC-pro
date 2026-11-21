@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Holds the measures of a form as data in its look file under contracts/ui/forms: reads them, moves them within their ranges, says which point into the layout contract, and saves them; it draws nothing.",
+  "database": "none"
+}

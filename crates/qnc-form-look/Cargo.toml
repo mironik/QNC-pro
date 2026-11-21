@@ -1,0 +1,10 @@
+[package]
+name = "qnc-form-look"
+version.workspace = true
+edition.workspace = true
+description = "The editor of a form look beside the form: marks the parts of the form, takes and moves them by drag or arrows, shows every value and saves the look file; the data is qnc-form-look-model."
+
+[dependencies]
+eframe = { workspace = true }
+qnc-form-look-model = { path = "../qnc-form-look-model" }
+qnc-text = { path = "../qnc-text" }

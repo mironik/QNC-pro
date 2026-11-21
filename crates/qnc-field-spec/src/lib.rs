@@ -86,3 +86,22 @@ pub fn new_field_in(fields: &[FieldSpec], label: &str) -> FieldSpec {
     let code = if taken(&base) { (2..).map(|n| format!("{base}_{n}")).find(|code| !taken(code)).unwrap_or_default() } else { base };
     FieldSpec { kind: FieldKind::Text, label: label.trim().to_string(), id: code.clone(), path: code, options: None, default: String::new(), hint: String::new() }
 }
+
+/// The measures of a settings panel, from the form's layout contract (the rows kit draws
+/// with them).
+#[derive(Debug, Clone, Deserialize)]
+pub struct PanelMetrics {
+    pub panel_pad: f32,
+    pub title: String,
+    pub subtitle: String,
+    pub inner_pad_x: f32,
+    pub inner_pad_y: f32,
+    pub section_gap: f32,
+    pub inline_label_width: f32,
+    pub inline_button_width: f32,
+    pub inline_column_gap: f32,
+    pub field_min_width: f32,
+    pub label_font_size: f32,
+    pub group_title_font_size: f32,
+    pub row_height: f32,
+}

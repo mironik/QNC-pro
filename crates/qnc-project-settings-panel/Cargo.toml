@@ -2,12 +2,21 @@
 name = "qnc-project-settings-panel"
 version.workspace = true
 edition.workspace = true
-description = "The settings panel of the Project board as the old form drew it: title and subtitle, WORKFLOW with the template picker, New project; it draws what the projects module holds and returns actions."
+description = "Draws the settings panel of the Project board (template picker, New project, Advanced with AI, locations, template actions, the Advanced sections and the own template) from the session and returns the intents the user asked."
 
 [dependencies]
-egui = { workspace = true }
-qnc-theme = { path = "../qnc-theme" }
+eframe = { workspace = true }
+qnc-desktop-theme = { path = "../qnc-desktop-theme" }
 qnc-text = { path = "../qnc-text" }
 qnc-ui-kit = { path = "../qnc-ui-kit" }
+qnc-settings-rows = { path = "../qnc-settings-rows" }
+qnc-settings-form = { path = "../qnc-settings-form" }
+qnc-settings-switches = { path = "../qnc-settings-switches" }
+qnc-settings-path = { path = "../qnc-settings-path" }
+qnc-language-choice = { path = "../qnc-language-choice" }
+qnc-export-preset = { path = "../qnc-export-preset" }
+qnc-actions = { path = "../qnc-actions" }
+qnc-application-selection = { path = "../qnc-application-selection" }
+qnc-location-field-view = { path = "../qnc-location-field-view" }
 qnc-project-layout = { path = "../qnc-project-layout" }
-qnc-projects = { path = "../qnc-projects" }
+qnc-project-session = { path = "../qnc-project-session" }

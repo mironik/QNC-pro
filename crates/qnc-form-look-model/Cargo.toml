@@ -1,0 +1,11 @@
+[package]
+name = "qnc-form-look-model"
+version.workspace = true
+edition.workspace = true
+description = "The measures of a form (margins, gaps, sizes, columns) as data in its look file under contracts/ui/forms: read, changed within their ranges, saved; the editor that draws them is qnc-form-look."
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }
+qnc-diagnostics = { path = "../qnc-diagnostics" }
+qnc-settings = { path = "../qnc-settings" }

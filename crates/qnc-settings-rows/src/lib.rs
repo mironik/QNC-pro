@@ -6,25 +6,8 @@
 
 use eframe::egui::{self, Color32, RichText, Vec2};
 use qnc_desktop_theme::Theme;
-use serde::Deserialize;
 
-/// The measures of a settings panel, from the form's layout contract.
-#[derive(Debug, Clone, Deserialize)]
-pub struct PanelMetrics {
-    pub panel_pad: f32,
-    pub title: String,
-    pub subtitle: String,
-    pub inner_pad_x: f32,
-    pub inner_pad_y: f32,
-    pub section_gap: f32,
-    pub inline_label_width: f32,
-    pub inline_button_width: f32,
-    pub inline_column_gap: f32,
-    pub field_min_width: f32,
-    pub label_font_size: f32,
-    pub group_title_font_size: f32,
-    pub row_height: f32,
-}
+pub use qnc_field_spec::PanelMetrics;
 
 fn button(ui: &mut egui::Ui, label: &str, enabled: bool, look: qnc_ui_kit::ButtonLook) -> egui::Response {
     qnc_ui_kit::look_button(ui, label, enabled, look)

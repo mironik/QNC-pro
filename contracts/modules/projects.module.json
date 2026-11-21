@@ -1,7 +1,0 @@
-{
-  "kind": "module",
-  "responsibility": "Holds what the Project form does: the list read from the registry every second, the draft of a new project, the delete question and the one make or delete job in the background.",
-  "database": "reader",
-  "polls": 1.0,
-  "owns": ["the draft of a new project", "the delete question", "the running job and the last status"]
-}

@@ -9,4 +9,5 @@ eframe = { workspace = true }
 qnc-desktop-theme = { path = "../qnc-desktop-theme" }
 qnc-ui-kit = { path = "../qnc-ui-kit" }
 qnc-text = { path = "../qnc-text" }
+qnc-field-spec = { path = "../qnc-field-spec" }
 serde = { workspace = true }
