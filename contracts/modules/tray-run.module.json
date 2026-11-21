@@ -1,7 +1,7 @@
 {
   "kind": "orchestrator",
-  "responsibility": "Runs the tray: looks at the disks every half second, hands a ready card to the card ingest, and passes what the ingest says on as status and notices; it routes and never decides.",
+  "responsibility": "Runs the tray: looks at the disks every half second and hands a ready card, the user's choices and the answers to the tray work; it routes and never decides.",
   "database": "none",
   "polls": 0.5,
-  "owns": ["the watch of the disks and the running ingests of this tray"]
+  "owns": ["the watch of the disks of this tray"]
 }

@@ -87,15 +87,32 @@ impl Ingests {
         }
     }
 
-    /// Starts the ingest of `card` under the project name `name`; refused while one runs for it.
+    /// Makes the project of a card under the name `name` (from the template, in the projects folder),
+    /// without starting its ingest: the ingest window starts it with [`Ingests::start_into`].
+    pub fn make_project(&self, name: &str) -> Result<qnc_project_make::Made, String> {
+        qnc_project_make::make(&self.root, qnc_project_make::Make { name: name.to_string(), settings: Some(self.template.clone()), projects_root: Some(self.projects_root.clone()), ..Default::default() })
+    }
+
+    /// Starts the ingest of `card` into the project already made (`project_id`, its `folder`);
+    /// refused while one runs for the card.
+    pub fn start_into(&mut self, card: Card, project_id: &str, folder: &Path) -> Result<(), String> {
+        self.begin(card, Target::Made { project_id: project_id.to_string(), folder: folder.to_path_buf() })
+    }
+
+    /// Starts the ingest of `card` under the project name `name` (the project is made first);
+    /// refused while one runs for it.
     pub fn start(&mut self, card: Card, name: &str) -> Result<(), String> {
+        self.begin(card, Target::Named(name.to_string()))
+    }
+
+    fn begin(&mut self, card: Card, target: Target) -> Result<(), String> {
         let key = card.serial.to_ascii_lowercase();
         if self.running.get(&key).is_some_and(|r| !r.ended()) {
             return Err(format!("an ingest of card {key} already runs"));
         }
         let (tell, heard) = mpsc::channel();
         let cancel = Arc::new(AtomicBool::new(false));
-        let job = Job { root: self.root.clone(), projects_root: self.projects_root.clone(), template: self.template.clone(), profiles: self.profiles.clone(), card: card.clone(), name: name.to_string(), cancel: cancel.clone() };
+        let job = Job { root: self.root.clone(), projects_root: self.projects_root.clone(), template: self.template.clone(), profiles: self.profiles.clone(), card: card.clone(), target, cancel: cancel.clone() };
         let thread = std::thread::spawn(move || {
             let outcome = job.run(&tell);
             let _ = tell.send(match outcome {
@@ -117,13 +134,19 @@ impl Ingests {
     }
 }
 
+/// Where the ingest goes: a project to make under a name, or one already made.
+enum Target {
+    Named(String),
+    Made { project_id: String, folder: PathBuf },
+}
+
 struct Job {
     root: PathBuf,
     projects_root: PathBuf,
     template: serde_json::Value,
     profiles: Arc<Vec<Profile>>,
     card: Card,
-    name: String,
+    target: Target,
     cancel: Arc<AtomicBool>,
 }
 
@@ -133,11 +156,17 @@ fn now_ms() -> u64 {
 
 impl Job {
     fn run(&self, tell: &Sender<Said>) -> Result<Progress, String> {
-        let made = qnc_project_make::make(&self.root, qnc_project_make::Make { name: self.name.clone(), settings: Some(self.template.clone()), projects_root: Some(self.projects_root.clone()), ..Default::default() })?;
-        let project = qnc_ingest_run::Project::open(&made.folder)?;
+        let (project_id, folder) = match &self.target {
+            Target::Named(name) => {
+                let made = qnc_project_make::make(&self.root, qnc_project_make::Make { name: name.clone(), settings: Some(self.template.clone()), projects_root: Some(self.projects_root.clone()), ..Default::default() })?;
+                (made.project_id, made.folder)
+            }
+            Target::Made { project_id, folder } => (project_id.clone(), folder.clone()),
+        };
+        let project = qnc_ingest_run::Project::open(&folder)?;
         let selected = qnc_ingest_run::select_into(&self.card, &project, &self.profiles, now_ms())?;
-        let _ = tell.send(Said::ProjectMade { project_id: made.project_id.clone(), folder: made.folder.clone(), clips: selected.clips.len() });
-        qnc_diagnostics::log(format!("card ingest: project {} with {} clips", made.project_id, selected.clips.len()));
+        let _ = tell.send(Said::ProjectMade { project_id: project_id.clone(), folder: folder.clone(), clips: selected.clips.len() });
+        qnc_diagnostics::log(format!("card ingest: project {project_id} with {} clips", selected.clips.len()));
         let mut report = |p: Progress| {
             let _ = tell.send(Said::Progress(p));
         };

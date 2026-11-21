@@ -1,25 +1,16 @@
-//! The tray form: the icon in the tray with its status and Quit, and the ingest window that
-//! shows the cards being ingested. The run is polled every frame (it looks every half second);
-//! the user's choices go to the run. The window shows itself while a card is ingested and
-//! hides when the user says so; Quit in the tray menu ends everything.
+//! The tray form: the icon in the tray with the menu the run gives (its status line, Stop all the
+//! work, the modes with their tick boxes, Projects, Settings, Open the application, Quit) and a
+//! small window shown only while the run asks what becomes of the work before it stops (Keep,
+//! Delete, Cancel). The run is polled every frame; the user's choices and answers go to the run.
 
-use qnc_ingest_panel::{CardLine, Seen};
+use eframe::egui::{self, RichText};
 use qnc_tray_icon::{MenuItem, Tray, TrayEvent};
-use qnc_tray_run::{Run, Told};
+use qnc_tray_run::{Item, Run, StopAnswer, StopAsk, Told};
 use qnc_window_host::Next;
 
-const STATUS: u32 = 1;
-const QUIT: u32 = 2;
-const PROJECTS: u32 = 3;
-const SETTINGS: u32 = 4;
-
-fn menu(status: &str) -> Vec<MenuItem> {
-    vec![
-        MenuItem { id: STATUS, text: status.to_string(), enabled: false, check: None },
-        MenuItem { id: PROJECTS, text: qnc_text::text("tray.projects").to_string(), enabled: true, check: None },
-        MenuItem { id: SETTINGS, text: qnc_text::text("tray.settings").to_string(), enabled: true, check: None },
-        MenuItem { id: QUIT, text: qnc_text::text("tray.quit").to_string(), enabled: true, check: None },
-    ]
+/// The menu items by the id the icon gives them back (their place, from one).
+fn menu(items: &[Item]) -> Vec<MenuItem> {
+    items.iter().enumerate().map(|(at, item)| MenuItem { id: at as u32 + 1, text: item.text.clone(), enabled: item.enabled, check: item.check }).collect()
 }
 
 /// Runs the tray until the user quits.
@@ -29,48 +20,40 @@ pub fn main() -> Result<(), String> {
     qnc_diagnostics::log_panics();
     qnc_settings::choose_language(&root)?;
     let mut run = Run::start(&root)?;
-    let waiting = qnc_text::text("tray.waiting").to_string();
     let title = qnc_text::text("tray.title").to_string();
-    let tray = Tray::start(&format!("{title}: {waiting}"), menu(&waiting), Some(qnc_app_mark::qnc_mark))?;
+    let tray = Tray::start(&format!("{title}: {}", qnc_text::text("tray.waiting")), Vec::new(), Some(qnc_app_mark::qnc_mark))?;
     qnc_diagnostics::log("tray started");
-    let mut shown = true;
+    let mut items: Vec<Item> = Vec::new();
+    let mut ask: Option<StopAsk> = None;
     let mut quit = false;
-    let mut cards: Vec<CardLine> = Vec::new();
-    let outcome = qnc_window_host::run(&qnc_text::text("ingest.window_title"), [520.0, 360.0], true, move |_ctx, ui| {
-        for told in run.poll() {
-            match told {
-                Told::Status(status) => {
-                    tray.set_tip(&format!("{title}: {status}"));
-                    tray.set_menu(menu(&status));
-                }
-                Told::Notice { title, text } => tray.notify(&title, &text),
-                Told::Cards(lines) => {
-                    shown = shown || (!lines.is_empty() && cards.is_empty());
-                    cards = lines.into_iter().map(|c| CardLine { serial: c.serial, name: c.name, project: c.project, clips: c.clips, finished: c.finished, failed: c.failed, bytes_copied: c.bytes_copied }).collect();
-                }
-            }
-        }
+    let window_title = title.clone();
+    let outcome = qnc_window_host::run(&window_title, [560.0, 220.0], false, move |_ctx, ui| {
+        let mut told = run.poll();
         tray.pump();
         while let Some(TrayEvent::Menu(id)) = tray.try_event() {
-            match id {
-                QUIT => quit = true,
-                PROJECTS => run.open("qnc-projects"),
-                SETTINGS => run.open("qnc-settings"),
-                _ => {}
+            if let Some(chosen) = items.get(id as usize - 1).and_then(|item| item.choice) {
+                told.extend(run.choose(chosen));
             }
         }
-        for seen in qnc_ingest_panel::show(ui, qnc_theme::theme(), &cards, &waiting) {
-            match seen {
-                Seen::Stop(serial) => run.stop(&serial),
-                Seen::Hide => shown = false,
+        if let Some(asked) = &ask {
+            if let Some(answer) = question(ui, asked) {
+                told.extend(run.answer_stop(answer));
             }
         }
-        match (quit, shown) {
-            (true, _) => {
-                run.stop_all();
-                qnc_diagnostics::log("tray quit");
-                Next::Close
+        for t in told {
+            match t {
+                Told::Status(status) => tray.set_tip(&format!("{title}: {status}")),
+                Told::Menu(given) => {
+                    tray.set_menu(menu(&given));
+                    items = given;
+                }
+                Told::Notice { title, text } => tray.notify(&title, &text),
+                Told::Ask(asked) => ask = asked,
+                Told::Quit => quit = true,
             }
+        }
+        match (quit, ask.is_some()) {
+            (true, _) => Next::Close,
             (false, true) => Next::Show,
             (false, false) => Next::Hide,
         }
@@ -79,4 +62,26 @@ pub fn main() -> Result<(), String> {
         qnc_diagnostics::log(format!("window host ended with an error: {error}"));
     }
     outcome
+}
+
+/// The question before the work stops, with Keep, Delete and Cancel.
+fn question(ui: &mut egui::Ui, asked: &StopAsk) -> Option<StopAnswer> {
+    let theme = qnc_theme::theme();
+    let text = qnc_ui_kit::colour(theme.colours.text);
+    ui.add_space(8.0);
+    ui.label(RichText::new(&asked.text).color(text));
+    ui.add_space(16.0);
+    let mut answer = None;
+    ui.horizontal(|ui| {
+        if qnc_ui_kit::button(ui, theme, qnc_text::text("tray.keep"), true, false).clicked() {
+            answer = Some(StopAnswer::Keep);
+        }
+        if qnc_ui_kit::button(ui, theme, qnc_text::text("tray.delete"), true, false).clicked() {
+            answer = Some(StopAnswer::Delete);
+        }
+        if qnc_ui_kit::button(ui, theme, qnc_text::text("tray.cancel"), true, true).clicked() {
+            answer = Some(StopAnswer::Cancel);
+        }
+    });
+    answer
 }

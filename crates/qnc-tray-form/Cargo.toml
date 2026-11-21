@@ -2,15 +2,16 @@
 name = "qnc-tray-form"
 version.workspace = true
 edition.workspace = true
-description = "The tray form: the icon with its menu (status, quit), fed by the tray run; the user's choices go to the run."
+description = "The tray form: the icon with its menu (status, stop all, the modes, projects, settings, open the application, quit) and the question before the work stops, fed by the tray run; the user's choices go to the run."
 
 [dependencies]
+eframe = { workspace = true }
 qnc-settings = { path = "../qnc-settings" }
 qnc-diagnostics = { path = "../qnc-diagnostics" }
 qnc-text = { path = "../qnc-text" }
+qnc-theme = { path = "../qnc-theme" }
+qnc-ui-kit = { path = "../qnc-ui-kit" }
 qnc-tray-icon = { path = "../qnc-tray-icon" }
 qnc-app-mark = { path = "../qnc-app-mark" }
 qnc-tray-run = { path = "../qnc-tray-run" }
-qnc-theme = { path = "../qnc-theme" }
-qnc-ingest-panel = { path = "../qnc-ingest-panel" }
 qnc-window-host = { path = "../qnc-window-host" }

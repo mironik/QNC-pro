@@ -1,0 +1,7 @@
+{
+  "kind": "module",
+  "responsibility": "Runs the session of one ingest window: the card's ingest into its project, the progress and times, Cancel with the partial-import question, and the next form the mode opens.",
+  "database": "none",
+  "polls": 1,
+  "owns": ["the running ingest of this window and what was typed for its project"]
+}

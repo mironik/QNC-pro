@@ -1,0 +1,10 @@
+[package]
+name = "qnc-work-bars"
+version.workspace = true
+edition.workspace = true
+description = "Draws the bars of the background work (one row per function: name, bar, count, time, X) at the places a form's look gives, and says which X was pressed."
+
+[dependencies]
+eframe = { workspace = true }
+qnc-text = { path = "../qnc-text" }
+qnc-form-look = { path = "../qnc-form-look" }

@@ -1,0 +1,5 @@
+{
+  "kind": "form",
+  "responsibility": "Draws the ingest window of one card (the work's bars, the project's place and description, Cancel and its questions) from the session's view and hands the user's answers to the session.",
+  "database": "none"
+}

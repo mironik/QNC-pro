@@ -1,0 +1,21 @@
+[package]
+name = "qnc-ingest-window-form"
+version.workspace = true
+edition.workspace = true
+description = "The ingest window form: the card's ingest in its window with QNC's title bar (the work's bars, the project's place and description, Cancel), drawn from the session's view."
+
+[dependencies]
+eframe = { workspace = true }
+qnc-settings = { path = "../qnc-settings" }
+qnc-diagnostics = { path = "../qnc-diagnostics" }
+qnc-text = { path = "../qnc-text" }
+qnc-theme = { path = "../qnc-theme" }
+qnc-desktop-theme = { path = "../qnc-desktop-theme" }
+qnc-ui-kit = { path = "../qnc-ui-kit" }
+qnc-confirm = { path = "../qnc-confirm" }
+qnc-form-look = { path = "../qnc-form-look" }
+qnc-title-bar = { path = "../qnc-title-bar" }
+qnc-window-front = { path = "../qnc-window-front" }
+qnc-window-host = { path = "../qnc-window-host" }
+qnc-work-bars = { path = "../qnc-work-bars" }
+qnc-ingest-window = { path = "../qnc-ingest-window" }

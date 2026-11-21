@@ -1,0 +1,5 @@
+{
+  "kind": "kit",
+  "responsibility": "Draws the bars of the background work (one row per function: name, bar, count, time and the X) at the places a form's look gives, and says which X was pressed.",
+  "database": "none"
+}

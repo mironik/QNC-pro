@@ -1,0 +1,12 @@
+[package]
+name = "qnc-ingest-window-app"
+version.workspace = true
+edition.workspace = true
+description = "QNC ingest window: starts the window of one card's ingest."
+
+[[bin]]
+name = "qnc-ingest-window"
+path = "src/main.rs"
+
+[dependencies]
+qnc-ingest-window-form = { path = "../../crates/qnc-ingest-window-form" }

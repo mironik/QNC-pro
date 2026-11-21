@@ -1,0 +1,7 @@
+{
+  "kind": "module",
+  "responsibility": "Holds the tray's work: makes the project of a ready card and opens its ingest window, keeps every program started as one job, answers the menu and the stop question, and gives the status and the menu.",
+  "database": "reader",
+  "polls": 0.5,
+  "owns": ["the job of the programs this tray started, the windows it opened and the question before the work stops"]
+}

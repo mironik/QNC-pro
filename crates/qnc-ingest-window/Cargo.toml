@@ -1,0 +1,21 @@
+[package]
+name = "qnc-ingest-window"
+version.workspace = true
+edition.workspace = true
+description = "The session of one ingest window: the card's ingest into the project the tray made, its progress and times, Cancel with the partial-import question, the project's place and description, and the next form the computer's mode opens."
+
+[dependencies]
+serde_json = { workspace = true }
+qnc-diagnostics = { path = "../qnc-diagnostics" }
+qnc-text = { path = "../qnc-text" }
+qnc-db = { path = "../qnc-db" }
+qnc-mode = { path = "../qnc-mode" }
+qnc-launch = { path = "../qnc-launch" }
+qnc-registry = { path = "../qnc-registry" }
+qnc-project-make = { path = "../qnc-project-make" }
+qnc-project-delete = { path = "../qnc-project-delete" }
+qnc-project-templates = { path = "../qnc-project-templates" }
+qnc-camera-profile = { path = "../qnc-camera-profile" }
+qnc-card-select = { path = "../qnc-card-select" }
+qnc-card-ingest = { path = "../qnc-card-ingest" }
+qnc-ingest-run = { path = "../qnc-ingest-run" }

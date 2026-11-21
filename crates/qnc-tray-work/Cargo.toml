@@ -1,0 +1,25 @@
+[package]
+name = "qnc-tray-work"
+version.workspace = true
+edition.workspace = true
+description = "The tray's work: makes the project of a ready card and opens its ingest window, keeps every program started as one job, answers the menu and the stop question, and gives the status and the menu."
+
+[dependencies]
+serde_json = { workspace = true }
+qnc-diagnostics = { path = "../qnc-diagnostics" }
+qnc-text = { path = "../qnc-text" }
+qnc-ids = { path = "../qnc-ids" }
+qnc-disks = { path = "../qnc-disks" }
+qnc-card = { path = "../qnc-card" }
+qnc-card-select = { path = "../qnc-card-select" }
+qnc-card-ingest = { path = "../qnc-card-ingest" }
+qnc-camera-profile = { path = "../qnc-camera-profile" }
+qnc-mode = { path = "../qnc-mode" }
+qnc-project-make = { path = "../qnc-project-make" }
+qnc-project-delete = { path = "../qnc-project-delete" }
+qnc-project-templates = { path = "../qnc-project-templates" }
+qnc-registry = { path = "../qnc-registry" }
+qnc-db = { path = "../qnc-db" }
+qnc-launch = { path = "../qnc-launch" }
+qnc-process-job = { path = "../qnc-process-job" }
+qnc-autoplay-guard = { path = "../qnc-autoplay-guard" }

@@ -2825,16 +2825,6 @@ name = "qnc-ids"
 version = "0.1.0"
 
 [[package]]
-name = "qnc-ingest-panel"
-version = "0.1.0"
-dependencies = [
- "egui",
- "qnc-text",
- "qnc-theme",
- "qnc-ui-kit",
-]
-
-[[package]]
 name = "qnc-ingest-run"
 version = "0.1.0"
 dependencies = [
@@ -2858,6 +2848,53 @@ dependencies = [
  "qnc-uri",
  "serde",
  "serde_json",
+]
+
+[[package]]
+name = "qnc-ingest-window"
+version = "0.1.0"
+dependencies = [
+ "qnc-camera-profile",
+ "qnc-card-ingest",
+ "qnc-card-select",
+ "qnc-db",
+ "qnc-diagnostics",
+ "qnc-ingest-run",
+ "qnc-launch",
+ "qnc-mode",
+ "qnc-project-delete",
+ "qnc-project-make",
+ "qnc-project-templates",
+ "qnc-registry",
+ "qnc-text",
+ "serde_json",
+]
+
+[[package]]
+name = "qnc-ingest-window-app"
+version = "0.1.0"
+dependencies = [
+ "qnc-ingest-window-form",
+]
+
+[[package]]
+name = "qnc-ingest-window-form"
+version = "0.1.0"
+dependencies = [
+ "eframe",
+ "qnc-confirm",
+ "qnc-desktop-theme",
+ "qnc-diagnostics",
+ "qnc-form-look",
+ "qnc-ingest-window",
+ "qnc-settings",
+ "qnc-text",
+ "qnc-theme",
+ "qnc-title-bar",
+ "qnc-ui-kit",
+ "qnc-window-front",
+ "qnc-window-host",
+ "qnc-work-bars",
 ]
 
 [[package]]
@@ -3503,14 +3540,15 @@ dependencies = [
 name = "qnc-tray-form"
 version = "0.1.0"
 dependencies = [
+ "eframe",
  "qnc-app-mark",
  "qnc-diagnostics",
- "qnc-ingest-panel",
  "qnc-settings",
  "qnc-text",
  "qnc-theme",
  "qnc-tray-icon",
  "qnc-tray-run",
+ "qnc-ui-kit",
  "qnc-window-host",
 ]
 
@@ -3526,19 +3564,34 @@ dependencies = [
 name = "qnc-tray-run"
 version = "0.1.0"
 dependencies = [
- "qnc-camera-profile",
- "qnc-card-ingest",
  "qnc-card-watch",
+ "qnc-disks",
+ "qnc-registry",
+ "qnc-text",
+ "qnc-tray-work",
+ "serde_json",
+]
+
+[[package]]
+name = "qnc-tray-work"
+version = "0.1.0"
+dependencies = [
+ "qnc-autoplay-guard",
+ "qnc-camera-profile",
+ "qnc-card",
+ "qnc-card-ingest",
+ "qnc-card-select",
  "qnc-db",
  "qnc-diagnostics",
  "qnc-disks",
  "qnc-ids",
  "qnc-launch",
  "qnc-mode",
+ "qnc-process-job",
+ "qnc-project-delete",
  "qnc-project-make",
  "qnc-project-templates",
  "qnc-registry",
- "qnc-settings",
  "qnc-text",
  "serde_json",
 ]
@@ -3580,6 +3633,15 @@ dependencies = [
  "qnc-theme",
  "qnc-title-bar",
  "qnc-ui-kit",
+]
+
+[[package]]
+name = "qnc-work-bars"
+version = "0.1.0"
+dependencies = [
+ "eframe",
+ "qnc-form-look",
+ "qnc-text",
 ]
 
 [[package]]
