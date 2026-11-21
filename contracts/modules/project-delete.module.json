@@ -1,5 +1,5 @@
 {
   "kind": "block",
-  "responsibility": "Deletes one project for good: only its registered folder holding project.db, protection lifted first, then its registry row; the next newest project becomes active.",
+  "responsibility": "Deletes one project for good as the old QNC did: only its registered folder named by its id, protection lifted, database files first, then its registry rows.",
   "database": "none"
 }

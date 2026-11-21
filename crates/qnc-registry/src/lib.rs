@@ -33,10 +33,6 @@ CREATE TABLE IF NOT EXISTS projects (
 );
 CREATE TABLE IF NOT EXISTS app_settings (key TEXT PRIMARY KEY, value TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS project_search (project_id TEXT PRIMARY KEY, search_text TEXT NOT NULL);
-CREATE TABLE IF NOT EXISTS project_origin (
-    project_id TEXT PRIMARY KEY, project_name TEXT NOT NULL, created_at TEXT NOT NULL,
-    identity_json TEXT NOT NULL CHECK(json_valid(identity_json))
-);
 CREATE TABLE IF NOT EXISTS users (
     user_id TEXT PRIMARY KEY, display_name TEXT NOT NULL, role TEXT NOT NULL DEFAULT 'editor',
     active INTEGER NOT NULL DEFAULT 1, created_at TEXT, updated_at TEXT
@@ -55,16 +51,7 @@ CREATE VIEW IF NOT EXISTS public_projects AS
     SELECT project_id, name, project_uri, created_at, updated_at, last_opened_at FROM projects;
 CREATE VIEW IF NOT EXISTS public_app_settings AS SELECT key, value FROM app_settings;
 CREATE VIEW IF NOT EXISTS public_module_state AS SELECT module_id, enabled, updated_at FROM module_state;
-CREATE VIEW IF NOT EXISTS public_project_origin AS
-    SELECT project_id, project_name, created_at,
-        json_extract(identity_json, '$.contract_version') AS identity_contract_version,
-        json_extract(identity_json, '$.workstation_name') AS workstation_name,
-        json_extract(identity_json, '$.user_name') AS user_name,
-        json_extract(identity_json, '$.hardware_serial.value') AS serial_number,
-        json_extract(identity_json, '$.hardware_serial.kind') AS serial_kind,
-        json_extract(identity_json, '$.hardware_serial.source') AS serial_source,
-        identity_json
-    FROM project_origin;";
+";
 
 pub fn file(root: &Path) -> PathBuf {
     qnc_settings::data_dir(root).join(FILE)
@@ -133,13 +120,14 @@ impl TableModule for RegistryTables {
     }
 
     fn attach(&mut self, conn: &Connection) -> Result<(), String> {
+        qnc_project_origin::ensure(conn)?;
         conn.execute_batch(SCHEMA).map_err(fail)
     }
 
     /// `{"register": {project_id, name, project_uri, local_path, at, identity?, projects_root?}}`
     /// (the project, its folder, its origin once, and makes it active; `projects_root` is kept as
     /// this computer's), `{"activate": project_id}` (opened now), `{"deactivate": true}`,
-    /// `{"delete": project_id}` (its rows go; the newest remaining project becomes active when
+    /// `{"delete": project_id}` (its rows go; the first of the rest (by id) becomes active when
     /// the deleted one was), `{"search": {project_id, text}}`, `{"local": {key, value|null}}`.
     fn execute(&mut self, conn: &Connection, request: Value) -> Result<Value, String> {
         if let Some(r) = request.get("register") {
@@ -152,7 +140,7 @@ impl TableModule for RegistryTables {
             let at = r["at"].as_str().map(str::to_string).unwrap_or_else(now);
             conn.execute("INSERT INTO projects(project_id,name,project_uri,created_at,updated_at,last_opened_at) VALUES(?1,?2,?3,?4,?4,?4)", params![id, name, uri, at]).map_err(fail)?;
             if let Some(identity) = r.get("identity").filter(|i| !i.is_null()) {
-                conn.execute("INSERT INTO project_origin(project_id,project_name,created_at,identity_json) VALUES(?1,?2,?3,?4)", params![id, name, at, identity.to_string()]).map_err(fail)?;
+                qnc_project_origin::insert(conn, id, name, &at, identity)?;
             }
             conn.execute("INSERT INTO project_storage_locations(project_id,local_path,created_at,updated_at) VALUES(?1,?2,?3,?3)", params![id, path, at]).map_err(fail)?;
             if let Some(projects_root) = r["projects_root"].as_str() {
@@ -169,12 +157,13 @@ impl TableModule for RegistryTables {
         }
         if let Some(id) = request.get("delete").and_then(Value::as_str) {
             known(conn, id)?;
-            for table in ["project_origin", "project_storage_locations", "project_search", "projects"] {
+            qnc_project_origin::remove(conn, id)?;
+            for table in ["project_storage_locations", "project_search", "projects"] {
                 conn.execute(&format!("DELETE FROM {table} WHERE project_id=?1"), [id]).map_err(fail)?;
             }
             let active: Option<String> = conn.query_row("SELECT value FROM app_settings WHERE key=?1", [ACTIVE_KEY], |r| r.get(0)).optional().map_err(fail)?;
             if active.as_deref() == Some(id) {
-                let next: Option<String> = conn.query_row("SELECT project_id FROM projects ORDER BY created_at DESC, project_id LIMIT 1", [], |r| r.get(0)).optional().map_err(fail)?;
+                let next: Option<String> = conn.query_row("SELECT project_id FROM projects ORDER BY project_id LIMIT 1", [], |r| r.get(0)).optional().map_err(fail)?;
                 set_app_setting(conn, ACTIVE_KEY, next.as_deref().unwrap_or(""))?;
             }
             return Ok(json!({ "project_id": id }));

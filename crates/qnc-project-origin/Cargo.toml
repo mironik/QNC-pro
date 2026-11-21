@@ -1,0 +1,9 @@
+[package]
+name = "qnc-project-origin"
+version.workspace = true
+edition.workspace = true
+description = "The origin of a project (the workstation and user that made it), captured once at creation into the registry and the project database; the one owner of that table."
+
+[dependencies]
+rusqlite = { workspace = true }
+serde_json = { workspace = true }

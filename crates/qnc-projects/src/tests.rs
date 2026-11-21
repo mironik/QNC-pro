@@ -15,13 +15,7 @@ fn wait(projects: &mut Projects) {
 fn a_project_is_made_from_the_draft_opened_and_deleted_after_the_question() {
     let root = std::env::temp_dir().join(format!("qnc-projects-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&root);
-    let qnc = Path::new(env!("CARGO_MANIFEST_DIR")).join("../..");
-    std::fs::create_dir_all(root.join("contracts/project/templates")).unwrap();
-    for file in ["breaking_news.json", "field_sony.json"] {
-        std::fs::copy(qnc.join("contracts/project/templates").join(file), root.join("contracts/project/templates").join(file)).unwrap();
-    }
-    assert!(Projects::open(&root).is_err(), "without the projects folder setting nothing opens");
-    qnc_settings::set_setting(&root, qnc_project_make::PROJECTS_ROOT_SETTING, &serde_json::json!({ "folder": root.join("projects") })).unwrap();
+    qnc_registry::writer(&root).unwrap().execute(qnc_registry::MODULE, serde_json::json!({ "local": { "key": qnc_registry::PROJECTS_ROOT_KEY, "value": root.join("projects").to_string_lossy() } })).unwrap();
     let mut projects = Projects::open(&root).unwrap();
     assert!(!projects.templates().is_empty(), "the system templates are seeded");
     assert!(projects.lines().is_empty());

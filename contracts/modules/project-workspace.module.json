@@ -1,0 +1,7 @@
+{
+  "kind": "block",
+  "responsibility": "Owns the workspace tables of a project database (origin, template snapshot, workflow steps and state, members, revisions, key-value tables) and reads the sequence of its applications.",
+  "database": "owner",
+  "owns": ["project_members", "project_template_snapshot", "project_workflow_steps", "project_workflow_state", "project_data_revisions", "project_settings_kv", "project_snapshot_kv", "project_workflow_step_kv"],
+  "writes": ["project_members", "project_template_snapshot", "project_workflow_steps", "project_workflow_state", "project_data_revisions", "project_settings_kv", "project_snapshot_kv", "project_workflow_step_kv"]
+}

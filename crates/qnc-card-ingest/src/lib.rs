@@ -133,11 +133,7 @@ fn now_ms() -> u64 {
 
 impl Job {
     fn run(&self, tell: &Sender<Said>) -> Result<Progress, String> {
-        let at = format!("epoch_{}", now_ms() / 1000);
-        let made = qnc_project_make::make(&self.root, &self.projects_root, &self.name, &self.template, &at)?;
-        if let Err(error) = qnc_folder_lock::lock(&made.folder, &qnc_project_make::CACHE_FOLDERS) {
-            qnc_diagnostics::log(format!("project folder not protected: {error}"));
-        }
+        let made = qnc_project_make::make(&self.root, qnc_project_make::Make { name: self.name.clone(), settings: Some(self.template.clone()), projects_root: Some(self.projects_root.clone()), ..Default::default() })?;
         let project = qnc_ingest_run::Project::open(&made.folder)?;
         let selected = qnc_ingest_run::select_into(&self.card, &project, &self.profiles, now_ms())?;
         let _ = tell.send(Said::ProjectMade { project_id: made.project_id.clone(), folder: made.folder.clone(), clips: selected.clips.len() });

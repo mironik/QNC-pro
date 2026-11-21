@@ -1,0 +1,7 @@
+{
+  "kind": "block",
+  "responsibility": "Owns the project_origin table wherever it is kept (registry and project database): the workstation and user that made a project, captured once at creation and never again.",
+  "database": "owner",
+  "owns": ["project_origin"],
+  "writes": ["project_origin"]
+}

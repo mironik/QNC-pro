@@ -28,7 +28,7 @@ fn a_registered_project_is_the_active_one_and_the_folder_stays_private_to_the_re
     writer.execute(MODULE, json!({ "local": { "key": SELECTED_TEMPLATE_KEY, "value": null } })).unwrap();
     assert_eq!(local_setting(&reader, SELECTED_TEMPLATE_KEY).unwrap(), None);
     writer.execute(MODULE, json!({ "delete": "p-1" })).unwrap();
-    assert_eq!(active(&reader).unwrap().unwrap().project_id, "p-2", "the newest remaining project is active");
+    assert_eq!(active(&reader).unwrap().unwrap().project_id, "p-2", "the first of the rest is active");
     assert!(project(&reader, "p-1").unwrap().is_none());
     let origins: i64 = reader.connection().query_row("SELECT COUNT(*) FROM public_project_origin", [], |r| r.get(0)).unwrap();
     assert_eq!(origins, 0, "the origin and the search go with the project");

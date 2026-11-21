@@ -1,0 +1,13 @@
+[package]
+name = "qnc-project-workspace"
+version.workspace = true
+edition.workspace = true
+description = "The workspace tables of a project database as the old QNC made them: its origin, the snapshot of its template and the workflow of its applications; a table module of the project database."
+
+[dependencies]
+rusqlite = { workspace = true }
+serde_json = { workspace = true }
+qnc-db = { path = "../qnc-db" }
+qnc-text = { path = "../qnc-text" }
+qnc-project-origin = { path = "../qnc-project-origin" }
+qnc-project-defaults = { path = "../qnc-project-defaults" }

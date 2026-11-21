@@ -2,10 +2,11 @@
 name = "qnc-project-delete"
 version.workspace = true
 edition.workspace = true
-description = "Deletes one project for good: checks the folder is a project folder, lifts its protection, removes it and takes it out of the registry; the next newest project becomes active."
+description = "Deletes one project for good as the old QNC did: only its registered folder named by its id, protection and read-only marks lifted, database files first, then its registry rows."
 
 [dependencies]
 serde_json = { workspace = true }
+qnc-ids = { path = "../qnc-ids" }
 qnc-text = { path = "../qnc-text" }
 qnc-registry = { path = "../qnc-registry" }
 qnc-folder-lock = { path = "../qnc-folder-lock" }

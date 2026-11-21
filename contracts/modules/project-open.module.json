@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Opens a registered project as the old QNC did: checks its workspace sequence and project.db, completes its saved settings, and marks it opened and active in the registry.",
+  "database": "none"
+}

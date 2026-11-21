@@ -12,3 +12,4 @@ qnc-db = { path = "../qnc-db" }
 qnc-settings = { path = "../qnc-settings" }
 qnc-uri = { path = "../qnc-uri" }
 qnc-text = { path = "../qnc-text" }
+qnc-project-origin = { path = "../qnc-project-origin" }

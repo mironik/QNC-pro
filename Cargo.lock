@@ -2974,6 +2974,7 @@ name = "qnc-project-defaults"
 version = "0.1.0"
 dependencies = [
  "qnc-text",
+ "qnc-uri",
  "serde_json",
 ]
 
@@ -2982,6 +2983,7 @@ name = "qnc-project-delete"
 version = "0.1.0"
 dependencies = [
  "qnc-folder-lock",
+ "qnc-ids",
  "qnc-project-make",
  "qnc-registry",
  "qnc-text",
@@ -3033,13 +3035,40 @@ version = "0.1.0"
 dependencies = [
  "qnc-catalog",
  "qnc-db",
+ "qnc-diagnostics",
+ "qnc-folder-lock",
  "qnc-ids",
  "qnc-project-defaults",
  "qnc-project-settings",
+ "qnc-project-templates",
+ "qnc-project-workspace",
  "qnc-registry",
- "qnc-settings",
  "qnc-text",
  "qnc-uri",
+ "qnc-workstation-identity",
+ "serde_json",
+]
+
+[[package]]
+name = "qnc-project-open"
+version = "0.1.0"
+dependencies = [
+ "qnc-db",
+ "qnc-folder-lock",
+ "qnc-project-defaults",
+ "qnc-project-make",
+ "qnc-project-settings",
+ "qnc-project-workspace",
+ "qnc-registry",
+ "qnc-text",
+ "serde_json",
+]
+
+[[package]]
+name = "qnc-project-origin"
+version = "0.1.0"
+dependencies = [
+ "rusqlite",
  "serde_json",
 ]
 
@@ -3081,6 +3110,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "qnc-project-workspace"
+version = "0.1.0"
+dependencies = [
+ "qnc-db",
+ "qnc-project-defaults",
+ "qnc-project-origin",
+ "qnc-text",
+ "rusqlite",
+ "serde_json",
+]
+
+[[package]]
 name = "qnc-projects"
 version = "0.1.0"
 dependencies = [
@@ -3116,6 +3157,7 @@ name = "qnc-registry"
 version = "0.1.0"
 dependencies = [
  "qnc-db",
+ "qnc-project-origin",
  "qnc-settings",
  "qnc-text",
  "qnc-uri",

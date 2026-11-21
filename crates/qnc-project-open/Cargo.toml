@@ -1,0 +1,18 @@
+[package]
+name = "qnc-project-open"
+version.workspace = true
+edition.workspace = true
+description = "Opening a project as the old QNC did: registered, with a valid sequence of applications and its project.db there, its saved settings completed, then marked opened and active in the registry."
+
+[dependencies]
+serde_json = { workspace = true }
+qnc-db = { path = "../qnc-db" }
+qnc-registry = { path = "../qnc-registry" }
+qnc-project-settings = { path = "../qnc-project-settings" }
+qnc-project-workspace = { path = "../qnc-project-workspace" }
+qnc-project-defaults = { path = "../qnc-project-defaults" }
+qnc-text = { path = "../qnc-text" }
+
+[dev-dependencies]
+qnc-project-make = { path = "../qnc-project-make" }
+qnc-folder-lock = { path = "../qnc-folder-lock" }

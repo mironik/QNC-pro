@@ -1,5 +1,5 @@
 {
   "kind": "block",
-  "responsibility": "Makes a new project from a settings template: its folders, its project.db with the settings and catalog tables, its row in the registry, and makes it active.",
+  "responsibility": "Makes a new project as the old QNC did: completed settings with the chosen applications, origin, folders, project.db with settings, catalog and workspace, protection, then the registry row.",
   "database": "none"
 }

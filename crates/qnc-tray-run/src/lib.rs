@@ -139,11 +139,7 @@ mod tests {
         let root = std::env::temp_dir().join(format!("qnc-tray-run-{}", std::process::id()));
         let _ = std::fs::remove_dir_all(&root);
         std::fs::create_dir_all(root.join("contracts").join("modules")).unwrap();
-        assert!(Run::start(&root).is_err());
-        qnc_settings::set_setting(&root, qnc_project_make::PROJECTS_ROOT_SETTING, &serde_json::json!({ "folder": root.join("projects") })).unwrap();
-        let qnc = Path::new(env!("CARGO_MANIFEST_DIR")).join("../..");
-        std::fs::create_dir_all(root.join("contracts/project/templates")).unwrap();
-        std::fs::copy(qnc.join("contracts/project/templates/news_package.json"), root.join("contracts/project/templates/news_package.json")).unwrap();
+        qnc_registry::writer(&root).unwrap().execute(qnc_registry::MODULE, serde_json::json!({ "local": { "key": qnc_registry::PROJECTS_ROOT_KEY, "value": root.join("projects").to_string_lossy() } })).unwrap();
         let mut run = Run::start(&root).unwrap();
         std::thread::sleep(TICK);
         let told = run.poll();

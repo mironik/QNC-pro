@@ -4,7 +4,11 @@
 //! and loudness defaults, the export defaults and the AI block. A value a template gives is
 //! never changed. Nothing here reads or writes a file or a database.
 
+mod selection;
+
 use serde_json::{json, Map, Value};
+
+pub use selection::{apply_application_selection, project_only, validate_selection, CATALOG_URI};
 
 /// The product folders of a project, relative to its folder.
 pub const PRODUCT_FOLDERS: [(&str, &str); 9] = [
@@ -58,6 +62,9 @@ pub fn complete(settings: &mut Value) -> Result<(), String> {
     export.entry("start_timecode".to_string()).or_insert_with(|| json!(START_TIMECODE));
     export.entry("video_bitrate_mbps".to_string()).or_insert_with(|| json!(VIDEO_BITRATE_MBPS));
     let ai = object(root, "ai")?;
+    for old in ["enabled", "coverage_suggestions", "transcription"] {
+        ai.remove(old);
+    }
     ai.entry("template".to_string()).or_insert_with(|| json!("none"));
     ai.entry("features".to_string()).or_insert_with(|| json!([]));
     ai.entry("language".to_string()).or_insert_with(|| json!(SPEECH_LANGUAGE));

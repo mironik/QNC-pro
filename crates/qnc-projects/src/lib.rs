@@ -222,17 +222,9 @@ impl Projects {
         };
         let (root, projects_root) = (self.root.clone(), self.projects_root.clone());
         self.draft.name.clear();
-        self.start(move || {
-            let at = format!("epoch_{}", unix_secs());
-            match qnc_project_make::make(&root, &projects_root, &name, &template.settings, &at) {
-                Ok(made) => {
-                    if let Err(error) = qnc_folder_lock::lock(&made.folder, &qnc_project_make::CACHE_FOLDERS) {
-                        qnc_diagnostics::log(format!("project folder not protected: {error}"));
-                    }
-                    Ended::Made(name)
-                }
-                Err(error) => Ended::Failed(error),
-            }
+        self.start(move || match qnc_project_make::make(&root, qnc_project_make::Make { name: name.clone(), template_id: template.template_id, projects_root: Some(projects_root), ..Default::default() }) {
+            Ok(_) => Ended::Made(name),
+            Err(error) => Ended::Failed(error),
         });
     }
 }

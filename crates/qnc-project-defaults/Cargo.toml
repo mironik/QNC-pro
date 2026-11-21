@@ -6,4 +6,5 @@ description = "The one rule of what a project's settings must have: completes a 
 
 [dependencies]
 serde_json = { workspace = true }
+qnc-uri = { path = "../qnc-uri" }
 qnc-text = { path = "../qnc-text" }
