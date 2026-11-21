@@ -260,3 +260,19 @@ pub fn summaries(reader: &Reader) -> Result<Vec<ClipSummary>, String> {
 
 #[cfg(test)]
 mod tests;
+
+/// What the catalog has done, for the bars: the clips, how many are imported, failed, and how
+/// many have a poster. The functions other owners make are `None` until they count.
+pub fn counts(reader: &Reader) -> Result<qnc_progress::Counts, String> {
+    let mut counts = qnc_progress::Counts::default();
+    for clip in summaries(reader)? {
+        counts.clips += 1;
+        match clip.import_status {
+            ImportStatus::Imported => counts.imported += 1,
+            ImportStatus::Failed => counts.failed += 1,
+            _ => {}
+        }
+        counts.posters += usize::from(clip.thumbnail_uri.is_some());
+    }
+    Ok(counts)
+}

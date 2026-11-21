@@ -1,7 +1,7 @@
 # Audit lanca traya: QNC-AI i QNC-shared (2026-11-21)
 
-Što QNC-AI tray stvarno radi i pokreće, kocka po kocku, iz koda (ne iz pamćenja). Mjera:
-`cargo metadata` zatvarač ovisnosti triju programa `qnc-ai-tray`, `qnc-ai-card-ingest` i
+Å to QNC-AI tray stvarno radi i pokreÄe, kocka po kocku, iz koda (ne iz pamÄenja). Mjera:
+`cargo metadata` zatvaraÄ ovisnosti triju programa `qnc-ai-tray`, `qnc-ai-card-ingest` i
 `qnc-ingest-worker` (samo runtime ovisnosti, bez dev).
 
 ## 1. Brojke
@@ -13,21 +13,21 @@
 | iz QNC-shared | 176 | 101 974 |
 | s GUI bibliotekom (egui) u lancu bez prozora | 36 | ~12 000 |
 
-Lanac bez ijednog prozora (radnik) povlači player (`qnc-player-*`, `qnc-source-preview` 1507,
-`qnc-source-timeline` 1034, `qnc-timeline` 3124 s egui-jem), priču (`qnc-program-db` 7403,
-`qnc-program-playlist` 2596, `qnc-program-input`), spremište sadržaja (`qnc-content-store` 3206)
+Lanac bez ijednog prozora (radnik) povlaÄi player (`qnc-player-*`, `qnc-source-preview` 1507,
+`qnc-source-timeline` 1034, `qnc-timeline` 3124 s egui-jem), priÄu (`qnc-program-db` 7403,
+`qnc-program-playlist` 2596, `qnc-program-input`), spremiÅ¡te sadrÅ¾aja (`qnc-content-store` 3206)
 i cijeli Ingest bez forme (`qnc-ingest-application` 2659, `qnc-ingest-select` 2472,
 `qnc-ingest-import-worker` 1879). Uzrok: prozor kartice vozi `qnc-ingest-application` kao da je
-korisnik (Select, Select all, Uvezi), a radnik prijepis čita kroz ulaz playera
+korisnik (Select, Select all, Uvezi), a radnik prijepis Äita kroz ulaz playera
 (`qnc-still-locator` -> `qnc-player-input`).
 
-## 2. Što tray pokreće (procesi)
+## 2. Å to tray pokreÄe (procesi)
 
 1. `qnc-ai-tray` (504 + `qnc-tray` 980): ikona, izbornik, upozorenja, IPC, jedan primjerak,
    dijalozi. Gleda diskove svake 2 s, kartica se "slegne" 5 s, katalog kamera svakih 60 s.
 2. Po kartici `qnc-ai-card-ingest` (688 + `qnc-card-ingest` 430): Select kartice, Select all,
    Uvezi, poznata kartica (veza na raniju bazu), eject, pitanje "Pokreni QNC".
-3. `qnc-ingest-worker` (1338; 37 qnc ovisnosti, najviše u QNC-AI-ju): plan templatea
+3. `qnc-ingest-worker` (1338; 37 qnc ovisnosti, najviÅ¡e u QNC-AI-ju): plan templatea
    `artifacts.order` (`qnc-ingest-plan` 170), nit po koraku s krugom od 1 s, dirigent
    (`qnc-ingest-conductor` 238) dijeli procesor, pauza dok player svira
    (`qnc-playback-activity`), najam u bazi.
@@ -36,12 +36,12 @@ korisnik (Select, Select all, Uvezi), a radnik prijepis čita kroz ulaz playera
 
 ## 3. Koraci radnika i njihove kocke
 
-| korak | što radi | kocke (redaka) | QNC-pro ima |
+| korak | Å¡to radi | kocke (redaka) | QNC-pro ima |
 |---|---|---|---|
-| records | probe zapisa kojima nešto fali | record-completion 584, record-probe 237, media-probe 722, ffprobe-metadata 816, media-metadata-compose 488, media-record-db 1807, media-records 635 | **da**: probe u istom prolazu s kopijom (`qnc-ingest-run`, `qnc-probe`, `qnc-ffprobe-read`, `qnc-record-compose`) |
+| records | probe zapisa kojima neÅ¡to fali | record-completion 584, record-probe 237, media-probe 722, ffprobe-metadata 816, media-metadata-compose 488, media-record-db 1807, media-records 635 | **da**: probe u istom prolazu s kopijom (`qnc-ingest-run`, `qnc-probe`, `qnc-ffprobe-read`, `qnc-record-compose`) |
 | posters | poster s kartice ili prva slika | missing-posters 377, poster-create 117, media-thumbnail 333 | poster s kartice da; prva slika ne |
 | poster_look | SigLIP nad posterima | shot-content-run 568, shot-content 166, shot-content-db 384, shot-labels 207, shot-vocabulary 127, ai-catalog 588, plugin-process 532 | ne |
-| waves | val svakog klipa (grubi pa puni), glasnoća | wave-worker 1023, wave 972, mxf-sound 420, mp4-sound 550, mxf-index 422, read-pace 160, loudness 313, background-jobs 468, artifact-db 742, timeline-artifacts 190, content-artifacts 643 | `qnc-wave-read` (čitanje), ne pisanje |
+| waves | val svakog klipa (grubi pa puni), glasnoÄa | wave-worker 1023, wave 972, mxf-sound 420, mp4-sound 550, mxf-index 422, read-pace 160, loudness 313, background-jobs 468, artifact-db 742, timeline-artifacts 190, content-artifacts 643 | `qnc-wave-read` (Äitanje), ne pisanje |
 | filmstrips | 13 slika klipa | filmstrip-worker 1337, filmstrip 595, decoder-catalog 1008, ffmpeg-decode 1393, media-decode 1657 | ne |
 | import | kopija ili link po postavkama | ingest-import-worker 1879, import-fit 136, copy u `qnc-media-stream` 1283 | **da**: `qnc-ingest-run` + `qnc-copy` |
 | transcripts | prijepis CH1 (Parakeet) u komadima | transcribe-run 766, transcribe-queue 335, transcribe-jobs 681, transcript-db 1218, sound-range 147, still-locator 182 (+ player-input 1678) | ne |
@@ -49,47 +49,77 @@ korisnik (Select, Select all, Uvezi), a radnik prijepis čita kroz ulaz playera
 | content | SigLIP po kadru | kao poster_look | ne |
 | captions | Florence opis po kadru | shot-caption-run 137, shot-caption 94, shot-captions 143 | ne |
 
-Prikaz: `qnc-work-progress` 301 (čita bazu svake sekunde, traka po koraku, X u
+Prikaz: `qnc-work-progress` 301 (Äita bazu svake sekunde, traka po koraku, X u
 `qnc-stopped-work` 57), `qnc-work-progress-view` 128, `qnc-work-info` 121.
 
-## 4. Što je u QNC-AI-ju krivo (iz koda, uz audit 04)
+## 4. Å to je u QNC-AI-ju krivo (iz koda, uz audit 04)
 
-- Kartica se čita **četiri puta** po klipu: kopija (`qnc-media-stream`), probe (`ffprobe` nad
-  kopijom), val (`qnc-mxf-sound` prolaz po zvučnim elementima), filmstrip (ffmpeg po indeksu
-  MXF-a); SigLIP i Florence još jednom čitaju postere.
+- Kartica se Äita **Äetiri puta** po klipu: kopija (`qnc-media-stream`), probe (`ffprobe` nad
+  kopijom), val (`qnc-mxf-sound` prolaz po zvuÄnim elementima), filmstrip (ffmpeg po indeksu
+  MXF-a); SigLIP i Florence joÅ¡ jednom Äitaju postere.
 - Koraci rade u krugovima po 1 s s vlastitim nitima, dirigent dijeli mjesta; kraj se prepoznaje
-  "dvaput ništa za raditi". Radnik je zato spor na početku i na kraju i teško ga je pratiti.
+  "dvaput niÅ¡ta za raditi". Radnik je zato spor na poÄetku i na kraju i teÅ¡ko ga je pratiti.
 - "Gotovo/kopirano" formula na 4 mjesta, napredak se broji i u bazi i u memoriji
-  (`qnc-done-count`) pa se usklađuje svakih 30 s.
+  (`qnc-done-count`) pa se usklaÄuje svakih 30 s.
 - Pravila su u aplikacijama i radniku (`main.rs`, `run.rs` 459 redaka s `if` nad stanjem).
-- Radnik ovisi o Ingest aplikaciji, playeru i priči iako ih ne treba.
+- Radnik ovisi o Ingest aplikaciji, playeru i priÄi iako ih ne treba.
 
-## 5. Odluka za QNC-pro (brže i jednostavnije, ista procedura)
+## 5. Što QNC-AI čeka, a što ne (iz koda, ne iz pamćenja)
 
-Procedura ostaje QNC-AI-jeva (isti koraci, isti redoslijed po načinu rada, iste trake s X-om,
-isti programi AI-ja), a izvedba:
+- **Kopija**: klip po klip, `qnc-ingest-import-worker`; klip je u bazi čim je kopiran (status
+  `imported`), probe nad kopijom.
+- **Breaking news** (`apps/qnc-ai-card-ingest/src/main.rs:219-230`): AI Media Assist se otvara
+  tek kad je **cijela kartica kopirana** (`imported + failed >= clips`) **i kartica izbačena**
+  (ili eject nije moguć jer projekt još čita karticu); otvara se jednom, projekt postaje aktivan.
+  Pozadina ide dalje.
+- **Eject kartice** (`eject.rs`): nakon što je uvoz kopirao sve klipove bez ijedne greške i
+  projekt ne drži ništa na kartici (mediji Original ili Optimized + original); prozor zatim
+  10 s pokazuje obavijest i zatvara se. Kartica s linkanim medijima ostaje unutra.
+- **Redoslijed pozadine u Breaking news** (`run.rs` `breaking_held`): valovi prvi, svi ostali
+  koraci čekaju dok valovi imaju posla; AI kadrovi čekaju valove i kopiju; filmstrip i SigLIP
+  čekaju valove, kopiju i kadrove (kadrovi rade filmstrip u istom prolazu); opisi na kraju;
+  **prijepis se ne drži** (izjave se čuju iz zvuka valova). Dok klip svira, sva pozadina stoji
+  (`playback_level`).
+- **Story i Net** (`run.rs` `ai_before_busy`): ništa se ne otvara samo (`Mode::opens` = None;
+  gumb "Otvori aplikaciju" u trayu postoji samo za Breaking news); prijepis drži sva svoja mjesta
+  od prve sekunde, valovi i filmstrip uravnoteženi dirigentom, AI tek kad su kopija, prijepis,
+  valovi i filmstrip gotovi. Korisnik sam otvara Ingest; AI Media Assist se otvara na svom
+  prijepisu.
+- **Gotovo** (`qnc-work-progress::complete`): svaka traka puna ili obustavljena X-om.
+  `ready_for_qnc` (sve kopirano i CH1 preslušan) i pitanje "Pokreni QNC sad ili čekaj"
+  (`start_ask.rs`) postoje u kocki, ali ih **nijedna aplikacija ne zove** (mrtvo).
+- **X na traci** zapisuje se u bazu projekta (`stopped_work`); radnik tu funkciju preskače, a
+  pokrenutu zaustavlja; ostaje obustavljeno za taj projekt.
+- **Poznata kartica**: kartica čiji su originali već u ranijoj bazi ne uvozi se ponovno
+  (`known_card`), nova baza se veže na raniju; uvoze se samo novi klipovi.
 
-1. **Jedan prolaz po klipu**: dok `qnc-copy` kopira klip s kartice, isti bajtovi daju checksum,
-   zvučne elemente za val i glasnoću te 13 ključnih slika za
-   filmstrip (`qnc-mxf-sound::read_sound_and_pictures` već to zna za MXF; MP4 kroz
-   `qnc-mp4-sound`). Probe ide nad kopijom kao i sad. Kartica se čita jednom. Poster se
-   kopira s kartice; samo kad ga kartica nema, nastaje iz prve ključne slike istog prolaza.
-2. **Lanac po klipu, ne po koraku**: klip prolazi kopija -> probe -> val -> filmstrip ->
-   prijepis -> AI, svaki na svojoj niti s redom; nema krugova od 1 s ni dirigenta. Redoslijed
-   po načinu rada (Breaking news: valovi prvi, pa kadrovi i filmstrip, pa SigLIP, pa prijepis i
-   opisi) je redoslijed redova, zapisan kao plan u templateu (`artifacts.order`) kao do sada.
-3. **Istina je baza**: svaki korak upisuje svoj rezultat kroz vlasnika tablice; prozor i tray
-   čitaju trake iz baze (kao `qnc-work-progress`), X je zapis u bazi (`stopped_work`).
+## 6. Odluka za QNC-pro
+
+Procedura i čekanja su QNC-AI-jeva iz odjeljka 5, doslovno: ista stanja, isti trenutak otvaranja
+forme, isti eject, isti redoslijed pozadine po načinu rada, isti X, ista "gotovo" formula
+(`qnc-progress` je već u QNC-pro). Mijenja se samo izvedba koja ne mijenja što korisnik čeka:
+
+1. **Kartica se čita jednom.** Dok `qnc-copy` kopira klip, isti bajtovi daju checksum, zvučne
+   elemente za val i glasnoću te ključne slike za filmstrip (`qnc-mxf-sound::read_sound_and_pictures`
+   za MXF, `qnc-mp4-sound` za MP4) na drugim nitima; kopija ne čeka njih. Poster se kopira s
+   kartice, a samo kad ga kartica nema nastaje iz prve ključne slike. Probe nad kopijom kao i sad.
+   Tko ne stigne uz kopiju, nastavlja iz kopije na disku projekta, nikad s kartice. Valovi su
+   zato gotovi s kopijom, što je i QNC-AI-jev redoslijed u Breaking news (valovi prvi).
+2. **Redoslijed po načinu rada je podatak**, ne `if` u radniku: plan templatea (`artifacts.order`)
+   i pravilo načina (Breaking news: valovi > kadrovi > filmstrip + SigLIP > opisi, prijepis uz
+   sve; Story/Net: uravnoteženo, AI na kraju) u ugovoru, radnik ga samo izvodi; bez dirigenta i
+   krugova od 1 s (red po koraku, nit po koraku).
+3. **Istina je baza**: svaki korak upisuje svoj rezultat kroz vlasnika tablice; prozor, tray i
+   forme čitaju trake iz baze; X je zapis u bazi.
 4. Radnik je zaseban program po projektu (najam u bazi), bez ovisnosti o Ingest aplikaciji,
    playeru i priči.
 
-Redoslijed prijenosa (svaki korak: kopija kocke iz QNC-shared/QNC-AI, rastavljena po
-prijemnom popisu, testovi, conformance, commit):
+Redoslijed prijenosa (svaki korak: kopija kocke iz QNC-shared/QNC-AI, rastavljena po prijemnom
+popisu, testovi, conformance, commit):
 
-1. Plan koraka, X u bazi, trake iz baze, radnik kao program s korakom uvoza (kopija + probe +
-   poster) i prozor spojen na trake.
+1. Plan koraka, X u bazi, trake iz baze, prozor spojen na trake; kopija + probe + poster.
 2. Val i glasnoća iz prolaza kopije; artefakti u bazi (`qnc-artifact-db`).
 3. Filmstrip iz ključnih slika istog prolaza.
 4. Prijepis (Parakeet program, red u bazi).
-5. AI kadrovi, SigLIP, Florence (AI katalog, dodaci, paket).
-6. Poznata kartica, eject, "Pokreni QNC".
+5. AI kadrovi, SigLIP, Florence (AI katalog, dodaci, paket); pravilo načina rada.
+6. Poznata kartica, eject i zatvaranje prozora, otvaranje forme po QNC-AI-ju.

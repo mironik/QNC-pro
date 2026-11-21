@@ -52,6 +52,7 @@ pub fn complete(settings: &mut Value) -> Result<(), String> {
     for field in ["filmstrip", "wave"] {
         artifacts.entry(field.to_string()).or_insert_with(|| json!("auto"));
     }
+    artifacts.entry("order".to_string()).or_insert_with(|| serde_json::from_str(qnc_ingest_plan::DEFAULT).expect("the default order is JSON"));
     let audio = object(root, "audio")?;
     audio.entry("crossfade_frames".to_string()).or_insert_with(|| json!(CROSSFADE_FRAMES));
     audio.entry("reading_words_per_second".to_string()).or_insert_with(|| json!(READING_WORDS_PER_SECOND));
@@ -81,6 +82,7 @@ mod tests {
         complete(&mut settings).unwrap();
         assert_eq!(settings["products"]["thumbnails"], "products/thumbnails");
         assert_eq!(settings["artifacts"]["wave"], "auto");
+        assert!(qnc_ingest_plan::Plan::of_settings(&settings["artifacts"]).is_ok(), "the order of the steps is seeded");
         assert_eq!(settings["audio"]["crossfade_frames"], 6);
         assert_eq!(settings["audio"]["reading_words_per_second"], 2.5);
         assert_eq!(settings["audio"]["loudness"]["a1_lufs"], -23);

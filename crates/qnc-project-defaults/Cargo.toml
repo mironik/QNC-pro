@@ -8,3 +8,4 @@ description = "The one rule of what a project's settings must have: completes a 
 serde_json = { workspace = true }
 qnc-uri = { path = "../qnc-uri" }
 qnc-text = { path = "../qnc-text" }
+qnc-ingest-plan = { path = "../qnc-ingest-plan" }

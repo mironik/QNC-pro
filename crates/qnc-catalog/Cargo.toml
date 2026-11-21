@@ -12,6 +12,7 @@ qnc-db = { path = "../qnc-db" }
 qnc-media-model = { path = "../qnc-media-model" }
 qnc-media-record = { path = "../qnc-media-record" }
 qnc-player-input = { path = "../qnc-player-input" }
+qnc-progress = { path = "../qnc-progress" }
 qnc-uri = { path = "../qnc-uri" }
 
 [dev-dependencies]
