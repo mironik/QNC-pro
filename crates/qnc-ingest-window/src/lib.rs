@@ -194,7 +194,9 @@ impl Session {
     /// The counts of every function from the project's database, once a second; when a bar
     /// first fills, its time is kept.
     fn read_counts(&mut self) {
-        if !self.waves_done.load(std::sync::atomic::Ordering::Relaxed) && self.waves.as_ref().is_none_or(qnc_wave_run::WaveRun::ended) {
+        // The waves are done when their step ended, or the copy ended and every imported clip has one.
+        let waves_over = self.waves.as_ref().is_none_or(qnc_wave_run::WaveRun::ended) || (self.took.is_some() && self.counts.waves.is_some_and(|made| made >= self.counts.imported));
+        if !self.waves_done.load(std::sync::atomic::Ordering::Relaxed) && waves_over {
             self.waves_done.store(true, std::sync::atomic::Ordering::Relaxed);
             if let Some(transcripts) = &mut self.transcripts {
                 transcripts.waves_ended();
