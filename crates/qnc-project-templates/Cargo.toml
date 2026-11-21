@@ -2,9 +2,13 @@
 name = "qnc-project-templates"
 version.workspace = true
 edition.workspace = true
-description = "Project templates as data (one JSON file each under contracts/project/templates): reads them, names the one a tray mode uses, and refuses a file with an error by name."
+description = "The project templates as the old QNC kept them: the system templates seeded from seed/system_seed.json, the user templates made from a base, the one New project starts from; a table module of the registry file."
 
 [dependencies]
+rusqlite = { workspace = true }
 serde = { workspace = true }
 serde_json = { workspace = true }
+qnc-db = { path = "../qnc-db" }
+qnc-ids = { path = "../qnc-ids" }
+qnc-registry = { path = "../qnc-registry" }
 qnc-text = { path = "../qnc-text" }

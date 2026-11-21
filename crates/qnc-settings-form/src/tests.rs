@@ -1,5 +1,4 @@
 use super::*;
-    use super::*;
 
     #[test]
     fn a_typed_number_is_written_and_a_word_is_not() {

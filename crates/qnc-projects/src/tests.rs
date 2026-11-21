@@ -23,9 +23,9 @@ fn a_project_is_made_from_the_draft_opened_and_deleted_after_the_question() {
     assert!(Projects::open(&root).is_err(), "without the projects folder setting nothing opens");
     qnc_settings::set_setting(&root, qnc_project_make::PROJECTS_ROOT_SETTING, &serde_json::json!({ "folder": root.join("projects") })).unwrap();
     let mut projects = Projects::open(&root).unwrap();
-    assert_eq!(projects.templates().len(), 2);
+    assert!(!projects.templates().is_empty(), "the system templates are seeded");
     assert!(projects.lines().is_empty());
-    projects.act(Act::ChooseTemplate("field_sony".into()));
+    projects.act(Act::ChooseTemplate("tpl_ingest_field".into()));
     projects.act(Act::New);
     assert!(projects.busy());
     projects.act(Act::New);

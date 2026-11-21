@@ -11,3 +11,4 @@ serde_json = { workspace = true }
 qnc-db = { path = "../qnc-db" }
 qnc-settings = { path = "../qnc-settings" }
 qnc-uri = { path = "../qnc-uri" }
+qnc-text = { path = "../qnc-text" }

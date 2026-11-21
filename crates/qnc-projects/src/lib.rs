@@ -8,7 +8,7 @@ use std::path::{Path, PathBuf};
 use std::sync::mpsc::{self, Receiver};
 use std::time::{Duration, Instant};
 
-use qnc_project_templates::Template;
+use qnc_project_templates::TemplateRow as Template;
 
 pub const READ_EVERY: Duration = Duration::from_secs(1);
 
@@ -73,11 +73,11 @@ impl Projects {
     /// Opens the projects of the QNC `root`: the templates and the registry are read now.
     pub fn open(root: &Path) -> Result<Projects, String> {
         let projects_root = qnc_project_make::projects_root(root)?;
-        let (templates, refused) = qnc_project_templates::read_templates(&qnc_project_templates::folder(root));
-        for why in refused {
-            qnc_diagnostics::log(format!("project template refused: {why}"));
-        }
-        let draft = Draft { name: String::new(), template_id: templates.first().map(|t| t.template_id.clone()).unwrap_or_default() };
+        let writer = qnc_project_templates::writer(root)?;
+        let reader = qnc_registry::reader(root)?;
+        let templates = qnc_project_templates::list(&reader)?;
+        let draft = Draft { name: String::new(), template_id: qnc_project_templates::selected_id(&reader)? };
+        drop((writer, reader));
         let mut projects = Projects { root: root.to_path_buf(), projects_root, templates, lines: Vec::new(), draft, search: String::new(), picker_open: false, asking_delete: None, status: Some(qnc_text::text("project.ready").to_string()), job: None, last_read: Instant::now(), rev: 0 };
         projects.read()?;
         Ok(projects)
@@ -209,8 +209,8 @@ impl Projects {
     }
 
     fn make(&mut self) {
-        let template = match qnc_project_templates::by_id(&self.templates, &self.draft.template_id) {
-            Ok(template) => template.clone(),
+        let template = match qnc_registry::reader(&self.root).and_then(|r| qnc_project_templates::get(&r, &self.draft.template_id)?.ok_or_else(|| qnc_text::fill("project.store.template_missing", &[("id", &self.draft.template_id)]))) {
+            Ok(template) => template,
             Err(error) => {
                 self.status = Some(error);
                 return;

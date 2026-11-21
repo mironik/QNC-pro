@@ -1,5 +1,7 @@
 {
   "kind": "block",
-  "responsibility": "Reads the project templates (one JSON file each), finds one by id and names the one a tray mode makes its projects from; a file with an error is refused by name.",
-  "database": "none"
+  "responsibility": "Owns the template tables of the registry: the system templates seeded from the seed, the user templates made from a base, the template New project starts from, and the settings of each.",
+  "database": "owner",
+  "owns": ["project_templates", "project_template_kv", "project_template_sources", "source_templates", "source_template_kv"],
+  "writes": ["project_templates", "project_template_kv", "project_template_sources", "source_templates", "source_template_kv"]
 }

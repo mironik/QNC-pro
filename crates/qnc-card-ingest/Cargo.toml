@@ -17,3 +17,4 @@ qnc-text = { path = "../qnc-text" }
 
 [dev-dependencies]
 qnc-project-templates = { path = "../qnc-project-templates" }
+qnc-registry = { path = "../qnc-registry" }

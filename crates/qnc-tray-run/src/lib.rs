@@ -37,11 +37,7 @@ impl Run {
             qnc_diagnostics::log(format!("camera profile refused: {why}"));
         }
         let mode = qnc_db::Reader::open(&qnc_mode::computer_db(root)).ok().and_then(|r| qnc_mode::read_mode(&r).ok().flatten()).unwrap_or(qnc_mode::Mode::Story);
-        let (templates, refused) = qnc_project_templates::read_templates(&qnc_project_templates::folder(root));
-        for why in refused {
-            qnc_diagnostics::log(format!("project template refused: {why}"));
-        }
-        let template = qnc_project_templates::for_mode(&templates, mode.code())?.settings.clone();
+        let template = { let _writer = qnc_project_templates::writer(root)?; qnc_project_templates::selected(&qnc_registry::reader(root)?)?.settings };
         let mode = qnc_text::text(mode.label()).to_string();
         qnc_diagnostics::log(format!("tray run: projects in {}, mode {mode}", projects.display()));
         Ok(Run { watch: Watch::new(), ingests: Ingests::new(root, &projects, template, profiles), mode, started: Instant::now(), last_tick: Instant::now() })

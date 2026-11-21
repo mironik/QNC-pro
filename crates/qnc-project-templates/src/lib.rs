@@ -1,99 +1,158 @@
-//! A project template is data, not code: one JSON file per template under
-//! `contracts/project/templates` with its id, name, description, the tray modes it serves and
-//! the settings a new project starts from. This block reads them all, refuses a file with an
-//! error by name (the rest are taken), finds one by id and names the one a tray mode uses.
-//! It decides nothing about a project; the caller chooses.
+//! The project templates, as the old QNC kept them (copied from its project store): the system
+//! templates seeded from `seed/system_seed.json` (the source templates with them), the user
+//! templates made from a base (`tpl_user_<slug>`), the one New project starts from (a setting
+//! of this computer in the registry) and the settings of each. A table module of the registry
+//! file (`qnc-registry`): it owns only the template tables and writes them only through the
+//! registry writer. Which template a project is made from is the caller's choice.
 
-use std::path::{Path, PathBuf};
+mod store;
 
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use std::path::Path;
 
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
-#[serde(deny_unknown_fields)]
+use qnc_db::{Reader, TableModule, Writer};
+use rusqlite::Connection;
+use serde_json::{json, Value};
+
+pub const MODULE: &str = "qnc.module.project-templates";
+pub const SEED: &str = include_str!("../../../seed/system_seed.json");
+
+/// A template as the list shows it.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct TemplateRow {
+    pub template_id: String,
+    pub name: String,
+    pub description: String,
+    pub system: bool,
+    pub selected: bool,
+}
+
+/// A template with its settings.
+#[derive(Debug, Clone, PartialEq)]
 pub struct Template {
     pub template_id: String,
     pub name: String,
-    #[serde(default)]
-    pub description: String,
-    /// The tray modes this template serves (`breaking_news`, `story`, `net`).
-    #[serde(default)]
-    pub modes: Vec<String>,
+    pub system: bool,
     pub settings: Value,
+    pub source_template_ids: Value,
 }
 
-/// The templates folder under the QNC root.
-pub fn folder(root: &Path) -> PathBuf {
-    root.join("contracts").join("project").join("templates")
-}
+pub struct TemplateTables;
 
-fn parse(text: &str, file: &str) -> Result<Template, String> {
-    let template: Template = serde_json::from_str(text).map_err(|e| qnc_text::fill("template.unreadable", &[("file", file), ("error", &e.to_string())]))?;
-    if template.template_id.trim().is_empty() || template.name.trim().is_empty() || !template.settings.is_object() {
-        return Err(qnc_text::fill("template.unreadable", &[("file", file), ("error", "template_id, name and settings are needed")]));
+impl TableModule for TemplateTables {
+    fn id(&self) -> &'static str {
+        MODULE
     }
-    Ok(template)
-}
 
-/// Every template in `folder`, by id; a file with an error is named in the second list.
-pub fn read_templates(folder: &Path) -> (Vec<Template>, Vec<String>) {
-    let mut templates = Vec::new();
-    let mut refused = Vec::new();
-    let Ok(entries) = std::fs::read_dir(folder) else {
-        refused.push(qnc_text::fill("template.unreadable", &[("file", &folder.display().to_string()), ("error", "the folder cannot be read")]));
-        return (templates, refused);
-    };
-    let mut files: Vec<PathBuf> = entries.filter_map(|e| e.ok().map(|e| e.path())).filter(|p| p.extension().is_some_and(|x| x == "json")).collect();
-    files.sort();
-    for file in files {
-        let name = file.display().to_string();
-        match std::fs::read_to_string(&file).map_err(|e| qnc_text::fill("template.unreadable", &[("file", &name), ("error", &e.to_string())])).and_then(|text| parse(&text, &name)) {
-            Ok(template) => match templates.iter().any(|t: &Template| t.template_id == template.template_id) {
-                true => refused.push(qnc_text::fill("template.unreadable", &[("file", &name), ("error", "a template with this id was already read")])),
-                false => templates.push(template),
-            },
-            Err(why) => refused.push(why),
+    fn tables(&self) -> &'static [&'static str] {
+        &store::OWNED
+    }
+
+    /// The tables, the system templates from the seed (kept up to date) and every template
+    /// without the locations of a project (`products`).
+    fn attach(&mut self, conn: &Connection) -> Result<(), String> {
+        store::ensure_schema(conn)?;
+        store::seed(conn)?;
+        store::sanitize(conn)
+    }
+
+    /// `{"create_user": {name, description, base_template_id?, settings?}}` (a user template from
+    /// the base, or the selected one; the settings given are its settings; answers the id) and
+    /// `{"delete_user": template_id}` (never a system template).
+    fn execute(&mut self, conn: &Connection, request: Value) -> Result<Value, String> {
+        if let Some(c) = request.get("create_user") {
+            let name = c["name"].as_str().unwrap_or("").trim();
+            if name.is_empty() {
+                return Err(qnc_text::text("project.store.template_name_empty").into());
+            }
+            let base_id = match c["base_template_id"].as_str().map(str::trim).filter(|b| !b.is_empty()) {
+                Some(base) => base.to_string(),
+                None => store::selected_id(conn)?,
+            };
+            let base = store::get(conn, &base_id)?.ok_or_else(|| qnc_text::fill("project.store.template_missing", &[("id", &base_id)]))?;
+            let mut settings = c.get("settings").filter(|s| s.is_object()).cloned().unwrap_or(base.settings);
+            store::strip_project_locations(&mut settings);
+            let template_id = format!("tpl_user_{}", slug_id(name));
+            store::insert_user(conn, &template_id, name, c["description"].as_str().unwrap_or("").trim(), &settings, &base.source_template_ids)?;
+            return Ok(json!({ "template_id": template_id }));
         }
+        if let Some(id) = request.get("delete_user").and_then(Value::as_str) {
+            let id = id.trim();
+            if id.is_empty() {
+                return Err(qnc_text::text("project.store.template_id_empty").into());
+            }
+            let template = store::get(conn, id)?.ok_or_else(|| qnc_text::fill("project.store.template_missing", &[("id", id)]))?;
+            if template.system {
+                return Err(qnc_text::text("project.store.system_template_kept").into());
+            }
+            store::delete_user(conn, id)?;
+            return Ok(json!({ "template_id": id }));
+        }
+        Err("unknown request".into())
     }
-    templates.sort_by(|a, b| a.template_id.cmp(&b.template_id));
-    (templates, refused)
 }
 
-/// The template with this id.
-pub fn by_id<'a>(templates: &'a [Template], id: &str) -> Result<&'a Template, String> {
-    templates.iter().find(|t| t.template_id == id).ok_or_else(|| qnc_text::fill("template.unknown", &[("id", id)]))
+/// The writer of the registry with the template tables.
+pub fn writer(root: &Path) -> Result<Writer, String> {
+    qnc_registry::writer_with(root, vec![Box::new(TemplateTables)])
 }
 
-/// The template a tray mode makes its projects from.
-pub fn for_mode<'a>(templates: &'a [Template], mode: &str) -> Result<&'a Template, String> {
-    templates.iter().find(|t| t.modes.iter().any(|m| m == mode)).ok_or_else(|| qnc_text::fill("template.none_for_mode", &[("mode", mode)]))
+/// Every template, system first then by name, with the selected one marked.
+pub fn list(reader: &Reader) -> Result<Vec<TemplateRow>, String> {
+    store::list(reader.connection())
+}
+
+/// The template `template_id`.
+pub fn get(reader: &Reader, template_id: &str) -> Result<Option<Template>, String> {
+    store::get(reader.connection(), template_id)
+}
+
+/// The id of the template New project starts from: the one this computer selected while it
+/// exists, else the first (system first, then by name).
+pub fn selected_id(reader: &Reader) -> Result<String, String> {
+    store::selected_id(reader.connection())
+}
+
+/// The template New project starts from, with its settings.
+pub fn selected(reader: &Reader) -> Result<Template, String> {
+    let id = selected_id(reader)?;
+    get(reader, &id)?.ok_or_else(|| qnc_text::fill("project.store.template_missing", &[("id", &id)]))
+}
+
+/// Makes `template_id` the one New project starts from (a setting of this computer).
+pub fn select(writer: &Writer, reader: &Reader, template_id: &str) -> Result<(), String> {
+    let template_id = template_id.trim();
+    if template_id.is_empty() {
+        return Err(qnc_text::text("project.store.template_id_empty").into());
+    }
+    if get(reader, template_id)?.is_none() {
+        return Err(qnc_text::fill("project.store.template_missing", &[("id", template_id)]));
+    }
+    writer.execute(qnc_registry::MODULE, json!({ "local": { "key": qnc_registry::SELECTED_TEMPLATE_KEY, "value": template_id } })).map(drop)
+}
+
+/// A user template from the base (or the selected template), selected from now on; answers it.
+pub fn create_user(writer: &Writer, reader: &Reader, name: &str, description: &str, base_template_id: &str, settings: Option<&Value>) -> Result<TemplateRow, String> {
+    let answer = writer.execute(MODULE, json!({ "create_user": { "name": name, "description": description, "base_template_id": base_template_id, "settings": settings } }))?;
+    let template_id = answer["template_id"].as_str().ok_or("no template id came back")?.to_string();
+    select(writer, reader, &template_id)?;
+    Ok(TemplateRow { template_id, name: name.trim().to_string(), description: description.trim().to_string(), system: false, selected: true })
+}
+
+/// Removes a user template; a selection of it goes with it (the first template is selected then).
+pub fn delete_user(writer: &Writer, reader: &Reader, template_id: &str) -> Result<(), String> {
+    let was_selected = qnc_registry::local_setting(reader, qnc_registry::SELECTED_TEMPLATE_KEY)?.as_deref() == Some(template_id.trim());
+    writer.execute(MODULE, json!({ "delete_user": template_id }))?;
+    if was_selected {
+        writer.execute(qnc_registry::MODULE, json!({ "local": { "key": qnc_registry::SELECTED_TEMPLATE_KEY, "value": null } }))?;
+    }
+    Ok(())
+}
+
+/// `<slug>_<milliseconds>`: the id of a user template, as the old QNC made it.
+fn slug_id(name: &str) -> String {
+    let millis = std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).map(|d| d.as_millis()).unwrap_or(0);
+    format!("{}_{millis}", qnc_ids::slug(name))
 }
 
 #[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn the_shipped_templates_are_read_each_mode_has_one_and_a_broken_file_is_named() {
-        let shipped = folder(&Path::new(env!("CARGO_MANIFEST_DIR")).join("../.."));
-        let (templates, refused) = read_templates(&shipped);
-        assert!(refused.is_empty(), "{refused:?}");
-        assert_eq!(templates.iter().map(|t| t.template_id.as_str()).collect::<Vec<_>>(), ["breaking_news", "field_sony", "house_xdcam", "news_package"]);
-        assert_eq!(for_mode(&templates, "breaking_news").unwrap().template_id, "breaking_news");
-        assert_eq!(for_mode(&templates, "net").unwrap().template_id, "breaking_news");
-        assert_eq!(for_mode(&templates, "story").unwrap().template_id, "news_package");
-        assert!(for_mode(&templates, "nothing").is_err());
-        assert_eq!(by_id(&templates, "house_xdcam").unwrap().settings["video"]["fps"], 25);
-        assert!(by_id(&templates, "x").is_err());
-        let dir = std::env::temp_dir().join(format!("qnc-project-templates-{}", std::process::id()));
-        let _ = std::fs::remove_dir_all(&dir);
-        std::fs::create_dir_all(&dir).unwrap();
-        std::fs::write(dir.join("a.json"), r#"{ "template_id": "a", "name": "A", "settings": {} }"#).unwrap();
-        std::fs::write(dir.join("b.json"), r#"{ "template_id": "b", "settings": {} }"#).unwrap();
-        std::fs::write(dir.join("c.json"), r#"{ "template_id": "a", "name": "A again", "settings": {} }"#).unwrap();
-        let (templates, refused) = read_templates(&dir);
-        assert_eq!(templates.len(), 1);
-        assert_eq!(refused.len(), 2, "{refused:?}");
-        let _ = std::fs::remove_dir_all(&dir);
-    }
-}
+mod tests;

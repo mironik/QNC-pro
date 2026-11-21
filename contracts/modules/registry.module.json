@@ -1,7 +1,7 @@
 {
   "kind": "block",
-  "responsibility": "Owns the projects, app_settings and project_storage_locations tables of the computer's project registry in the old QNC shape: which projects exist, where each is, which is active.",
+  "responsibility": "Owns the project registry tables of this computer in the old QNC shape (projects, active project, private folders, search text, origin, local settings) and reads them for everyone.",
   "database": "owner",
-  "owns": ["projects", "app_settings", "project_storage_locations"],
-  "writes": ["projects", "app_settings", "project_storage_locations"]
+  "owns": ["projects", "app_settings", "project_storage_locations", "project_search", "project_origin", "users", "sessions", "module_state", "local_runtime_settings"],
+  "writes": ["projects", "app_settings", "project_storage_locations", "project_search", "project_origin", "local_runtime_settings", "users", "sessions", "module_state"]
 }

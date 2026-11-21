@@ -165,8 +165,7 @@ mod tests {
         std::fs::write(card_root.join("Clip").join("Mironik 1483M01.XML"), include_str!("../../qnc-sony-index/tests/Mironik_1483M01.XML")).unwrap();
         let qnc = Path::new(env!("CARGO_MANIFEST_DIR")).join("../..");
         let (profiles, _) = qnc_camera_profile::read_profiles(&qnc.join("contracts/cameras/profiles"));
-        let (templates, _) = qnc_project_templates::read_templates(&qnc_project_templates::folder(&qnc));
-        let template = qnc_project_templates::for_mode(&templates, "story").unwrap().settings.clone();
+        let template = { let _writer = qnc_project_templates::writer(&root).unwrap(); qnc_project_templates::get(&qnc_registry::reader(&root).unwrap(), "tpl_news_package").unwrap().unwrap().settings };
         let mut ingests = Ingests::new(&root, &root.join("projects"), template, profiles);
         let card = Card { disk, serial: "67870D0C".into(), volume_name: "T".into(), root_path: "PRIVATE/XDROOT".into() };
         ingests.start(card.clone(), "Fixture card").unwrap();
