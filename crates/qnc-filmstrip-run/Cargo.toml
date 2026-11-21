@@ -1,0 +1,20 @@
+[package]
+name = "qnc-filmstrip-run"
+version.workspace = true
+edition.workspace = true
+description = "The filmstrips step of an ingest: every imported clip without a filmstrip gets its thirteen pictures from its copy in the project, in the background, unless the user stopped the filmstrips."
+
+[dependencies]
+qnc-diagnostics = { path = "../qnc-diagnostics" }
+qnc-db = { path = "../qnc-db" }
+qnc-catalog = { path = "../qnc-catalog" }
+qnc-media-model = { path = "../qnc-media-model" }
+qnc-project-settings = { path = "../qnc-project-settings" }
+qnc-filmstrip-pictures = { path = "../qnc-filmstrip-pictures" }
+qnc-filmstrip-store = { path = "../qnc-filmstrip-store" }
+qnc-clip-round = { path = "../qnc-clip-round" }
+qnc-step-thread = { path = "../qnc-step-thread" }
+
+[dev-dependencies]
+qnc-stopped-work = { path = "../qnc-stopped-work" }
+serde_json = { workspace = true }

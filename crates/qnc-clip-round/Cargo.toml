@@ -1,0 +1,11 @@
+[package]
+name = "qnc-clip-round"
+version.workspace = true
+edition.workspace = true
+description = "The rounds of a background step over a project's clips: every imported clip the step has not made yet, once a second, until stopped by the user or told to stop."
+
+[dependencies]
+qnc-diagnostics = { path = "../qnc-diagnostics" }
+qnc-db = { path = "../qnc-db" }
+qnc-catalog = { path = "../qnc-catalog" }
+qnc-stopped-work = { path = "../qnc-stopped-work" }

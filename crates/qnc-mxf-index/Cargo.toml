@@ -1,0 +1,7 @@
+[package]
+name = "qnc-mxf-index"
+version.workspace = true
+edition.workspace = true
+description = "The index of a frame-wrapped MXF original (where each frame is, which are intra) and the elements of one frame; read only."
+
+[dependencies]

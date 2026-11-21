@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Reads the index a frame-wrapped MXF original carries (where each frame's package lies, which pictures are intra) and the picture or sound elements of one frame; read only, decodes nothing.",
+  "database": "none"
+}

@@ -1,0 +1,6 @@
+{
+  "kind": "block",
+  "responsibility": "The thirteen pictures of a clip's filmstrip from its copy: the places, the intra pictures nearest them (MXF index) or a key picture seek, decoded by one ffmpeg run into small JPEG bytes.",
+  "database": "none",
+  "polls": 1
+}

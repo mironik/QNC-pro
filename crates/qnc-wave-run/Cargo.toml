@@ -12,5 +12,8 @@ qnc-media-model = { path = "../qnc-media-model" }
 qnc-mxf-sound = { path = "../qnc-mxf-sound" }
 qnc-wave-make = { path = "../qnc-wave-make" }
 qnc-wave-store = { path = "../qnc-wave-store" }
-qnc-stopped-work = { path = "../qnc-stopped-work" }
+qnc-clip-round = { path = "../qnc-clip-round" }
 qnc-step-thread = { path = "../qnc-step-thread" }
+
+[dev-dependencies]
+qnc-stopped-work = { path = "../qnc-stopped-work" }

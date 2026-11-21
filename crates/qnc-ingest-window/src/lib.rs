@@ -121,6 +121,8 @@ pub struct Session {
     waves: Option<qnc_wave_run::WaveRun>,
     /// The transcripts step, while the plan has it and the project transcribes.
     transcripts: Option<qnc_transcribe_run::TranscriptRun>,
+    /// The filmstrips step, while the plan has it.
+    filmstrips: Option<qnc_filmstrip_run::FilmstripRun>,
 }
 
 /// The value after `--name` in the arguments.
@@ -152,13 +154,14 @@ impl Session {
         ingests.start_into(card.clone(), &project_id, &folder)?;
         qnc_diagnostics::log(format!("ingest window: card {} into project {project_id}, plan {}", card.serial, plan.line()));
         let waves = plan.has(qnc_ingest_plan::Step::Waves).then(|| qnc_wave_run::WaveRun::start(&folder, &db));
+        let filmstrips = plan.has(qnc_ingest_plan::Step::Filmstrips).then(|| qnc_filmstrip_run::FilmstripRun::start(&folder, &db));
         let transcripts = (plan.has(qnc_ingest_plan::Step::Transcripts) && settings.ai_feature(qnc_transcribe_run::FEATURE)).then(|| qnc_transcribe_run::TranscriptRun::start(root, &folder, &db));
-        Ok(Session { root: root.to_path_buf(), project_id, name, camera, card, ingests, last: Progress::default(), started: Instant::now(), took: None, ask: None, phase: Phase::Running, close: false, opened_form: false, stopped: false, delete_pending: false, info: Info::default(), reader, stops, counts: Counts::default(), read_at: None, full_at: BTreeMap::new(), plan, waves, transcripts })
+        Ok(Session { root: root.to_path_buf(), project_id, name, camera, card, ingests, last: Progress::default(), started: Instant::now(), took: None, ask: None, phase: Phase::Running, close: false, opened_form: false, stopped: false, delete_pending: false, info: Info::default(), reader, stops, counts: Counts::default(), read_at: None, full_at: BTreeMap::new(), plan, waves, transcripts, filmstrips })
     }
 
     /// Nothing of the background work runs any more.
     fn work_ended(&self) -> bool {
-        self.ingests.running() == 0 && self.waves.as_ref().is_none_or(qnc_wave_run::WaveRun::ended) && self.transcripts.as_ref().is_none_or(qnc_transcribe_run::TranscriptRun::ended)
+        self.ingests.running() == 0 && self.waves.as_ref().is_none_or(qnc_wave_run::WaveRun::ended) && self.transcripts.as_ref().is_none_or(qnc_transcribe_run::TranscriptRun::ended) && self.filmstrips.as_ref().is_none_or(qnc_filmstrip_run::FilmstripRun::ended)
     }
 
     /// The counts of every function from the project's database, once a second; when a bar
@@ -175,6 +178,9 @@ impl Session {
             }
             if self.transcripts.is_some() {
                 counts.transcripts = Some(qnc_transcript_store::heard(&self.reader)?.len());
+            }
+            if self.filmstrips.is_some() {
+                counts.filmstrips = Some(qnc_filmstrip_store::made(&self.reader)?.len());
             }
             Ok(counts)
         });
@@ -228,6 +234,9 @@ impl Session {
             }
             if let Some(transcripts) = &self.transcripts {
                 transcripts.stop();
+            }
+            if let Some(filmstrips) = &self.filmstrips {
+                filmstrips.stop();
             }
             qnc_diagnostics::log(format!("ingest window: done after {} ms", self.started.elapsed().as_millis()));
         }
@@ -298,6 +307,11 @@ impl Session {
                 transcripts.stop();
             }
         }
+        if function == qnc_filmstrip_run::FUNCTION {
+            if let Some(filmstrips) = &self.filmstrips {
+                filmstrips.stop();
+            }
+        }
     }
 
     pub fn ask_cancel(&mut self) {
@@ -317,6 +331,9 @@ impl Session {
             }
             if let Some(transcripts) = &self.transcripts {
                 transcripts.stop();
+            }
+            if let Some(filmstrips) = &self.filmstrips {
+                filmstrips.stop();
             }
             self.stopped = true;
         }

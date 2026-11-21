@@ -1,0 +1,6 @@
+{
+  "kind": "block",
+  "responsibility": "The rounds of one background step over a project's clips: each imported clip the step has not made yet, once a second, a failed one left alone, until the user's X or the stop.",
+  "database": "reader",
+  "polls": 1
+}

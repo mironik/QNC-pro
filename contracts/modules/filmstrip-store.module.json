@@ -1,0 +1,7 @@
+{
+  "kind": "block",
+  "responsibility": "Owns the filmstrips table of a project (thirteen pictures a clip: frame, second, file under the project folder): writes through the database writer, reads one, says which clips have one.",
+  "database": "owner",
+  "owns": ["filmstrips"],
+  "writes": ["filmstrips"]
+}

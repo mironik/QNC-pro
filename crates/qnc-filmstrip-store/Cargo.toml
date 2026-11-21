@@ -1,0 +1,11 @@
+[package]
+name = "qnc-filmstrip-store"
+version.workspace = true
+edition.workspace = true
+description = "Owns the filmstrips table of a project: which clip has its thirteen pictures and where each lies under the project folder."
+
+[dependencies]
+rusqlite = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+qnc-db = { path = "../qnc-db" }

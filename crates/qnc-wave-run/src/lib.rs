@@ -5,16 +5,13 @@
 //! database) or when it is told to stop. A clip whose wave cannot be made is said in the log and
 //! left alone for this run.
 
-use std::collections::BTreeSet;
 use std::path::Path;
-use std::sync::atomic::{AtomicBool, Ordering};
-use std::time::Duration;
+use std::sync::atomic::AtomicBool;
 
 use qnc_db::{Reader, Writer};
 use qnc_media_model::StreamDetails;
 
 pub const FUNCTION: &str = "waves";
-const ROUND: Duration = Duration::from_secs(1);
 
 pub struct WaveRun(qnc_step_thread::StepThread);
 
@@ -38,34 +35,7 @@ impl WaveRun {
 fn run(folder: &Path, db: &Path, stop: &AtomicBool) -> Result<(), String> {
     let reader = Reader::open(db)?;
     let writer = Writer::start(db, vec![Box::new(qnc_wave_store::WaveTables)])?;
-    let mut failed: BTreeSet<String> = BTreeSet::new();
-    while !stop.load(Ordering::Relaxed) {
-        if qnc_stopped_work::read(&reader)?.contains(FUNCTION) {
-            qnc_diagnostics::log("waves: stopped by the user");
-            return Ok(());
-        }
-        let made = qnc_wave_store::made(&reader)?;
-        let waiting: Vec<String> = qnc_catalog::summaries(&reader)?
-            .into_iter()
-            .filter(|clip| clip.import_status == qnc_catalog::ImportStatus::Imported && !made.contains(&clip.clip_id) && !failed.contains(&clip.clip_id))
-            .map(|clip| clip.clip_id)
-            .collect();
-        for clip_id in waiting {
-            if stop.load(Ordering::Relaxed) {
-                return Ok(());
-            }
-            let started = std::time::Instant::now();
-            match make_one(&reader, &writer, folder, &clip_id, stop) {
-                Ok(()) => qnc_diagnostics::log(format!("wave made {clip_id} in {} ms", started.elapsed().as_millis())),
-                Err(error) => {
-                    qnc_diagnostics::log(format!("wave not made {clip_id}: {error}"));
-                    failed.insert(clip_id);
-                }
-            }
-        }
-        std::thread::sleep(ROUND);
-    }
-    Ok(())
+    qnc_clip_round::run(&reader, FUNCTION, stop, &qnc_wave_store::made, &mut |clip_id, cancel| make_one(&reader, &writer, folder, clip_id, cancel))
 }
 
 /// The wave of one clip from its copy in the project.
@@ -107,6 +77,7 @@ fn make_one(reader: &Reader, writer: &Writer, folder: &Path, clip_id: &str, canc
 #[cfg(test)]
 mod tests {
     use super::*;
+    use std::time::Duration;
 
     #[test]
     fn a_run_over_an_empty_project_ends_when_told_and_when_the_waves_are_stopped() {

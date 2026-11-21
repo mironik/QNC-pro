@@ -1,0 +1,9 @@
+[package]
+name = "qnc-filmstrip-pictures"
+version.workspace = true
+edition.workspace = true
+description = "The thirteen pictures of a clip's filmstrip from its copy: the intra pictures nearest the places through the MXF index, or a key picture seek, decoded by one ffmpeg call into small JPEGs."
+
+[dependencies]
+qnc-launch = { path = "../qnc-launch" }
+qnc-mxf-index = { path = "../qnc-mxf-index" }

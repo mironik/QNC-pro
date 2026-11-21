@@ -1,0 +1,7 @@
+{
+  "kind": "module",
+  "responsibility": "Runs the filmstrips step of one project in the background: each imported clip without a filmstrip gets its thirteen pictures from its copy, kept in the filmstrip store, until stopped.",
+  "database": "reader",
+  "polls": 1,
+  "owns": ["the thread making the filmstrips of this project"]
+}

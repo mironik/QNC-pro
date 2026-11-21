@@ -2684,6 +2684,16 @@ name = "qnc-checksum"
 version = "0.1.0"
 
 [[package]]
+name = "qnc-clip-round"
+version = "0.1.0"
+dependencies = [
+ "qnc-catalog",
+ "qnc-db",
+ "qnc-diagnostics",
+ "qnc-stopped-work",
+]
+
+[[package]]
 name = "qnc-confirm"
 version = "0.1.0"
 dependencies = [
@@ -2799,6 +2809,41 @@ dependencies = [
 ]
 
 [[package]]
+name = "qnc-filmstrip-pictures"
+version = "0.1.0"
+dependencies = [
+ "qnc-launch",
+ "qnc-mxf-index",
+]
+
+[[package]]
+name = "qnc-filmstrip-run"
+version = "0.1.0"
+dependencies = [
+ "qnc-catalog",
+ "qnc-clip-round",
+ "qnc-db",
+ "qnc-diagnostics",
+ "qnc-filmstrip-pictures",
+ "qnc-filmstrip-store",
+ "qnc-media-model",
+ "qnc-project-settings",
+ "qnc-step-thread",
+ "qnc-stopped-work",
+ "serde_json",
+]
+
+[[package]]
+name = "qnc-filmstrip-store"
+version = "0.1.0"
+dependencies = [
+ "qnc-db",
+ "rusqlite",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "qnc-folder-lock"
 version = "0.1.0"
 dependencies = [
@@ -2888,6 +2933,8 @@ dependencies = [
  "qnc-catalog",
  "qnc-db",
  "qnc-diagnostics",
+ "qnc-filmstrip-run",
+ "qnc-filmstrip-store",
  "qnc-ingest-plan",
  "qnc-ingest-run",
  "qnc-launch",
@@ -3034,6 +3081,10 @@ dependencies = [
  "qnc-text",
  "serde_json",
 ]
+
+[[package]]
+name = "qnc-mxf-index"
+version = "0.1.0"
 
 [[package]]
 name = "qnc-mxf-sound"
@@ -3762,6 +3813,7 @@ name = "qnc-wave-run"
 version = "0.1.0"
 dependencies = [
  "qnc-catalog",
+ "qnc-clip-round",
  "qnc-db",
  "qnc-diagnostics",
  "qnc-media-model",
