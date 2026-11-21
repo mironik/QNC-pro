@@ -1,0 +1,5 @@
+{
+  "kind": "module",
+  "responsibility": "Holds the state of the Project form and carries its intents out through the Project component; the panels only draw and return intents, poll takes the replies of the registry.",
+  "database": "none"
+}

@@ -57,7 +57,7 @@ impl SheetKeys {
 
 /// The preset and the scope of the sheet's keys in the catalog.
 const PRESET: &str = "qnc";
-const SCOPE: &str = "project";
+const SCOPE: &str = "project_sheet";
 
 /// The flat bordered button of the sheet, in the theme.
 fn chrome(theme: &Theme) -> qnc_ui_kit::ChromeButtonStyle {

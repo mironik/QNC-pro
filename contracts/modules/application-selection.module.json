@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Holds the choice of applications of a project: the catalog read in the background, one application per priority group, the view the form draws and the snapshot a project is made with.",
+  "database": "none"
+}

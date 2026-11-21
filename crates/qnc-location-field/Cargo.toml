@@ -1,0 +1,10 @@
+[package]
+name = "qnc-location-field"
+version.workspace = true
+edition.workspace = true
+description = "A location field and its browser: what it shows, whether its browser is open, the source tab and the last listing; an answer of the browser becomes the step it asks of the background browser."
+
+[dependencies]
+qnc-dir-browse-jobs = { path = "../qnc-dir-browse-jobs" }
+qnc-dir-browser = { path = "../qnc-dir-browser" }
+qnc-text = { path = "../qnc-text" }

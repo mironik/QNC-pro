@@ -1,0 +1,14 @@
+[package]
+name = "qnc-project-session"
+version.workspace = true
+edition.workspace = true
+description = "The state of the Project form and its intents: the panels only draw and return a ProjectIntent, dispatch carries it out through the Project component and poll takes the replies of the registry."
+
+[dependencies]
+serde_json = { workspace = true }
+qnc-dir-browser = { path = "../qnc-dir-browser" }
+qnc-location-field = { path = "../qnc-location-field" }
+qnc-newsroom-sheet-model = { path = "../qnc-newsroom-sheet-model" }
+qnc-project-application = { path = "../qnc-project-application" }
+qnc-settings-path = { path = "../qnc-settings-path" }
+qnc-text = { path = "../qnc-text" }

@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Runs the steps of a location browser in one background thread, in the order sent, and hands back their listings and the private path of the folder shown.",
+  "database": "none"
+}

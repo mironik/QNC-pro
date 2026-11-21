@@ -1,0 +1,20 @@
+[package]
+name = "qnc-project-jobs"
+version.workspace = true
+edition.workspace = true
+description = "The work of the Project form on the registry and project folders in one background worker, in the order sent, answering with the state the form shows; the work itself is the blocks' (make, open, delete, templates, story sheet)."
+
+[dependencies]
+serde_json = { workspace = true }
+qnc-db = { path = "../qnc-db" }
+qnc-store-jobs = { path = "../qnc-store-jobs" }
+qnc-registry = { path = "../qnc-registry" }
+qnc-project-templates = { path = "../qnc-project-templates" }
+qnc-project-make = { path = "../qnc-project-make" }
+qnc-project-open = { path = "../qnc-project-open" }
+qnc-project-delete = { path = "../qnc-project-delete" }
+qnc-newsroom-sheet-db = { path = "../qnc-newsroom-sheet-db" }
+qnc-text = { path = "../qnc-text" }
+
+[dev-dependencies]
+qnc-project-defaults = { path = "../qnc-project-defaults" }

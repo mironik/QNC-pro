@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Reads and validates the application catalog of this computer and the selection snapshot a template or project keeps (one application per priority group).",
+  "database": "none"
+}

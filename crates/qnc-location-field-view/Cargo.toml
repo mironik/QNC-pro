@@ -1,0 +1,12 @@
+[package]
+name = "qnc-location-field-view"
+version.workspace = true
+edition.workspace = true
+description = "A location field's browser as it is drawn: the open browser with Select and Cancel under it; the field's state and steps are qnc-location-field's."
+
+[dependencies]
+eframe = { workspace = true }
+qnc-ui-kit = { path = "../qnc-ui-kit" }
+qnc-desktop-theme = { path = "../qnc-desktop-theme" }
+qnc-dir-browser-panel = { path = "../qnc-dir-browser-panel" }
+qnc-location-field = { path = "../qnc-location-field" }

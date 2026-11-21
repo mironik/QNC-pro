@@ -1,0 +1,11 @@
+[package]
+name = "qnc-dir-browser"
+version.workspace = true
+edition.workspace = true
+description = "The location browser of the computer, its local part: disks and folders of a path listed without hidden ones; a session binds each folder to a QNC URI and keeps the private path behind it."
+
+[dev-dependencies]
+tempfile = "3"
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { workspace = true }

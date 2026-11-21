@@ -1,0 +1,11 @@
+[package]
+name = "qnc-dir-browser-panel"
+version.workspace = true
+edition.workspace = true
+description = "The location browser panel: one row of sources, Up and Disks, the path or the disks, the folders, an error or a loading line; draws what the browser state says and returns what the user asked."
+
+[dependencies]
+eframe = { workspace = true }
+qnc-dir-browser = { path = "../qnc-dir-browser" }
+qnc-desktop-theme = { path = "../qnc-desktop-theme" }
+qnc-ui-kit = { path = "../qnc-ui-kit" }

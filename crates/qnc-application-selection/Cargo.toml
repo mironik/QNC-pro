@@ -1,0 +1,10 @@
+[package]
+name = "qnc-application-selection"
+version.workspace = true
+edition.workspace = true
+description = "The applications a project works with as the Project form chooses them: the catalog read in the background, one choice per priority group, the view the form draws and the snapshot a project is made with."
+
+[dependencies]
+serde_json = { workspace = true }
+qnc-application-catalog = { path = "../qnc-application-catalog" }
+qnc-text = { path = "../qnc-text" }

@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Lists the disks of the computer and the folders of a path (no hidden ones) and binds each folder to a QNC URI whose private path only the session knows.",
+  "database": "none"
+}

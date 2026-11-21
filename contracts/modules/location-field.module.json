@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Holds a location field: the path shown, its open browser, the source tab and the last listing; turns an answer of the browser into the step the owner sends, and knows no form.",
+  "database": "none"
+}

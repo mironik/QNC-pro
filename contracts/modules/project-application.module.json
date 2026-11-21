@@ -1,0 +1,5 @@
+{
+  "kind": "module",
+  "responsibility": "Owns the background worker of the registry, the choice of applications and the browsers of the location fields of the Project form; the form sends requests through it and takes the replies.",
+  "database": "none"
+}

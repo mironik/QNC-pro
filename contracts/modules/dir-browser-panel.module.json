@@ -1,0 +1,5 @@
+{
+  "kind": "panel",
+  "responsibility": "Draws a location browser (sources row, Up and Disks, path or disks, folders, error or loading line) from the browser state it is given and returns what the user asked.",
+  "database": "none"
+}

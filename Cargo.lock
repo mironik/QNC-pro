@@ -2536,6 +2536,26 @@ dependencies = [
 ]
 
 [[package]]
+name = "qnc-application-catalog"
+version = "0.1.0"
+dependencies = [
+ "qnc-settings",
+ "qnc-uri",
+ "serde",
+ "serde_json",
+ "tempfile",
+]
+
+[[package]]
+name = "qnc-application-selection"
+version = "0.1.0"
+dependencies = [
+ "qnc-application-catalog",
+ "qnc-text",
+ "serde_json",
+]
+
+[[package]]
 name = "qnc-axis"
 version = "0.1.0"
 
@@ -2679,6 +2699,32 @@ name = "qnc-diagnostics"
 version = "0.1.0"
 
 [[package]]
+name = "qnc-dir-browse-jobs"
+version = "0.1.0"
+dependencies = [
+ "qnc-dir-browser",
+ "qnc-store-jobs",
+]
+
+[[package]]
+name = "qnc-dir-browser"
+version = "0.1.0"
+dependencies = [
+ "tempfile",
+ "windows-sys 0.59.0",
+]
+
+[[package]]
+name = "qnc-dir-browser-panel"
+version = "0.1.0"
+dependencies = [
+ "eframe",
+ "qnc-desktop-theme",
+ "qnc-dir-browser",
+ "qnc-ui-kit",
+]
+
+[[package]]
 name = "qnc-disks"
 version = "0.1.0"
 dependencies = [
@@ -2806,6 +2852,26 @@ name = "qnc-letters"
 version = "0.1.0"
 dependencies = [
  "serde",
+]
+
+[[package]]
+name = "qnc-location-field"
+version = "0.1.0"
+dependencies = [
+ "qnc-dir-browse-jobs",
+ "qnc-dir-browser",
+ "qnc-text",
+]
+
+[[package]]
+name = "qnc-location-field-view"
+version = "0.1.0"
+dependencies = [
+ "eframe",
+ "qnc-desktop-theme",
+ "qnc-dir-browser-panel",
+ "qnc-location-field",
+ "qnc-ui-kit",
 ]
 
 [[package]]
@@ -2970,6 +3036,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "qnc-project-application"
+version = "0.1.0"
+dependencies = [
+ "qnc-application-selection",
+ "qnc-dir-browse-jobs",
+ "qnc-dir-browser",
+ "qnc-project-defaults",
+ "qnc-project-jobs",
+ "qnc-store-jobs",
+ "qnc-text",
+ "serde_json",
+]
+
+[[package]]
 name = "qnc-project-defaults"
 version = "0.1.0"
 dependencies = [
@@ -3005,6 +3085,23 @@ dependencies = [
  "qnc-theme",
  "qnc-ui-kit",
  "qnc-window-host",
+]
+
+[[package]]
+name = "qnc-project-jobs"
+version = "0.1.0"
+dependencies = [
+ "qnc-db",
+ "qnc-newsroom-sheet-db",
+ "qnc-project-defaults",
+ "qnc-project-delete",
+ "qnc-project-make",
+ "qnc-project-open",
+ "qnc-project-templates",
+ "qnc-registry",
+ "qnc-store-jobs",
+ "qnc-text",
+ "serde_json",
 ]
 
 [[package]]
@@ -3069,6 +3166,19 @@ name = "qnc-project-origin"
 version = "0.1.0"
 dependencies = [
  "rusqlite",
+ "serde_json",
+]
+
+[[package]]
+name = "qnc-project-session"
+version = "0.1.0"
+dependencies = [
+ "qnc-dir-browser",
+ "qnc-location-field",
+ "qnc-newsroom-sheet-model",
+ "qnc-project-application",
+ "qnc-settings-path",
+ "qnc-text",
  "serde_json",
 ]
 

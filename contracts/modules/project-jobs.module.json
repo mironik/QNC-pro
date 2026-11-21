@@ -1,0 +1,5 @@
+{
+  "kind": "module",
+  "responsibility": "Runs the requests of the Project form (projects, templates, create, open, delete, story sheet, projects' folder) in one background worker in the order sent and answers with the state the form shows.",
+  "database": "none"
+}

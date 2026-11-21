@@ -1,0 +1,9 @@
+[package]
+name = "qnc-dir-browse-jobs"
+version.workspace = true
+edition.workspace = true
+description = "A location browser whose listings run on their own thread: the browser session lives in one background thread, steps run in the order sent and their listings are taken when there."
+
+[dependencies]
+qnc-dir-browser = { path = "../qnc-dir-browser" }
+qnc-store-jobs = { path = "../qnc-store-jobs" }

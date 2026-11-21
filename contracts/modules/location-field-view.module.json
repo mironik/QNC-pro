@@ -1,0 +1,5 @@
+{
+  "kind": "panel",
+  "responsibility": "Draws the open browser of a location field with Select and Cancel under it and returns what the user asked.",
+  "database": "none"
+}

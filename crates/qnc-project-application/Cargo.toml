@@ -1,0 +1,15 @@
+[package]
+name = "qnc-project-application"
+version.workspace = true
+edition.workspace = true
+description = "The Project component: owns the background worker of the registry, the choice of applications and the browsers of the location fields; the form sends requests through it and takes the replies."
+
+[dependencies]
+serde_json = { workspace = true }
+qnc-application-selection = { path = "../qnc-application-selection" }
+qnc-dir-browser = { path = "../qnc-dir-browser" }
+qnc-dir-browse-jobs = { path = "../qnc-dir-browse-jobs" }
+qnc-project-defaults = { path = "../qnc-project-defaults" }
+qnc-project-jobs = { path = "../qnc-project-jobs" }
+qnc-store-jobs = { path = "../qnc-store-jobs" }
+qnc-text = { path = "../qnc-text" }

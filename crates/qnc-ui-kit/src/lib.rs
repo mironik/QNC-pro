@@ -12,6 +12,10 @@ use qnc_theme::{Rgb, Theme};
 pub use keys::chords;
 pub use chrome_button::{chrome_button, fill_block, on_dark, check_box, framed_button, look_button, press_feedback, sized_button, small_button, strong_button, ButtonLook, ChromeButtonStyle, PRESS_FEEDBACK_KEY};
 pub use text_field::{row_field, search_field, text_area, text_field};
+mod action_bar;
+mod option_columns;
+pub use option_columns::{show_option_columns, OptionColumn, OptionColumnsStyle, OptionItem, OptionSelection};
+pub use action_bar::{show_form_action_bar, tab, FormActionBarResponse, FormActionBarStyle, TabStyle, STANDARD_ACTION_BUTTON_GAP, STANDARD_ACTION_BUTTON_WIDTH};
 
 /// The thin frame of what the keyboard is on (a panel, a button, a tab), the same in every form.
 pub fn paint_focus(ui: &Ui, rect: egui::Rect, focused: bool, color: Color32) {

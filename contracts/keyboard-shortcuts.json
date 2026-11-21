@@ -32,7 +32,30 @@
     "project_toggle_picker": { "label": "@action.project_toggle_picker", "group": "project" },
     "form_next_field": { "label": "@action.form_next_field", "group": "project" },
     "project_story_confirm": { "label": "@action.project_story_confirm", "group": "project" },
-    "project_story_cancel": { "label": "@action.project_story_cancel", "group": "project" }
+    "project_story_cancel": { "label": "@action.project_story_cancel", "group": "project" },
+    "project_workflow_group_select": { "label": "@action.project_workflow_group_select", "group": "project" },
+    "project_open_selected": { "label": "@action.project_open_selected", "group": "project" },
+    "project_open_row": { "label": "@action.project_open_row", "group": "project" },
+    "project_create": { "label": "@action.project_create", "group": "project" },
+    "project_story_open": { "label": "@action.project_story_open", "group": "project" },
+    "project_delete_request": { "label": "@action.project_delete_request", "group": "project" },
+    "project_template_select": { "label": "@action.project_template_select", "group": "project" },
+    "project_template_create_begin": { "label": "@action.project_template_create_begin", "group": "project" },
+    "project_template_create_cancel": { "label": "@action.project_template_create_cancel", "group": "project" },
+    "project_template_save": { "label": "@action.project_template_save", "group": "project" },
+    "project_template_delete_request": { "label": "@action.project_template_delete_request", "group": "project" },
+    "project_template_delete_cancel": { "label": "@action.project_template_delete_cancel", "group": "project" },
+    "project_template_delete_confirm": { "label": "@action.project_template_delete_confirm", "group": "project" },
+    "project_pick_projects_root": { "label": "@action.project_pick_projects_root", "group": "project" },
+    "project_projects_root_browser_select_source": { "label": "@action.project_projects_root_browser_select_source", "group": "project" },
+    "project_projects_root_browser_open_path": { "label": "@action.project_projects_root_browser_open_path", "group": "project" },
+    "project_projects_root_browser_confirm": { "label": "@action.project_projects_root_browser_confirm", "group": "project" },
+    "project_projects_root_browser_cancel": { "label": "@action.project_projects_root_browser_cancel", "group": "project" },
+    "project_pick_export_dir": { "label": "@action.project_pick_export_dir", "group": "project" },
+    "project_export_dir_browser_select_source": { "label": "@action.project_export_dir_browser_select_source", "group": "project" },
+    "project_export_dir_browser_open_path": { "label": "@action.project_export_dir_browser_open_path", "group": "project" },
+    "project_export_dir_browser_confirm": { "label": "@action.project_export_dir_browser_confirm", "group": "project" },
+    "project_export_dir_browser_cancel": { "label": "@action.project_export_dir_browser_cancel", "group": "project" }
   },
   "groups": {
     "general": "@action.group.general",
@@ -63,6 +86,11 @@
         "S": "toggle_snapping"
       },
       "project": {
+        "Enter": "project_open_selected",
+        "Left": "step_back_frame",
+        "Right": "step_forward_frame"
+      },
+      "project_sheet": {
         "Enter": "form_next_field",
         "Left": "step_back_frame",
         "Right": "step_forward_frame"
