@@ -1,0 +1,11 @@
+[package]
+name = "qnc-plugin-process"
+version.workspace = true
+edition.workspace = true
+description = "A plug-in as its own program speaking a versioned contract as JSON lines: started at its first request, stopped when idle, refused when it speaks another contract."
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }
+base64 = "0.22"
+qnc-launch = { path = "../qnc-launch" }

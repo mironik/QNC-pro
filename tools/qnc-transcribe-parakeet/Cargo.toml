@@ -1,0 +1,11 @@
+[package]
+name = "qnc-transcribe-parakeet"
+version.workspace = true
+edition.workspace = true
+description = "QNC transcription plug-in: speech to text with NVIDIA Parakeet TDT through sherpa-onnx on the processor (contract qnc.transcribe 2), as its own program; the sherpa-onnx library is loaded from beside the program."
+
+[dependencies]
+libloading = "0.8"
+qnc-diagnostics = { path = "../../crates/qnc-diagnostics" }
+qnc-settings = { path = "../../crates/qnc-settings" }
+qnc-transcribe-jobs = { path = "../../crates/qnc-transcribe-jobs" }

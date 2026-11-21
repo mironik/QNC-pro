@@ -1,0 +1,5 @@
+{
+  "kind": "module",
+  "responsibility": "The Parakeet transcription program: serves the transcription contract with sherpa-onnx on the processor, its model loaded once; a program beside the application.",
+  "database": "none"
+}

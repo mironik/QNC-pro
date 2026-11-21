@@ -1,0 +1,11 @@
+[package]
+name = "qnc-transcribe-jobs"
+version.workspace = true
+edition.workspace = true
+description = "Speech to text as a plug-in program (contract qnc.transcribe 2): the client the application uses, the side a transcription program serves, and the 16 kHz mono WAV the contract takes."
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true, features = ["float_roundtrip"] }
+qnc-plugin-process = { path = "../qnc-plugin-process" }
+qnc-ai-catalog = { path = "../qnc-ai-catalog" }

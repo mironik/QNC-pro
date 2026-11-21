@@ -203,6 +203,11 @@
     "ingest.partial_keep": "Keep",
     "ingest.partial_delete": "Delete",
     "work.title": "Background work",
+    "ai.share_not_set": "The shared AI folder of this computer is not set (the setting ai-share or QNC_AI_SHARE).",
+    "ai.catalog_invalid": "The AI catalog of this computer cannot be used: {error}",
+    "ai.no_engine": "The transcription engine {engine} is not in the AI catalog of this computer.",
+    "ai.no_fast_engine": "The AI catalog of this computer has no fast transcription engine.",
+    "ai.model_missing": "Transcription engine {engine}: the model {model} is not on this computer.",
     "one_copy.not_on_this_system": "One copy of a program is not made for this system yet.",
     "one_copy.failed": "One copy: {error}"
   }

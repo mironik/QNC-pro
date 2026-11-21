@@ -203,6 +203,11 @@
     "ingest.partial_keep": "Zadrži",
     "ingest.partial_delete": "Obriši",
     "work.title": "Rad u pozadini",
+    "ai.share_not_set": "Zajednička AI mapa ovog računala nije postavljena (postavka ai-share ili QNC_AI_SHARE).",
+    "ai.catalog_invalid": "AI katalog ovog računala se ne može koristiti: {error}",
+    "ai.no_engine": "Motor prijepisa {engine} nije u AI katalogu ovog računala.",
+    "ai.no_fast_engine": "AI katalog ovog računala nema brzi motor prijepisa.",
+    "ai.model_missing": "Motor prijepisa {engine}: model {model} nije na ovom računalu.",
     "one_copy.not_on_this_system": "Jedan primjerak programa još nije napravljen za ovaj sustav.",
     "one_copy.failed": "Jedan primjerak: {error}"
   }

@@ -1,0 +1,20 @@
+[package]
+name = "qnc-transcribe-run"
+version.workspace = true
+edition.workspace = true
+description = "The transcripts step of an ingest: every imported clip is heard from its copy in the project with the fast engine, in pieces, and kept in the transcript store."
+
+[dependencies]
+serde_json = { workspace = true }
+qnc-diagnostics = { path = "../qnc-diagnostics" }
+qnc-text = { path = "../qnc-text" }
+qnc-db = { path = "../qnc-db" }
+qnc-catalog = { path = "../qnc-catalog" }
+qnc-project-settings = { path = "../qnc-project-settings" }
+qnc-media-model = { path = "../qnc-media-model" }
+qnc-mxf-sound = { path = "../qnc-mxf-sound" }
+qnc-ai-catalog = { path = "../qnc-ai-catalog" }
+qnc-transcribe-jobs = { path = "../qnc-transcribe-jobs" }
+qnc-transcript-store = { path = "../qnc-transcript-store" }
+qnc-stopped-work = { path = "../qnc-stopped-work" }
+qnc-uri = { path = "../qnc-uri" }

@@ -416,6 +416,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f2032f911046de80f0a198e0901378627c33f59ea0ac00e363d481118bd70a53"
 
 [[package]]
+name = "base64"
+version = "0.22.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "72b3254f16251a8381aa12e40e3c4d2f0199f8c6508fbecb9d91f575e0fbb8c6"
+
+[[package]]
 name = "bit-set"
 version = "0.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1475,7 +1481,7 @@ dependencies = [
  "js-sys",
  "log",
  "wasm-bindgen",
- "windows-core 0.58.0",
+ "windows-core 0.62.2",
 ]
 
 [[package]]
@@ -2536,6 +2542,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "qnc-ai-catalog"
+version = "0.1.0"
+dependencies = [
+ "qnc-settings",
+ "qnc-text",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "qnc-app-mark"
 version = "0.1.0"
 dependencies = [
@@ -2884,6 +2900,8 @@ dependencies = [
  "qnc-registry",
  "qnc-stopped-work",
  "qnc-text",
+ "qnc-transcribe-run",
+ "qnc-transcript-store",
  "qnc-wave-run",
  "qnc-wave-store",
  "serde_json",
@@ -3111,6 +3129,16 @@ dependencies = [
 name = "qnc-player-wire"
 version = "0.1.0"
 dependencies = [
+ "serde",
+ "serde_json",
+]
+
+[[package]]
+name = "qnc-plugin-process"
+version = "0.1.0"
+dependencies = [
+ "base64",
+ "qnc-launch",
  "serde",
  "serde_json",
 ]
@@ -3573,6 +3601,56 @@ dependencies = [
  "qnc-form-look",
  "qnc-launch",
  "qnc-text",
+]
+
+[[package]]
+name = "qnc-transcribe-jobs"
+version = "0.1.0"
+dependencies = [
+ "qnc-ai-catalog",
+ "qnc-plugin-process",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
+name = "qnc-transcribe-parakeet"
+version = "0.1.0"
+dependencies = [
+ "libloading",
+ "qnc-diagnostics",
+ "qnc-settings",
+ "qnc-transcribe-jobs",
+]
+
+[[package]]
+name = "qnc-transcribe-run"
+version = "0.1.0"
+dependencies = [
+ "qnc-ai-catalog",
+ "qnc-catalog",
+ "qnc-db",
+ "qnc-diagnostics",
+ "qnc-media-model",
+ "qnc-mxf-sound",
+ "qnc-project-settings",
+ "qnc-stopped-work",
+ "qnc-text",
+ "qnc-transcribe-jobs",
+ "qnc-transcript-store",
+ "qnc-uri",
+ "serde_json",
+]
+
+[[package]]
+name = "qnc-transcript-store"
+version = "0.1.0"
+dependencies = [
+ "qnc-db",
+ "qnc-text",
+ "rusqlite",
+ "serde",
+ "serde_json",
 ]
 
 [[package]]

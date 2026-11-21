@@ -1,0 +1,11 @@
+[package]
+name = "qnc-ai-catalog"
+version.workspace = true
+edition.workspace = true
+description = "The AI catalog of this computer: which program, model and backend transcribe speech here; one engine per purpose, nothing falls back."
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }
+qnc-settings = { path = "../qnc-settings" }
+qnc-text = { path = "../qnc-text" }

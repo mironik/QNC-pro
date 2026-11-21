@@ -26,3 +26,6 @@ qnc-project-settings = { path = "../qnc-project-settings" }
 qnc-catalog = { path = "../qnc-catalog" }
 qnc-wave-run = { path = "../qnc-wave-run" }
 qnc-wave-store = { path = "../qnc-wave-store" }
+
+qnc-transcribe-run = { path = "../qnc-transcribe-run" }
+qnc-transcript-store = { path = "../qnc-transcript-store" }

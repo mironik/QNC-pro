@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Runs a plug-in as its own program speaking one versioned contract as JSON lines (the application's side and the program's side); refuses another contract, stops it when idle.",
+  "database": "none"
+}

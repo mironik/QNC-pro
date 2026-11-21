@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Reads the AI catalog of this computer: which program, model and backend transcribe speech here and the shared AI folder; one engine per purpose, a missing model or unknown backend is an error.",
+  "database": "none"
+}

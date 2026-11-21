@@ -1,0 +1,12 @@
+[package]
+name = "qnc-transcript-store"
+version.workspace = true
+edition.workspace = true
+description = "The transcripts of a project's clips and the queue of the ranges asked, in its own database; the one owner of those tables."
+
+[dependencies]
+rusqlite = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+qnc-db = { path = "../qnc-db" }
+qnc-text = { path = "../qnc-text" }

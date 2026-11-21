@@ -121,7 +121,7 @@
         },
         "ai": {
           "template": "none",
-          "features": [],
+          "features": ["transcription"],
           "language": "hr"
         },
         "artifacts": {
@@ -211,7 +211,7 @@
         },
         "ai": {
           "template": "none",
-          "features": [],
+          "features": ["transcription"],
           "language": "hr"
         },
         "artifacts": {
@@ -301,7 +301,7 @@
         },
         "ai": {
           "template": "none",
-          "features": [],
+          "features": ["transcription"],
           "language": "hr"
         },
         "artifacts": {
@@ -391,7 +391,7 @@
         },
         "ai": {
           "template": "none",
-          "features": [],
+          "features": ["transcription"],
           "language": "hr"
         },
         "artifacts": {
