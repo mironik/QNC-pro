@@ -74,6 +74,10 @@ pub struct View {
     pub project_name: String,
     /// The card is known to an earlier project: the line that says so (and how many clips are new).
     pub known: Option<String>,
+    /// What became of the card's eject, once known.
+    pub card_said: Option<String>,
+    /// The card is out: the notice shown while the window waits to close, with the seconds left.
+    pub notice: Option<(String, u64)>,
     pub clips: usize,
     pub bars: Vec<Bar>,
     pub failed: usize,
@@ -127,6 +131,10 @@ pub struct Session {
     filmstrips: Option<qnc_filmstrip_run::FilmstripRun>,
     /// The card is known to an earlier project: what the window says of it.
     known: Option<String>,
+    /// The card taken out by itself after the copy or a Cancel.
+    card_out: qnc_card_out::CardOut,
+    /// The card is out after the copy (the notice was shown).
+    card_gone: bool,
     /// Set once the waves ended: the transcripts then queue what the waves did not decide.
     waves_done: qnc_transcribe_run::WavesDone,
 }
@@ -164,6 +172,15 @@ impl Session {
             qnc_diagnostics::log(format!("ingest window: project {project_id} goes on, nothing stopped"));
         }
         let known = arg(args, "--known").ok();
+        // The card goes out after the copy only when the project keeps nothing on it.
+        let free = match settings.playback_input() {
+            Ok(input) => qnc_card_out::free_when_imported(input),
+            Err(error) => {
+                qnc_diagnostics::log(format!("ingest window: the card stays in, playback input not read: {error}"));
+                false
+            }
+        };
+        let card_out = qnc_card_out::CardOut::new(&card.disk, free);
         let mut ingests = Ingests::new(root, &projects, template, profiles);
         ingests.start_into(card.clone(), &project_id, &folder, Default::default())?;
 
@@ -183,7 +200,7 @@ impl Session {
             waves_done.store(true, std::sync::atomic::Ordering::Relaxed);
         }
         let filmstrips = plan.has(qnc_ingest_plan::Step::Filmstrips).then(|| qnc_filmstrip_run::FilmstripRun::start(&folder, &db));
-        Ok(Session { root: root.to_path_buf(), project_id, name, camera, card, ingests, last: Progress::default(), started: Instant::now(), took: None, ask: None, phase: Phase::Running, close: false, opened_form: false, stopped: false, delete_pending: false, info: Info::default(), reader, stops, counts: Counts::default(), read_at: None, full_at: BTreeMap::new(), plan, waves, transcripts, filmstrips, waves_done, known })
+        Ok(Session { root: root.to_path_buf(), project_id, name, camera, card, ingests, last: Progress::default(), started: Instant::now(), took: None, ask: None, phase: Phase::Running, close: false, opened_form: false, stopped: false, delete_pending: false, info: Info::default(), reader, stops, counts: Counts::default(), read_at: None, full_at: BTreeMap::new(), plan, waves, transcripts, filmstrips, waves_done, known, card_out, card_gone: false })
     }
 
     /// Nothing of the background work runs any more.
@@ -258,6 +275,18 @@ impl Session {
             }
             qnc_diagnostics::log(format!("ingest window: copy ended after {} ms, {:?}", self.started.elapsed().as_millis(), self.last));
         }
+        // The card out once the import copied it whole; the window closes when it is out.
+        self.card_out.imported(self.last.clips, self.last.finished, self.last.failed);
+        let card_said = self.card_out.said();
+        // Until the steps run in a program of their own, the window closes only once their work
+        // is done too (its threads would end with it).
+        if !self.stopped && self.card_out.window_closes() {
+            self.card_gone = true;
+        }
+        if self.card_gone && self.phase == Phase::Done && !self.close {
+            qnc_diagnostics::log("ingest window: the card is out and the work done, the window closes");
+            self.close = true;
+        }
         self.open_next_form();
         self.delete_when_free();
         self.read_counts();
@@ -287,6 +316,8 @@ impl Session {
             elapsed,
             project_name: self.name.clone(),
             known: self.known.clone(),
+            card_said,
+            notice: self.card_out.notice(),
             clips: self.counts.clips.max(self.last.clips),
             bars,
             failed: self.counts.failed.max(self.last.failed),
@@ -300,7 +331,8 @@ impl Session {
     /// story step is written. Story: the step says the ingest is done; Net: nothing opens.
     fn open_next_form(&mut self) {
         let copied = self.last.clips > 0 && self.last.finished + self.last.failed >= self.last.clips;
-        if self.opened_form || !copied || self.stopped {
+        // After the card is out (or no eject comes): a form opened over it would hold the card.
+        if self.opened_form || !copied || self.stopped || !(self.card_out.settled() || self.last.failed > 0) {
             return;
         }
         self.opened_form = true;
@@ -362,6 +394,7 @@ impl Session {
         if yes {
             qnc_diagnostics::log("ingest window: cancelled by the user");
             self.ingests.stop_all();
+            self.card_out.start("cancel");
             if let Some(waves) = &self.waves {
                 waves.stop();
             }

@@ -1,0 +1,12 @@
+[package]
+name = "qnc-card-out"
+version.workspace = true
+edition.workspace = true
+description = "The card taken out by itself: after a confirmed Cancel, and once every clip is copied off it and the project keeps nothing on it; tried again while in use; the window told for ten seconds, then closed."
+
+[dependencies]
+qnc-diagnostics = { path = "../qnc-diagnostics" }
+qnc-disks = { path = "../qnc-disks" }
+qnc-eject = { path = "../qnc-eject" }
+qnc-player-input = { path = "../qnc-player-input" }
+qnc-text = { path = "../qnc-text" }

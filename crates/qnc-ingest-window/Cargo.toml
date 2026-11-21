@@ -31,3 +31,4 @@ qnc-transcribe-run = { path = "../qnc-transcribe-run" }
 qnc-transcript-store = { path = "../qnc-transcript-store" }
 qnc-filmstrip-run = { path = "../qnc-filmstrip-run" }
 qnc-filmstrip-store = { path = "../qnc-filmstrip-store" }
+qnc-card-out = { path = "../qnc-card-out" }

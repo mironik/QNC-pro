@@ -2637,6 +2637,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "qnc-card-out"
+version = "0.1.0"
+dependencies = [
+ "qnc-diagnostics",
+ "qnc-disks",
+ "qnc-eject",
+ "qnc-player-input",
+ "qnc-text",
+]
+
+[[package]]
 name = "qnc-card-select"
 version = "0.1.0"
 dependencies = [
@@ -2932,6 +2943,7 @@ version = "0.1.0"
 dependencies = [
  "qnc-camera-profile",
  "qnc-card-ingest",
+ "qnc-card-out",
  "qnc-card-select",
  "qnc-catalog",
  "qnc-db",
@@ -3277,6 +3289,7 @@ dependencies = [
  "qnc-ids",
  "qnc-project-make",
  "qnc-registry",
+ "qnc-settings",
  "qnc-text",
  "serde_json",
 ]

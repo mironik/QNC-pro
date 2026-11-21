@@ -51,6 +51,18 @@ pub fn main() -> Result<(), String> {
         front.follow(ctx);
         body(ui, &theme, &look, &view, &mut session);
         questions(ctx, &view, &mut session);
+        if let Some((notice, left)) = &view.notice {
+            egui::Area::new(egui::Id::new("card_out_notice")).order(egui::Order::Foreground).anchor(egui::Align2::CENTER_CENTER, egui::Vec2::ZERO).show(ctx, |ui| {
+                egui::Frame::popup(ui.style()).inner_margin(egui::Margin::same(24)).show(ui, |ui| {
+                    ui.set_max_width(420.0);
+                    ui.vertical_centered(|ui| {
+                        ui.label(RichText::new(notice).size(20.0).strong());
+                        ui.add_space(8.0);
+                        ui.label(fill("ingest.window_closes_in", &[("seconds", &left.to_string())]));
+                    });
+                });
+            });
+        }
         ctx.request_repaint_after(std::time::Duration::from_millis(200));
         Next::Show
     })
@@ -104,7 +116,11 @@ fn body(ui: &mut egui::Ui, theme: &Theme, look: &FormLook, view: &View, session:
         egui::ScrollArea::vertical().auto_shrink([false, false]).show(ui, |ui| {
             let title = ui.label(RichText::new(title).size(theme.font_ui + look.get("title_size")).color(theme.text).strong());
             look.mark(ui, title.rect, "title_size", Grows::Up);
-            let sub = format!("{}   ·   {}", view.card, fill("ingest.elapsed", &[("time", &qnc_work_bars::clock(view.elapsed))]));
+            let mut sub = format!("{}   ·   {}", view.card, fill("ingest.elapsed", &[("time", &qnc_work_bars::clock(view.elapsed))]));
+            if let Some(said) = &view.card_said {
+                sub.push_str("   ·   ");
+                sub.push_str(said);
+            }
             let sub = ui.label(RichText::new(sub).size(theme.font_ui + look.get("subtitle_size")).color(theme.text_muted));
             look.mark(ui, sub.rect, "subtitle_size", Grows::Up);
             if let Some(known) = &view.known {
