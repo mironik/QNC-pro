@@ -28,3 +28,6 @@ qnc-registry = { path = "../qnc-registry" }
 qnc-project-make = { path = "../qnc-project-make" }
 qnc-player-input = { path = "../qnc-player-input" }
 qnc-media-model = { path = "../qnc-media-model" }
+qnc-known-card = { path = "../qnc-known-card" }
+qnc-project-templates = { path = "../qnc-project-templates" }
+qnc-folder-lock = { path = "../qnc-folder-lock" }

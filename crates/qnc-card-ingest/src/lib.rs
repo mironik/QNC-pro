@@ -95,8 +95,10 @@ impl Ingests {
 
     /// Starts the ingest of `card` into the project already made (`project_id`, its `folder`);
     /// refused while one runs for the card.
-    pub fn start_into(&mut self, card: Card, project_id: &str, folder: &Path) -> Result<(), String> {
-        self.begin(card, Target::Made { project_id: project_id.to_string(), folder: folder.to_path_buf() })
+    /// `leave_out`: originals (URIs) another project already has, not taken.
+    pub fn start_into(&mut self, card: Card, project_id: &str, folder: &Path, leave_out: std::collections::BTreeSet<String>) -> Result<(), String> {
+        self.begin(card, Target::Made { project_id: project_id.to_string(), folder: folder.to_path_buf(), leave_out })
+
     }
 
     /// Starts the ingest of `card` under the project name `name` (the project is made first);
@@ -137,7 +139,7 @@ impl Ingests {
 /// Where the ingest goes: a project to make under a name, or one already made.
 enum Target {
     Named(String),
-    Made { project_id: String, folder: PathBuf },
+    Made { project_id: String, folder: PathBuf, leave_out: std::collections::BTreeSet<String> },
 }
 
 struct Job {
@@ -161,10 +163,15 @@ impl Job {
                 let made = qnc_project_make::make(&self.root, qnc_project_make::Make { name: name.clone(), settings: Some(self.template.clone()), projects_root: Some(self.projects_root.clone()), ..Default::default() })?;
                 (made.project_id, made.folder)
             }
-            Target::Made { project_id, folder } => (project_id.clone(), folder.clone()),
+            Target::Made { project_id, folder, .. } => (project_id.clone(), folder.clone()),
+        };
+        let leave_out = match &self.target {
+            Target::Made { leave_out, .. } => leave_out.clone(),
+            Target::Named(_) => Default::default(),
         };
         let project = qnc_ingest_run::Project::open(&folder)?;
-        let selected = qnc_ingest_run::select_into(&self.card, &project, &self.profiles, now_ms())?;
+        let selected = qnc_ingest_run::select_into(&self.card, &project, &self.profiles, now_ms(), &leave_out)?;
+
         let _ = tell.send(Said::ProjectMade { project_id: project_id.clone(), folder: folder.clone(), clips: selected.clips.len() });
         qnc_diagnostics::log(format!("card ingest: project {project_id} with {} clips", selected.clips.len()));
         let mut report = |p: Progress| {

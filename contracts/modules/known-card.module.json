@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "A card put in that a project already has: the newest project with its clips (by the card's source and originals), how many it has, which are new, how many are not imported; read only.",
+  "database": "reader"
+}

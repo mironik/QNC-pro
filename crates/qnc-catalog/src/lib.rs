@@ -97,6 +97,23 @@ impl StoredClip {
     }
 }
 
+/// A clip's original as the catalog keeps it, for whoever compares a card with the projects.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct Original {
+    pub clip_id: String,
+    pub source_uri: String,
+    pub original_uri: String,
+    pub imported: bool,
+}
+
+/// Every clip's source, original and whether it is imported (`public_clips`).
+pub fn originals(reader: &Reader) -> Result<Vec<Original>, String> {
+    let mut statement = reader.connection().prepare("SELECT clip_id, source_uri, original_uri, import_status FROM public_clips").map_err(|e| e.to_string())?;
+    let rows = statement
+        .query_map([], |r| Ok(Original { clip_id: r.get(0)?, source_uri: r.get(1)?, original_uri: r.get(2)?, imported: r.get::<_, String>(3)? == "imported" }))
+        .map_err(|e| e.to_string())?;
+    rows.collect::<Result<_, _>>().map_err(|e| e.to_string())
+}
 /// A row of the lightweight list (`public_clips`), for a pool.
 #[derive(Debug, Clone, PartialEq)]
 pub struct ClipSummary {

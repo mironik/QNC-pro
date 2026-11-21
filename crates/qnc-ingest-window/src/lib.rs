@@ -72,6 +72,8 @@ pub struct View {
     /// How long the ingest ran, or runs.
     pub elapsed: Duration,
     pub project_name: String,
+    /// The card is known to an earlier project: the line that says so (and how many clips are new).
+    pub known: Option<String>,
     pub clips: usize,
     pub bars: Vec<Bar>,
     pub failed: usize,
@@ -123,6 +125,8 @@ pub struct Session {
     transcripts: Option<qnc_transcribe_run::TranscriptRun>,
     /// The filmstrips step, while the plan has it.
     filmstrips: Option<qnc_filmstrip_run::FilmstripRun>,
+    /// The card is known to an earlier project: what the window says of it.
+    known: Option<String>,
     /// Set once the waves ended: the transcripts then queue what the waves did not decide.
     waves_done: qnc_transcribe_run::WavesDone,
 }
@@ -134,7 +138,10 @@ fn arg(args: &[String], name: &str) -> Result<String, String> {
 
 impl Session {
     /// The session of the arguments the tray gave: `--project-id`, `--folder`, `--name`, `--disk`,
-    /// `--serial`, `--label`, `--root-path`, `--camera`. The ingest starts at once.
+    /// `--serial`, `--label`, `--root-path`, `--camera`; `--goes-on` (a card put in again goes on in
+    /// its project: what the user stopped runs again), `--only-new-of <folder of the earlier project>` (the clips
+    /// that project has are not taken), `--known <text>` (the line said of the earlier project). The
+    /// ingest starts at once.
     pub fn start(root: &Path, args: &[String]) -> Result<Session, String> {
         let project_id = arg(args, "--project-id")?;
         let folder = PathBuf::from(arg(args, "--folder")?);
@@ -152,8 +159,14 @@ impl Session {
         let settings = qnc_project_settings::read(&reader)?;
         let plan = qnc_ingest_plan::Plan::of_settings(settings.saved.get("artifacts").unwrap_or(&serde_json::Value::Null))?;
         let stops = qnc_db::Writer::start(&db, vec![Box::new(qnc_stopped_work::StoppedWork)])?;
+        if args.iter().any(|a| a == "--goes-on") {
+            qnc_stopped_work::resume_all(&stops)?;
+            qnc_diagnostics::log(format!("ingest window: project {project_id} goes on, nothing stopped"));
+        }
+        let known = arg(args, "--known").ok();
         let mut ingests = Ingests::new(root, &projects, template, profiles);
-        ingests.start_into(card.clone(), &project_id, &folder)?;
+        ingests.start_into(card.clone(), &project_id, &folder, Default::default())?;
+
         qnc_diagnostics::log(format!("ingest window: card {} into project {project_id}, plan {}", card.serial, plan.line()));
         // The transcripts first: the waves hand them every clip's first channel (one read of the copy).
         let waves_done = qnc_transcribe_run::WavesDone::default();
@@ -170,7 +183,7 @@ impl Session {
             waves_done.store(true, std::sync::atomic::Ordering::Relaxed);
         }
         let filmstrips = plan.has(qnc_ingest_plan::Step::Filmstrips).then(|| qnc_filmstrip_run::FilmstripRun::start(&folder, &db));
-        Ok(Session { root: root.to_path_buf(), project_id, name, camera, card, ingests, last: Progress::default(), started: Instant::now(), took: None, ask: None, phase: Phase::Running, close: false, opened_form: false, stopped: false, delete_pending: false, info: Info::default(), reader, stops, counts: Counts::default(), read_at: None, full_at: BTreeMap::new(), plan, waves, transcripts, filmstrips, waves_done })
+        Ok(Session { root: root.to_path_buf(), project_id, name, camera, card, ingests, last: Progress::default(), started: Instant::now(), took: None, ask: None, phase: Phase::Running, close: false, opened_form: false, stopped: false, delete_pending: false, info: Info::default(), reader, stops, counts: Counts::default(), read_at: None, full_at: BTreeMap::new(), plan, waves, transcripts, filmstrips, waves_done, known })
     }
 
     /// Nothing of the background work runs any more.
@@ -271,6 +284,7 @@ impl Session {
             card,
             elapsed,
             project_name: self.name.clone(),
+            known: self.known.clone(),
             clips: self.counts.clips.max(self.last.clips),
             bars,
             failed: self.counts.failed.max(self.last.failed),

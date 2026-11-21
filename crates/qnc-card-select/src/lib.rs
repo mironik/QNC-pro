@@ -75,8 +75,18 @@ fn qnc_text_path(code: &str, path: &Path) -> String {
     format!("{code}: {}", path.display())
 }
 
-/// Every clip the card describes, in camera phase, recorded at `recorded_at_unix_ms`.
-pub fn select(card: &Card, profiles: &[Profile], recorded_at_unix_ms: u64) -> Result<Selected, String> {
+/// The URI of every original the card's index names, in the index's order (the originals as the
+/// records bind them).
+pub fn original_uris(card: &Card) -> Result<Vec<String>, String> {
+    let (index, _) = read_index(card)?;
+    index.materials.iter().map(|material| qnc_uri::file_uri(&card.source_uri(), &card.card_path(&material.original.relative_path))).collect()
+}
+
+/// Every clip the card describes, in camera phase, recorded at `recorded_at_unix_ms`. A clip
+/// whose original `keep_ids` names keeps that clip id (a card Selected again into the same
+/// project); the rest get fresh ones.
+pub fn select(card: &Card, profiles: &[Profile], recorded_at_unix_ms: u64, keep_ids: &std::collections::BTreeMap<String, String>) -> Result<Selected, String> {
+
     let (index, index_text) = read_index(card)?;
     let sidecar_texts: Vec<String> = index.materials.iter().filter_map(|m| m.sidecar().ok().flatten()).filter_map(|s| std::fs::read_to_string(card.file(&s.relative_path)).ok()).take(1).collect();
     let mut records: Vec<&str> = vec![index_text.as_str()];
@@ -85,7 +95,10 @@ pub fn select(card: &Card, profiles: &[Profile], recorded_at_unix_ms: u64) -> Re
     let mut clips = Vec::new();
     let mut skipped = Vec::new();
     for (i, material) in index.materials.iter().enumerate() {
-        match clip_of(card, &index, i, material, profile, recognised, recorded_at_unix_ms) {
+        let original = qnc_uri::file_uri(&card.source_uri(), &card.card_path(&material.original.relative_path))?;
+        let clip_id = keep_ids.get(&original).cloned().unwrap_or_else(|| format!("clip-{}", qnc_ids::fresh()));
+        match clip_of(card, &index, i, material, profile, recognised, recorded_at_unix_ms, clip_id) {
+
             Ok(clip) => clips.push(clip),
             Err(error) => skipped.push((material.original.relative_path.clone(), error)),
         }
@@ -93,8 +106,8 @@ pub fn select(card: &Card, profiles: &[Profile], recorded_at_unix_ms: u64) -> Re
     Ok(Selected { clips, skipped, profile: profile.stamp(), recognised })
 }
 
-fn clip_of(card: &Card, index: &CameraIndex, i: usize, material: &Material, profile: &Profile, recognised: bool, at: u64) -> Result<CatalogClip, String> {
-    let clip_id = format!("clip-{}", qnc_ids::fresh());
+#[allow(clippy::too_many_arguments)]
+fn clip_of(card: &Card, index: &CameraIndex, i: usize, material: &Material, profile: &Profile, recognised: bool, at: u64, clip_id: String) -> Result<CatalogClip, String> {
     let binding = qnc_sony_index::bind(material, &clip_id, &card.source_uri(), &card.root_path)?;
     let sidecar = match material.sidecar()? {
         Some(related) => {
@@ -140,7 +153,7 @@ mod tests {
         std::fs::write(root.join("Clip").join("Mironik 1483M01.XML"), include_str!("../../qnc-sony-index/tests/Mironik_1483M01.XML")).unwrap();
         let card = Card { disk: dir.clone(), serial: "67870D0C".into(), volume_name: "UNTITLED".into(), root_path: "PRIVATE/XDROOT".into() };
         let (profiles, _) = qnc_camera_profile::read_profiles(&Path::new(env!("CARGO_MANIFEST_DIR")).join("../../contracts/cameras/profiles"));
-        let selected = select(&card, &profiles, 5).unwrap();
+        let selected = select(&card, &profiles, 5, &Default::default()).unwrap();
         assert_eq!((selected.profile.as_str(), selected.recognised), ("sony-ilme-fx6v@1", true));
         // Only one material has its sidecar here; a material whose related sidecar is missing
         // is not taken (the card is unsound), the others go on.
@@ -170,7 +183,7 @@ mod live {
         }
         let card = Card { disk: disk.into(), serial: "67870D0C".into(), volume_name: "UNTITLED".into(), root_path: "PRIVATE/XDROOT".into() };
         let (profiles, _) = qnc_camera_profile::read_profiles(&Path::new(env!("CARGO_MANIFEST_DIR")).join("../../contracts/cameras/profiles"));
-        let selected = select(&card, &profiles, 5).unwrap();
+        let selected = select(&card, &profiles, 5, &Default::default()).unwrap();
         assert!(selected.skipped.is_empty(), "{:?}", selected.skipped);
         assert!(selected.clips.len() >= 100 && selected.clips.iter().all(|c| c.snapshot.phase == Phase::Camera));
         // The documents are named by the bytes of the card: the names the old QNC wrote.

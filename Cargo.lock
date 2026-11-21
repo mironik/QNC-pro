@@ -2908,13 +2908,16 @@ dependencies = [
  "qnc-db",
  "qnc-diagnostics",
  "qnc-ffprobe-read",
+ "qnc-folder-lock",
  "qnc-ids",
+ "qnc-known-card",
  "qnc-media-model",
  "qnc-media-record",
  "qnc-player-input",
  "qnc-probe",
  "qnc-project-make",
  "qnc-project-settings",
+ "qnc-project-templates",
  "qnc-record-compose",
  "qnc-registry",
  "qnc-text",
@@ -2984,6 +2987,18 @@ dependencies = [
 [[package]]
 name = "qnc-key-row"
 version = "0.1.0"
+
+[[package]]
+name = "qnc-known-card"
+version = "0.1.0"
+dependencies = [
+ "qnc-catalog",
+ "qnc-db",
+ "qnc-diagnostics",
+ "qnc-project-make",
+ "qnc-registry",
+ "rusqlite",
+]
 
 [[package]]
 name = "qnc-language-choice"
@@ -3773,6 +3788,7 @@ dependencies = [
  "qnc-diagnostics",
  "qnc-disks",
  "qnc-ids",
+ "qnc-known-card",
  "qnc-launch",
  "qnc-mode",
  "qnc-process-job",

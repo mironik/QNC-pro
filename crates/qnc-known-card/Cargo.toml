@@ -1,0 +1,14 @@
+[package]
+name = "qnc-known-card"
+version.workspace = true
+edition.workspace = true
+description = "A card put in that a project of this computer already has: the newest project with its clips, how many it has, which originals are new, how many are not imported yet."
+
+[dependencies]
+qnc-diagnostics = { path = "../qnc-diagnostics" }
+qnc-db = { path = "../qnc-db" }
+qnc-registry = { path = "../qnc-registry" }
+qnc-catalog = { path = "../qnc-catalog" }
+rusqlite = { workspace = true }
+qnc-project-make = { path = "../qnc-project-make" }
+

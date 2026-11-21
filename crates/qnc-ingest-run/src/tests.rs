@@ -29,7 +29,7 @@ fn a_card_without_its_media_publishes_its_clips_and_marks_the_copies_failed_with
     let made = qnc_project_make::make(&root, qnc_project_make::Make { name: "Fixture".into(), settings: Some(template), projects_root: Some(root.join("projects")), ..Default::default() }).unwrap();
     let project = Project::open(&made.folder).unwrap();
     let card = Card { disk: disk.clone(), serial: "67870D0C".into(), volume_name: "T".into(), root_path: "PRIVATE/XDROOT".into() };
-    let selected = select_into(&card, &project, &profiles(), 7).unwrap();
+    let selected = select_into(&card, &project, &profiles(), 7, &Default::default()).unwrap();
     assert_eq!(selected.clips.len(), 1);
     let reader = Reader::open(&made.project_db()).unwrap();
     assert_eq!(qnc_catalog::summaries(&reader).unwrap().len(), 1);
@@ -59,7 +59,7 @@ fn two_clips_of_the_real_card_become_final_imported_clips_the_player_input_takes
     let made = qnc_project_make::make(&root, qnc_project_make::Make { name: "Card test".into(), settings: Some(template), projects_root: Some(root.join("projects")), ..Default::default() }).unwrap();
     let project = Project::open(&made.folder).unwrap();
     let card = Card { disk: disk.into(), serial: "67870D0C".into(), volume_name: "UNTITLED".into(), root_path: "PRIVATE/XDROOT".into() };
-    let mut selected = select_into(&card, &project, &profiles(), 9).unwrap();
+    let mut selected = select_into(&card, &project, &profiles(), 9, &Default::default()).unwrap();
     assert!(selected.clips.len() >= 100);
     selected.clips.retain(|c| c.name == "Mironik 1483.MXF" || c.name == "Mironik 1484.MXF");
     let progress = run(&card, &project, &selected, &AtomicBool::new(false), 10, &mut |_| {}).unwrap();
@@ -84,4 +84,46 @@ fn two_clips_of_the_real_card_become_final_imported_clips_the_player_input_takes
 
 fn qnc_launch_present() -> Result<(), String> {
     qnc_probe::probe(Path::new("C:/nowhere.mxf"), "qnc://local/source/x/file/y", Duration::from_secs(1)).map(|_| ()).and_then(|_| Ok(())).or_else(|e| if e.contains("not beside") { Err(e) } else { Ok(()) })
+}
+#[cfg(test)]
+mod known_card_tests {
+    use std::path::Path;
+    use qnc_known_card::{find, originals_of};
+
+    /// A fixture card Selected twice into one project keeps its clip ids; the card is known to
+    /// that project, with nothing new, and the clip not imported counts as unfinished.
+    #[test]
+    fn a_card_selected_again_keeps_its_clips_and_is_known_to_its_project() {
+        let root = std::env::temp_dir().join(format!("qnc-known-card-fixture-{}", std::process::id()));
+        let _ = std::fs::remove_dir_all(&root);
+        let disk = root.join("card");
+        let card_root = disk.join("PRIVATE").join("XDROOT");
+        std::fs::create_dir_all(card_root.join("Clip")).unwrap();
+        std::fs::write(card_root.join("MEDIAPRO.XML"), include_str!("../../qnc-sony-index/tests/MEDIAPRO.XML")).unwrap();
+        std::fs::write(card_root.join("Clip").join("Mironik 1483M01.XML"), include_str!("../../qnc-sony-index/tests/Mironik_1483M01.XML")).unwrap();
+        let qnc = Path::new(env!("CARGO_MANIFEST_DIR")).join("../..");
+        let (profiles, _) = qnc_camera_profile::read_profiles(&qnc.join("contracts/cameras/profiles"));
+        let template = { let _writer = qnc_project_templates::writer(&root).unwrap(); qnc_project_templates::get(&qnc_registry::reader(&root).unwrap(), "tpl_news_package").unwrap().unwrap().settings };
+        let made = qnc_project_make::make(&root, qnc_project_make::Make { name: "Known".into(), settings: Some(template), projects_root: Some(root.join("projects")), ..Default::default() }).unwrap();
+        let card = qnc_card_select::Card { disk, serial: "67870D0C".into(), volume_name: "T".into(), root_path: "PRIVATE/XDROOT".into() };
+        let originals = qnc_card_select::original_uris(&card).unwrap();
+        assert_eq!(originals.len(), 118, "every original the index names, with or without a record");
+        assert_eq!(find(&root, &card.source_uri(), &originals).unwrap(), None, "a card no project has is new");
+        let project = crate::Project::open(&made.folder).unwrap();
+        let first = crate::select_into(&card, &project, &profiles, 5, &Default::default()).unwrap();
+        let again = crate::select_into(&card, &project, &profiles, 6, &Default::default()).unwrap();
+        assert_eq!(first.clips[0].id(), again.clips[0].id(), "the clip keeps its id");
+        drop(project);
+        let known = find(&root, &card.source_uri(), &originals).unwrap().unwrap();
+        assert_eq!((known.project_id.as_str(), known.had, known.new.len(), known.unfinished), (made.project_id.as_str(), 1, 117, 1), "one clip Selected, not imported; the index names 117 more");
+        assert_eq!(originals_of(&made.folder, &card.source_uri()).unwrap().len(), 1);
+        let left_out = crate::select_into(&card, &project_again(&made.folder), &profiles, 7, &originals_of(&made.folder, &card.source_uri()).unwrap()).unwrap();
+        assert!(left_out.clips.is_empty(), "the clips an earlier project has are not taken");
+        let _ = qnc_folder_lock::unlock(&made.folder, &qnc_project_make::CACHE_FOLDERS);
+        let _ = std::fs::remove_dir_all(&root);
+    }
+
+    fn project_again(folder: &Path) -> crate::Project {
+        crate::Project::open(folder).unwrap()
+    }
 }

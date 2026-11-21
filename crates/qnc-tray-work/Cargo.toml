@@ -23,3 +23,4 @@ qnc-db = { path = "../qnc-db" }
 qnc-launch = { path = "../qnc-launch" }
 qnc-process-job = { path = "../qnc-process-job" }
 qnc-autoplay-guard = { path = "../qnc-autoplay-guard" }
+qnc-known-card = { path = "../qnc-known-card" }

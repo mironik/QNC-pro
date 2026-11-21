@@ -211,12 +211,43 @@ impl Work {
     }
 
     /// A card the watch says is ready: its project and its ingest window, unless a window has it.
+    /// A card the watch says is ready: nothing while a window has it; a card an earlier project
+    /// already has whole is only told; one whose ingest was stopped goes on in that project; one
+    /// with new clips gets a new project that takes only the new ones; else a new project.
     pub fn card_ready(&mut self, card: qnc_card_select::Card, camera: &str) -> Vec<Told> {
-        match self.runs_card(&card.serial) {
-            true => Vec::new(),
-            false => self.open_window(card, camera),
+        if self.runs_card(&card.serial) {
+            return Vec::new();
+        }
+        let known = qnc_card_select::original_uris(&card).and_then(|originals| qnc_known_card::find(&self.root, &card.source_uri(), &originals));
+        match known {
+            Ok(Some(known)) if self.to_delete.as_ref().is_some_and(|(projects, _, _)| projects.contains(&known.project_id)) => {
+                qnc_diagnostics::log(format!("card {} known project {} is being deleted: not ingested now", card.serial, known.name));
+                Vec::new()
+            }
+            Ok(Some(known)) if known.new.is_empty() && known.unfinished == 0 => {
+                qnc_diagnostics::log(format!("card {} known project {} had={}: nothing new, no project made", card.serial, known.name, known.had));
+                vec![notice(fill("tray.card_known", &[("card", &card.volume_name), ("camera", camera), ("project", &known.name), ("count", &known.had.to_string())]))]
+            }
+            // New clips on the card, or clips Selected and never imported: the card goes on in
+            // the project that has it; what it has is kept, only the rest is copied and made.
+            Ok(Some(known)) => {
+                qnc_diagnostics::log(format!("card {} known project {} had={} new={} unfinished={}: goes on there", card.serial, known.name, known.had, known.new.len(), known.unfinished));
+                let counts: [(&str, &str); 4] = [("card", &card.volume_name), ("camera", camera), ("project", &known.name), ("count", &known.had.to_string())];
+                let (new, unfinished) = (known.new.len().to_string(), known.unfinished.to_string());
+                let said = fill("tray.card_goes_on", &[counts[0], counts[1], counts[2], counts[3], ("new", &new), ("unfinished", &unfinished)]);
+                let line = fill("ingest.goes_on", &[counts[2], counts[3], ("new", &new), ("unfinished", &unfinished)]);
+                let mut told = vec![notice(said)];
+                told.extend(self.open_into(card, camera, &known.project_id, &known.folder.display().to_string(), &known.name, &["--goes-on", "--known", &line]));
+                told
+            }
+            Ok(None) => self.open_window(card, camera, &[]),
+            Err(error) => {
+                qnc_diagnostics::log(format!("card {} not compared with the projects: {error}", card.serial));
+                self.open_window(card, camera, &[])
+            }
         }
     }
+
 
     /// Once a tick: the projects of a stop that deletes, and the status and the menu when they changed.
     pub fn settle(&mut self) -> Vec<Told> {
@@ -233,8 +264,8 @@ impl Work {
         told
     }
 
-    /// The project of a ready card and its ingest window.
-    fn open_window(&mut self, card: qnc_card_select::Card, camera: &str) -> Vec<Told> {
+    /// The project of a ready card and its ingest window; `more`: arguments the window takes besides.
+    fn open_window(&mut self, card: qnc_card_select::Card, camera: &str, more: &[&str]) -> Vec<Told> {
         let mode = read_mode(&self.root).map(Mode::label).map(text).unwrap_or(text("mode.story"));
         let name = format!("{mode} {}", qnc_ids::time_stamp(unix_secs()));
         qnc_diagnostics::log(format!("card ready {} ({camera}) as {name}", card.disk.display()));
@@ -243,18 +274,29 @@ impl Work {
             Err(error) => return vec![notice(fill("tray.ingest_failed", &[("error", &error)]))],
         };
         let folder = made.folder.display().to_string();
+        let mut told = vec![notice(fill("tray.card_ingest", &[("card", &card.volume_name), ("camera", camera), ("project", &name)]))];
+        told.extend(self.open_into(card, camera, &made.project_id, &folder, &made.name, more));
+        told
+    }
+
+    /// The ingest window of `card` into the project (made now, or an earlier one it goes on in).
+    fn open_into(&mut self, card: qnc_card_select::Card, camera: &str, project_id: &str, folder: &str, name: &str, more: &[&str]) -> Vec<Told> {
         let disk = card.disk.display().to_string();
-        let args = ["--project-id", &made.project_id, "--folder", &folder, "--name", &made.name, "--disk", &disk, "--serial", &card.serial, "--label", &card.volume_name, "--root-path", &card.root_path, "--camera", camera];
+        let mut args = vec!["--project-id", project_id, "--folder", folder, "--name", name, "--disk", &disk, "--serial", &card.serial, "--label", &card.volume_name, "--root-path", &card.root_path, "--camera", camera];
+        args.extend_from_slice(more);
         match qnc_launch::start_detached(WINDOW, &args, qnc_launch::Priority::Same) {
             Ok(child) => {
                 let _ = self.job.take(&child).map_err(|error| qnc_diagnostics::log(format!("ingest window not held by the tray: {error}")));
                 self.windows.push(Window { serial: card.serial.clone(), child });
-                self.projects.push(made.project_id);
-                vec![notice(fill("tray.card_ingest", &[("card", &card.volume_name), ("camera", camera), ("project", &name)]))]
+                if !self.projects.iter().any(|known| known == project_id) {
+                    self.projects.push(project_id.to_string());
+                }
+                Vec::new()
             }
             Err(error) => vec![notice(fill("tray.ingest_failed", &[("error", &error)]))],
         }
     }
+
 
     /// The partial projects of a stop that deletes, once their processes ended (or after a while).
     fn delete_when_free(&mut self) -> Vec<Told> {

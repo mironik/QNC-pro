@@ -107,6 +107,9 @@ fn body(ui: &mut egui::Ui, theme: &Theme, look: &FormLook, view: &View, session:
             let sub = format!("{}   ·   {}", view.card, fill("ingest.elapsed", &[("time", &qnc_work_bars::clock(view.elapsed))]));
             let sub = ui.label(RichText::new(sub).size(theme.font_ui + look.get("subtitle_size")).color(theme.text_muted));
             look.mark(ui, sub.rect, "subtitle_size", Grows::Up);
+            if let Some(known) = &view.known {
+                ui.label(RichText::new(known).size(theme.font_ui + look.get("subtitle_size")).color(theme.text));
+            }
             look.space(ui, "header_gap");
             let mut stop = None;
             card(ui, theme, look, text("work.title"), None, |ui| {

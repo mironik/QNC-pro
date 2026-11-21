@@ -56,8 +56,14 @@ impl Project {
 }
 
 /// Selects the card and publishes its clips in camera phase; gives what was selected.
-pub fn select_into(card: &Card, project: &Project, profiles: &[qnc_camera_profile::Profile], now_unix_ms: u64) -> Result<Selected, String> {
-    let selected = qnc_card_select::select(card, profiles, now_unix_ms)?;
+/// `leave_out`: originals (URIs) not taken at all (another project has them); a clip whose original
+/// the project already has keeps its clip id.
+pub fn select_into(card: &Card, project: &Project, profiles: &[qnc_camera_profile::Profile], now_unix_ms: u64, leave_out: &std::collections::BTreeSet<String>) -> Result<Selected, String> {
+    let reader = Reader::open(&project.folder.join("project.db"))?;
+    let keep_ids: std::collections::BTreeMap<String, String> = qnc_catalog::originals(&reader)?.into_iter().map(|o| (o.original_uri, o.clip_id)).collect();
+    let mut selected = qnc_card_select::select(card, profiles, now_unix_ms, &keep_ids)?;
+    selected.clips.retain(|clip| !leave_out.contains(&clip.snapshot.binding.original_uri));
+
     for (path, why) in &selected.skipped {
         qnc_diagnostics::log(format!("ingest skipped {path}: {why}"));
     }
@@ -148,11 +154,19 @@ fn qnc_ids_fresh() -> String {
 pub fn run(card: &Card, project: &Project, selected: &Selected, cancel: &AtomicBool, now_unix_ms: u64, report: &mut dyn FnMut(Progress)) -> Result<Progress, String> {
     let mut progress = Progress { clips: selected.clips.len(), ..Progress::default() };
     report(progress);
+    let reader = Reader::open(&project.folder.join("project.db"))?;
     for clip in &selected.clips {
         if cancel.load(std::sync::atomic::Ordering::Relaxed) {
             break;
         }
-        match ingest_clip(card, project, clip, cancel, &mut progress, now_unix_ms, report) {
+        // A clip already copied and final (the card put in again): nothing to do.
+        if is_done(&reader, clip.id())? {
+            progress.finished += 1;
+            report(progress);
+            continue;
+        }
+        match ingest_clip
+(card, project, clip, cancel, &mut progress, now_unix_ms, report) {
             Ok(()) => progress.finished += 1,
             Err(error) => {
                 progress.failed += 1;
