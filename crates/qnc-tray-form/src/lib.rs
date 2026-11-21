@@ -15,10 +15,10 @@ const SETTINGS: u32 = 4;
 
 fn menu(status: &str) -> Vec<MenuItem> {
     vec![
-        MenuItem { id: STATUS, text: status.to_string(), enabled: false, checked: false },
-        MenuItem { id: PROJECTS, text: qnc_text::text("tray.projects").to_string(), enabled: true, checked: false },
-        MenuItem { id: SETTINGS, text: qnc_text::text("tray.settings").to_string(), enabled: true, checked: false },
-        MenuItem { id: QUIT, text: qnc_text::text("tray.quit").to_string(), enabled: true, checked: false },
+        MenuItem { id: STATUS, text: status.to_string(), enabled: false, check: None },
+        MenuItem { id: PROJECTS, text: qnc_text::text("tray.projects").to_string(), enabled: true, check: None },
+        MenuItem { id: SETTINGS, text: qnc_text::text("tray.settings").to_string(), enabled: true, check: None },
+        MenuItem { id: QUIT, text: qnc_text::text("tray.quit").to_string(), enabled: true, check: None },
     ]
 }
 
@@ -31,7 +31,7 @@ pub fn main() -> Result<(), String> {
     let mut run = Run::start(&root)?;
     let waiting = qnc_text::text("tray.waiting").to_string();
     let title = qnc_text::text("tray.title").to_string();
-    let tray = Tray::start(&format!("{title}: {waiting}"), menu(&waiting))?;
+    let tray = Tray::start(&format!("{title}: {waiting}"), menu(&waiting), Some(qnc_app_mark::qnc_mark))?;
     qnc_diagnostics::log("tray started");
     let mut shown = true;
     let mut quit = false;

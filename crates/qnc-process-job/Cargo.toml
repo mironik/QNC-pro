@@ -1,0 +1,11 @@
+[package]
+name = "qnc-process-job"
+version.workspace = true
+edition.workspace = true
+description = "Holds the programs one program started, and every program they start, as one job that ends with its holder; counts and stops them."
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { workspace = true }
+
+[dev-dependencies]
+qnc-launch = { path = "../qnc-launch" }

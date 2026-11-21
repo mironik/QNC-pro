@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Answers the system's AutoPlay question with the caller's rule while it runs, so nothing opens for a disk the caller names; no system setting is changed.",
+  "database": "none"
+}

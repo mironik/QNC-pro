@@ -1,0 +1,5 @@
+{
+  "kind": "kit",
+  "responsibility": "Draws the QNC mark (white QNC in a black rounded square) as RGBA pixels of the size asked, for the tray icon; it shows nothing itself.",
+  "database": "none"
+}

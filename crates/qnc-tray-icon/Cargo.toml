@@ -2,7 +2,10 @@
 name = "qnc-tray-icon"
 version.workspace = true
 edition.workspace = true
-description = "The icon in the system tray with its tip, popup menu and balloon notice; it draws what it is given and returns the item the user chose."
+description = "The icon in the system tray with its picture, tip, menu in QNC's look (a tick box per choice) and balloon notice; it draws what it is given and returns the item the user chose."
+
+[dependencies]
+qnc-theme = { path = "../qnc-theme" }
 
 [target.'cfg(windows)'.dependencies]
 windows-sys = { workspace = true }

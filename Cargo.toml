@@ -15,6 +15,6 @@ egui = "0.31"
 eframe = "0.31"
 rusqlite = { version = "0.32", features = ["bundled", "hooks"] }
 memmap2 = "0.9"
-windows-sys = { version = "0.59", features = ["Win32_Foundation", "Win32_Security", "Win32_System_Threading", "Win32_Storage_FileSystem", "Win32_Devices", "Win32_Devices_DeviceAndDriverInstallation", "Win32_System_IO", "Win32_System_Ioctl", "Win32_UI_Shell", "Win32_UI_WindowsAndMessaging", "Win32_System_LibraryLoader", "Win32_Graphics_Gdi"] }
+windows-sys = { version = "0.59", features = ["Win32_Foundation", "Win32_Security", "Win32_System_Threading", "Win32_Storage_FileSystem", "Win32_Devices", "Win32_Devices_DeviceAndDriverInstallation", "Win32_System_IO", "Win32_System_Ioctl", "Win32_UI_Shell", "Win32_UI_WindowsAndMessaging", "Win32_System_LibraryLoader", "Win32_Graphics_Gdi", "Win32_UI_Controls", "Win32_System_JobObjects"] }
 libc = "0.2"
 xml-rs = "0.8.29"

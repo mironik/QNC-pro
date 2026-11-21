@@ -9,6 +9,7 @@ qnc-settings = { path = "../qnc-settings" }
 qnc-diagnostics = { path = "../qnc-diagnostics" }
 qnc-text = { path = "../qnc-text" }
 qnc-tray-icon = { path = "../qnc-tray-icon" }
+qnc-app-mark = { path = "../qnc-app-mark" }
 qnc-tray-run = { path = "../qnc-tray-run" }
 qnc-theme = { path = "../qnc-theme" }
 qnc-ingest-panel = { path = "../qnc-ingest-panel" }
