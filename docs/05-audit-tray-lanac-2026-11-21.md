@@ -70,9 +70,10 @@ Procedura ostaje QNC-AI-jeva (isti koraci, isti redoslijed po načinu rada, iste
 isti programi AI-ja), a izvedba:
 
 1. **Jedan prolaz po klipu**: dok `qnc-copy` kopira klip s kartice, isti bajtovi daju checksum,
-   poster (prva ključna slika), zvučne elemente za val i glasnoću te 13 ključnih slika za
+   zvučne elemente za val i glasnoću te 13 ključnih slika za
    filmstrip (`qnc-mxf-sound::read_sound_and_pictures` već to zna za MXF; MP4 kroz
-   `qnc-mp4-sound`). Probe ide nad kopijom kao i sad. Kartica se čita jednom.
+   `qnc-mp4-sound`). Probe ide nad kopijom kao i sad. Kartica se čita jednom. Poster se
+   kopira s kartice; samo kad ga kartica nema, nastaje iz prve ključne slike istog prolaza.
 2. **Lanac po klipu, ne po koraku**: klip prolazi kopija -> probe -> val -> filmstrip ->
    prijepis -> AI, svaki na svojoj niti s redom; nema krugova od 1 s ni dirigenta. Redoslijed
    po načinu rada (Breaking news: valovi prvi, pa kadrovi i filmstrip, pa SigLIP, pa prijepis i
