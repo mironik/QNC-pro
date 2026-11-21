@@ -1,0 +1,5 @@
+{
+  "kind": "kit",
+  "responsibility": "Brings a window above the other applications, focused and asking for attention, until the user is in it or goes to another window.",
+  "database": "none"
+}

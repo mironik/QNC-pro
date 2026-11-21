@@ -1,0 +1,11 @@
+[package]
+name = "qnc-one-copy"
+version.workspace = true
+edition.workspace = true
+description = "One copy of a program per session: a named mutex taken at the start; a second copy finds it taken and ends."
+
+[dependencies]
+qnc-text = { path = "../qnc-text" }
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { workspace = true }

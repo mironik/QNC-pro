@@ -46,6 +46,15 @@ impl Run {
     pub fn stop_all(&self) {
         self.ingests.stop_all();
     }
+
+    /// Opens the form `name` beside the tray (Projects, Settings); the outcome goes to the log.
+    pub fn open(&self, name: &str) {
+        let line = match qnc_launch::start_detached(name, &[], qnc_launch::Priority::Same) {
+            Ok(_) => format!("tray opened {name}"),
+            Err(error) => qnc_text::fill("tray.form_failed", &[("error", &error)]),
+        };
+        qnc_diagnostics::log(line);
+    }
 }
 
 /// One card as the window shows it.

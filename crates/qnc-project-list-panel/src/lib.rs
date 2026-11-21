@@ -4,6 +4,8 @@
 //! opens it, the status line at the foot. Pure drawing: the rows, the search text and the
 //! status come from the session; what the user asked goes back as intents.
 
+mod alone;
 mod panel;
 
+pub use alone::{show_alone, ProjectsAlone};
 pub use panel::show;

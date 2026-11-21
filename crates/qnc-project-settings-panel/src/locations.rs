@@ -7,6 +7,10 @@ use qnc_project_session::{LocationTarget, ProjectIntent};
 use crate::panel::Panel;
 
 pub(crate) fn locations(panel: &mut Panel<'_>, ui: &mut egui::Ui, width: f32) {
+    if panel.settings_only {
+        let size = panel.layout.right_settings_panel.label_font_size;
+        ui.label(egui::RichText::new(qnc_text::text("project.locations_title")).size(size).strong().color(panel.theme.text_muted));
+    }
     path_row(panel, ui, width, LocationTarget::ProjectsRoot);
     path_row(panel, ui, width, LocationTarget::ExportDir);
 }

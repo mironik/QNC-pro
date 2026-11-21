@@ -1,0 +1,5 @@
+{
+  "kind": "kit",
+  "responsibility": "Draws QNC's own title bar of a frameless window (title, gear that opens Settings, minimize, maximize, close; drag, double click and resize edges) and the hidden button of the look editor.",
+  "database": "none"
+}

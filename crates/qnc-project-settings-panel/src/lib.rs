@@ -9,4 +9,4 @@ mod locations;
 mod panel;
 mod picker;
 
-pub use panel::show;
+pub use panel::{show, show_settings};

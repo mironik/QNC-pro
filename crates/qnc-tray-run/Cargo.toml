@@ -19,3 +19,4 @@ qnc-project-make = { path = "../qnc-project-make" }
 qnc-project-templates = { path = "../qnc-project-templates" }
 qnc-registry = { path = "../qnc-registry" }
 qnc-db = { path = "../qnc-db" }
+qnc-launch = { path = "../qnc-launch" }

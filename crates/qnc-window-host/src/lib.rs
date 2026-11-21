@@ -57,3 +57,33 @@ pub fn run(title: &str, size: [f32; 2], visible: bool, frame: impl FnMut(&Contex
     )
     .map_err(|e| e.to_string())
 }
+
+/// Runs a window with QNC's own title bar (no system frame) and the margin under the form; the
+/// form draws into the central panel between them. `size` is the content's, the bar is added.
+pub fn run_framed(title: &str, size: [f32; 2], visible: bool, frame: impl FnMut(&Context, &mut Ui) -> Next + 'static) -> Result<(), String> {
+    let viewport = egui::ViewportBuilder::default().with_title(title).with_inner_size([size[0], size[1] + qnc_title_bar::HEIGHT]).with_visible(visible);
+    let options = eframe::NativeOptions { viewport: qnc_title_bar::frameless(viewport), ..Default::default() };
+    let bar = qnc_title_bar::TitleBar::new(title);
+    eframe::run_native(
+        title,
+        options,
+        Box::new(move |cc| {
+            qnc_ui_kit::apply(&cc.egui_ctx, qnc_theme::theme());
+            Ok(Box::new(Framed { bar, host: Host { frame, visible } }))
+        }),
+    )
+    .map_err(|e| e.to_string())
+}
+
+struct Framed<F: FnMut(&Context, &mut Ui) -> Next> {
+    bar: qnc_title_bar::TitleBar,
+    host: Host<F>,
+}
+
+impl<F: FnMut(&Context, &mut Ui) -> Next> eframe::App for Framed<F> {
+    fn update(&mut self, ctx: &Context, frame: &mut eframe::Frame) {
+        self.bar.show(ctx);
+        qnc_title_bar::bottom_margin(ctx);
+        self.host.update(ctx, frame);
+    }
+}

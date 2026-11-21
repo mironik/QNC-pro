@@ -1,0 +1,5 @@
+{
+  "kind": "form",
+  "responsibility": "Shows the settings of a project on their own (locations, template, advanced, AI, own templates) in a window with QNC's title bar and hands what the panel asks for to the session.",
+  "database": "none"
+}

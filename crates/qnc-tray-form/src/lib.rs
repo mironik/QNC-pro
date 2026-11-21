@@ -10,10 +10,14 @@ use qnc_window_host::Next;
 
 const STATUS: u32 = 1;
 const QUIT: u32 = 2;
+const PROJECTS: u32 = 3;
+const SETTINGS: u32 = 4;
 
 fn menu(status: &str) -> Vec<MenuItem> {
     vec![
         MenuItem { id: STATUS, text: status.to_string(), enabled: false, checked: false },
+        MenuItem { id: PROJECTS, text: qnc_text::text("tray.projects").to_string(), enabled: true, checked: false },
+        MenuItem { id: SETTINGS, text: qnc_text::text("tray.settings").to_string(), enabled: true, checked: false },
         MenuItem { id: QUIT, text: qnc_text::text("tray.quit").to_string(), enabled: true, checked: false },
     ]
 }
@@ -48,7 +52,12 @@ pub fn main() -> Result<(), String> {
         }
         tray.pump();
         while let Some(TrayEvent::Menu(id)) = tray.try_event() {
-            quit = quit || id == QUIT;
+            match id {
+                QUIT => quit = true,
+                PROJECTS => run.open("qnc-projects"),
+                SETTINGS => run.open("qnc-settings"),
+                _ => {}
+            }
         }
         for seen in qnc_ingest_panel::show(ui, qnc_theme::theme(), &cards, &waiting) {
             match seen {

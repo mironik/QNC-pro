@@ -1,5 +1,5 @@
 {
   "kind": "kit",
-  "responsibility": "Opens the one native window with the theme applied and calls the form every frame and every half second; the form says whether the window is shown, hidden or closed.",
+  "responsibility": "Opens the one native window, with the system frame or QNC title bar, with the theme applied and calls the form every frame and every half second; the form says shown, hidden or closed.",
   "database": "none"
 }

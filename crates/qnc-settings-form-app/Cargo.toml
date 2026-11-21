@@ -1,0 +1,20 @@
+[package]
+name = "qnc-settings-form-app"
+version.workspace = true
+edition.workspace = true
+description = "The Settings form: the settings of a project on their own (locations, template, advanced, AI, own templates) in a window with QNC's title bar, apart from the wizard."
+
+[dependencies]
+eframe = { workspace = true }
+qnc-diagnostics = { path = "../qnc-diagnostics" }
+qnc-text = { path = "../qnc-text" }
+qnc-theme = { path = "../qnc-theme" }
+qnc-desktop-theme = { path = "../qnc-desktop-theme" }
+qnc-confirm = { path = "../qnc-confirm" }
+qnc-form-look = { path = "../qnc-form-look" }
+qnc-title-bar = { path = "../qnc-title-bar" }
+qnc-window-host = { path = "../qnc-window-host" }
+qnc-project-layout = { path = "../qnc-project-layout" }
+qnc-project-start = { path = "../qnc-project-start" }
+qnc-project-session = { path = "../qnc-project-session" }
+qnc-project-settings-panel = { path = "../qnc-project-settings-panel" }

@@ -2981,6 +2981,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "qnc-one-copy"
+version = "0.1.0"
+dependencies = [
+ "qnc-text",
+ "windows-sys 0.59.0",
+]
+
+[[package]]
 name = "qnc-player-input"
 version = "0.1.0"
 dependencies = [
@@ -3048,13 +3056,6 @@ name = "qnc-progress"
 version = "0.1.0"
 
 [[package]]
-name = "qnc-project"
-version = "0.1.0"
-dependencies = [
- "qnc-project-form",
-]
-
-[[package]]
 name = "qnc-project-application"
 version = "0.1.0"
 dependencies = [
@@ -3087,30 +3088,6 @@ dependencies = [
  "qnc-registry",
  "qnc-text",
  "serde_json",
-]
-
-[[package]]
-name = "qnc-project-form"
-version = "0.1.0"
-dependencies = [
- "eframe",
- "qnc-actions",
- "qnc-board",
- "qnc-confirm",
- "qnc-desktop-theme",
- "qnc-diagnostics",
- "qnc-form-look",
- "qnc-newsroom-sheet",
- "qnc-project-application",
- "qnc-project-layout",
- "qnc-project-list-panel",
- "qnc-project-session",
- "qnc-project-settings-panel",
- "qnc-settings",
- "qnc-text",
- "qnc-theme",
- "qnc-ui-kit",
- "qnc-window-host",
 ]
 
 [[package]]
@@ -3245,6 +3222,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "qnc-project-start"
+version = "0.1.0"
+dependencies = [
+ "qnc-diagnostics",
+ "qnc-form-look-model",
+ "qnc-one-copy",
+ "qnc-project-application",
+ "qnc-project-layout",
+ "qnc-project-session",
+ "qnc-settings",
+]
+
+[[package]]
 name = "qnc-project-templates"
 version = "0.1.0"
 dependencies = [
@@ -3267,6 +3257,34 @@ dependencies = [
  "qnc-text",
  "rusqlite",
  "serde_json",
+]
+
+[[package]]
+name = "qnc-projects"
+version = "0.1.0"
+dependencies = [
+ "qnc-projects-form",
+]
+
+[[package]]
+name = "qnc-projects-form"
+version = "0.1.0"
+dependencies = [
+ "eframe",
+ "qnc-confirm",
+ "qnc-desktop-theme",
+ "qnc-diagnostics",
+ "qnc-form-look",
+ "qnc-launch",
+ "qnc-project-layout",
+ "qnc-project-list-panel",
+ "qnc-project-session",
+ "qnc-project-start",
+ "qnc-text",
+ "qnc-theme",
+ "qnc-title-bar",
+ "qnc-window-front",
+ "qnc-window-host",
 ]
 
 [[package]]
@@ -3306,6 +3324,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "qnc-settings-app"
+version = "0.1.0"
+dependencies = [
+ "qnc-settings-form-app",
+]
+
+[[package]]
 name = "qnc-settings-form"
 version = "0.1.0"
 dependencies = [
@@ -3316,6 +3341,25 @@ dependencies = [
  "qnc-ui-kit",
  "serde",
  "serde_json",
+]
+
+[[package]]
+name = "qnc-settings-form-app"
+version = "0.1.0"
+dependencies = [
+ "eframe",
+ "qnc-confirm",
+ "qnc-desktop-theme",
+ "qnc-diagnostics",
+ "qnc-form-look",
+ "qnc-project-layout",
+ "qnc-project-session",
+ "qnc-project-settings-panel",
+ "qnc-project-start",
+ "qnc-text",
+ "qnc-theme",
+ "qnc-title-bar",
+ "qnc-window-host",
 ]
 
 [[package]]
@@ -3414,6 +3458,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "qnc-title-bar"
+version = "0.1.0"
+dependencies = [
+ "eframe",
+ "qnc-diagnostics",
+ "qnc-form-look",
+ "qnc-launch",
+ "qnc-text",
+]
+
+[[package]]
 name = "qnc-tray"
 version = "0.1.0"
 dependencies = [
@@ -3452,6 +3507,7 @@ dependencies = [
  "qnc-diagnostics",
  "qnc-disks",
  "qnc-ids",
+ "qnc-launch",
  "qnc-mode",
  "qnc-project-make",
  "qnc-project-templates",
@@ -3483,12 +3539,20 @@ name = "qnc-wave-read"
 version = "0.1.0"
 
 [[package]]
+name = "qnc-window-front"
+version = "0.1.0"
+dependencies = [
+ "eframe",
+]
+
+[[package]]
 name = "qnc-window-host"
 version = "0.1.0"
 dependencies = [
  "eframe",
  "egui",
  "qnc-theme",
+ "qnc-title-bar",
  "qnc-ui-kit",
 ]
 

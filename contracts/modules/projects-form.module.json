@@ -1,0 +1,5 @@
+{
+  "kind": "form",
+  "responsibility": "Shows the project list on its own with the row of a new project in a window as tall as its content; a project opened hands on to the next form, the new row opens Ingest.",
+  "database": "none"
+}

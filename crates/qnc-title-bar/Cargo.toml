@@ -1,0 +1,12 @@
+[package]
+name = "qnc-title-bar"
+version.workspace = true
+edition.workspace = true
+description = "QNC's own title bar of a window without the system frame: title, gear (Settings), minimize, maximize, close; drag, double click and edges as a system window; the hidden button of the look editor."
+
+[dependencies]
+eframe = { workspace = true }
+qnc-text = { path = "../qnc-text" }
+qnc-launch = { path = "../qnc-launch" }
+qnc-diagnostics = { path = "../qnc-diagnostics" }
+qnc-form-look = { path = "../qnc-form-look" }

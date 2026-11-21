@@ -154,6 +154,19 @@
     "form_look.hint": "Na formi: klikni dio (postane crven), vuci ga ili pomiči strelicama (Shift: po deset), Esc ga pušta.",
     "form_look.save": "Spremi",
     "form_look.saved": "Spremljeno: {file}",
-    "form_look.title": "Izgled: {form}"
+    "form_look.title": "Izgled: {form}",
+    "projects.title": "QNC: Projekti",
+    "projects.new": "Novi projekt",
+    "settings.title": "QNC: Postavke",
+    "title.search": "Pretraga arhive",
+    "title.settings": "Postavke",
+    "title.minimize": "Smanji",
+    "title.maximize": "Povećaj",
+    "title.close": "Zatvori",
+    "tray.projects": "Projekti",
+    "tray.settings": "Postavke",
+    "tray.form_failed": "Aplikacija se nije otvorila: {error}",
+    "one_copy.not_on_this_system": "Jedan primjerak programa još nije napravljen za ovaj sustav.",
+    "one_copy.failed": "Jedan primjerak: {error}"
   }
 }

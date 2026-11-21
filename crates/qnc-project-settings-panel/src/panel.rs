@@ -18,12 +18,24 @@ pub(crate) struct Panel<'a> {
     pub session: &'a mut ProjectSession,
     pub root: &'a std::path::Path,
     pub intents: Vec<ProjectIntent>,
+    /// The settings on their own (the Settings form): the locations first, no New project.
+    pub settings_only: bool,
 }
 
 /// Draws the panel in `rect` and returns what the user asked. `root` is the QNC root the
 /// language choice writes to.
 pub fn show(ui: &mut egui::Ui, layout: &ProjectLayout, theme: &Theme, rect: egui::Rect, session: &mut ProjectSession, root: &std::path::Path) -> Vec<ProjectIntent> {
-    let mut panel = Panel { layout, theme, session, root, intents: Vec::new() };
+    show_panel(ui, Panel { layout, theme, session, root, intents: Vec::new(), settings_only: false }, rect)
+}
+
+/// Draws the settings on their own (the Settings form): the locations first, the template, the
+/// Advanced part and the own templates, without New project.
+pub fn show_settings(ui: &mut egui::Ui, layout: &ProjectLayout, theme: &Theme, rect: egui::Rect, session: &mut ProjectSession, root: &std::path::Path) -> Vec<ProjectIntent> {
+    show_panel(ui, Panel { layout, theme, session, root, intents: Vec::new(), settings_only: true }, rect)
+}
+
+fn show_panel(ui: &mut egui::Ui, mut panel: Panel<'_>, rect: egui::Rect) -> Vec<ProjectIntent> {
+    let (layout, theme) = (panel.layout, panel.theme);
     let settings = &layout.right_settings_panel;
     ui.painter().rect_filled(rect, 0.0, theme.bg);
     let inner = rect.shrink(settings.panel_pad);
@@ -61,10 +73,14 @@ impl Panel<'_> {
                     let width = (width - 2.0 * settings.inner_pad_x).max(40.0);
                     ui.set_max_width(width);
                     ui.spacing_mut().item_spacing.y = settings.section_gap;
+                    // The Settings form: the locations first, always shown.
+                    if self.settings_only {
+                        locations::locations(self, ui, width);
+                    }
                     for slot in self.layout.pts_slots.fixed_order.clone() {
                         match slot.as_str() {
                             "TemplatePicker" => picker::template_picker(self, ui, width),
-                            "ProjectCreate" => picker::project_create(self, ui, width),
+                            "ProjectCreate" if !self.settings_only => picker::project_create(self, ui, width),
                             _ => {}
                         }
                     }
@@ -74,7 +90,7 @@ impl Panel<'_> {
                     for slot in slots {
                         match slot.as_str() {
                             "AiSettings" => self.ai_settings(ui, width),
-                            "Locations" => locations::locations(self, ui, width),
+                            "Locations" if !self.settings_only => locations::locations(self, ui, width),
                             "TemplateActions" => picker::template_actions(self, ui, width),
                             "AdvancedSections" => advanced::sections(self, ui, width),
                             "CustomTemplate" if self.session.template_create_open => picker::custom_template(self, ui, width),

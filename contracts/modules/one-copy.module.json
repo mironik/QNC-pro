@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Keeps one copy of a program per session: a named mutex taken at the start, which a second copy finds taken and ends.",
+  "database": "none"
+}

@@ -1,0 +1,22 @@
+[package]
+name = "qnc-projects-form"
+version.workspace = true
+edition.workspace = true
+description = "The Projects form: the project list on its own with the row of a new project, as tall as its content, with QNC's title bar; a project opened hands on to the next form, the new row opens Ingest."
+
+[dependencies]
+eframe = { workspace = true }
+qnc-diagnostics = { path = "../qnc-diagnostics" }
+qnc-text = { path = "../qnc-text" }
+qnc-theme = { path = "../qnc-theme" }
+qnc-desktop-theme = { path = "../qnc-desktop-theme" }
+qnc-launch = { path = "../qnc-launch" }
+qnc-confirm = { path = "../qnc-confirm" }
+qnc-form-look = { path = "../qnc-form-look" }
+qnc-title-bar = { path = "../qnc-title-bar" }
+qnc-window-front = { path = "../qnc-window-front" }
+qnc-window-host = { path = "../qnc-window-host" }
+qnc-project-layout = { path = "../qnc-project-layout" }
+qnc-project-start = { path = "../qnc-project-start" }
+qnc-project-session = { path = "../qnc-project-session" }
+qnc-project-list-panel = { path = "../qnc-project-list-panel" }

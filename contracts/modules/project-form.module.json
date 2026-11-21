@@ -1,5 +1,0 @@
-{
-  "kind": "form",
-  "responsibility": "Shows the Project board in the one window (the list and the settings panel over the session, the delete questions, the story sheet) and hands what the panels and keys ask for to the session.",
-  "database": "none"
-}

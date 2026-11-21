@@ -62,7 +62,7 @@ fn contents(ui: &mut egui::Ui, theme: &Theme, metrics: &ProjectListMetrics, cont
     });
 }
 
-fn row(ui: &mut egui::Ui, theme: &Theme, metrics: &ProjectListMetrics, index: usize, project: &ProjectRow, selected: bool, intents: &mut Vec<ProjectIntent>) {
+pub(crate) fn row(ui: &mut egui::Ui, theme: &Theme, metrics: &ProjectListMetrics, index: usize, project: &ProjectRow, selected: bool, intents: &mut Vec<ProjectIntent>) {
     let table_w = ui.available_width().max(40.0);
     let (row_rect, _) = ui.allocate_exact_size(Vec2::new(table_w, metrics.row_height), Sense::hover());
     let delete_hit_w = metrics.delete_column_width.max(48.0);

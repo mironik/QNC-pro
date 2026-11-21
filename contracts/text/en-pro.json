@@ -154,6 +154,19 @@
     "form_look.hint": "On the form: click a part (it turns red), drag it or move it with the arrows (Shift: ten at a time), Esc lets it go.",
     "form_look.save": "Save",
     "form_look.saved": "Saved: {file}",
-    "form_look.title": "Look: {form}"
+    "form_look.title": "Look: {form}",
+    "projects.title": "QNC: Projects",
+    "projects.new": "New project",
+    "settings.title": "QNC: Settings",
+    "title.search": "Search the archive",
+    "title.settings": "Settings",
+    "title.minimize": "Minimize",
+    "title.maximize": "Maximize",
+    "title.close": "Close",
+    "tray.projects": "Projects",
+    "tray.settings": "Settings",
+    "tray.form_failed": "The application did not open: {error}",
+    "one_copy.not_on_this_system": "One copy of a program is not made for this system yet.",
+    "one_copy.failed": "One copy: {error}"
   }
 }

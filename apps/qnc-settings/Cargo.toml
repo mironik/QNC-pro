@@ -1,0 +1,12 @@
+[package]
+name = "qnc-settings-app"
+version.workspace = true
+edition.workspace = true
+description = "QNC Settings: starts the Settings form."
+
+[[bin]]
+name = "qnc-settings"
+path = "src/main.rs"
+
+[dependencies]
+qnc-settings-form-app = { path = "../../crates/qnc-settings-form-app" }

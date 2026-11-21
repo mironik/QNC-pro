@@ -1,0 +1,5 @@
+{
+  "kind": "module",
+  "responsibility": "Gives every Project window its start: root, diagnostics, one copy, language, the actions checked against the catalog, the look, the layout with the look put in and the session.",
+  "database": "none"
+}

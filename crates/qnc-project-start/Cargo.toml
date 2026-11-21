@@ -1,0 +1,14 @@
+[package]
+name = "qnc-project-start"
+version.workspace = true
+edition.workspace = true
+description = "The start every Project window shares: root, diagnostics, one copy, language, the actions checked against the catalog, the look, the layout and the session."
+
+[dependencies]
+qnc-settings = { path = "../qnc-settings" }
+qnc-diagnostics = { path = "../qnc-diagnostics" }
+qnc-one-copy = { path = "../qnc-one-copy" }
+qnc-form-look-model = { path = "../qnc-form-look-model" }
+qnc-project-layout = { path = "../qnc-project-layout" }
+qnc-project-application = { path = "../qnc-project-application" }
+qnc-project-session = { path = "../qnc-project-session" }

@@ -86,6 +86,11 @@ impl FormLook {
         self.look.changed()
     }
 
+    /// The look as data.
+    pub fn model(&self) -> &qnc_form_look_model::FormLook {
+        &self.look
+    }
+
     /// A part of the form drawn over `rect` whose size is `key`, growing `grows`. While editing it
     /// can be taken with a click and moved by dragging or with the arrows.
     pub fn mark(&self, ui: &egui::Ui, rect: egui::Rect, key: &str, grows: Grows) {
@@ -238,5 +243,14 @@ impl FormLook {
                 });
             });
         });
+    }
+}
+
+impl FormLook {
+    /// The editor over a look already read (by `qnc-form-look-model`); whether it edits is this
+    /// computer's setting.
+    pub fn of(root: &Path, look: qnc_form_look_model::FormLook) -> Self {
+        let editing = editor_on(root);
+        Self { look, editing, window: editing, taken: RefCell::new(None), note: String::new(), sized: std::cell::Cell::new(None) }
     }
 }
