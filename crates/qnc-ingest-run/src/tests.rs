@@ -127,3 +127,32 @@ mod known_card_tests {
         crate::Project::open(folder).unwrap()
     }
 }
+
+
+/// A clip copied and probed (final) stays final and imported when its card is Selected again.
+#[test]
+fn a_finished_clip_is_not_taken_back_to_the_camera_phase_by_a_select_again() {
+    let root = fresh_root("finished");
+    let disk = root.join("card");
+    let card_root = disk.join("PRIVATE").join("XDROOT");
+    std::fs::create_dir_all(card_root.join("Clip")).unwrap();
+    std::fs::write(card_root.join("MEDIAPRO.XML"), include_str!("../../qnc-sony-index/tests/MEDIAPRO.XML")).unwrap();
+    std::fs::write(card_root.join("Clip").join("Mironik 1483M01.XML"), include_str!("../../qnc-sony-index/tests/Mironik_1483M01.XML")).unwrap();
+    let template: serde_json::Value = serde_json::from_str::<serde_json::Value>(SEED).unwrap()["project_templates"][2]["settings"].clone();
+    let made = qnc_project_make::make(&root, qnc_project_make::Make { name: "Finished".into(), settings: Some(template), projects_root: Some(root.join("projects")), ..Default::default() }).unwrap();
+    let project = Project::open(&made.folder).unwrap();
+    let card = Card { disk, serial: "67870D0C".into(), volume_name: "T".into(), root_path: "PRIVATE/XDROOT".into() };
+    let first = select_into(&card, &project, &profiles(), 5, &Default::default()).unwrap();
+    let mut done = first.clips[0].clone();
+    done.snapshot.phase = qnc_media_record::Phase::Final;
+    project.writer.execute(qnc_catalog::MODULE, json!({ "publish": [done] })).unwrap();
+    project.writer.execute(qnc_catalog::MODULE, json!({ "set_import": { "clip_id": first.clips[0].id(), "status": "imported", "media_uri": "qnc://local/source/project-p/file/original/a.mxf", "copy_of": "original" } })).unwrap();
+    let reader = Reader::open(&made.folder.join("project.db")).unwrap();
+    assert!(is_done(&reader, first.clips[0].id()).unwrap(), "copied and final");
+    let again = select_into(&card, &project, &profiles(), 6, &Default::default()).unwrap();
+    assert_eq!(again.clips[0].id(), first.clips[0].id());
+    assert!(is_done(&reader, first.clips[0].id()).unwrap(), "a Select again keeps the finished record");
+    drop(project);
+    let _ = qnc_folder_lock::unlock(&made.folder, &qnc_project_make::CACHE_FOLDERS);
+    let _ = std::fs::remove_dir_all(&root);
+}

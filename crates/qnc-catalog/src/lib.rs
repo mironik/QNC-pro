@@ -180,7 +180,12 @@ fn publish(conn: &Connection, clip: &CatalogClip) -> Result<(), String> {
     let is_final = clip.snapshot.phase == Phase::Final;
     let fail = |e: rusqlite::Error| e.to_string();
     // A clip already there keeps its selection, import status and thumbnail (as the old QNC's
-    // ON CONFLICT did); a new one is inserted.
+    // ON CONFLICT did); a new one is inserted. A clip already final (copied and probed) keeps its
+    // record: a card Selected again does not take a finished clip back to the camera phase.
+    let kept: Option<bool> = conn.query_row("SELECT final FROM clips WHERE clip_id=?1", [clip.id()], |r| r.get(0)).optional().map_err(fail)?;
+    if kept == Some(true) && !is_final {
+        return Ok(());
+    }
     let changed = conn
         .execute(
             "UPDATE clips SET name=?2,catalog_json=?3,revision=?4,final=?5,duration_seconds=?6,duration_frames=?7,fps_num=?8,fps_den=?9,created_at_utc=?10,thumbnail_uri=COALESCE(thumbnail_uri,?11) WHERE clip_id=?1",
