@@ -4,12 +4,18 @@
 //! the project (never the card), brought to 16 kHz and heard piece by piece (`pieces`); what is
 //! heard is kept in the transcript store as it comes. The step ends when the user stopped the
 //! transcripts (the X, in the project's database) or when it is told to stop.
+//!
+//! Two ways in, for speed: the first channel the waves read is handed here and heard by the
+//! statement rule at once, by as many programs as the engines allow (`statement`); the queue of
+//! pieces hears, from the copy, only what the waves did not decide, once the waves are done.
 
-mod pieces;
+mod statement;
+pub(crate) mod pieces;
 
 use std::collections::BTreeSet;
 use std::path::Path;
 use std::sync::atomic::{AtomicBool, Ordering};
+use std::sync::Arc;
 use std::time::{Duration, Instant};
 
 use qnc_db::{Reader, Writer};
@@ -24,28 +30,57 @@ pub const FEATURE: &str = "transcription";
 const QUEUED_SECONDS: f64 = 60.0;
 const ROUND: Duration = Duration::from_secs(1);
 
-pub struct TranscriptRun(qnc_step_thread::StepThread);
+pub struct TranscriptRun {
+    thread: qnc_step_thread::StepThread,
+    hearers: Option<statement::Hearers>,
+    stop: Arc<AtomicBool>,
+}
+
+/// What the step says when its waiting clips may go to the queue.
+pub type WavesDone = Arc<AtomicBool>;
 
 impl TranscriptRun {
-    /// Starts the step for the project at `folder` (its `project.db`), with the engines of the QNC `root`.
-    pub fn start(root: &Path, folder: &Path, db: &Path) -> TranscriptRun {
+    /// Starts the step for the project at `folder` (its `project.db`), with the engines of the QNC
+    /// `root`: the hearers of the statements (an error when the project does not transcribe or no
+    /// program is there) and the queue, which fills once `waves_done`.
+    pub fn start(root: &Path, folder: &Path, db: &Path, waves_done: WavesDone) -> Result<TranscriptRun, String> {
+        let reader = Reader::open(db)?;
+        let speech = speech(&reader)?;
+        let engines = qnc_ai_catalog::fast_transcribers(root)?;
+        let stop = Arc::new(AtomicBool::new(false));
+        let hearers = statement::Hearers::start(db, &speech, &engines, stop.clone())?;
         let (root, folder, db) = (root.to_path_buf(), folder.to_path_buf(), db.to_path_buf());
-        TranscriptRun(qnc_step_thread::StepThread::start(FUNCTION, move |stop| run(&root, &folder, &db, stop)))
+        let thread = qnc_step_thread::StepThread::start(FUNCTION, move |stop| run(&root, &folder, &db, &waves_done, stop));
+        Ok(TranscriptRun { thread, hearers: Some(hearers), stop })
     }
 
-    /// Tells the step to stop after the piece it is on.
+    /// What the wave run hands each clip's first channel to.
+    pub fn sink(&self) -> qnc_wave_run::FirstChannelSink {
+        self.hearers.as_ref().expect("the hearers until the run ends").sink()
+    }
+
+    /// No more first channels come (the waves ended): the hearers finish what waits.
+    pub fn waves_ended(&mut self) {
+        if let Some(hearers) = self.hearers.take() {
+            hearers.finish();
+        }
+    }
+
+    /// Tells the step to stop after the piece it is on; what waits for the hearers is dropped.
     pub fn stop(&self) {
-        self.0.stop();
+        self.stop.store(true, Ordering::Relaxed);
+        self.thread.stop();
     }
 
     pub fn ended(&self) -> bool {
-        self.0.ended()
+        self.thread.ended() && self.hearers.as_ref().is_none_or(|hearers| !hearers.busy())
     }
 }
 
 /// What the project says about its speech.
-struct Speech {
-    language: String,
+#[derive(Clone)]
+pub(crate) struct Speech {
+    pub(crate) language: String,
     /// The index among the clip's sound streams (`CH1` is 0).
     channel: usize,
 }
@@ -60,7 +95,7 @@ fn speech(reader: &Reader) -> Result<Speech, String> {
     Ok(Speech { language, channel })
 }
 
-fn run(root: &Path, folder: &Path, db: &Path, stop: &AtomicBool) -> Result<(), String> {
+fn run(root: &Path, folder: &Path, db: &Path, waves_done: &AtomicBool, stop: &AtomicBool) -> Result<(), String> {
     let reader = Reader::open(db)?;
     let speech = speech(&reader)?;
     let engine = qnc_ai_catalog::transcriber_for(root, qnc_ai_catalog::Quality::Fast)?;
@@ -73,7 +108,9 @@ fn run(root: &Path, folder: &Path, db: &Path, stop: &AtomicBool) -> Result<(), S
             qnc_diagnostics::log("transcripts: stopped by the user");
             return Ok(());
         }
-        queue_imported(&reader, &writer, &failed)?;
+        if waves_done.load(Ordering::Relaxed) {
+            queue_imported(&reader, &writer, &failed)?;
+        }
         let waiting: Vec<Queued> = qnc_transcript_store::read_queue(&reader)?.into_iter().filter(|entry| entry.state == QueueState::Waiting && !failed.contains(&entry.clip_id)).collect();
         for entry in waiting {
             if stop.load(Ordering::Relaxed) {
@@ -160,7 +197,7 @@ fn hear_one(reader: &Reader, writer: &Writer, folder: &Path, entry: &Queued, spe
 
 /// One piece (16 kHz, from `start` seconds of the clip) through the engine, at the level of
 /// speech; its lines as clip frames within `range`.
-fn hear_piece(program: &Transcriber, engine: &qnc_ai_catalog::Transcriber, language: &str, piece: &[f32], start: f64, fps: f64, range: (u64, u64), cancel: &AtomicBool) -> Result<(Vec<Line>, String, String), String> {
+pub(crate) fn hear_piece(program: &Transcriber, engine: &qnc_ai_catalog::Transcriber, language: &str, piece: &[f32], start: f64, fps: f64, range: (u64, u64), cancel: &AtomicBool) -> Result<(Vec<Line>, String, String), String> {
     let heard = qnc_transcribe_jobs::at_speech_level(piece, WHISPER_RATE as usize);
     let request = TranscribeRequest::new(&engine.id, &heard, language)?;
     let frame = |seconds: f64| (((start + seconds) * fps).round().max(0.0) as u64).clamp(range.0, range.1);

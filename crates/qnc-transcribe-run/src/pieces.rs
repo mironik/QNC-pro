@@ -17,7 +17,7 @@ const ECHO_FRAMES: u64 = 25;
 /// Hears `samples` (16 kHz, starting at clip frame `from`, `fps` frames a second) piece by
 /// piece through `hear`, which gives the lines of one piece as clip frames; the lines of the
 /// range, the language of the first piece that named one, and the engine of the last.
-pub fn hear_range(samples: &[f32], from: u64, to: u64, fps: f64, cancel: &AtomicBool, hear: &mut dyn FnMut(&[f32], f64) -> Result<(Vec<Line>, String, String), String>) -> Result<(Vec<Line>, String, String), String> {
+pub(crate) fn hear_range(samples: &[f32], from: u64, to: u64, fps: f64, cancel: &AtomicBool, hear: &mut dyn FnMut(&[f32], f64) -> Result<(Vec<Line>, String, String), String>) -> Result<(Vec<Line>, String, String), String> {
     let rate = qnc_transcribe_jobs::WHISPER_RATE as usize;
     let floor = qnc_transcribe_jobs::noise_dbfs(samples, rate).map_or(qnc_transcribe_jobs::FLOOR_CEILING_DBFS, qnc_transcribe_jobs::clip_floor_dbfs);
     let (mut lines, mut language, mut made_by) = (Vec::new(), String::new(), String::new());

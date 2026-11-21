@@ -18,3 +18,5 @@ qnc-transcribe-jobs = { path = "../qnc-transcribe-jobs" }
 qnc-transcript-store = { path = "../qnc-transcript-store" }
 qnc-stopped-work = { path = "../qnc-stopped-work" }
 qnc-step-thread = { path = "../qnc-step-thread" }
+qnc-statement-rule = { path = "../qnc-statement-rule" }
+qnc-wave-run = { path = "../qnc-wave-run" }

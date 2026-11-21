@@ -1,0 +1,7 @@
+[package]
+name = "qnc-statement-rule"
+version.workspace = true
+edition.workspace = true
+description = "The rule that says whether a clip is a statement: a short clip is heard whole, a long one by its loudest seconds, and the words must cover a share of what was heard."
+
+[dependencies]

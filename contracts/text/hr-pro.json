@@ -184,6 +184,7 @@
     "ingest.fn.shots": "AI kadrovi",
     "ingest.fn.content": "AI sadržaj",
     "ingest.fn.captions": "AI opisi",
+    "transcribe.no_statement": "Nije izjava: čute riječi pokrivaju premalo klipa.",
     "ingest.copied_mb": "Kopirano {mb} MB",
     "ingest.failed": "{failed} klipova nije uvezeno (kartica je bila izvađena): vratite karticu i uvoz se nastavlja.",
     "ingest.stopped": "Obustavljeno ({done} / {clips})",

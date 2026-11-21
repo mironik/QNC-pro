@@ -123,6 +123,8 @@ pub struct Session {
     transcripts: Option<qnc_transcribe_run::TranscriptRun>,
     /// The filmstrips step, while the plan has it.
     filmstrips: Option<qnc_filmstrip_run::FilmstripRun>,
+    /// Set once the waves ended: the transcripts then queue what the waves did not decide.
+    waves_done: qnc_transcribe_run::WavesDone,
 }
 
 /// The value after `--name` in the arguments.
@@ -153,10 +155,22 @@ impl Session {
         let mut ingests = Ingests::new(root, &projects, template, profiles);
         ingests.start_into(card.clone(), &project_id, &folder)?;
         qnc_diagnostics::log(format!("ingest window: card {} into project {project_id}, plan {}", card.serial, plan.line()));
-        let waves = plan.has(qnc_ingest_plan::Step::Waves).then(|| qnc_wave_run::WaveRun::start(&folder, &db));
+        // The transcripts first: the waves hand them every clip's first channel (one read of the copy).
+        let waves_done = qnc_transcribe_run::WavesDone::default();
+        let transcripts = match (plan.has(qnc_ingest_plan::Step::Transcripts) && settings.ai_feature(qnc_transcribe_run::FEATURE)).then(|| qnc_transcribe_run::TranscriptRun::start(root, &folder, &db, waves_done.clone())) {
+            Some(Ok(run)) => Some(run),
+            Some(Err(error)) => {
+                qnc_diagnostics::log(format!("transcripts not started: {error}"));
+                None
+            }
+            None => None,
+        };
+        let waves = plan.has(qnc_ingest_plan::Step::Waves).then(|| qnc_wave_run::WaveRun::start(&folder, &db, transcripts.as_ref().map(qnc_transcribe_run::TranscriptRun::sink)));
+        if waves.is_none() {
+            waves_done.store(true, std::sync::atomic::Ordering::Relaxed);
+        }
         let filmstrips = plan.has(qnc_ingest_plan::Step::Filmstrips).then(|| qnc_filmstrip_run::FilmstripRun::start(&folder, &db));
-        let transcripts = (plan.has(qnc_ingest_plan::Step::Transcripts) && settings.ai_feature(qnc_transcribe_run::FEATURE)).then(|| qnc_transcribe_run::TranscriptRun::start(root, &folder, &db));
-        Ok(Session { root: root.to_path_buf(), project_id, name, camera, card, ingests, last: Progress::default(), started: Instant::now(), took: None, ask: None, phase: Phase::Running, close: false, opened_form: false, stopped: false, delete_pending: false, info: Info::default(), reader, stops, counts: Counts::default(), read_at: None, full_at: BTreeMap::new(), plan, waves, transcripts, filmstrips })
+        Ok(Session { root: root.to_path_buf(), project_id, name, camera, card, ingests, last: Progress::default(), started: Instant::now(), took: None, ask: None, phase: Phase::Running, close: false, opened_form: false, stopped: false, delete_pending: false, info: Info::default(), reader, stops, counts: Counts::default(), read_at: None, full_at: BTreeMap::new(), plan, waves, transcripts, filmstrips, waves_done })
     }
 
     /// Nothing of the background work runs any more.
@@ -167,6 +181,12 @@ impl Session {
     /// The counts of every function from the project's database, once a second; when a bar
     /// first fills, its time is kept.
     fn read_counts(&mut self) {
+        if !self.waves_done.load(std::sync::atomic::Ordering::Relaxed) && self.waves.as_ref().is_none_or(qnc_wave_run::WaveRun::ended) {
+            self.waves_done.store(true, std::sync::atomic::Ordering::Relaxed);
+            if let Some(transcripts) = &mut self.transcripts {
+                transcripts.waves_ended();
+            }
+        }
         if self.read_at.is_some_and(|at| at.elapsed() < READ) {
             return;
         }

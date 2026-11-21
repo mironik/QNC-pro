@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Whether a clip is a statement: a short clip heard whole, a long one by its loudest seconds, the words covering at least a share of what was heard; pure over samples and words.",
+  "database": "none"
+}

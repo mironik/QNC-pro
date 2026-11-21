@@ -3601,6 +3601,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "qnc-statement-rule"
+version = "0.1.0"
+
+[[package]]
 name = "qnc-step-thread"
 version = "0.1.0"
 dependencies = [
@@ -3692,11 +3696,13 @@ dependencies = [
  "qnc-media-model",
  "qnc-mxf-sound",
  "qnc-project-settings",
+ "qnc-statement-rule",
  "qnc-step-thread",
  "qnc-stopped-work",
  "qnc-text",
  "qnc-transcribe-jobs",
  "qnc-transcript-store",
+ "qnc-wave-run",
  "serde_json",
 ]
 
