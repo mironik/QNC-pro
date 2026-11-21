@@ -54,9 +54,10 @@ Prikaz: `qnc-work-progress` 301 (čita bazu svake sekunde, traka po koraku, X u
 
 ## 4. Što je u QNC-AI-ju krivo (iz koda, uz audit 04)
 
-- Kartica se čita **četiri puta** po klipu: kopija (`qnc-media-stream`), probe (`ffprobe` nad
-  kopijom), val (`qnc-mxf-sound` prolaz po zvučnim elementima), filmstrip (ffmpeg po indeksu
-  MXF-a); SigLIP i Florence još jednom čitaju postere.
+- Kartica se čita jednom, za kopiju; probe, val, filmstrip, prijepis i AI od 12. 11. čitaju samo
+  kopiju u projektu (`qnc-content-artifacts`: "made from its copy only, never the card"). Više
+  čitanja kartice ima samo link način (ništa se ne kopira). Raniji nalaz "četiri čitanja" bio je
+  kriv.
 - Koraci rade u krugovima po 1 s s vlastitim nitima, dirigent dijeli mjesta; kraj se prepoznaje
   "dvaput ništa za raditi". Radnik je zato spor na početku i na kraju i teško ga je pratiti.
 - "Gotovo/kopirano" formula na 4 mjesta, napredak se broji i u bazi i u memoriji
@@ -99,12 +100,9 @@ Procedura i čekanja su QNC-AI-jeva iz odjeljka 5, doslovno: ista stanja, isti t
 forme, isti eject, isti redoslijed pozadine po načinu rada, isti X, ista "gotovo" formula
 (`qnc-progress` je već u QNC-pro). Mijenja se samo izvedba koja ne mijenja što korisnik čeka:
 
-1. **Kartica se čita jednom.** Dok `qnc-copy` kopira klip, isti bajtovi daju checksum, zvučne
-   elemente za val i glasnoću te ključne slike za filmstrip (`qnc-mxf-sound::read_sound_and_pictures`
-   za MXF, `qnc-mp4-sound` za MP4) na drugim nitima; kopija ne čeka njih. Poster se kopira s
-   kartice, a samo kad ga kartica nema nastaje iz prve ključne slike. Probe nad kopijom kao i sad.
-   Tko ne stigne uz kopiju, nastavlja iz kopije na disku projekta, nikad s kartice. Valovi su
-   zato gotovi s kopijom, što je i QNC-AI-jev redoslijed u Breaking news (valovi prvi).
+1. **Svaki korak čita kopiju u projektu**, kao QNC-AI: kartica se čita samo za kopiju (i poster s
+   kartice); probe, val, filmstrip, prijepis i AI rade iz kopije (izmjereno: val 2677 iz kopije
+   49 ms, s kartice 3 s). Nema posebnog "jednog prolaza" kroz bajtove kopije.
 2. **Redoslijed po načinu rada je podatak**, ne `if` u radniku: plan templatea (`artifacts.order`)
    i pravilo načina (Breaking news: valovi > kadrovi > filmstrip + SigLIP > opisi, prijepis uz
    sve; Story/Net: uravnoteženo, AI na kraju) u ugovoru, radnik ga samo izvodi; bez dirigenta i
