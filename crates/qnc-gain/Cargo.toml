@@ -1,0 +1,7 @@
+[package]
+name = "qnc-gain"
+version.workspace = true
+edition.workspace = true
+description = "A sound level in dB as a linear gain, and a level curve between points; pure arithmetic."
+
+[dependencies]

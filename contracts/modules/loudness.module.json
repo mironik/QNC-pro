@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Measures one mono channel after EBU R 128 / BS.1770-4 into 100 ms segments and gives integrated loudness, true peak and export gains from them; pure.",
+  "database": "none"
+}

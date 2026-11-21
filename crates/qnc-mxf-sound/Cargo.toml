@@ -1,0 +1,11 @@
+[package]
+name = "qnc-mxf-sound"
+version.workspace = true
+edition.workspace = true
+description = "The sound elements of a frame-wrapped MXF file read without its pictures, and the key pictures of the same pass; read only."
+
+[dependencies]
+qnc-media-model = { path = "../qnc-media-model" }
+
+[dev-dependencies]
+tempfile = "3"

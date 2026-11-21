@@ -24,3 +24,5 @@ qnc-stopped-work = { path = "../qnc-stopped-work" }
 qnc-ingest-plan = { path = "../qnc-ingest-plan" }
 qnc-project-settings = { path = "../qnc-project-settings" }
 qnc-catalog = { path = "../qnc-catalog" }
+qnc-wave-run = { path = "../qnc-wave-run" }
+qnc-wave-store = { path = "../qnc-wave-store" }

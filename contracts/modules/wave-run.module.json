@@ -1,0 +1,7 @@
+{
+  "kind": "module",
+  "responsibility": "Runs the waves step of one project in the background: each imported clip without a wave gets one from its copy, through the MXF sound reader, the wave maker and the wave store, until stopped.",
+  "database": "reader",
+  "polls": 1,
+  "owns": ["the thread making the waves of this project and which clips it found"]
+}

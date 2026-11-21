@@ -116,6 +116,9 @@ pub struct Session {
     read_at: Option<Instant>,
     /// When each function's bar first became full.
     full_at: BTreeMap<&'static str, Duration>,
+    plan: qnc_ingest_plan::Plan,
+    /// The waves step, while the plan has it.
+    waves: Option<qnc_wave_run::WaveRun>,
 }
 
 /// The value after `--name` in the arguments.
@@ -146,7 +149,13 @@ impl Session {
         let mut ingests = Ingests::new(root, &projects, template, profiles);
         ingests.start_into(card.clone(), &project_id, &folder)?;
         qnc_diagnostics::log(format!("ingest window: card {} into project {project_id}, plan {}", card.serial, plan.line()));
-        Ok(Session { root: root.to_path_buf(), project_id, name, camera, card, ingests, last: Progress::default(), started: Instant::now(), took: None, ask: None, phase: Phase::Running, close: false, opened_form: false, stopped: false, delete_pending: false, info: Info::default(), reader, stops, counts: Counts::default(), read_at: None, full_at: BTreeMap::new() })
+        let waves = plan.has(qnc_ingest_plan::Step::Waves).then(|| qnc_wave_run::WaveRun::start(&folder, &db));
+        Ok(Session { root: root.to_path_buf(), project_id, name, camera, card, ingests, last: Progress::default(), started: Instant::now(), took: None, ask: None, phase: Phase::Running, close: false, opened_form: false, stopped: false, delete_pending: false, info: Info::default(), reader, stops, counts: Counts::default(), read_at: None, full_at: BTreeMap::new(), plan, waves })
+    }
+
+    /// Nothing of the background work runs any more.
+    fn work_ended(&self) -> bool {
+        self.ingests.running() == 0 && self.waves.as_ref().is_none_or(qnc_wave_run::WaveRun::ended)
     }
 
     /// The counts of every function from the project's database, once a second; when a bar
@@ -158,6 +167,9 @@ impl Session {
         self.read_at = Some(Instant::now());
         let read = qnc_catalog::counts(&self.reader).and_then(|mut counts| {
             counts.stopped = qnc_stopped_work::bits(&qnc_stopped_work::read(&self.reader)?);
+            if self.plan.has(qnc_ingest_plan::Step::Waves) {
+                counts.waves = Some(qnc_wave_store::made(&self.reader)?.len());
+            }
             Ok(counts)
         });
         match read {
@@ -194,12 +206,22 @@ impl Session {
         }
         if ended && self.took.is_none() {
             self.took = Some(self.started.elapsed());
-            self.phase = if self.stopped { Phase::Cancelled } else { Phase::Done };
-            qnc_diagnostics::log(format!("ingest window: ended after {} ms, {:?}", self.started.elapsed().as_millis(), self.last));
+            if self.stopped {
+                self.phase = Phase::Cancelled;
+            }
+            qnc_diagnostics::log(format!("ingest window: copy ended after {} ms, {:?}", self.started.elapsed().as_millis(), self.last));
         }
         self.open_next_form();
         self.delete_when_free();
         self.read_counts();
+        // Done once the copy ended and every bar is full or stopped; the waves may still run after the copy.
+        if self.phase == Phase::Running && self.took.is_some() && self.counts.done() {
+            self.phase = Phase::Done;
+            if let Some(waves) = &self.waves {
+                waves.stop();
+            }
+            qnc_diagnostics::log(format!("ingest window: done after {} ms", self.started.elapsed().as_millis()));
+        }
         let elapsed = self.took.unwrap_or_else(|| self.started.elapsed());
         let card = match self.camera.is_empty() {
             true => self.card.volume_name.clone(),
@@ -257,6 +279,11 @@ impl Session {
             self.ingests.stop_all();
             self.stopped = true;
         }
+        if function == qnc_wave_run::FUNCTION {
+            if let Some(waves) = &self.waves {
+                waves.stop();
+            }
+        }
     }
 
     pub fn ask_cancel(&mut self) {
@@ -271,6 +298,9 @@ impl Session {
         if yes {
             qnc_diagnostics::log("ingest window: cancelled by the user");
             self.ingests.stop_all();
+            if let Some(waves) = &self.waves {
+                waves.stop();
+            }
             self.stopped = true;
         }
     }
@@ -284,7 +314,7 @@ impl Session {
     }
 
     fn delete_when_free(&mut self) {
-        if !self.delete_pending || self.ingests.running() > 0 {
+        if !self.delete_pending || !self.work_ended() {
             return;
         }
         self.delete_pending = false;

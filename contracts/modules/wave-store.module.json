@@ -1,0 +1,7 @@
+{
+  "kind": "block",
+  "responsibility": "Owns the waves table of a project (peaks per frame per channel and each channel's loudness, one row a clip): writes through the database writer, reads a wave for the forms, says which clips have one.",
+  "database": "owner",
+  "owns": ["waves"],
+  "writes": ["waves"]
+}

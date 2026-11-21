@@ -2822,6 +2822,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "qnc-gain"
+version = "0.1.0"
+
+[[package]]
 name = "qnc-ids"
 version = "0.1.0"
 
@@ -2880,6 +2884,8 @@ dependencies = [
  "qnc-registry",
  "qnc-stopped-work",
  "qnc-text",
+ "qnc-wave-run",
+ "qnc-wave-store",
  "serde_json",
 ]
 
@@ -2960,6 +2966,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "qnc-loudness"
+version = "0.1.0"
+dependencies = [
+ "qnc-gain",
+ "serde",
+]
+
+[[package]]
 name = "qnc-marks"
 version = "0.1.0"
 dependencies = [
@@ -3001,6 +3015,14 @@ dependencies = [
  "qnc-actions",
  "qnc-text",
  "serde_json",
+]
+
+[[package]]
+name = "qnc-mxf-sound"
+version = "0.1.0"
+dependencies = [
+ "qnc-media-model",
+ "tempfile",
 ]
 
 [[package]]
@@ -3638,8 +3660,44 @@ name = "qnc-voice-gate"
 version = "0.1.0"
 
 [[package]]
+name = "qnc-wave-make"
+version = "0.1.0"
+dependencies = [
+ "qnc-loudness",
+ "qnc-media-model",
+ "qnc-mxf-sound",
+]
+
+[[package]]
 name = "qnc-wave-read"
 version = "0.1.0"
+
+[[package]]
+name = "qnc-wave-run"
+version = "0.1.0"
+dependencies = [
+ "qnc-catalog",
+ "qnc-db",
+ "qnc-diagnostics",
+ "qnc-media-model",
+ "qnc-mxf-sound",
+ "qnc-stopped-work",
+ "qnc-uri",
+ "qnc-wave-make",
+ "qnc-wave-store",
+]
+
+[[package]]
+name = "qnc-wave-store"
+version = "0.1.0"
+dependencies = [
+ "qnc-db",
+ "qnc-loudness",
+ "qnc-wave-read",
+ "rusqlite",
+ "serde",
+ "serde_json",
+]
 
 [[package]]
 name = "qnc-window-front"

@@ -1,0 +1,12 @@
+[package]
+name = "qnc-wave-make"
+version.workspace = true
+edition.workspace = true
+description = "The wave of a clip from its sound: one peak per picture frame per channel, and the loudness of every channel in the same pass; pure."
+
+[dependencies]
+qnc-loudness = { path = "../qnc-loudness" }
+qnc-media-model = { path = "../qnc-media-model" }
+
+[dev-dependencies]
+qnc-mxf-sound = { path = "../qnc-mxf-sound" }

@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Turns a level in dB into a linear gain and gives a level curve between points; pure arithmetic, no state.",
+  "database": "none"
+}

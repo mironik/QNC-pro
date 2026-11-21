@@ -1,0 +1,16 @@
+[package]
+name = "qnc-wave-run"
+version.workspace = true
+edition.workspace = true
+description = "The waves step of an ingest: every imported clip without a wave gets one from its copy in the project, in the background, unless the user stopped the waves."
+
+[dependencies]
+qnc-diagnostics = { path = "../qnc-diagnostics" }
+qnc-db = { path = "../qnc-db" }
+qnc-catalog = { path = "../qnc-catalog" }
+qnc-media-model = { path = "../qnc-media-model" }
+qnc-mxf-sound = { path = "../qnc-mxf-sound" }
+qnc-wave-make = { path = "../qnc-wave-make" }
+qnc-wave-store = { path = "../qnc-wave-store" }
+qnc-stopped-work = { path = "../qnc-stopped-work" }
+qnc-uri = { path = "../qnc-uri" }

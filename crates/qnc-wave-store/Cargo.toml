@@ -1,0 +1,13 @@
+[package]
+name = "qnc-wave-store"
+version.workspace = true
+edition.workspace = true
+description = "The waves of a project's clips in its own database; the one owner of that table and the wave source of the forms."
+
+[dependencies]
+rusqlite = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+qnc-db = { path = "../qnc-db" }
+qnc-wave-read = { path = "../qnc-wave-read" }
+qnc-loudness = { path = "../qnc-loudness" }

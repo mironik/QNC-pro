@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Reads the sound elements of a frame-wrapped MXF file in one pass without its pictures, and in the same pass the key pictures asked for; read only, decodes nothing.",
+  "database": "none"
+}

@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Makes the wave of one clip from its samples (one peak per picture frame per channel, per mille) and measures each channel's loudness in the same pass; pure.",
+  "database": "none"
+}
