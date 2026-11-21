@@ -1,0 +1,5 @@
+{
+  "kind": "block",
+  "responsibility": "Reads the order of the steps of an ingest from the project's settings (artifacts.order) as stages, checks that every step comes after the steps it works from, and writes it back; pure.",
+  "database": "none"
+}

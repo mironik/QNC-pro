@@ -1,0 +1,8 @@
+[package]
+name = "qnc-ingest-plan"
+version.workspace = true
+edition.workspace = true
+description = "The order of the steps of an ingest, in stages, as the project's template writes it; pure."
+
+[dependencies]
+serde_json = { workspace = true }

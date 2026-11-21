@@ -5,12 +5,31 @@
 //! (kept as its search text), and the form the computer's mode opens once the card is copied.
 //! The form draws the view and hands back what the user did; every rule is here.
 
+use std::collections::BTreeMap;
 use std::path::{Path, PathBuf};
 use std::time::{Duration, Instant};
 
 use qnc_card_ingest::{Ingests, Said};
 use qnc_card_select::Card;
 use qnc_ingest_run::Progress;
+use qnc_progress::Counts;
+
+/// How often the counts are read from the project's database.
+const READ: Duration = Duration::from_secs(1);
+
+/// The text code of a function's bar.
+fn text_of(function: &str) -> &'static str {
+    match function {
+        "posters" => "ingest.fn.posters",
+        "filmstrips" => "ingest.fn.filmstrips",
+        "waves" => "ingest.fn.waves",
+        "transcripts" => "ingest.fn.transcripts",
+        "shots" => "ingest.fn.shots",
+        "content" => "ingest.fn.content",
+        "captions" => "ingest.fn.captions",
+        _ => "ingest.fn.import",
+    }
+}
 
 /// One bar of the window: the code of its name, what its X stops, how many of all are done.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -80,7 +99,7 @@ pub struct Session {
     last: Progress,
     started: Instant,
     took: Option<Duration>,
-    done_after: Option<Duration>,
+
     ask: Option<Ask>,
     phase: Phase,
     close: bool,
@@ -89,6 +108,14 @@ pub struct Session {
     /// The project is deleted once the ingest thread has let its files go.
     delete_pending: bool,
     pub info: Info,
+    /// The project's database: the counts of every function are read from it.
+    reader: qnc_db::Reader,
+    /// Writes the functions stopped with the X.
+    stops: qnc_db::Writer,
+    counts: Counts,
+    read_at: Option<Instant>,
+    /// When each function's bar first became full.
+    full_at: BTreeMap<&'static str, Duration>,
 }
 
 /// The value after `--name` in the arguments.
@@ -111,10 +138,38 @@ impl Session {
             qnc_diagnostics::log(format!("camera profile refused: {why}"));
         }
         let template = { let _writer = qnc_project_templates::writer(root)?; qnc_project_templates::selected(&qnc_registry::reader(root)?)?.settings };
+        let db = folder.join(qnc_project_make::PROJECT_DB);
+        let reader = qnc_db::Reader::open(&db)?;
+        let settings = qnc_project_settings::read(&reader)?;
+        let plan = qnc_ingest_plan::Plan::of_settings(settings.saved.get("artifacts").unwrap_or(&serde_json::Value::Null))?;
+        let stops = qnc_db::Writer::start(&db, vec![Box::new(qnc_stopped_work::StoppedWork)])?;
         let mut ingests = Ingests::new(root, &projects, template, profiles);
         ingests.start_into(card.clone(), &project_id, &folder)?;
-        qnc_diagnostics::log(format!("ingest window: card {} into project {project_id}", card.serial));
-        Ok(Session { root: root.to_path_buf(), project_id, name, camera, card, ingests, last: Progress::default(), started: Instant::now(), took: None, done_after: None, ask: None, phase: Phase::Running, close: false, opened_form: false, stopped: false, delete_pending: false, info: Info::default() })
+        qnc_diagnostics::log(format!("ingest window: card {} into project {project_id}, plan {}", card.serial, plan.line()));
+        Ok(Session { root: root.to_path_buf(), project_id, name, camera, card, ingests, last: Progress::default(), started: Instant::now(), took: None, ask: None, phase: Phase::Running, close: false, opened_form: false, stopped: false, delete_pending: false, info: Info::default(), reader, stops, counts: Counts::default(), read_at: None, full_at: BTreeMap::new() })
+    }
+
+    /// The counts of every function from the project's database, once a second; when a bar
+    /// first fills, its time is kept.
+    fn read_counts(&mut self) {
+        if self.read_at.is_some_and(|at| at.elapsed() < READ) {
+            return;
+        }
+        self.read_at = Some(Instant::now());
+        let read = qnc_catalog::counts(&self.reader).and_then(|mut counts| {
+            counts.stopped = qnc_stopped_work::bits(&qnc_stopped_work::read(&self.reader)?);
+            Ok(counts)
+        });
+        match read {
+            Ok(counts) => self.counts = counts,
+            Err(error) => qnc_diagnostics::log(format!("ingest window: counts not read: {error}")),
+        }
+        let elapsed = self.started.elapsed();
+        for bar in self.counts.bars() {
+            if bar.full() && self.counts.clips > 0 {
+                self.full_at.entry(bar.function).or_insert(elapsed);
+            }
+        }
     }
 
     /// Listens to the ingest, times it, opens the next form when the mode says, deletes the
@@ -139,25 +194,26 @@ impl Session {
         }
         if ended && self.took.is_none() {
             self.took = Some(self.started.elapsed());
-            self.done_after = Some(self.started.elapsed());
             self.phase = if self.stopped { Phase::Cancelled } else { Phase::Done };
             qnc_diagnostics::log(format!("ingest window: ended after {} ms, {:?}", self.started.elapsed().as_millis(), self.last));
         }
         self.open_next_form();
         self.delete_when_free();
+        self.read_counts();
         let elapsed = self.took.unwrap_or_else(|| self.started.elapsed());
         let card = match self.camera.is_empty() {
             true => self.card.volume_name.clone(),
             false => format!("{} ({})", self.card.volume_name, self.camera),
         };
+        let bars = self.counts.bars().into_iter().map(|bar| Bar { text: text_of(bar.function), function: bar.function, done: bar.done, stopped: bar.stopped }).collect();
         View {
             phase: self.phase,
             card,
             elapsed,
             project_name: self.name.clone(),
-            clips: self.last.clips,
-            bars: vec![Bar { text: "ingest.imported", function: IMPORT, done: self.last.finished, stopped: self.stopped }],
-            failed: self.last.failed,
+            clips: self.counts.clips.max(self.last.clips),
+            bars,
+            failed: self.counts.failed.max(self.last.failed),
             bytes_copied: self.last.bytes_copied,
             ask: self.ask,
             close: self.close,
@@ -189,8 +245,14 @@ impl Session {
         }
     }
 
-    /// The X beside a bar: the import stops; what is copied stays.
+    /// The X beside a bar: the function is stopped in the project's database (the work leaves it
+    /// alone); the import running stops at once. What is made stays.
     pub fn stop_function(&mut self, function: &str) {
+        match qnc_stopped_work::stop(&self.stops, function) {
+            Ok(()) => qnc_diagnostics::log(format!("ingest window: {function} stopped")),
+            Err(error) => qnc_diagnostics::log(format!("ingest window: {function} not stopped: {error}")),
+        }
+        self.read_at = None;
         if function == IMPORT {
             self.ingests.stop_all();
             self.stopped = true;
@@ -233,11 +295,11 @@ impl Session {
         self.close = true;
     }
 
-    /// How long the function of `bar` took, or runs.
+    /// How long the function of `bar` took (its bar full), or runs.
     pub fn time_of(&self, bar: &Bar) -> Option<Duration> {
-        match bar.done >= self.last.clips && self.last.clips > 0 {
-            true => self.done_after,
-            false => (!bar.stopped).then(|| self.took.unwrap_or_else(|| self.started.elapsed())),
+        match self.full_at.get(bar.function) {
+            Some(took) => Some(*took),
+            None => (!bar.stopped).then(|| self.took.unwrap_or_else(|| self.started.elapsed())),
         }
     }
 

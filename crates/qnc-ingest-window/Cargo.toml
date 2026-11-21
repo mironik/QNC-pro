@@ -19,3 +19,8 @@ qnc-camera-profile = { path = "../qnc-camera-profile" }
 qnc-card-select = { path = "../qnc-card-select" }
 qnc-card-ingest = { path = "../qnc-card-ingest" }
 qnc-ingest-run = { path = "../qnc-ingest-run" }
+qnc-progress = { path = "../qnc-progress" }
+qnc-stopped-work = { path = "../qnc-stopped-work" }
+qnc-ingest-plan = { path = "../qnc-ingest-plan" }
+qnc-project-settings = { path = "../qnc-project-settings" }
+qnc-catalog = { path = "../qnc-catalog" }

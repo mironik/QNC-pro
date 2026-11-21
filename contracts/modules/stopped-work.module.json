@@ -1,0 +1,7 @@
+{
+  "kind": "block",
+  "responsibility": "Owns the table of the ingest functions the user stopped in a project (the X beside a bar): writes a stop or a resume through the database writer and reads what is stopped.",
+  "database": "owner",
+  "owns": ["stopped_work"],
+  "writes": ["stopped_work"]
+}

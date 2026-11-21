@@ -1,0 +1,11 @@
+[package]
+name = "qnc-stopped-work"
+version.workspace = true
+edition.workspace = true
+description = "The functions of an ingest the user stopped, in the project's own database; the one owner of that table."
+
+[dependencies]
+rusqlite = { workspace = true }
+serde_json = { workspace = true }
+qnc-db = { path = "../qnc-db" }
+qnc-progress = { path = "../qnc-progress" }
