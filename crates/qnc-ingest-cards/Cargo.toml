@@ -1,0 +1,11 @@
+[package]
+name = "qnc-ingest-cards"
+version.workspace = true
+edition.workspace = true
+description = "Owns the ingest_cards table of a project: every ingest of a card with its serial, label, camera, day and time."
+
+[dependencies]
+rusqlite = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+qnc-db = { path = "../qnc-db" }

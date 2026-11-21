@@ -32,3 +32,4 @@ qnc-transcript-store = { path = "../qnc-transcript-store" }
 qnc-filmstrip-run = { path = "../qnc-filmstrip-run" }
 qnc-filmstrip-store = { path = "../qnc-filmstrip-store" }
 qnc-card-out = { path = "../qnc-card-out" }
+qnc-ingest-cards = { path = "../qnc-ingest-cards" }

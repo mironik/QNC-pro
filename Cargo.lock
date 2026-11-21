@@ -2902,6 +2902,16 @@ name = "qnc-ids"
 version = "0.1.0"
 
 [[package]]
+name = "qnc-ingest-cards"
+version = "0.1.0"
+dependencies = [
+ "qnc-db",
+ "rusqlite",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "qnc-ingest-plan"
 version = "0.1.0"
 dependencies = [
@@ -2950,6 +2960,7 @@ dependencies = [
  "qnc-diagnostics",
  "qnc-filmstrip-run",
  "qnc-filmstrip-store",
+ "qnc-ingest-cards",
  "qnc-ingest-plan",
  "qnc-ingest-run",
  "qnc-launch",
@@ -3289,7 +3300,6 @@ dependencies = [
  "qnc-ids",
  "qnc-project-make",
  "qnc-registry",
- "qnc-settings",
  "qnc-text",
  "serde_json",
 ]

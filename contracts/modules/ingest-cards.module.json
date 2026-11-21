@@ -1,0 +1,7 @@
+{
+  "kind": "block",
+  "responsibility": "Owns the ingest_cards table of a project: one row per ingest of a card with its volume serial, label, camera and the day and time the ingest started; written by the ingest window, read by the forms.",
+  "database": "owner",
+  "owns": ["ingest_cards"],
+  "writes": ["ingest_cards"]
+}

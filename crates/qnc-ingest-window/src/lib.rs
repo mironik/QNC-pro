@@ -166,7 +166,9 @@ impl Session {
         let reader = qnc_db::Reader::open(&db)?;
         let settings = qnc_project_settings::read(&reader)?;
         let plan = qnc_ingest_plan::Plan::of_settings(settings.saved.get("artifacts").unwrap_or(&serde_json::Value::Null))?;
-        let stops = qnc_db::Writer::start(&db, vec![Box::new(qnc_stopped_work::StoppedWork)])?;
+        let stops = qnc_db::Writer::start(&db, vec![Box::new(qnc_stopped_work::StoppedWork), Box::new(qnc_ingest_cards::IngestCardsTable)])?;
+        // The project remembers every ingest of a card: its serial, label, camera, day and time.
+        qnc_ingest_cards::record(&stops, &qnc_ingest_cards::IngestedCard { serial: card.serial.clone(), label: card.volume_name.clone(), camera: camera.clone(), started_at_utc: qnc_ingest_cards::now_utc() })?;
         if args.iter().any(|a| a == "--goes-on") {
             qnc_stopped_work::resume_all(&stops)?;
             qnc_diagnostics::log(format!("ingest window: project {project_id} goes on, nothing stopped"));
